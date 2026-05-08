@@ -921,6 +921,10 @@ footer { display: flex; align-items: center; justify-content: space-between; pad
     font-size: clamp(2.2rem, 10vw, 2.8rem); 
     line-height: 1.1;
   }
+  .scramble-wrapper {
+    display: block;   /* Ocupa el ancho completo del h1 para que ghost y target rompan igual */
+    width: 100%;
+  }
   .scramble-ghost, .scramble-target {
     white-space: normal; /* Permitir saltos de línea en móviles muy pequeños */
   }
