@@ -163,6 +163,9 @@ nav {
   padding: 1.4rem 5vw;
   background: transparent;
   transition: all .4s var(--ease);
+  /* Capa compuesta independiente: el scramble no puede "ensuciar" sus píxeles */
+  will-change: transform;
+  transform: translateZ(0);
 }
 nav.scrolled {
   background: var(--nav-bg);
@@ -285,6 +288,9 @@ h1.hname {
   vertical-align: top;
   position: relative;
   text-align: left;
+  /* Aísla el reflow/repaint: los cambios internos no propagan al DOM padre */
+  contain: layout style;
+  will-change: contents;
 }
 
 .scramble-ghost {
@@ -718,6 +724,9 @@ footer { display: flex; align-items: center; justify-content: space-between; pad
   width: 52px; height: 52px; display: grid; place-items: center;
   background: var(--surface); border: 1px solid var(--line); border-radius: 50%;
   box-shadow: var(--shadow); transition: all .3s var(--ease);
+  /* Capa compuesta propia: aislada de repaints del hero */
+  will-change: transform;
+  transform: translateZ(0);
 }
 .waf { bottom: 28px; font-size: 1.4rem; color: #25D366; }
 .scroll-top { bottom: 96px; opacity: 0; visibility: hidden; }
