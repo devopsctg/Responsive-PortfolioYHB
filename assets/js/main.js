@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentLang = localStorage.getItem('devyhb-lang') || 'es';
         const originalText = translations[currentLang]["hero-title-main"];
-        const chars = '!@#$%^&*()_+[]{}<>?/';
+        const chars = '▓░▒█!<>-_[]{}=+*^?#';
         const length = originalText.length;
         const queue = [];
 
@@ -471,34 +471,47 @@ document.addEventListener('DOMContentLoaded', () => {
             queue.push({ char, start, end });
         }
 
+        // Pre-crear nodos DOM una sola vez: evita parsear innerHTML en cada frame
+        const nodes = Array.from({ length }, () => {
+            const span = document.createElement('span');
+            return span;
+        });
+
+        // Limpiar y adjuntar todos los nodos de una vez (un solo reflow)
+        target.textContent = '';
+        const fragment = document.createDocumentFragment();
+        nodes.forEach(n => fragment.appendChild(n));
+        target.appendChild(fragment);
+
         let frame = 0;
         const tick = () => {
-            let output = '';
             let complete = 0;
 
             for (let i = 0; i < length; i++) {
                 const { char, start, end } = queue[i];
+                const node = nodes[i];
+
                 if (frame >= end) {
                     complete++;
-                    output += char;
+                    // Carácter final: texto plano sin estilos extra
+                    node.textContent = char;
+                    node.style.cssText = '';
                 } else if (frame >= start) {
-                    // Símbolos con glow verde neón y opacidad variable
-                    const symbol = '▓░▒█!<>-_[]{}=+*^?#'[Math.floor(Math.random() * 20)];
+                    const symbol = chars[Math.floor(Math.random() * chars.length)];
                     const opacity = Math.random() > 0.5 ? 1 : 0.7;
-                    output += `<span style="color: #00ff41; text-shadow: 0 0 10px #00ff41; opacity: ${opacity}">${symbol}</span>`;
+                    node.textContent = symbol;
+                    node.style.cssText = `color:#00ff41;text-shadow:0 0 10px #00ff41;opacity:${opacity}`;
                 } else {
-                    // Estado inicial antes de "despertar" el carácter
-                    const symbol = '░▒'[Math.floor(Math.random() * 2)];
-                    output += `<span style="color: #00ff41; opacity: 0.4">${symbol}</span>`;
+                    node.textContent = '░▒'[Math.floor(Math.random() * 2)];
+                    node.style.cssText = 'color:#00ff41;opacity:0.4';
                 }
             }
-
-            target.innerHTML = output;
 
             if (complete < length) {
                 frame++;
                 scrambleRAF = requestAnimationFrame(tick);
             } else {
+                // Limpiar: dejar sólo texto plano para no retener los spans
                 target.textContent = originalText;
             }
         };
