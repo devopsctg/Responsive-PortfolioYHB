@@ -529,6 +529,7 @@ h2.stit em { font-style: normal; color: var(--accent); }
 .proof-title { font-family: var(--fm); font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: .8rem; }
 .proof-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 2rem; box-shadow: var(--shadow); transition: all .4s var(--ease); }
 .proof-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow), var(--glow); }
+.proof-card:hover .project-image-wrap img { transform: scale(1.04); }
 .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
 .proof-top { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
 .proof-avatar { width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--line); }
