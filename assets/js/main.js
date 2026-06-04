@@ -319,9 +319,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeToggle?.addEventListener('click', () => {
         const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.classList.add('theme-transitioning');
         root.setAttribute('data-theme', next);
         localStorage.setItem('devyhb-theme', next);
         syncThemeIcon();
+        setTimeout(() => {
+            root.classList.remove('theme-transitioning');
+        }, 800);
     });
     syncThemeIcon();
 

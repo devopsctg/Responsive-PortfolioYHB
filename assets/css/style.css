@@ -45,6 +45,18 @@
   --grain-opacity: .06;
 }
 
+/* Smooth Theme Transition */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: background 0.8s var(--ease) !important,
+              background-color 0.8s var(--ease) !important,
+              color 0.8s var(--ease) !important,
+              border-color 0.8s var(--ease) !important,
+              box-shadow 0.8s var(--ease) !important;
+}
+
 /* === RESET & BASE === */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; }
@@ -792,9 +804,9 @@ footer { display: flex; align-items: center; justify-content: space-between; pad
 .terminal-popup-close { position: absolute; top: -2rem; right: -1rem; background: none; border: none; color: var(--ink); font-size: 2.5rem; cursor: pointer; z-index: 10; transition: transform .3s; }
 .terminal-popup-close:hover { transform: scale(1.2); color: var(--accent); }
 .command-circle-container { position: absolute; inset: 0; z-index: 1; }
-.terminal-wa-link { position: relative; z-index: 2; width: 80px; height: 80px; background: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; text-decoration: none; box-shadow: 0 0 30px rgba(37,211,102,0.4); transition: transform 0.3s var(--ease), box-shadow 0.3s; }
-.terminal-wa-link:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(37,211,102,0.6); }
-.wa-tooltip { position: absolute; bottom: -40px; background: var(--accent); color: #000; padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--fm); font-size: 0.7rem; font-weight: 800; white-space: nowrap; text-transform: uppercase; opacity: 0; transform: translateY(10px); transition: all 0.3s var(--ease); pointer-events: none; }
+.terminal-wa-link { position: relative; z-index: 2; width: 80px; height: 80px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; text-decoration: none; box-shadow: 0 0 30px var(--glow); transition: transform 0.3s var(--ease), box-shadow 0.3s, background 0.3s, color 0.3s; }
+.terminal-wa-link:hover { transform: scale(1.1); box-shadow: 0 0 50px var(--accent); }
+.wa-tooltip { position: absolute; bottom: -40px; background: var(--accent); color: var(--bg); padding: 0.4rem 0.8rem; border-radius: 4px; font-family: var(--fm); font-size: 0.7rem; font-weight: 800; white-space: nowrap; text-transform: uppercase; opacity: 0; transform: translateY(10px); transition: all 0.3s var(--ease); pointer-events: none; }
 .terminal-wa-link:hover .wa-tooltip { opacity: 1; transform: translateY(0); }
 .terminal-popup-footer { position: absolute; bottom: -4rem; text-align: center; font-family: var(--fm); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.1em; }
 .tp-line { margin-bottom: 0.3rem; }
