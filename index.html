@@ -206,6 +206,7 @@
         <div class="skitags">
           <span class="skitag"><i class="devicon-javascript-plain"></i> JavaScript / Vue.js</span>
           <span class="skitag"><i class="devicon-flutter-plain"></i> Flutter & Dart</span>
+          <span class="skitag"><i class="bi bi-palette-fill"></i> Ant Design</span>
           <span class="skitag"><i class="devicon-html5-plain"></i> HTML5 / CSS3</span>
           <span class="skitag"><i class="devicon-bootstrap-plain"></i> Bootstrap</span>
         </div>
@@ -547,37 +548,63 @@
   </div>
 
   <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title" data-i18n="portfolio-ai-title">
-      AI Operations & Multi-Agent Systems
-      <i class="bi bi-cpu-fill" style="margin-left:8px;color:var(--accent)"></i>
+    <div class="proof-title">
+      <span data-i18n="portfolio-epe-main-title">Fullstack & Enterprise Solutions</span> & 
+      <span data-i18n="portfolio-ai-title">AI Operations</span>
+      <i class="bi bi-stars" style="margin-left:8px;color:var(--accent)"></i>
     </div>
-    <div class="proof-grid" style="grid-template-columns:1fr">
-      <article class="proof-card ai-mega-card">
-        <div class="ai-command-grid">
-          <header class="ai-header">
-            <div class="ai-kicker" data-i18n="portfolio-ai-project-tag">AI Operations Hub · Featured Project</div>
-            <h3 class="proof-name" data-i18n="portfolio-ai-project-title">DevTeams: Multi-Agent 3D Simulation</h3>
-          </header>
-          <div class="ai-visual">
-            <video src="assets/img/office-iso.mp4" autoplay muted loop playsinline preload="metadata"></video>
-            <div class="ai-badge-live"><span class="status-dot"></span> <span data-i18n="portfolio-ai-project-status">System Live</span></div>
-          </div>
-          <aside class="ai-sidebar">
-            <div class="ai-feature-mini"><i class="bi bi-cpu"></i><strong data-i18n="portfolio-ai-feature-1-title">Planner A*</strong><span data-i18n="portfolio-ai-feature-1-desc">Pathfinding en Web Workers.</span></div>
-            <div class="ai-feature-mini"><i class="bi bi-shield-lock"></i><strong data-i18n="portfolio-ai-feature-2-title">Privacy</strong><span data-i18n="portfolio-ai-feature-2-desc">File System Access API.</span></div>
-          </aside>
-          <footer class="ai-footer">
-            <p class="proof-copy" data-i18n="portfolio-ai-project-copy">Orquestación de 8 agentes especializados en un entorno 3D inmersivo con <strong>Three.js</strong> y <strong>Groq Llama 3.3</strong>.</p>
-            <div class="ai-footer-actions">
-              <div class="proof-pill-list">
-                <span class="proof-pill">Three.js</span>
-                <span class="proof-pill">Groq Cloud</span>
-                <span class="proof-pill">AI Planner</span>
-              </div>
-              <a class="proof-link" href="https://github.com/DevCop95/devteams" target="_blank" rel="noopener"><span data-i18n="portfolio-ai-project-cta">Arquitectura en GitHub</span> <i class="bi bi-github"></i></a>
+    <div class="proof-grid">
+      <!-- Panorama EVO Card -->
+      <article class="proof-card">
+        <div class="proof-top">
+          <div class="cico"><i class="bi bi-layers-fill"></i></div>
+          <div>
+            <div class="proof-kicker" data-i18n="portfolio-epe-tag">Fullstack · Featured Project</div>
+            <h3 class="proof-name" data-i18n="portfolio-epe-title">Motor de Cálculos EPE: Automatización Portuaria</h3>
+            <div class="proof-handle">
+              <a href="https://www.latinosoftpsa.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@Latinosoft / Panorama EVO</a>
+              <span style="color:var(--muted);margin-left:8px;font-size:.7rem">• 2021 - 2022</span>
             </div>
-          </footer>
+          </div>
         </div>
+        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--bg2);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
+          <img src="assets/img/panorama1.png" alt="Panorama EVO UI" style="max-height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
+          <img src="assets/img/panorama2.svg" alt="Panorama EVO Logo" style="max-height:60%;width:auto;object-fit:contain">
+        </div>
+        <p class="proof-copy" data-i18n="portfolio-epe-copy">Desarrollo íntegramente (Fullstack) del módulo central de <strong>Panorama EVO</strong> para automatizar el cálculo de tarifas y gastos portuarios complejos.</p>
+        <div class="proof-pill-list">
+          <span class="proof-pill">Laravel 10</span>
+          <span class="proof-pill">Vue.js 3</span>
+          <span class="proof-pill">Ant Design</span>
+          <span class="proof-pill">Symfony Exp</span>
+        </div>
+        <a class="proof-link" href="https://www.lbhcolombia.com/" target="_blank" rel="noopener">
+          <span data-i18n="portfolio-epe-cta">Ver Cliente LBH</span> <i class="bi bi-arrow-up-right"></i>
+        </a>
+      </article>
+
+      <!-- DevTeams Card -->
+      <article class="proof-card">
+        <div class="proof-top">
+          <div class="cico"><i class="bi bi-cpu-fill"></i></div>
+          <div>
+            <div class="proof-kicker" data-i18n="portfolio-ai-project-tag">AI Operations Hub · Featured Project</div>
+            <h3 class="proof-name" data-i18n="portfolio-ai-project-title">DevTeams: Multi-Agent 3D Simulation</h3>
+            <div class="proof-handle">@DevCop95/devteams</div>
+          </div>
+        </div>
+        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#000">
+          <video src="assets/img/office-iso.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)"></video>
+        </div>
+        <p class="proof-copy" data-i18n="portfolio-ai-project-copy">Orquestación de 8 agentes especializados en un entorno 3D inmersivo con <strong>Three.js</strong> y <strong>Groq Llama 3.3</strong>.</p>
+        <div class="proof-pill-list">
+          <span class="proof-pill">Three.js</span>
+          <span class="proof-pill">Groq Cloud</span>
+          <span class="proof-pill">AI Planner</span>
+        </div>
+        <a class="proof-link" href="https://github.com/DevCop95/devteams" target="_blank" rel="noopener">
+          <span data-i18n="portfolio-ai-project-cta">GitHub</span> <i class="bi bi-github"></i>
+        </a>
       </article>
     </div>
   </div>

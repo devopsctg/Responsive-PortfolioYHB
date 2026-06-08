@@ -656,6 +656,15 @@ h2.stit em { font-style: normal; color: var(--accent); }
 .status-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; box-shadow: 0 0 6px var(--accent); animation: pulse-dot 2s infinite; }
 .ai-footer-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
 
+@media (max-width: 1200px) {
+  .ai-command-grid { 
+    grid-template-areas: "head head head head head head" "vis vis vis vis vis vis" "side side side side side side" "foot foot foot foot foot foot"; 
+  }
+  .ai-visual { height: 260px; }
+  .ai-sidebar { padding: 2rem; flex-direction: row; flex-wrap: wrap; gap: 2rem; }
+  .ai-feature-mini { flex: 1 1 200px; }
+}
+
 @media (max-width: 900px) {
   .ai-command-grid { grid-template-areas: "head head head head head head" "vis vis vis vis vis vis" "side side side side side side" "foot foot foot foot foot foot"; }
   .ai-visual { height: 220px; }
