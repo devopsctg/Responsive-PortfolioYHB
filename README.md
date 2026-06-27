@@ -1,53 +1,80 @@
 # DevYHB — Portfolio Personal
 
-> Portafolio personal de **Yared Henriquez**, Ingeniero de Sistemas Full-Stack especializado en Python, Salesforce y automatización. Construido con HTML, CSS y Vanilla JS — sin frameworks, sin dependencias de build.
+> Portafolio personal de **Yared Henriquez**, Ingeniero de Sistemas especializado en arquitectura de software, automatización con IA y soluciones fullstack. Construido con HTML, CSS y Vanilla JS — sin frameworks de build, sin dependencias pesadas.
 
 ---
 
 ## Vista previa
 
 ```
-┌─────────────────────────────────────────────┐
-│  Dev YHB  ·  Sobre mí  ·  Trayectoria  · ☀  │  ← nav con dark mode
-├─────────────────────────────────────────────┤
-│                                             │
-│  Yared                                      │
-│  Henriquez          ← typewriter animado    │
-│  Ing. Sistemas|                             │
-│                                             │
-│  [ Portafolio ]  [ Contacto ]               │
-│                                             │
-│  5+ años Python  ·  4 años TI  ·  Ranger   │
-└─────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│  DevYHB  ·  Sobre mí  ·  Habilidades  ·  Trayectoria  ☀ │  ← nav + dark mode
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  Ingeniero de Sistemas      ← scramble animation         │
+│  orientado a soluciones                                  │
+│                                                          │
+│  [ Ver portafolio ]   yared.henriquezb@gmail.com         │
+│                                                          │
+│  5+ años · Python + IA · <24h respuesta                  │
+└──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Características
 
-- **Modo oscuro / claro** — toggle en el nav, persiste con `localStorage`, respeta `prefers-color-scheme`
-- **Typewriter** — rota entre roles: `Ing. Sistemas`, `Full-Stack Dev`, `Salesforce Dev`, `Automatización`
-- **Menú hamburguesa** — overlay fullscreen en móvil con cierre automático al navegar
-- **Nav activo** — indicador de sección actual mientras haces scroll
-- **Scroll-to-top** — botón flotante que aparece al bajar 400px
-- **Tooltips de nivel** en skills — hover muestra nivel de dominio (`Experto`, `Avanzado`, etc.)
-- **GitHub card en vivo** — datos reales via API pública de GitHub
-- **OSINT Terminal card** — tarjeta de logro del proyecto open source
-- **Lazy loading** en todas las imágenes
-- **Google Analytics 4** — eventos rastreados: vistas de sección, cambio de tema, filtros, clicks externos
-- **SEO + Open Graph** — meta description y og:tags para compartir en redes
+- **Dark / Light mode** — toggle en el nav, persiste con `localStorage`, respeta `prefers-color-scheme`
+- **Scramble animation** — efecto glitch en el título hero al cargar y al cambiar idioma
+- **i18n ES / EN** — switch de idioma completo, persiste con `localStorage`
+- **Menú hamburguesa** — overlay en móvil con cierre automático al navegar
+- **Nav activo** — resalta la sección visible durante el scroll
+- **Cursor personalizado** — anillo + punto animado, desactivado en touch y `prefers-reduced-motion`
+- **Scroll progress bar** — barra de progreso en la parte superior
+- **Lazy loading** — en todas las imágenes y el vídeo
+- **Portfolio filtrable** — Certificaciones / Tecnologías con transición suave
+- **Modal Flutter** — galería lightbox con navegación por teclado y flechas
+- **Audit stream** — terminal SecOps animado en la sección de Ciberseguridad
+- **Terminal popup 3D** — Three.js al llegar al final de la página (lazy visual)
+- **Stat counter** — animación de contadores al entrar en viewport
+- **SEO + Open Graph** — meta description, og:tags, twitter:card y JSON-LD Person
+- **Scroll-to-top** — botón flotante que aparece al bajar 420 px
+
+---
+
+## Secciones
+
+| # | Sección | Contenido |
+|---|---------|-----------|
+| 01 | About | Foto, descripción profesional, meta datos de contacto |
+| 02 | Skills | Stack técnico por grupos: Backend, Frontend/Mobile, Cybersecurity, Cloud |
+| 03 | Resume | Experiencia laboral y educación en timeline |
+| 04 | Portfolio | Certificaciones, tecnologías, GitHub/Trailhead, Flutter, proyectos destacados |
+| 05 | Services | Tarjetas de servicios: Transformación Digital, Web/Bots, Integraciones |
+| 06 | Contact | Links directos email/WhatsApp/CV + panel de disponibilidad |
 
 ---
 
 ## Estructura
 
 ```
-portfolio/
-├── index.html        ← todo el proyecto (HTML + CSS + JS en un solo archivo)
+Responsive-PortfolioYHB/
+├── index.html                  ← estructura HTML principal
+├── CNAME                       ← dominio: devyared.dpdns.org
+├── assets/
+│   ├── css/
+│   │   └── style.css           ← todos los estilos + variables de tema
+│   ├── js/
+│   │   └── main.js             ← lógica completa (cursor, scroll, i18n, Three.js, etc.)
+│   ├── img/
+│   │   ├── profile-img.{jpg,webp}
+│   │   ├── flutter/{1-6}.{jpeg,webp}
+│   │   ├── portfolio/portfolio-{1-12}.{jpg,png,webp}
+│   │   └── ...
+│   └── docs/
+│       └── CV_yared_Henriquez.pdf
 └── README.md
 ```
-
-No hay carpetas de assets propias — las imágenes se sirven desde el repo anterior en GitHub Pages.
 
 ---
 
@@ -56,101 +83,17 @@ No hay carpetas de assets propias — las imágenes se sirven desde el repo ante
 | Capa | Tecnología |
 |---|---|
 | Markup | HTML5 semántico |
-| Estilos | CSS3 con custom properties (`:root`) |
-| Lógica | Vanilla JS (ES6+) |
+| Estilos | CSS3 con custom properties (`:root`), sin preprocesador |
+| Lógica | Vanilla JS (ES6+), sin bundler |
+| 3D | Three.js r160 (CDN) |
+| Íconos | Bootstrap Icons 1.11 + Devicon |
 | Fuentes | Bricolage Grotesque + DM Mono (Google Fonts) |
-| Iconos | Bootstrap Icons + Devicons |
-| Analytics | Google Analytics 4 |
-
----
-
-## Configuración rápida
-
-### 1. Clonar y abrir
-
-```bash
-git clone https://github.com/DevCop95/portfolio-yhb.git
-cd portfolio-yhb
-# abrir index.html en el navegador — no requiere servidor
-```
-
-### 2. Conectar Google Analytics
-
-Busca en `index.html` y reemplaza con tu ID real de GA4:
-
-```html
-<!-- línea ~17 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  gtag('config', 'G-XXXXXXXXXX'); /* ← reemplaza aquí */
-</script>
-```
-
-### 3. Personalizar contenido
-
-Todas las variables de color están centralizadas en `:root`:
-
-```css
-:root {
-  --accent: #0e7a5f;   /* color principal — cambiar aquí afecta todo */
-  --ink:    #16181c;
-  --bg:     #f5f4f0;
-  /* ... */
-}
-```
-
----
-
-## Eventos de Analytics rastreados
-
-| Evento | Cuándo se dispara |
-|---|---|
-| `section_view` | Al hacer scroll a cada sección |
-| `toggle_theme` | Al cambiar entre modo claro/oscuro |
-| `portfolio_filter` | Al filtrar Certificaciones / Tecnologías |
-| `outbound_click` | Al hacer clic en links externos (GitHub, WhatsApp, etc.) |
-
----
-
-## Proyecto destacado — OSINT Terminal
-
-El portafolio incluye una tarjeta de logro para **OSINT Terminal**, una herramienta de análisis web open source construida en Vanilla JS que se inyecta en el navegador via consola.
-
-Analiza información **pública** del DOM: meta tags, links externos, formularios, tecnologías detectadas y emails visibles. Construida sin `innerHTML` y sin acceder a cookies, tokens ni datos privados del usuario.
-
-→ [Ver en GitHub Gist](https://gist.github.com/DevCop95/2ba71ac75edbd5481ee44b46eafa3c7a)
-
-**Comandos disponibles:** `info` `meta` `links` `forms` `emails` `tech` `a11y` `scan` `export` `clear`
-
----
-
-## Mejoras pendientes
-
-- [ ] Sección de proyectos reales con screenshots
-- [ ] CV descargable en PDF
-- [ ] Formulario de contacto
-- [ ] Lazy loading nativo para secciones (Intersection Observer ya implementado)
+| Hosting | GitHub Pages + dominio personalizado |
 
 ---
 
 ## Despliegue
 
-El sitio se puede publicar directamente en **GitHub Pages** sin configuración adicional:
+El sitio se sirve directamente desde la rama `main` via GitHub Pages. El dominio `devyared.dpdns.org` apunta a GitHub Pages mediante el archivo `CNAME`.
 
-1. Ir a `Settings → Pages`
-2. Source: `Deploy from a branch`
-3. Branch: `main` / `root`
-4. Guardar — disponible en `https://DevCop95.github.io/nombre-repo`
-
----
-
-## Licencia
-
-© 2025 Yared Henriquez — DevYHB. Todos los derechos reservados.  
-Puedes usar este código como referencia o inspiración, pero no redistribuirlo como propio.
-
----
-
-<p align="center">
-  Hecho con intención desde Cartagena de Indias, Colombia 🇨🇴
-</p>
+No requiere build step ni servidor — abrir `index.html` en el navegador es suficiente para desarrollo local.

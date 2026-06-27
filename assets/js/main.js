@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "hero-copy": "Ingeniero en Sistemas especializado en <strong>arquitectura de software, Laravel, automatización de procesos, bots inteligentes (Telegram/WhatsApp) y flujos complejos</strong>. Desarrollo de soluciones con foco en ejecución real e impacto de negocio.",
             "hero-btn-portfolio": "Ver portafolio",
             "hero-stat-exp": "años de experiencia",
-            "hero-stat-tech": "automatización e integraciones",
-            "hero-stat-time": "tiempo de respuesta",
+            "hero-stat-tech": "backend · frontend · mobile",
+            "hero-stat-time": "de problema a solución",
             "about-label": "01 - Sobre mi",
             "about-title": "Tecnología con foco en <em>impacto real</em>",
             "about-copy": "He liderado la implementación de soluciones tecnológicas en entornos reales, incluyendo la <strong>dirección de infraestructura digital</strong> en EXIA S.A.S dentro del sector de energía solar, donde integré sensores, monitoreo en tiempo real y automatización de reportes operativos. Mi experiencia abarca desde desarrollo backend hasta integraciones empresariales y análisis de datos.",
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-epe-frontend-1": "Editor Fórmulas Real-time.",
             "portfolio-epe-frontend-2": "Estados Reactivos con Pinia.",
             "portfolio-epe-frontend-3": "Previsualización Dinámica PDA.",
-            "services-label": "05 - Services",
+            "services-label": "05 - Servicios",
             "services-title": "Lo que puedo <em>aportar</em>",
             "services-copy": "Soluciones pensadas para operar mejor, lanzar más rápido y sostener crecimiento con base técnica sólida.",
             "services-1-title": "Transformación Digital",
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "services-2-desc": "Creación de aplicaciones web robustas, bots inteligentes (Telegram/WhatsApp) y automatización de flujos de trabajo complejos.",
             "services-3-title": "Integraciones & Arq.",
             "services-3-desc": "Conexión entre sistemas y decisiones de arquitectura pensadas para escalar.",
-            "contact-label": "06 - Contact",
+            "contact-label": "06 - Contacto",
             "contact-title": "¿Listo para <em>ejecutar?</em>",
             "contact-copy": "Si tienes un problema complejo de software o un proceso que necesita IA y automatización, hablemos. Mi enfoque es la entrega de soluciones técnicas reales.",
             "contact-cta-whatsapp": "WhatsApp Directo",
@@ -146,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "hero-copy": "Systems Engineer specializing in <strong>software architecture, Laravel, process automation, intelligent bots (Telegram & WhatsApp), and complex workflows</strong>. I build high-impact solutions with a focus on real execution.",
             "hero-btn-portfolio": "View Portfolio",
             "hero-stat-exp": "years of experience",
-            "hero-stat-tech": "automation & integrations",
-            "hero-stat-time": "response time",
+            "hero-stat-tech": "backend · frontend · mobile",
+            "hero-stat-time": "problem to solution",
             "about-label": "01 - About me",
             "about-title": "Technology with focus on <em>real impact</em>",
             "about-copy": "I have led the implementation of technological solutions in real environments, including the <strong>digital infrastructure management</strong> at EXIA S.A.S in the solar energy sector, where I integrated IoT sensors, real-time monitoring, and operational report automation. My experience ranges from backend development to enterprise integrations and data analysis.",
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-dev101-title": "dev101_bot: Telegram Bot",
             "portfolio-dev101-copy": "Automated Telegram bot sending 24/7 cybersecurity & AI news, orchestrated via Cloudflare Workers, GitHub Actions, and Groq LLaMA 3.3 summaries.",
             "portfolio-backend-project-cta": "Explore Code",
-            "portfolio-epe-cta": "Ver Cliente LBH",
+            "portfolio-epe-cta": "View LBH Client",
             "portfolio-epe-main-title": "Fullstack & Enterprise Solutions",
             "portfolio-epe-tag": "Fullstack · Featured Project",
             "portfolio-epe-title": "EPE Calculation Engine: Port Automation",
@@ -239,8 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact-status-resp": "Response",
             "contact-status-resp-v": "< 24 Hours",
             "contact-status-focus": "Focus",
-            "contact-status-focus-v": "Software & IA",
-            "contact-status-mod": "Modalidad",
+            "contact-status-focus-v": "Software & AI",
+            "contact-status-mod": "Mode",
             "contact-status-mod-v": "Freelance / Consulting",
             "contact-status-signal": "Systems ready for new integrations and deployments.",
             "github-scroll-hint": "Swipe for months",
@@ -277,44 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const savedLang = localStorage.getItem('devyhb-lang') || 'es';
     updateLanguage(savedLang);
-
-    // ─── CUSTOM CURSOR ────────────────────────────────────────────────────────
-    const cursorRing = document.getElementById('cursor-ring');
-    const cursorDot = document.getElementById('cursor-dot');
-    let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
-    let rafCursor;
-
-    const isTouchDevice = window.matchMedia('(hover: none)').matches;
-
-    if (!isTouchDevice && cursorRing && cursorDot) {
-        document.addEventListener('mousemove', e => {
-            dotX = e.clientX;
-            dotY = e.clientY;
-            if (!body.classList.contains('cursor-ready')) body.classList.add('cursor-ready');
-        });
-
-        const animateCursor = () => {
-            ringX += (dotX - ringX) * 0.14;
-            ringY += (dotY - ringY) * 0.14;
-            cursorRing.style.left = ringX + 'px';
-            cursorRing.style.top = ringY + 'px';
-            cursorDot.style.left = dotX + 'px';
-            cursorDot.style.top = dotY + 'px';
-            rafCursor = requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-
-        document.addEventListener('mousedown', () => body.classList.add('cursor-click'));
-        document.addEventListener('mouseup', () => body.classList.remove('cursor-click'));
-        document.addEventListener('mouseleave', () => body.classList.remove('cursor-ready'));
-        document.addEventListener('mouseenter', () => body.classList.add('cursor-ready'));
-
-        const hoverTargets = 'a, button, .skitag, .pitem, .proof-card, .svc-card, .clink, .pfbtn, .tcell, .flutter-item, .fmodal-close, .fmodal-btn';
-        document.querySelectorAll(hoverTargets).forEach(el => {
-            el.addEventListener('mouseenter', () => body.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => body.classList.remove('cursor-hover'));
-        });
-    }
 
     // ─── SCROLL & NAV ────────────────────────────────────────────────────────
     const sections = [...document.querySelectorAll('section[id]')];
@@ -481,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-count]').forEach(el => statsObserver.observe(el));
 
     // ─── MAGNETIC BUTTON EFFECT ───────────────────────────────────────────────
-    if (!isTouchDevice && !reducedMotion) {
+    if (!window.matchMedia('(hover: none)').matches && !reducedMotion) {
         document.querySelectorAll('.btn-solid, .btn-line, .ncta').forEach(btn => {
             btn.addEventListener('mousemove', e => {
                 const rect = btn.getBoundingClientRect();
@@ -596,13 +558,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── AUDIT STREAM LOGIC ───────────────────────────────────────────────────
     const auditStream = document.getElementById('audit-stream');
     const auditLogs = [
-        '[!] Exploit: RemoteThreadInjection -> OK',
-        '[!] Target: Win10_x64_Build_19044',
-        '[!] Status: Beacon Active (C2)',
-        '[+] Bypass: AMSI_PATCHED',
-        '[+] Persistence: LNK_HIJACK',
-        '[!] SCAN: CVE-2024-XXXX FOUND',
-        '[+] AUTH: Kerberoasting SUCCESS'
+        '[+] OWASP TOP 10: Scan Complete — 0 Critical',
+        '[+] IAM Policy: Least Privilege Enforced',
+        '[!] Network Audit: Open Ports Reduced to 2',
+        '[+] TLS 1.3: Enforced on all endpoints',
+        '[+] Auth: MFA + JWT rotation configured',
+        '[!] SAST: No hardcoded secrets detected',
+        '[+] AppSec: CSRF / XSS mitigations active'
     ];
     let lastAuditScroll = 0;
 
@@ -640,7 +602,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (popupShown) return;
         popupShown = true;
         tPopup?.classList.add('active');
-        initCommandCircle();
+        if (window.THREE) {
+            initCommandCircle();
+        } else {
+            const s = document.createElement('script');
+            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
+            s.onload = initCommandCircle;
+            document.head.appendChild(s);
+        }
     };
 
     tClose?.addEventListener('click', () => {

@@ -1,2 +1,5 @@
 # Gemini CLI Skills
 .gemini/
+
+# Editor config
+.vscode/
