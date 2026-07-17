@@ -1,5 +1,8 @@
 # Gemini CLI Skills
 .gemini/
 
+# Claude Code
+.claude/
+
 # Editor config
 .vscode/

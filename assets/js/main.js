@@ -14,6 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileClose = document.getElementById('mobileClose');
     const langToggle = document.getElementById('langToggle');
 
+    // ─── LIVE GITHUB STARS ───────────────────────────────────────────────────
+    (function updateRepoStars() {
+        const badge = document.querySelector('.flagship-stars[data-repo]');
+        if (!badge) return;
+        const countEl = badge.querySelector('[data-stars]');
+        if (!countEl) return;
+        fetch(`https://api.github.com/repos/${badge.dataset.repo}`, { headers: { Accept: 'application/vnd.github+json' } })
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(data => {
+                if (typeof data.stargazers_count === 'number') countEl.textContent = data.stargazers_count;
+            })
+            .catch(() => { /* keep the static fallback value */ });
+    })();
+
     // ─── TRANSLATIONS ────────────────────────────────────────────────────────
     const translations = {
         es: {
@@ -25,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-contact": "Contacto",
             "nav-cta": "Hablemos",
             "hero-tag": "Disponible para proyectos freelance",
-            "hero-title-main": "Ingeniero de Sistemas",
-            "hero-title-sub": "orientado a soluciones",
-            "hero-copy": "Ingeniero en Sistemas especializado en <strong>arquitectura de software, Laravel, automatización de procesos, bots inteligentes (Telegram/WhatsApp) y flujos complejos</strong>. Desarrollo de soluciones con foco en ejecución real e impacto de negocio.",
+            "hero-title-main": "Ingeniero de Software",
+            "hero-title-sub": "IA aplicada &amp; seguridad ofensiva",
+            "hero-copy": "Desarrollador full-stack e ingeniero de IA. Diseño <strong>agentes LLM, automatizaciones a escala y herramientas de seguridad ofensiva</strong> — del prototipo a producción, con foco en ejecución real e impacto de negocio.",
             "hero-btn-portfolio": "Ver portafolio",
             "hero-stat-exp": "años de experiencia",
-            "hero-stat-tech": "backend · frontend · mobile",
+            "hero-stat-tech": "IA · backend · seguridad",
             "hero-stat-time": "de problema a solución",
             "about-label": "01 - Sobre mi",
             "about-title": "Tecnología con foco en <em>impacto real</em>",
@@ -53,23 +67,37 @@ document.addEventListener('DOMContentLoaded', () => {
             "skills-workflows": "Flujos Complejos",
             "resume-label": "03 - Trayectoria",
             "resume-exp-title": "Experiencia Laboral",
-            "resume-exp-1-title": "<span class='text-bold'>Dirección de Infraestructura Digital</span>",
+            "resume-exp-1-title": "<span class='text-bold'>Chief Technology Officer (CTO)</span>",
             "resume-exp-1-org": "EXIA S.A.S - Energía Solar",
             "resume-exp-1-desc": "Liderazgo técnico en la integración de sensores IoT, monitoreo en tiempo real y automatización de procesos operativos.",
-            "resume-exp-2-title": "<span class='text-bold'>Consultoría en TI & Automatización</span>",
-            "resume-exp-2-org": "Independiente / Freelance",
-            "resume-exp-2-desc": "Desarrollo de soluciones personalizadas en Python y arquitecturas web para clientes en diversos sectores.",
+            "resume-exp-2-title": "<span class='text-bold'>Semi-Senior Developer</span>",
+            "resume-exp-2-org": "Google",
+            "resume-exp-2-desc": "Desarrollo de software y mejora de flujos de ingeniería en proyectos de alta escala.",
+            "resume-exp-3-title": "<span class='text-bold'>Consultoría en TI & Automatización</span>",
+            "resume-exp-3-org": "Independiente / Freelance",
+            "resume-exp-3-desc": "Desarrollo de soluciones personalizadas en Python y arquitecturas web para clientes en diversos sectores.",
+            "resume-exp-4-title": "<span class='text-bold'>Asistente Administrativo</span>",
+            "resume-exp-4-org": "Proyecto CIER NORTE",
+            "resume-exp-4-desc": "Gestión administrativa y soporte operativo del proyecto.",
             "resume-edu-title": "Educación",
             "resume-edu-1-title": "Máster en Inteligencia Artificial",
-            "resume-edu-1-org": "Universidad de Barcelona",
+            "resume-edu-1-org": "Universitat de Barcelona",
             "resume-edu-1-desc": "Especialización en modelos generativos, agentes autónomos y visión por computadora.",
             "resume-edu-2-title": "Ingeniería en Sistemas",
             "resume-edu-2-org": "Universidad Tecnológica de Bolívar",
             "resume-edu-2-desc": "Formación integral en algoritmos, arquitectura de software y gestión de proyectos tecnológicos.",
+            "resume-edu-3-title": "Tecnólogo en Sistemas",
+            "resume-edu-3-org": "Universidad Tecnológica de Bolívar",
+            "resume-edu-3-desc": "Base tecnológica en programación, redes y fundamentos de sistemas.",
             "portfolio-label": "04 - Portafolio",
             "portfolio-title": "Proyectos <em>y Certificaciones</em>",
             "portfolio-filter-cert": "Certificaciones",
             "portfolio-filter-tech": "Tecnologías",
+            "portfolio-cert-mini-title": "Certificaciones complementarias",
+            "portfolio-security-title": "Security Research · Proyecto Estrella",
+            "portfolio-flagship-tag": "Bug Bounty Workspace · HackerOne",
+            "portfolio-flagship-copy": "Workspace completo de bug bounty para investigadores de HackerOne: enforcement de scope, pipeline automatizado de recon/vulnerabilidades con <strong>400+ herramientas</strong>, plantillas de reportes, watchlists de CVE/CWE y un lab local en VM. Construido para hunting disciplinado y ético.",
+            "portfolio-flagship-cta": "Ver el repositorio",
             "portfolio-proof-title": "Engineering Presence · Social Proof",
             "portfolio-github-status": "GitHub Status",
             "portfolio-github-cta": "Acceder al código",
@@ -141,12 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "nav-contact": "Contact",
             "nav-cta": "Let's Talk",
             "hero-tag": "Available for freelance projects",
-            "hero-title-main": "Systems Engineer",
-            "hero-title-sub": "solution-oriented",
-            "hero-copy": "Systems Engineer specializing in <strong>software architecture, Laravel, process automation, intelligent bots (Telegram & WhatsApp), and complex workflows</strong>. I build high-impact solutions with a focus on real execution.",
+            "hero-title-main": "Software Engineer",
+            "hero-title-sub": "applied AI &amp; offensive security",
+            "hero-copy": "Full-stack developer and AI engineer. I build <strong>LLM agents, automation at scale, and offensive security tooling</strong> — from prototype to production, with a focus on real execution and business impact.",
             "hero-btn-portfolio": "View Portfolio",
             "hero-stat-exp": "years of experience",
-            "hero-stat-tech": "backend · frontend · mobile",
+            "hero-stat-tech": "AI · backend · security",
             "hero-stat-time": "problem to solution",
             "about-label": "01 - About me",
             "about-title": "Technology with focus on <em>real impact</em>",
@@ -169,23 +197,37 @@ document.addEventListener('DOMContentLoaded', () => {
             "skills-workflows": "Complex Workflows",
             "resume-label": "03 - Resume",
             "resume-exp-title": "Work Experience",
-            "resume-exp-1-title": "<span class='text-bold'>Digital Infrastructure Management</span>",
+            "resume-exp-1-title": "<span class='text-bold'>Chief Technology Officer (CTO)</span>",
             "resume-exp-1-org": "EXIA S.A.S - Solar Energy",
             "resume-exp-1-desc": "Technical leadership in IoT sensor integration, real-time monitoring, and operational process automation.",
-            "resume-exp-2-title": "<span class='text-bold'>IT Consulting & Automation</span>",
-            "resume-exp-2-org": "Independent / Freelance",
-            "resume-exp-2-desc": "Development of custom solutions in Python and web architectures for clients in various sectors.",
+            "resume-exp-2-title": "<span class='text-bold'>Semi-Senior Developer</span>",
+            "resume-exp-2-org": "Google",
+            "resume-exp-2-desc": "Software development and engineering workflow improvements on high-scale projects.",
+            "resume-exp-3-title": "<span class='text-bold'>IT Consulting & Automation</span>",
+            "resume-exp-3-org": "Independent / Freelance",
+            "resume-exp-3-desc": "Development of custom solutions in Python and web architectures for clients in various sectors.",
+            "resume-exp-4-title": "<span class='text-bold'>Administrative Assistant</span>",
+            "resume-exp-4-org": "CIER NORTE Project",
+            "resume-exp-4-desc": "Administrative management and operational support for the project.",
             "resume-edu-title": "Education",
             "resume-edu-1-title": "Master in Artificial Intelligence",
-            "resume-edu-1-org": "University of Barcelona",
+            "resume-edu-1-org": "Universitat de Barcelona",
             "resume-edu-1-desc": "Specialization in generative models, autonomous agents, and computer vision.",
             "resume-edu-2-title": "Systems Engineering",
             "resume-edu-2-org": "Technological University of Bolivar",
             "resume-edu-2-desc": "Comprehensive training in algorithms, software architecture, and technology project management.",
+            "resume-edu-3-title": "Systems Technologist",
+            "resume-edu-3-org": "Technological University of Bolivar",
+            "resume-edu-3-desc": "Technological foundation in programming, networks, and systems fundamentals.",
             "portfolio-label": "04 - Portfolio",
             "portfolio-title": "Projects <em>and Certifications</em>",
             "portfolio-filter-cert": "Certifications",
             "portfolio-filter-tech": "Technologies",
+            "portfolio-cert-mini-title": "Complementary certifications",
+            "portfolio-security-title": "Security Research · Flagship",
+            "portfolio-flagship-tag": "Bug Bounty Workspace · HackerOne",
+            "portfolio-flagship-copy": "A complete bug bounty workspace for HackerOne researchers: scope enforcement, an automated recon/vulnerability pipeline with <strong>400+ tools</strong>, report templates, CVE/CWE watchlists and a local VM practice lab. Built for disciplined, ethical hunting.",
+            "portfolio-flagship-cta": "View the repository",
             "portfolio-proof-title": "Engineering Presence · Social Proof",
             "portfolio-github-status": "GitHub Status",
             "portfolio-github-cta": "Access Code",
@@ -385,6 +427,63 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeFlutterModal();
     });
 
+    // ─── CERTIFICATE MODAL (mini certs) ──────────────────────────────────────
+    const certModal = document.getElementById('certModal');
+    const cmodalImg = document.getElementById('cmodal-img');
+    const cmodalCaption = document.getElementById('cmodal-caption');
+    const miniItems = Array.from(document.querySelectorAll('.pitem-mini'));
+    const certData = miniItems.map(el => {
+        const img = el.querySelector('img');
+        const src = img?.getAttribute('src') || '';
+        return { img: src, title: img?.getAttribute('alt') || '' };
+    });
+    let currentCertIdx = 0;
+    let lastCertFocus = null;
+
+    const renderCert = () => {
+        const c = certData[currentCertIdx];
+        if (!c) return;
+        if (cmodalImg) { cmodalImg.src = c.img; cmodalImg.alt = c.title; }
+        if (cmodalCaption) cmodalCaption.textContent = c.title;
+    };
+    window.openCertModal = idx => {
+        currentCertIdx = idx;
+        lastCertFocus = document.activeElement;
+        renderCert();
+        certModal?.classList.add('active');
+        certModal?.setAttribute('aria-hidden', 'false');
+        body.style.overflow = 'hidden';
+    };
+    window.closeCertModal = () => {
+        certModal?.classList.remove('active');
+        certModal?.setAttribute('aria-hidden', 'true');
+        body.style.overflow = '';
+        if (lastCertFocus) lastCertFocus.focus();
+    };
+    window.changeCertImg = dir => {
+        currentCertIdx = (currentCertIdx + dir + certData.length) % certData.length;
+        if (cmodalImg) {
+            cmodalImg.style.opacity = '0';
+            setTimeout(() => { renderCert(); cmodalImg.style.opacity = '1'; }, 150);
+        }
+    };
+    certModal?.addEventListener('click', e => { if (e.target === certModal) closeCertModal(); });
+    miniItems.forEach((el, i) => {
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('aria-label', `Ver certificado: ${certData[i].title}`);
+        el.addEventListener('click', () => openCertModal(i));
+        el.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCertModal(i); }
+        });
+    });
+    document.addEventListener('keydown', e => {
+        if (!certModal?.classList.contains('active')) return;
+        if (e.key === 'ArrowLeft') changeCertImg(-1);
+        if (e.key === 'ArrowRight') changeCertImg(1);
+        if (e.key === 'Escape') closeCertModal();
+    });
+
     // ─── REVEAL OBSERVER ─────────────────────────────────────────────────────
     if (reducedMotion) {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
@@ -402,6 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── PORTFOLIO FILTER ─────────────────────────────────────────────────────
     const certGrid = document.getElementById('cgrid');
+    const certMini = document.getElementById('cgrid-mini');
     const techGrid = document.getElementById('tgrid');
     document.querySelectorAll('.pfbtn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -409,6 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             const techMode = btn.dataset.f === 'tech';
             if (certGrid) certGrid.style.display = techMode ? 'none' : 'grid';
+            if (certMini) certMini.style.display = techMode ? 'none' : 'block';
             techGrid?.classList.toggle('vis', techMode);
         });
     });
@@ -628,6 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
         renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(container.clientWidth, container.clientHeight);
         container.appendChild(renderer.domElement);
 
@@ -636,8 +738,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentAccent = getAccentColor();
         const accentHex = `#${currentAccent.getHexString()}`;
+        const aR = Math.round(currentAccent.r * 255), aG = Math.round(currentAccent.g * 255), aB = Math.round(currentAccent.b * 255);
         const commands = ['NMAP', 'GO_BUILD', 'OWASP', 'SEC_OPS', 'PYTHON', 'AI_AGENT', 'AUDIT_OK', 'HARDEN', 'DOCKER', 'DJANGO'];
         const nodes = [];
+        const sprites = [];
         const radius = 3.5;
 
         commands.forEach((cmd, i) => {
@@ -651,6 +755,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.font = 'Bold 36px DM Mono';
             ctx.fillStyle = accentHex;
             ctx.textAlign = 'center';
+            ctx.shadowColor = accentHex;
+            ctx.shadowBlur = 12;
             ctx.fillText(cmd, 128, 45);
 
             const texture = new THREE.CanvasTexture(canvas);
@@ -658,8 +764,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const sprite = new THREE.Sprite(material);
             sprite.position.copy(pos);
             sprite.scale.set(1.8, 0.45, 1);
+            sprite.userData.phase = Math.random() * Math.PI * 2;
             group.add(sprite);
             nodes.push(pos);
+            sprites.push(sprite);
         });
 
         const lineMaterial = new THREE.LineBasicMaterial({ color: currentAccent, transparent: true, opacity: 0.2 });
@@ -675,14 +783,38 @@ document.addEventListener('DOMContentLoaded', () => {
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
         group.add(new THREE.LineSegments(geometry, lineMaterial));
 
+        // Núcleo central luminoso (glow radial con blending aditivo)
+        const glowCanvas = document.createElement('canvas');
+        glowCanvas.width = glowCanvas.height = 128;
+        const gctx = glowCanvas.getContext('2d');
+        const grad = gctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+        grad.addColorStop(0, `rgba(${aR},${aG},${aB},0.9)`);
+        grad.addColorStop(0.4, `rgba(${aR},${aG},${aB},0.25)`);
+        grad.addColorStop(1, `rgba(${aR},${aG},${aB},0)`);
+        gctx.fillStyle = grad;
+        gctx.fillRect(0, 0, 128, 128);
+        const glowSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(glowCanvas), transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false }));
+        glowSprite.scale.set(3.2, 3.2, 1);
+        group.add(glowSprite);
+
         const partGeo = new THREE.BufferGeometry();
         const partPos = [];
-        for(let i=0; i<150; i++) partPos.push((Math.random()-0.5)*12, (Math.random()-0.5)*12, (Math.random()-0.5)*12);
+        for(let i=0; i<180; i++) partPos.push((Math.random()-0.5)*13, (Math.random()-0.5)*13, (Math.random()-0.5)*13);
         partGeo.setAttribute('position', new THREE.Float32BufferAttribute(partPos, 3));
-        group.add(new THREE.Points(partGeo, new THREE.PointsMaterial({ color: currentAccent, size: 0.04, transparent: true, opacity: 0.4 })));
+        const particles = new THREE.Points(partGeo, new THREE.PointsMaterial({ color: currentAccent, size: 0.045, transparent: true, opacity: 0.4 }));
+        group.add(particles);
 
         camera.position.z = 8;
         group.scale.set(0, 0, 0); // Empezar desde escala cero
+
+        // Parallax con el puntero
+        let targetX = 0, targetY = 0;
+        container.addEventListener('pointermove', e => {
+            const rect = container.getBoundingClientRect();
+            targetY = ((e.clientX - rect.left) / rect.width - 0.5);
+            targetX = ((e.clientY - rect.top) / rect.height - 0.5);
+        });
+        container.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; });
 
         function animate() {
             if (!tPopup?.classList.contains('active')) {
@@ -690,12 +822,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             requestAnimationFrame(animate);
+            const t = Date.now() * 0.001;
 
-            // Interpolación suave (lerp) hacia la escala 1
-            group.scale.lerp(new THREE.Vector3(1, 1, 1), 0.05);
+            // Entrada con lerp suave
+            group.scale.lerp(new THREE.Vector3(1, 1, 1), 0.06);
 
-            group.rotation.y += 0.002; group.rotation.x += 0.001;
-            lineMaterial.opacity = 0.1 + Math.sin(Date.now() * 0.002) * 0.1;
+            // Giro continuo + inclinación por parallax
+            group.rotation.y += 0.004;
+            group.rotation.x += (targetX * 0.6 + 0.12 - group.rotation.x) * 0.05;
+            group.rotation.z += (targetY * 0.25 - group.rotation.z) * 0.05;
+
+            // Nodos que pulsan + escaneo recorriendo la esfera
+            const scanIdx = Math.floor(t * 1.6) % sprites.length;
+            sprites.forEach((s, i) => {
+                const p = 0.5 + 0.5 * Math.sin(t * 2.2 + s.userData.phase);
+                let op = 0.55 + p * 0.4;
+                let sc = 1 + p * 0.1;
+                if (i === scanIdx) { op = 1; sc *= 1.18; }
+                s.material.opacity = op;
+                s.scale.set(1.8 * sc, 0.45 * sc, 1);
+            });
+
+            // Núcleo y líneas laten
+            glowSprite.material.opacity = 0.4 + Math.sin(t * 2) * 0.18;
+            const gs = 3.2 + Math.sin(t * 2) * 0.3;
+            glowSprite.scale.set(gs, gs, 1);
+            lineMaterial.opacity = 0.12 + Math.sin(t * 1.8) * 0.1;
+
+            // Partículas con deriva y titileo propios
+            particles.rotation.y -= 0.0012;
+            particles.material.opacity = 0.3 + Math.sin(t * 1.3) * 0.15;
+
             renderer.render(scene, camera);
         }
         animate();
