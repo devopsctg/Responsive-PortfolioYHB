@@ -116,7 +116,7 @@
     </h1>
     <p class="hero-copy" data-i18n="hero-copy">Desarrollador full-stack e ingeniero de IA. Diseño <strong>agentes LLM, automatizaciones a escala y herramientas de seguridad ofensiva</strong> — del prototipo a producción, con foco en ejecución real e impacto de negocio.</p>
     <div class="hbtns">
-      <a href="#portfolio" class="btn-solid" data-i18n="hero-btn-portfolio">Ver portafolio <i class="bi bi-arrow-up-right"></i></a>
+      <a href="#portfolio" class="btn-solid"><span data-i18n="hero-btn-portfolio">Ver portafolio</span> <i class="bi bi-arrow-up-right"></i></a>
       <a href="mailto:yared.henriquezb@gmail.com" class="btn-line">yared.henriquezb@gmail.com</a>
     </div>
     <div class="hstats">
@@ -437,9 +437,9 @@
   </div>
 
   <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title" data-i18n="portfolio-security-title">
-      Security Research · Flagship
-      <i class="bi bi-shield-shaded" style="margin-left:8px;color:var(--accent)"></i>
+    <div class="proof-title">
+      <span data-i18n="portfolio-security-title">Security Research · Flagship</span>
+      <i class="bi bi-shield-shaded" style="color:var(--accent)"></i>
     </div>
     <article class="proof-card flagship-card">
       <div class="flagship-glow" aria-hidden="true"></div>
@@ -450,7 +450,7 @@
           <h3 class="proof-name">bugbounty-lab101</h3>
           <div class="proof-handle">@DevCop95/bugbounty-lab101</div>
         </div>
-        <a class="flagship-stars" href="https://github.com/DevCop95/bugbounty-lab101/stargazers" target="_blank" rel="noopener" aria-label="Estrellas en GitHub" data-repo="DevCop95/bugbounty-lab101">
+        <a class="flagship-stars" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener" aria-label="Estrellas en GitHub" data-repo="DevCop95/bugbounty-lab101">
           <i class="bi bi-star-fill"></i>
           <span class="fs-count" data-stars>…</span>
           <span class="fs-label">stars</span>
@@ -471,9 +471,9 @@
   </div>
 
   <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title" data-i18n="portfolio-proof-title">
-      Engineering Presence · Social Proof
-      <i class="bi bi-shield-check" style="margin-left:8px;color:var(--accent)"></i>
+    <div class="proof-title">
+      <span data-i18n="portfolio-proof-title">Engineering Presence · Social Proof</span>
+      <i class="bi bi-shield-check" style="color:var(--accent)"></i>
     </div>
     <div class="proof-grid">
       <!-- GitHub Card -->
@@ -488,7 +488,7 @@
         </div>
         <div class="github-badges-wrap" style="margin:1.5rem 0;display:flex;flex-direction:column;gap:.8rem;align-items:center">
           <img src="https://img.shields.io/github/followers/DevCop95?label=Followers&style=for-the-badge&color=0e7a5f&logo=github" alt="Followers">
-          <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Fusers%2FDevCop95&query=%24.public_repos&label=Public%20Repos&style=for-the-badge&color=0e7a5f&logo=github" alt="Public Repos">
+          <img src="https://img.shields.io/badge/Public%20Repos-41-0e7a5f?style=for-the-badge&logo=github" alt="Public Repos" data-gh-badge="repos">
           <img src="https://img.shields.io/badge/Contributions-Verified-0e7a5f?style=for-the-badge&logo=github" alt="Verified">
         </div>
         <div class="proof-pill-list">
@@ -505,11 +505,12 @@
             <span style="font-family:var(--fm);font-size:.7rem;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.05em" data-i18n="github-chart-header">Contribuciones en GitHub</span>
           </div>
           <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem">
-            <img src="https://github-contributions-api.deno.dev/DevCop95.svg?year=2026" alt="GitHub contributions" loading="lazy" class="github-chart-img" style="min-width:720px;width:100%;height:auto;border:none;display:block">
+            <div class="gh-chart" id="ghChart" data-gh-user="DevCop95" role="img" aria-label="Calendario de contribuciones en GitHub"></div>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
             <p style="font-size:.6rem;color:var(--muted);font-family:var(--fm);letter-spacing:.05em;text-transform:uppercase">
-              <i class="bi bi-calendar3"></i> <span data-i18n="github-chart-range">Enero - Diciembre 2026</span>
+              <i class="bi bi-calendar3"></i> <span data-i18n="github-chart-range">Últimos 12 meses</span>
+              · <span data-gh-total>—</span> <span data-i18n="github-chart-total-label">contribuciones</span>
             </p>
             <p style="font-size:.55rem;color:var(--accent);font-family:var(--fm);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:4px">
               <i class="bi bi-arrow-left-right"></i> <span data-i18n="github-scroll-hint">Desliza para ver meses</span>
@@ -549,9 +550,9 @@
   </div>
 
   <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title" data-i18n="portfolio-mobile-title">
-      Mobile & Multiplatform
-      <img src="https://storage.googleapis.com/cms-storage-bucket/ec64036b4eacc9f3fd73.svg" alt="Flutter Logo" class="flutter-logo-brand">
+    <div class="proof-title">
+      <span data-i18n="portfolio-mobile-title">Mobile &amp; Multiplatform</span>
+      <i class="devicon-flutter-plain flutter-logo-brand" role="img" aria-label="Flutter"></i>
     </div>
     <div class="flutter-grid">
       <button class="flutter-item" onclick="openFlutterModal(0)" aria-label="Ver captura de pantalla 1 de Flutter">
@@ -662,9 +663,9 @@
   </div>
 
   <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title" data-i18n="portfolio-backend-title">
-      Desarrollo Backend & Automatizaciones
-      <i class="bi bi-terminal-fill" style="margin-left:8px;color:var(--accent)"></i>
+    <div class="proof-title">
+      <span data-i18n="portfolio-backend-title">Desarrollo Backend &amp; Automatizaciones</span>
+      <i class="bi bi-terminal-fill" style="color:var(--accent)"></i>
     </div>
     <div class="proof-grid">
       <!-- Project: aprendeapi -->

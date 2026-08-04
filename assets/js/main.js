@@ -28,6 +28,81 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(() => { /* keep the static fallback value */ });
     })();
 
+    // ─── LIVE GITHUB PROFILE BADGE ───────────────────────────────────────────
+    (function updateProfileBadges() {
+        const repos = document.querySelector('[data-gh-badge="repos"]');
+        if (!repos) return;
+        fetch('https://api.github.com/users/DevCop95', { headers: { Accept: 'application/vnd.github+json' } })
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(data => {
+                if (typeof data.public_repos === 'number') {
+                    repos.src = `https://img.shields.io/badge/Public%20Repos-${data.public_repos}-0e7a5f?style=for-the-badge&logo=github`;
+                }
+            })
+            .catch(() => { /* keep the static fallback badge */ });
+    })();
+
+    // ─── GITHUB CONTRIBUTION CALENDAR ────────────────────────────────────────
+    (function renderContributionChart() {
+        const chart = document.getElementById('ghChart');
+        if (!chart) return;
+        const totalEl = document.querySelector('[data-gh-total]');
+        const user = chart.dataset.ghUser;
+
+        fetch(`https://github-contributions-api.jogruber.de/v4/${user}?y=last`)
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(data => {
+                const days = data.contributions || [];
+                if (!days.length) return Promise.reject('empty');
+
+                const grid = document.createElement('div');
+                grid.className = 'gh-chart-grid';
+                const months = document.createElement('div');
+                months.className = 'gh-chart-months';
+
+                // Rellenar hasta el domingo previo para que las columnas sean semanas completas
+                const offset = new Date(`${days[0].date}T00:00:00Z`).getUTCDay();
+                for (let i = 0; i < offset; i++) {
+                    const pad = document.createElement('div');
+                    pad.className = 'gh-day gh-pad';
+                    grid.appendChild(pad);
+                }
+
+                const lang = (localStorage.getItem('devyhb-lang') || 'es') === 'en' ? 'en-US' : 'es-ES';
+                days.forEach(day => {
+                    const cell = document.createElement('div');
+                    cell.className = 'gh-day';
+                    cell.dataset.level = day.level;
+                    cell.title = `${day.count} · ${day.date}`;
+                    grid.appendChild(cell);
+                });
+
+                // Una etiqueta por columna (semana); solo se escribe al cambiar de mes
+                const columns = Math.ceil((offset + days.length) / 7);
+                let lastMonth = -1;
+                for (let c = 0; c < columns; c++) {
+                    const day = days[Math.max(0, c * 7 - offset)];
+                    const date = new Date(`${day.date}T00:00:00Z`);
+                    const month = date.getUTCMonth();
+                    const label = document.createElement('span');
+                    if (month !== lastMonth) {
+                        label.textContent = date.toLocaleDateString(lang, { month: 'short', timeZone: 'UTC' });
+                        lastMonth = month;
+                    }
+                    months.appendChild(label);
+                }
+
+                chart.replaceChildren(months, grid);
+                const total = data.total?.lastYear;
+                if (totalEl && typeof total === 'number') totalEl.textContent = total.toLocaleString(lang);
+            })
+            .catch(() => {
+                chart.classList.add('gh-chart-error');
+                chart.textContent = '—';
+                if (totalEl) totalEl.textContent = '—';
+            });
+    })();
+
     // ─── TRANSLATIONS ────────────────────────────────────────────────────────
     const translations = {
         es: {
@@ -80,13 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
             "resume-exp-4-org": "Proyecto CIER NORTE",
             "resume-exp-4-desc": "Gestión administrativa y soporte operativo del proyecto.",
             "resume-edu-title": "Educación",
-            "resume-edu-1-title": "Máster en Inteligencia Artificial",
+            "resume-edu-1-title": "<span class='text-bold'>Máster en Inteligencia Artificial</span>",
             "resume-edu-1-org": "Universitat de Barcelona",
             "resume-edu-1-desc": "Especialización en modelos generativos, agentes autónomos y visión por computadora.",
-            "resume-edu-2-title": "Ingeniería en Sistemas",
+            "resume-edu-2-title": "<span class='text-bold'>Ingeniería en Sistemas</span>",
             "resume-edu-2-org": "Universidad Tecnológica de Bolívar",
             "resume-edu-2-desc": "Formación integral en algoritmos, arquitectura de software y gestión de proyectos tecnológicos.",
-            "resume-edu-3-title": "Tecnólogo en Sistemas",
+            "resume-edu-3-title": "<span class='text-bold'>Tecnólogo en Sistemas</span>",
             "resume-edu-3-org": "Universidad Tecnológica de Bolívar",
             "resume-edu-3-desc": "Base tecnológica en programación, redes y fundamentos de sistemas.",
             "portfolio-label": "04 - Portafolio",
@@ -157,7 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact-status-signal": "Sistemas listos para nuevas integraciones y despliegues.",
             "github-scroll-hint": "Desliza para ver meses",
             "github-chart-header": "Contribuciones en GitHub",
-            "github-chart-range": "Enero - Diciembre 2026",
+            "github-chart-range": "Últimos 12 meses",
+            "github-chart-total-label": "contribuciones",
             "footer-copy": "Construido por"
         },
         en: {
@@ -210,13 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
             "resume-exp-4-org": "CIER NORTE Project",
             "resume-exp-4-desc": "Administrative management and operational support for the project.",
             "resume-edu-title": "Education",
-            "resume-edu-1-title": "Master in Artificial Intelligence",
+            "resume-edu-1-title": "<span class='text-bold'>Master in Artificial Intelligence</span>",
             "resume-edu-1-org": "Universitat de Barcelona",
             "resume-edu-1-desc": "Specialization in generative models, autonomous agents, and computer vision.",
-            "resume-edu-2-title": "Systems Engineering",
+            "resume-edu-2-title": "<span class='text-bold'>Systems Engineering</span>",
             "resume-edu-2-org": "Technological University of Bolivar",
             "resume-edu-2-desc": "Comprehensive training in algorithms, software architecture, and technology project management.",
-            "resume-edu-3-title": "Systems Technologist",
+            "resume-edu-3-title": "<span class='text-bold'>Systems Technologist</span>",
             "resume-edu-3-org": "Technological University of Bolivar",
             "resume-edu-3-desc": "Technological foundation in programming, networks, and systems fundamentals.",
             "portfolio-label": "04 - Portfolio",
@@ -287,7 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact-status-signal": "Systems ready for new integrations and deployments.",
             "github-scroll-hint": "Swipe for months",
             "github-chart-header": "GitHub Contributions",
-            "github-chart-range": "January - December 2026",
+            "github-chart-range": "Last 12 months",
+            "github-chart-total-label": "contributions",
             "footer-copy": "Built by"
         }
     };
