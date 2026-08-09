@@ -121,7 +121,7 @@
     </div>
     <div class="hstats">
       <div>
-        <div class="hstat-n" data-count="5" data-suffix="+">5+</div>
+        <div class="hstat-n" data-count="6" data-suffix="+">6+</div>
         <div class="hstat-l" data-i18n="hero-stat-exp">años de experiencia</div>
       </div>
       <div>
@@ -228,10 +228,16 @@
     <span class="sec-label-tag" data-i18n="resume-label">03 - Trayectoria</span>
     <div class="sec-label-line"></div>
   </div>
-  <div class="res-grid">
-    <div>
-      <div class="res-col-title"><i class="bi bi-briefcase-fill"></i> <span data-i18n="resume-exp-title">Experiencia Laboral</span></div>
-      <div class="tl reveal">
+
+  <div class="resume-tab-nav reveal">
+    <button class="rtab-btn active" data-rtab="exp"><i class="bi bi-briefcase-fill"></i> <span data-i18n="resume-exp-title">Experiencia Laboral</span></button>
+    <button class="rtab-btn" data-rtab="edu"><i class="bi bi-mortarboard-fill"></i> <span data-i18n="resume-edu-title">Educación</span></button>
+  </div>
+
+  <div class="resume-tab-content reveal">
+    <!-- Tab 1: Experiencia -->
+    <div class="rtab-pane active" id="rtab-exp">
+      <div class="tl">
         <div class="tli">
           <div class="tly">2022 - 2025</div>
           <div class="tldo"></div>
@@ -270,9 +276,10 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="res-col-title"><i class="bi bi-mortarboard-fill"></i> <span data-i18n="resume-edu-title">Educación</span></div>
-      <div class="tl reveal">
+
+    <!-- Tab 2: Educación -->
+    <div class="rtab-pane" id="rtab-edu">
+      <div class="tl">
         <div class="tli">
           <div class="tly">2024 - Hoy</div>
           <div class="tldo"></div>
@@ -318,101 +325,101 @@
     <button class="pfbtn" data-f="tech" data-i18n="portfolio-filter-tech">Tecnologías</button>
   </div>
 
-  <div class="pgrid reveal" id="cgrid">
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-1.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-1.jpg" alt="Responsive Web Design" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Responsive Web Design</div></div>
+  <div class="cert-carousel-container reveal" id="cgrid">
+    <div class="cert-carousel-header">
+      <span class="cert-carousel-title"><i class="bi bi-patch-check-fill" style="color:var(--accent)"></i> <span data-i18n="cert-carousel-title">Certificaciones &amp; Credenciales</span></span>
+      <div class="carousel-nav-btns">
+        <button class="carousel-btn" id="certPrevBtn" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+        <button class="carousel-btn" id="certNextBtn" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+      </div>
     </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-2.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-2.jpg" alt="Cloud Computing" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Cloud Computing</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-4.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-4.jpg" alt="Marketing Digital" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Marketing Digital</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-5.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-5.jpg" alt="Scrum" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Scrum Foundation</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-9.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-9.png" alt="AI Fundamentals" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">AI Fundamentals</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-10.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-10.png" alt="Claude Code in Action" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Claude Code in Action</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-11.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-11.png" alt="MCP Advanced Topics" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">MCP Advanced Topics</div></div>
-    </div>
-    <div class="pitem">
-      <picture>
-        <source srcset="assets/img/portfolio/portfolio-12.webp" type="image/webp">
-        <img src="assets/img/portfolio/portfolio-12.jpeg" alt="Foundations of Cybersecurity" loading="lazy">
-      </picture>
-      <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Foundations of Cybersecurity</div></div>
-    </div>
-  </div>
-
-  <div class="cert-mini-block reveal" id="cgrid-mini">
-    <div class="cert-mini-title" data-i18n="portfolio-cert-mini-title">Certificaciones complementarias</div>
-    <div class="cgrid-mini">
-      <div class="pitem pitem-mini">
-        <div class="mini-zoom"><i class="bi bi-zoom-in"></i></div>
+    <div class="cert-carousel-track" id="certTrack">
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-1.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-1.jpg" alt="Responsive Web Design" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Responsive Web Design</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-2.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-2.jpg" alt="Cloud Computing" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Cloud Computing</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-4.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-4.jpg" alt="Marketing Digital" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Marketing Digital</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-5.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-5.jpg" alt="Scrum" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Scrum Foundation</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-9.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-9.png" alt="AI Fundamentals" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">AI Fundamentals</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-10.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-10.png" alt="Claude Code in Action" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Claude Code in Action</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-11.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-11.png" alt="MCP Advanced Topics" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">MCP Advanced Topics</div></div>
+      </div>
+      <div class="pitem">
+        <picture>
+          <source srcset="assets/img/portfolio/portfolio-12.webp" type="image/webp">
+          <img src="assets/img/portfolio/portfolio-12.jpeg" alt="Foundations of Cybersecurity" loading="lazy">
+        </picture>
+        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Foundations of Cybersecurity</div></div>
+      </div>
+      <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-3.webp" type="image/webp">
           <img src="assets/img/portfolio/portfolio-3.jpg" alt="JavaScript Algorithms" loading="lazy">
         </picture>
-        <div class="pov"><div class="pov-tit">JavaScript Algorithms</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">JavaScript Algorithms</div></div>
       </div>
-      <div class="pitem pitem-mini">
-        <div class="mini-zoom"><i class="bi bi-zoom-in"></i></div>
+      <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-6.webp" type="image/webp">
           <img src="assets/img/portfolio/portfolio-6.jpg" alt="HTML Fundamentals" loading="lazy">
         </picture>
-        <div class="pov"><div class="pov-tit">HTML Fundamentals</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">HTML Fundamentals</div></div>
       </div>
-      <div class="pitem pitem-mini">
-        <div class="mini-zoom"><i class="bi bi-zoom-in"></i></div>
+      <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-7.webp" type="image/webp">
           <img src="assets/img/portfolio/portfolio-7.jpg" alt="Ciberseguridad Educativa" loading="lazy">
         </picture>
-        <div class="pov"><div class="pov-tit">Ciberseguridad Educativa</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">Ciberseguridad Educativa</div></div>
       </div>
-      <div class="pitem pitem-mini">
-        <div class="mini-zoom"><i class="bi bi-zoom-in"></i></div>
+      <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-8.webp" type="image/webp">
           <img src="assets/img/portfolio/portfolio-8.jpg" alt="Programación con JS" loading="lazy">
         </picture>
-        <div class="pov"><div class="pov-tit">Programación con JS</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">Programación con JS</div></div>
       </div>
     </div>
+    <div class="carousel-dots" id="certDots"></div>
   </div>
 
   <div class="tgrid" id="tgrid">
@@ -436,287 +443,326 @@
     <div class="tcell"><i class="devicon-html5-plain" style="color:#e34f26"></i><span>HTML5</span></div>
   </div>
 
-  <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title">
-      <span data-i18n="portfolio-security-title">Security Research · Flagship</span>
-      <i class="bi bi-shield-shaded" style="color:var(--accent)"></i>
-    </div>
-    <article class="proof-card flagship-card">
-      <div class="flagship-glow" aria-hidden="true"></div>
-      <div class="proof-top">
-        <div class="cico"><i class="bi bi-bug-fill"></i></div>
-        <div>
-          <div class="proof-kicker" data-i18n="portfolio-flagship-tag">Bug Bounty Workspace · HackerOne</div>
-          <h3 class="proof-name">bugbounty-lab101</h3>
-          <div class="proof-handle">@DevCop95/bugbounty-lab101</div>
-        </div>
-        <a class="flagship-stars" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener" aria-label="Estrellas en GitHub" data-repo="DevCop95/bugbounty-lab101">
-          <i class="bi bi-star-fill"></i>
-          <span class="fs-count" data-stars>…</span>
-          <span class="fs-label">stars</span>
-        </a>
+  <!-- PowerPoint Style Presentation Deck for Projects -->
+  <div class="projects-deck-container reveal d1" id="projectsDeck">
+    <div class="deck-header">
+      <div class="deck-title-badge">
+        <i class="bi bi-easel2-fill"></i>
+        <span data-i18n="deck-title-badge">Project Showcase Deck</span>
       </div>
-      <p class="proof-copy" data-i18n="portfolio-flagship-copy">Workspace completo de bug bounty para investigadores de HackerOne: enforcement de scope, pipeline automatizado de recon/vulnerabilidades con <strong>400+ herramientas</strong>, plantillas de reportes, watchlists de CVE/CWE y un lab local en VM. Construido para hunting disciplinado y ético.</p>
-      <div class="proof-pill-list">
-        <span class="proof-pill">Shell</span>
-        <span class="proof-pill">Recon Automation</span>
-        <span class="proof-pill">400+ Tools</span>
-        <span class="proof-pill">HackerOne</span>
-        <span class="proof-pill">CVE / CWE</span>
+      <div class="deck-nav-tabs" id="deckTabs">
+        <button class="deck-tab active" data-slide="0"><i class="bi bi-shield-shaded"></i> <span data-i18n="deck-tab-0">BugBounty</span></button>
+        <button class="deck-tab" data-slide="1"><i class="bi bi-layers-fill"></i> <span data-i18n="deck-tab-1">Panorama EVO</span></button>
+        <button class="deck-tab" data-slide="2"><i class="bi bi-cpu-fill"></i> <span data-i18n="deck-tab-2">DevTeams 3D</span></button>
+        <button class="deck-tab" data-slide="3"><i class="bi bi-telegram"></i> <span data-i18n="deck-tab-3">dev101_bot</span></button>
+        <button class="deck-tab" data-slide="4"><i class="bi bi-braces"></i> <span data-i18n="deck-tab-4">API Lab</span></button>
+        <button class="deck-tab" data-slide="5"><i class="bi bi-phone-fill"></i> <span data-i18n="deck-tab-5">Flutter Mobile</span></button>
+        <button class="deck-tab" data-slide="6"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="deck-tab-6">Social Proof</span></button>
       </div>
-      <a class="proof-link" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener">
-        <span data-i18n="portfolio-flagship-cta">Ver el repositorio</span> <i class="bi bi-arrow-up-right"></i>
-      </a>
-    </article>
-  </div>
+    </div>
 
-  <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title">
-      <span data-i18n="portfolio-proof-title">Engineering Presence · Social Proof</span>
-      <i class="bi bi-shield-check" style="color:var(--accent)"></i>
-    </div>
-    <div class="proof-grid">
-      <!-- GitHub Card -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <img src="https://avatars.githubusercontent.com/u/264654485?v=4" alt="DevCop95" class="proof-avatar">
-          <div>
-            <div class="proof-kicker" data-i18n="portfolio-github-status">GitHub Status</div>
-            <h3 class="proof-name">DevCop</h3>
-            <div class="proof-handle">@DevCop95</div>
-          </div>
+    <div class="deck-viewport">
+      <!-- Slide 0: BugBounty Flagship -->
+      <div class="deck-slide active" data-slide-index="0">
+        <div class="proof-title">
+          <span data-i18n="portfolio-security-title">Security Research · Flagship</span>
+          <i class="bi bi-shield-shaded" style="color:var(--accent)"></i>
         </div>
-        <div class="github-badges-wrap" style="margin:1.5rem 0;display:flex;flex-direction:column;gap:.8rem;align-items:center">
-          <img src="https://img.shields.io/github/followers/DevCop95?label=Followers&style=for-the-badge&color=0e7a5f&logo=github" alt="Followers">
-          <img src="https://img.shields.io/badge/Public%20Repos-41-0e7a5f?style=for-the-badge&logo=github" alt="Public Repos" data-gh-badge="repos">
-          <img src="https://img.shields.io/badge/Contributions-Verified-0e7a5f?style=for-the-badge&logo=github" alt="Verified">
-        </div>
-        <div class="proof-pill-list">
-          <span class="proof-pill">Pull Shark</span>
-          <span class="proof-pill">Pair Extraordinaire</span>
-          <span class="proof-pill">YOLO</span>
-        </div>
-        <a class="proof-link" href="https://github.com/DevCop95" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-github-cta">Acceder al código</span> <i class="bi bi-arrow-up-right"></i>
-        </a>
-        <div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem">
-          <div style="margin-bottom:1rem;display:flex;align-items:center;gap:8px">
-            <i class="bi bi-graph-up-arrow" style="color:var(--accent)"></i>
-            <span style="font-family:var(--fm);font-size:.7rem;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.05em" data-i18n="github-chart-header">Contribuciones en GitHub</span>
+        <article class="proof-card flagship-card">
+          <div class="flagship-glow" aria-hidden="true"></div>
+          <div class="proof-top">
+            <div class="cico"><i class="bi bi-bug-fill"></i></div>
+            <div>
+              <div class="proof-kicker" data-i18n="portfolio-flagship-tag">Bug Bounty Workspace · HackerOne</div>
+              <h3 class="proof-name">bugbounty-lab101</h3>
+              <div class="proof-handle">@DevCop95/bugbounty-lab101</div>
+            </div>
+            <a class="flagship-stars" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener" aria-label="Estrellas en GitHub" data-repo="DevCop95/bugbounty-lab101">
+              <i class="bi bi-star-fill"></i>
+              <span class="fs-count" data-stars>…</span>
+              <span class="fs-label">stars</span>
+            </a>
           </div>
-          <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem">
-            <div class="gh-chart" id="ghChart" data-gh-user="DevCop95" role="img" aria-label="Calendario de contribuciones en GitHub"></div>
+          <p class="proof-copy" data-i18n="portfolio-flagship-copy">Workspace completo de bug bounty para investigadores de HackerOne: enforcement de scope, pipeline automatizado de recon/vulnerabilidades con <strong>400+ herramientas</strong>, plantillas de reportes, watchlists de CVE/CWE y un lab local en VM. Construido para hunting disciplinado y ético.</p>
+          <div class="proof-pill-list">
+            <span class="proof-pill">Shell</span>
+            <span class="proof-pill">Recon Automation</span>
+            <span class="proof-pill">400+ Tools</span>
+            <span class="proof-pill">HackerOne</span>
+            <span class="proof-pill">CVE / CWE</span>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
-            <p style="font-size:.6rem;color:var(--muted);font-family:var(--fm);letter-spacing:.05em;text-transform:uppercase">
-              <i class="bi bi-calendar3"></i> <span data-i18n="github-chart-range">Últimos 12 meses</span>
-              · <span data-gh-total>—</span> <span data-i18n="github-chart-total-label">contribuciones</span>
-            </p>
-            <p style="font-size:.55rem;color:var(--accent);font-family:var(--fm);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:4px">
-              <i class="bi bi-arrow-left-right"></i> <span data-i18n="github-scroll-hint">Desliza para ver meses</span>
-            </p>
-          </div>
-        </div>
-      </article>
+          <a class="proof-link" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener">
+            <span data-i18n="portfolio-flagship-cta">Ver el repositorio</span> <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </article>
+      </div>
 
-      <!-- Salesforce Card -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <img src="https://profile.digital.salesforce.com/images/p/0051I0000081gGgQAI/1756517526/F" alt="Yared Dev" class="proof-avatar">
-          <div>
-            <div class="proof-kicker">Salesforce Trailhead</div>
-            <h3 class="proof-name">Yared Dev</h3>
-            <div class="proof-handle">Ranger Rank</div>
-          </div>
+      <!-- Slide 1: Panorama EVO -->
+      <div class="deck-slide" data-slide-index="1">
+        <div class="proof-title">
+          <span data-i18n="portfolio-epe-main-title">Fullstack & Enterprise Solutions</span>
+          <i class="bi bi-layers-fill" style="color:var(--accent)"></i>
         </div>
-        <div class="trailhead-status-wrap" style="margin:1.5rem 0;padding:2.5rem 1.5rem;background:linear-gradient(135deg,#00A1E0 0%,#005fb2 100%);border-radius:16px;color:#fff;text-align:center;position:relative;overflow:hidden">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem">
-            <img src="https://res.cloudinary.com/trailhead/image/upload/public-trailhead/assets/images/ranks/ranger.png" alt="Salesforce Ranger Rank" style="width:110px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
-            <img src="https://trailhead.salesforce.com/agentblazer/level_1_edition_2025.png" alt="Agentblazer 2025" style="width:200px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
-          </div>
-          <div style="font-family:var(--fm);font-size:.7rem;text-transform:uppercase;margin-bottom:.2rem;opacity:.9">Current Rank</div>
-          <div style="font-size:1.8rem;font-weight:800;letter-spacing:-.02em">RANGER</div>
-        </div>
-        <div class="proof-pill-list">
-          <span class="proof-pill">Agentblazer</span>
-          <span class="proof-pill">4 Superbadges</span>
-          <span class="proof-pill">Architect</span>
-        </div>
-        <a class="proof-link" href="https://www.salesforce.com/trailblazer/yhenriquezblanquicett" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-trailhead-cta">Ver perfil oficial</span> <i class="bi bi-arrow-up-right"></i>
-        </a>
-      </article>
-    </div>
-  </div>
-
-  <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title">
-      <span data-i18n="portfolio-mobile-title">Mobile &amp; Multiplatform</span>
-      <i class="devicon-flutter-plain flutter-logo-brand" role="img" aria-label="Flutter"></i>
-    </div>
-    <div class="flutter-grid">
-      <button class="flutter-item" onclick="openFlutterModal(0)" aria-label="Ver captura de pantalla 1 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/1.webp" type="image/webp">
-          <img src="assets/img/flutter/1.jpeg" alt="Preview 1" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-      <button class="flutter-item" onclick="openFlutterModal(1)" aria-label="Ver captura de pantalla 2 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/2.webp" type="image/webp">
-          <img src="assets/img/flutter/2.jpeg" alt="Preview 2" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-      <button class="flutter-item" onclick="openFlutterModal(2)" aria-label="Ver captura de pantalla 3 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/3.webp" type="image/webp">
-          <img src="assets/img/flutter/3.jpeg" alt="Preview 3" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-      <button class="flutter-item" onclick="openFlutterModal(3)" aria-label="Ver captura de pantalla 4 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/4.webp" type="image/webp">
-          <img src="assets/img/flutter/4.jpeg" alt="Preview 4" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-      <button class="flutter-item" onclick="openFlutterModal(4)" aria-label="Ver captura de pantalla 5 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/5.webp" type="image/webp">
-          <img src="assets/img/flutter/5.jpeg" alt="Preview 5" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-      <button class="flutter-item" onclick="openFlutterModal(5)" aria-label="Ver captura de pantalla 6 de Flutter">
-        <picture>
-          <source srcset="assets/img/flutter/6.webp" type="image/webp">
-          <img src="assets/img/flutter/6.jpeg" alt="Preview 6" loading="lazy">
-        </picture>
-        <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
-      </button>
-    </div>
-  </div>
-
-  <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title">
-      <span data-i18n="portfolio-epe-main-title">Fullstack & Enterprise Solutions</span> & 
-      <span data-i18n="portfolio-ai-title">AI Operations</span>
-      <i class="bi bi-stars" style="margin-left:8px;color:var(--accent)"></i>
-    </div>
-    <div class="proof-grid">
-      <!-- Panorama EVO Card -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <div class="cico"><i class="bi bi-layers-fill"></i></div>
-          <div>
-            <div class="proof-kicker" data-i18n="portfolio-epe-tag">Fullstack · Featured Project</div>
-            <h3 class="proof-name" data-i18n="portfolio-epe-title">Motor de Cálculos EPE: Automatización Portuaria</h3>
-            <div class="proof-handle">
-              <a href="https://www.latinosoftpsa.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@Latinosoft / Panorama EVO</a>
-              <span style="color:var(--muted);margin-left:8px;font-size:.7rem">• 2021 - 2022</span>
+        <article class="proof-card">
+          <div class="proof-top">
+            <div class="cico"><i class="bi bi-layers-fill"></i></div>
+            <div>
+              <div class="proof-kicker" data-i18n="portfolio-epe-tag">Fullstack · Featured Project</div>
+              <h3 class="proof-name" data-i18n="portfolio-epe-title">Motor de Cálculos EPE: Automatización Portuaria</h3>
+              <div class="proof-handle">
+                <a href="https://www.latinosoftpsa.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@Latinosoft / Panorama EVO</a>
+                <span style="color:var(--muted);margin-left:8px;font-size:.7rem">• 2021 - 2022</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--bg2);display:flex;align-items:center;justify-content:center;gap:3rem;padding:2rem">
-          <img src="assets/img/panorama1.png" alt="Panorama EVO UI" style="max-height:100%;width:auto;object-fit:contain;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.12))">
-          <img src="assets/img/panorama2.svg" alt="Panorama EVO Logo" class="theme-logo" style="max-height:60%;width:auto;object-fit:contain">
-        </div>
-        <p class="proof-copy" data-i18n="portfolio-epe-copy">Desarrollo íntegramente (Fullstack) del módulo central de <strong>Panorama EVO</strong> para automatizar el cálculo de tarifas y gastos portuarios complejos.</p>
-        <div class="proof-pill-list">
-          <span class="proof-pill">Laravel 10</span>
-          <span class="proof-pill">Vue.js 3</span>
-          <span class="proof-pill">Ant Design</span>
-          <span class="proof-pill">Symfony Exp</span>
-        </div>
-        <a class="proof-link" href="https://www.lbhcolombia.com/" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-epe-cta">Ver Cliente LBH</span> <i class="bi bi-arrow-up-right"></i>
-        </a>
-      </article>
-
-      <!-- DevTeams Card -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <div class="cico"><i class="bi bi-cpu-fill"></i></div>
-          <div>
-            <div class="proof-kicker" data-i18n="portfolio-ai-project-tag">AI Operations Hub · Featured Project</div>
-            <h3 class="proof-name" data-i18n="portfolio-ai-project-title">DevTeams: Multi-Agent 3D Simulation</h3>
-            <div class="proof-handle">@DevCop95/devteams</div>
+          <div class="project-image-wrap panorama-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,var(--bg2) 0%,var(--surface) 100%);display:flex;align-items:center;justify-content:center;gap:2rem;padding:1.5rem;min-height:180px">
+            <img src="assets/img/panorama1.png" alt="Panorama EVO UI" style="max-height:150px;width:auto;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.25))">
+            <img src="assets/img/panorama2.svg" alt="Panorama EVO Logo" class="theme-logo" style="max-height:85px;width:auto;object-fit:contain">
           </div>
+          <p class="proof-copy" data-i18n="portfolio-epe-copy">Desarrollo íntegramente (Fullstack) del módulo central de <strong>Panorama EVO</strong> para automatizar el cálculo de tarifas y gastos portuarios complejos.</p>
+          <div class="proof-pill-list">
+            <span class="proof-pill">Laravel 10</span>
+            <span class="proof-pill">Vue.js 3</span>
+            <span class="proof-pill">Ant Design</span>
+            <span class="proof-pill">Symfony Exp</span>
+          </div>
+          <a class="proof-link" href="https://www.lbhcolombia.com/" target="_blank" rel="noopener">
+            <span data-i18n="portfolio-epe-cta">Ver Cliente LBH</span> <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </article>
+      </div>
+
+      <!-- Slide 2: DevTeams 3D -->
+      <div class="deck-slide" data-slide-index="2">
+        <div class="proof-title">
+          <span data-i18n="portfolio-ai-title">AI Operations & Multi-Agent Systems</span>
+          <i class="bi bi-cpu-fill" style="color:var(--accent)"></i>
         </div>
-        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#000">
-          <video src="assets/img/office-iso.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)"></video>
+        <article class="proof-card">
+          <div class="proof-top">
+            <div class="cico"><i class="bi bi-cpu-fill"></i></div>
+            <div>
+              <div class="proof-kicker" data-i18n="portfolio-ai-project-tag">AI Operations Hub · Featured Project</div>
+              <h3 class="proof-name" data-i18n="portfolio-ai-project-title">DevTeams: Multi-Agent 3D Simulation</h3>
+              <div class="proof-handle">@DevCop95/devteams</div>
+            </div>
+          </div>
+          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#000">
+            <video src="assets/img/office-iso.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)"></video>
+          </div>
+          <p class="proof-copy" data-i18n="portfolio-ai-project-copy">Orquestación de 8 agentes especializados en un entorno 3D inmersivo con <strong>Three.js</strong> y <strong>Groq Llama 3.3</strong>.</p>
+          <div class="proof-pill-list">
+            <span class="proof-pill">Three.js</span>
+            <span class="proof-pill">Groq Cloud</span>
+            <span class="proof-pill">AI Planner</span>
+          </div>
+          <a class="proof-link" href="https://github.com/DevCop95/devteams" target="_blank" rel="noopener">
+            <span data-i18n="portfolio-ai-project-cta">GitHub</span> <i class="bi bi-github"></i>
+          </a>
+        </article>
+      </div>
+
+      <!-- Slide 3: dev101_bot -->
+      <div class="deck-slide" data-slide-index="3">
+        <div class="proof-title">
+          <span data-i18n="portfolio-backend-title">Automation & Serverless</span>
+          <i class="bi bi-telegram" style="color:var(--accent)"></i>
         </div>
-        <p class="proof-copy" data-i18n="portfolio-ai-project-copy">Orquestación de 8 agentes especializados en un entorno 3D inmersivo con <strong>Three.js</strong> y <strong>Groq Llama 3.3</strong>.</p>
-        <div class="proof-pill-list">
-          <span class="proof-pill">Three.js</span>
-          <span class="proof-pill">Groq Cloud</span>
-          <span class="proof-pill">AI Planner</span>
+        <article class="proof-card">
+          <div class="proof-top">
+            <div class="cico"><i class="bi bi-telegram"></i></div>
+            <div>
+              <div class="proof-kicker">Automation & Serverless</div>
+              <h3 class="proof-name" data-i18n="portfolio-dev101-title">dev101_bot: Bot de Telegram</h3>
+              <div class="proof-handle">@DevCop95/dev101_bot</div>
+            </div>
+          </div>
+          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#0e1117">
+            <img src="assets/img/bot101.png" alt="dev101_bot Preview" style="width:100%;height:100%;object-fit:contain;transition:transform .5s var(--ease)">
+          </div>
+          <p class="proof-copy" data-i18n="portfolio-dev101-copy">Bot de Telegram para envío automático 24/7 de noticias de ciberseguridad e IA, orquestado con Cloudflare Workers, GitHub Actions y resúmenes de Groq LLaMA 3.3.</p>
+          <div class="proof-pill-list">
+            <span class="proof-pill">Cloudflare Workers</span>
+            <span class="proof-pill">GitHub Actions</span>
+            <span class="proof-pill">Python</span>
+            <span class="proof-pill">Groq LLaMA 3.3</span>
+          </div>
+          <a class="proof-link" href="https://github.com/DevCop95/dev101_bot" target="_blank" rel="noopener">
+            <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </article>
+      </div>
+
+      <!-- Slide 4: aprendeapi -->
+      <div class="deck-slide" data-slide-index="4">
+        <div class="proof-title">
+          <span data-i18n="portfolio-aprendeapi-title">Frontend API Lab</span>
+          <i class="bi bi-braces" style="color:var(--accent)"></i>
         </div>
-        <a class="proof-link" href="https://github.com/DevCop95/devteams" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-ai-project-cta">GitHub</span> <i class="bi bi-github"></i>
-        </a>
-      </article>
+        <article class="proof-card">
+          <div class="proof-top">
+            <div class="cico"><i class="bi bi-braces"></i></div>
+            <div>
+              <div class="proof-kicker">Frontend API Lab</div>
+              <h3 class="proof-name" data-i18n="portfolio-aprendeapi-title">Pokedex API Lab: Consumo de APIs</h3>
+              <div class="proof-handle">@DevCop95/aprendeapi</div>
+            </div>
+          </div>
+          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--bg2)">
+            <img src="assets/img/aprendeapi.png" alt="AprendeAPI Preview" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)">
+          </div>
+          <p class="proof-copy" data-i18n="portfolio-aprendeapi-copy">Laboratorio interactivo para el aprendizaje práctico del consumo de APIs REST, incluyendo autocompletado, latencia de red y visualización de respuestas JSON.</p>
+          <div class="proof-pill-list">
+            <span class="proof-pill">HTML5 / CSS3</span>
+            <span class="proof-pill">JavaScript (ES6)</span>
+            <span class="proof-pill">PokeAPI</span>
+            <span class="proof-pill">REST Client</span>
+          </div>
+          <a class="proof-link" href="https://github.com/DevCop95/aprendeapi" target="_blank" rel="noopener">
+            <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </article>
+      </div>
+
+      <!-- Slide 5: Flutter Mobile -->
+      <div class="deck-slide" data-slide-index="5">
+        <div class="proof-title">
+          <span data-i18n="portfolio-mobile-title">Mobile &amp; Multiplatform</span>
+          <i class="devicon-flutter-plain flutter-logo-brand" role="img" aria-label="Flutter"></i>
+        </div>
+        <div class="flutter-grid">
+          <button class="flutter-item" onclick="openFlutterModal(0)" aria-label="Ver captura de pantalla 1 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/1.webp" type="image/webp">
+              <img src="assets/img/flutter/1.jpeg" alt="Preview 1" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+          <button class="flutter-item" onclick="openFlutterModal(1)" aria-label="Ver captura de pantalla 2 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/2.webp" type="image/webp">
+              <img src="assets/img/flutter/2.jpeg" alt="Preview 2" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+          <button class="flutter-item" onclick="openFlutterModal(2)" aria-label="Ver captura de pantalla 3 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/3.webp" type="image/webp">
+              <img src="assets/img/flutter/3.jpeg" alt="Preview 3" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+          <button class="flutter-item" onclick="openFlutterModal(3)" aria-label="Ver captura de pantalla 4 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/4.webp" type="image/webp">
+              <img src="assets/img/flutter/4.jpeg" alt="Preview 4" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+          <button class="flutter-item" onclick="openFlutterModal(4)" aria-label="Ver captura de pantalla 5 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/5.webp" type="image/webp">
+              <img src="assets/img/flutter/5.jpeg" alt="Preview 5" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+          <button class="flutter-item" onclick="openFlutterModal(5)" aria-label="Ver captura de pantalla 6 de Flutter">
+            <picture>
+              <source srcset="assets/img/flutter/6.webp" type="image/webp">
+              <img src="assets/img/flutter/6.jpeg" alt="Preview 6" loading="lazy">
+            </picture>
+            <div class="flutter-overlay"><i class="bi bi-zoom-in"></i></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Slide 6: Social Proof -->
+      <div class="deck-slide" data-slide-index="6">
+        <div class="proof-title">
+          <span data-i18n="portfolio-proof-title">Engineering Presence · Social Proof</span>
+          <i class="bi bi-shield-check" style="color:var(--accent)"></i>
+        </div>
+        <div class="proof-grid">
+          <!-- GitHub Card -->
+          <article class="proof-card">
+            <div class="proof-top">
+              <img src="https://avatars.githubusercontent.com/u/264654485?v=4" alt="DevCop95" class="proof-avatar">
+              <div>
+                <div class="proof-kicker" data-i18n="portfolio-github-status">GitHub Status</div>
+                <h3 class="proof-name">DevCop</h3>
+                <div class="proof-handle">@DevCop95</div>
+              </div>
+            </div>
+            <div class="github-badges-wrap" style="margin:1.5rem 0;display:flex;flex-direction:column;gap:.8rem;align-items:center">
+              <img src="https://img.shields.io/github/followers/DevCop95?label=Followers&style=for-the-badge&color=0e7a5f&logo=github" alt="Followers">
+              <img src="https://img.shields.io/badge/Public%20Repos-41-0e7a5f?style=for-the-badge&logo=github" alt="Public Repos" data-gh-badge="repos">
+              <img src="https://img.shields.io/badge/Contributions-Verified-0e7a5f?style=for-the-badge&logo=github" alt="Verified">
+            </div>
+            <div class="proof-pill-list">
+              <span class="proof-pill">Pull Shark</span>
+              <span class="proof-pill">Pair Extraordinaire</span>
+              <span class="proof-pill">YOLO</span>
+            </div>
+            <a class="proof-link" href="https://github.com/DevCop95" target="_blank" rel="noopener">
+              <span data-i18n="portfolio-github-cta">Acceder al código</span> <i class="bi bi-arrow-up-right"></i>
+            </a>
+            <div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem">
+              <div style="margin-bottom:1rem;display:flex;align-items:center;gap:8px">
+                <i class="bi bi-graph-up-arrow" style="color:var(--accent)"></i>
+                <span style="font-family:var(--fm);font-size:.7rem;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.05em" data-i18n="github-chart-header">Contribuciones en GitHub</span>
+              </div>
+              <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem">
+                <div class="gh-chart" id="ghChart" data-gh-user="DevCop95" role="img" aria-label="Calendario de contribuciones en GitHub"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
+                <p style="font-size:.6rem;color:var(--muted);font-family:var(--fm);letter-spacing:.05em;text-transform:uppercase">
+                  <i class="bi bi-calendar3"></i> <span data-i18n="github-chart-range">Últimos 12 meses</span>
+                  · <span data-gh-total>—</span> <span data-i18n="github-chart-total-label">contribuciones</span>
+                </p>
+                <p style="font-size:.55rem;color:var(--accent);font-family:var(--fm);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+                  <i class="bi bi-arrow-left-right"></i> <span data-i18n="github-scroll-hint">Desliza para ver meses</span>
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Salesforce Card -->
+          <article class="proof-card">
+            <div class="proof-top">
+              <img src="https://profile.digital.salesforce.com/images/p/0051I0000081gGgQAI/1756517526/F" alt="Yared Dev" class="proof-avatar">
+              <div>
+                <div class="proof-kicker">Salesforce Trailhead</div>
+                <h3 class="proof-name">Yared Dev</h3>
+                <div class="proof-handle">Ranger Rank</div>
+              </div>
+            </div>
+            <div class="trailhead-status-wrap" style="margin:1.5rem 0;padding:2.5rem 1.5rem;background:linear-gradient(135deg,#00A1E0 0%,#005fb2 100%);border-radius:16px;color:#fff;text-align:center;position:relative;overflow:hidden">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem">
+                <img src="https://res.cloudinary.com/trailhead/image/upload/public-trailhead/assets/images/ranks/ranger.png" alt="Salesforce Ranger Rank" style="width:110px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
+                <img src="https://trailhead.salesforce.com/agentblazer/level_1_edition_2025.png" alt="Agentblazer 2025" style="width:200px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
+              </div>
+              <div style="font-family:var(--fm);font-size:.7rem;text-transform:uppercase;margin-bottom:.2rem;opacity:.9">Current Rank</div>
+              <div style="font-size:1.8rem;font-weight:800;letter-spacing:-.02em">RANGER</div>
+            </div>
+            <div class="proof-pill-list">
+              <span class="proof-pill">Agentblazer</span>
+              <span class="proof-pill">4 Superbadges</span>
+              <span class="proof-pill">Architect</span>
+            </div>
+            <a class="proof-link" href="https://www.salesforce.com/trailblazer/yhenriquezblanquicett" target="_blank" rel="noopener">
+              <span data-i18n="portfolio-trailhead-cta">Ver perfil oficial</span> <i class="bi bi-arrow-up-right"></i>
+            </a>
+          </article>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="proof-block reveal d1" style="margin-top:3.5rem">
-    <div class="proof-title">
-      <span data-i18n="portfolio-backend-title">Desarrollo Backend &amp; Automatizaciones</span>
-      <i class="bi bi-terminal-fill" style="color:var(--accent)"></i>
-    </div>
-    <div class="proof-grid">
-      <!-- Project: aprendeapi -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <div class="cico"><i class="bi bi-braces"></i></div>
-          <div>
-            <div class="proof-kicker">Frontend API Lab</div>
-            <h3 class="proof-name" data-i18n="portfolio-aprendeapi-title">Pokedex API Lab: Consumo de APIs</h3>
-            <div class="proof-handle">@DevCop95/aprendeapi</div>
-          </div>
-        </div>
-        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--bg2)">
-          <img src="assets/img/aprendeapi.png" alt="AprendeAPI Preview" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)">
-        </div>
-        <p class="proof-copy" data-i18n="portfolio-aprendeapi-copy">Laboratorio interactivo para el aprendizaje práctico del consumo de APIs REST, incluyendo autocompletado, latencia de red y visualización de respuestas JSON.</p>
-        <div class="proof-pill-list">
-          <span class="proof-pill">HTML5 / CSS3</span>
-          <span class="proof-pill">JavaScript (ES6)</span>
-          <span class="proof-pill">PokeAPI</span>
-          <span class="proof-pill">REST Client</span>
-        </div>
-        <a class="proof-link" href="https://github.com/DevCop95/aprendeapi" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-arrow-up-right"></i>
-        </a>
-      </article>
-
-      <!-- Project: dev101_bot -->
-      <article class="proof-card">
-        <div class="proof-top">
-          <div class="cico"><i class="bi bi-telegram"></i></div>
-          <div>
-            <div class="proof-kicker">Automation & Serverless</div>
-            <h3 class="proof-name" data-i18n="portfolio-dev101-title">dev101_bot: Bot de Telegram</h3>
-            <div class="proof-handle">@DevCop95/dev101_bot</div>
-          </div>
-        </div>
-        <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:var(--bg2)">
-          <img src="assets/img/bot.png" alt="dev101_bot Preview" style="width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)">
-        </div>
-        <p class="proof-copy" data-i18n="portfolio-dev101-copy">Bot de Telegram para envío automático 24/7 de noticias de ciberseguridad e IA, orquestado con Cloudflare Workers, GitHub Actions y resúmenes de Groq LLaMA 3.3.</p>
-        <div class="proof-pill-list">
-          <span class="proof-pill">Cloudflare Workers</span>
-          <span class="proof-pill">GitHub Actions</span>
-          <span class="proof-pill">Python</span>
-          <span class="proof-pill">Groq LLaMA 3.3</span>
-        </div>
-        <a class="proof-link" href="https://github.com/DevCop95/dev101_bot" target="_blank" rel="noopener">
-          <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-arrow-up-right"></i>
-        </a>
-      </article>
+    <!-- Deck Footer Controls -->
+    <div class="deck-footer">
+      <button class="deck-nav-btn" id="deckPrevBtn"><i class="bi bi-chevron-left"></i> <span data-i18n="deck-btn-prev">Anterior</span></button>
+      <div class="deck-counter"><span id="deckCurrentIndex">1</span> / <span id="deckTotalCount">7</span></div>
+      <div class="deck-dots-container" id="deckDots"></div>
+      <button class="deck-nav-btn" id="deckNextBtn"><span data-i18n="deck-btn-next">Siguiente</span> <i class="bi bi-chevron-right"></i></button>
     </div>
   </div>
 </section>

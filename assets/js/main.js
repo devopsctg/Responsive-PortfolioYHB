@@ -168,6 +168,18 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-title": "Proyectos <em>y Certificaciones</em>",
             "portfolio-filter-cert": "Certificaciones",
             "portfolio-filter-tech": "Tecnologías",
+            "cert-carousel-title": "Certificaciones & Credenciales",
+            "cert-tag-comp": "Complementario",
+            "deck-title-badge": "Project Showcase Deck",
+            "deck-btn-prev": "Anterior",
+            "deck-btn-next": "Siguiente",
+            "deck-tab-0": "BugBounty",
+            "deck-tab-1": "Panorama EVO",
+            "deck-tab-2": "DevTeams 3D",
+            "deck-tab-3": "dev101_bot",
+            "deck-tab-4": "API Lab",
+            "deck-tab-5": "Flutter Mobile",
+            "deck-tab-6": "Social Proof",
             "portfolio-cert-mini-title": "Certificaciones complementarias",
             "portfolio-security-title": "Security Research · Proyecto Estrella",
             "portfolio-flagship-tag": "Bug Bounty Workspace · HackerOne",
@@ -299,6 +311,18 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-title": "Projects <em>and Certifications</em>",
             "portfolio-filter-cert": "Certifications",
             "portfolio-filter-tech": "Technologies",
+            "cert-carousel-title": "Official Certifications & Credentials",
+            "cert-tag-comp": "Complementary",
+            "deck-title-badge": "Project Showcase Deck",
+            "deck-btn-prev": "Previous",
+            "deck-btn-next": "Next",
+            "deck-tab-0": "BugBounty",
+            "deck-tab-1": "Panorama EVO",
+            "deck-tab-2": "DevTeams 3D",
+            "deck-tab-3": "dev101_bot",
+            "deck-tab-4": "API Lab",
+            "deck-tab-5": "Flutter Mobile",
+            "deck-tab-6": "Social Proof",
             "portfolio-cert-mini-title": "Complementary certifications",
             "portfolio-security-title": "Security Research · Flagship",
             "portfolio-flagship-tag": "Bug Bounty Workspace · HackerOne",
@@ -504,11 +528,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeFlutterModal();
     });
 
-    // ─── CERTIFICATE MODAL (mini certs) ──────────────────────────────────────
+    // ─── CERTIFICATE MODAL ───────────────────────────────────────────────────
     const certModal = document.getElementById('certModal');
     const cmodalImg = document.getElementById('cmodal-img');
     const cmodalCaption = document.getElementById('cmodal-caption');
-    const miniItems = Array.from(document.querySelectorAll('.pitem-mini'));
+    const miniItems = Array.from(document.querySelectorAll('#certTrack .pitem, .pitem-mini'));
     const certData = miniItems.map(el => {
         const img = el.querySelector('img');
         const src = img?.getAttribute('src') || '';
@@ -934,4 +958,162 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         animate();
     }
+
+    // ─── CERTIFICATE CAROUSEL ──────────────────────────────────────────
+    (function initCertCarousel() {
+        const certTrack = document.getElementById('certTrack');
+        const prevBtn = document.getElementById('certPrevBtn');
+        const nextBtn = document.getElementById('certNextBtn');
+        const dotsContainer = document.getElementById('certDots');
+        const certContainer = document.getElementById('cgrid');
+        const techGrid = document.getElementById('tgrid');
+        const filterBtns = document.querySelectorAll('.pfbtn');
+
+        if (!certTrack) return;
+
+        // Filter tabs logic (Certificaciones vs Tecnologías)
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.f;
+                if (filter === 'cert') {
+                    certContainer.classList.remove('hidden');
+                    techGrid.classList.remove('vis');
+                } else if (filter === 'tech') {
+                    certContainer.classList.add('hidden');
+                    techGrid.classList.add('vis');
+                }
+            });
+        });
+
+        // Navigation scroll
+        const scrollAmount = 280;
+        prevBtn?.addEventListener('click', () => {
+            certTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        nextBtn?.addEventListener('click', () => {
+            certTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        // Dots setup
+        const items = certTrack.querySelectorAll('.pitem');
+        if (dotsContainer && items.length > 0) {
+            const pageCount = Math.ceil(items.length / 3);
+            for (let i = 0; i < pageCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => {
+                    certTrack.scrollTo({ left: i * (scrollAmount * 2), behavior: 'smooth' });
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            certTrack.addEventListener('scroll', () => {
+                const maxScroll = certTrack.scrollWidth - certTrack.clientWidth;
+                if (maxScroll <= 0) return;
+                const progress = certTrack.scrollLeft / maxScroll;
+                const activeIndex = Math.min(pageCount - 1, Math.floor(progress * pageCount));
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((d, idx) => d.classList.toggle('active', idx === activeIndex));
+            });
+        }
+    })();
+
+    // ─── PROJECTS PRESENTATION DECK (POWERPOINT STYLE) ─────────────────────
+    (function initProjectsDeck() {
+        const deck = document.getElementById('projectsDeck');
+        if (!deck) return;
+
+        const slides = deck.querySelectorAll('.deck-slide');
+        const tabs = deck.querySelectorAll('.deck-tab');
+        const prevBtn = document.getElementById('deckPrevBtn');
+        const nextBtn = document.getElementById('deckNextBtn');
+        const counterCurrent = document.getElementById('deckCurrentIndex');
+        const counterTotal = document.getElementById('deckTotalCount');
+        const dotsContainer = document.getElementById('deckDots');
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        if (counterTotal) counterTotal.textContent = totalSlides;
+
+        // Build dots
+        if (dotsContainer) {
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('div');
+                dot.className = `deck-dot ${idx === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(idx));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+
+            slides[currentIndex]?.classList.remove('active');
+            tabs[currentIndex]?.classList.remove('active');
+
+            const dots = dotsContainer?.querySelectorAll('.deck-dot');
+            if (dots && dots[currentIndex]) dots[currentIndex].classList.remove('active');
+
+            currentIndex = index;
+
+            slides[currentIndex]?.classList.add('active');
+            tabs[currentIndex]?.classList.add('active');
+            if (dots && dots[currentIndex]) dots[currentIndex].classList.add('active');
+
+            if (counterCurrent) counterCurrent.textContent = currentIndex + 1;
+
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex === totalSlides - 1;
+        }
+
+        prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1));
+        nextBtn?.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetSlide = parseInt(tab.dataset.slide, 10);
+                if (!isNaN(targetSlide)) goToSlide(targetSlide);
+            });
+        });
+
+        // Initialize state
+        goToSlide(0);
+
+        // Keyboard arrow navigation when user is near deck
+        document.addEventListener('keydown', (e) => {
+            const rect = deck.getBoundingClientRect();
+            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+            if (!inViewport) return;
+
+            if (e.key === 'ArrowLeft') {
+                goToSlide(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                goToSlide(currentIndex + 1);
+            }
+        });
+    })();
+
+    // ─── RESUME TABS CONTROLLER ─────────────────────────────────────────────
+    (function initResumeTabs() {
+        const rtabBtns = document.querySelectorAll('.rtab-btn');
+        const rtabPanes = document.querySelectorAll('.rtab-pane');
+        if (!rtabBtns.length || !rtabPanes.length) return;
+
+        rtabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.rtab;
+                rtabBtns.forEach(b => b.classList.remove('active'));
+                rtabPanes.forEach(p => p.classList.remove('active'));
+
+                btn.classList.add('active');
+                const activePane = document.getElementById(`rtab-${target}`);
+                if (activePane) {
+                    activePane.classList.add('active');
+                }
+            });
+        });
+    })();
 });
