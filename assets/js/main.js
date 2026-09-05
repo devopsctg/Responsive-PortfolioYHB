@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const body = document.body;
     const loader = document.getElementById('loader');
+    loader?.classList.add('hide');
+    body.classList.remove('is-loading');
     const scrollProgress = document.getElementById('scroll-progress');
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle?.querySelector('i');
@@ -20,26 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!badge) return;
         const countEl = badge.querySelector('[data-stars]');
         if (!countEl) return;
-        fetch(`https://api.github.com/repos/${badge.dataset.repo}`, { headers: { Accept: 'application/vnd.github+json' } })
+        fetch(`https://api.github.com/repos/${badge.dataset.repo}`, { headers: { Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(8000) })
             .then(r => r.ok ? r.json() : Promise.reject(r.status))
             .then(data => {
-                if (typeof data.stargazers_count === 'number') countEl.textContent = data.stargazers_count;
+                if (Number.isSafeInteger(data.stargazers_count) && data.stargazers_count >= 0) countEl.textContent = data.stargazers_count;
             })
-            .catch(() => { /* keep the static fallback value */ });
+            .catch(() => { /* A dash means unavailable, never an estimated count. */ });
     })();
 
-    // ─── LIVE GITHUB PROFILE BADGE ───────────────────────────────────────────
-    (function updateProfileBadges() {
-        const repos = document.querySelector('[data-gh-badge="repos"]');
-        if (!repos) return;
-        fetch('https://api.github.com/users/DevCop95', { headers: { Accept: 'application/vnd.github+json' } })
+    // GitHub profile metrics share one request and keep unavailable values as dashes.
+    (function updateProfileStats() {
+        const stats = document.querySelectorAll('[data-gh-stat]');
+        if (!stats.length) return;
+        fetch('https://api.github.com/users/DevCop95', { headers: { Accept: 'application/vnd.github+json' }, signal: AbortSignal.timeout(8000) })
             .then(r => r.ok ? r.json() : Promise.reject(r.status))
             .then(data => {
-                if (typeof data.public_repos === 'number') {
-                    repos.src = `https://img.shields.io/badge/Public%20Repos-${data.public_repos}-0e7a5f?style=for-the-badge&logo=github`;
-                }
+                stats.forEach(stat => {
+                    const value = data[stat.dataset.ghStat];
+                    if (Number.isSafeInteger(value) && value >= 0) stat.textContent = value;
+                });
             })
-            .catch(() => { /* keep the static fallback badge */ });
+            .catch(() => { /* Leave unavailable metrics without a fabricated fallback. */ });
     })();
 
     // ─── GITHUB CONTRIBUTION CALENDAR ────────────────────────────────────────
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     grid.appendChild(pad);
                 }
 
-                const lang = (localStorage.getItem('devyhb-lang') || 'es') === 'en' ? 'en-US' : 'es-ES';
+                const lang = root.lang === 'en' ? 'en-US' : 'es-ES';
                 days.forEach(day => {
                     const cell = document.createElement('div');
                     cell.className = 'gh-day';
@@ -165,7 +168,21 @@ document.addEventListener('DOMContentLoaded', () => {
             "resume-edu-3-org": "Universidad Tecnológica de Bolívar",
             "resume-edu-3-desc": "Base tecnológica en programación, redes y fundamentos de sistemas.",
             "portfolio-label": "04 - Portafolio",
-            "portfolio-title": "Proyectos <em>y Certificaciones</em>",
+            "portfolio-title": "Proyectos <em>seleccionados</em>",
+            "portfolio-intro": "Seguridad, automatización e IA aplicada: proyectos con código, documentación y decisiones técnicas para explorar.",
+            "portfolio-learning-title": "Formación y herramientas",
+            "portfolio-project-design": "Decisiones técnicas",
+            "portfolio-project-evidence": "Evidencia y alcance",
+            "portfolio-recons-tag": "Reconocimiento pasivo · CLI",
+            "portfolio-recons-copy": "Herramienta en Python para enumerar hostnames publicados en Shodan CTL. Funciona en Windows, Linux y Termux sin una API key de Shodan ni paquetes de terceros.",
+            "portfolio-recons-design": "Reconocimiento pasivo por defecto, salidas TXT/JSON y mensajes de estado separados para integrarse con otros procesos.",
+            "portfolio-recons-evidence": "Pruebas con unittest, CI y versiones publicadas. Las comprobaciones activas son opcionales y requieren autorización sobre los objetivos.",
+            "portfolio-cyhber-tag": "IA aplicada · DevSecOps",
+            "portfolio-cyhber-copy": "Skill de revisión de seguridad asistida por IA para Claude Code. Organiza el análisis en cinco capas: código, dependencias, secretos y datos personales, CI/CD e infraestructura.",
+            "portfolio-cyhber-design": "Hallazgos estructurados por severidad, evidencia y remediación; un renderizador Python genera los reportes en terminal.",
+            "portfolio-cyhber-evidence": "Ejemplos y evaluaciones manuales documentadas, no benchmarks automatizados. Complementa, pero no sustituye, una auditoría profesional.",
+            "portfolio-releases-cta": "Ver versiones",
+            "portfolio-evaluation-cta": "Ver evaluación",
             "portfolio-filter-cert": "Certificaciones",
             "portfolio-filter-tech": "Tecnologías",
             "cert-carousel-title": "Certificaciones & Credenciales",
@@ -203,8 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-backend-title": "Desarrollo Backend & Automatizaciones",
             "portfolio-aprendeapi-title": "Pokedex API Lab: Consumo de APIs",
             "portfolio-aprendeapi-copy": "Laboratorio interactivo para el aprendizaje práctico del consumo de APIs REST, incluyendo autocompletado, latencia de red y visualización de respuestas JSON.",
-            "portfolio-dev101-title": "dev101_bot: Bot de Telegram",
-            "portfolio-dev101-copy": "Bot de Telegram para envío automático 24/7 de noticias de ciberseguridad e IA, orquestado con Cloudflare Workers, GitHub Actions y resúmenes de Groq LLaMA 3.3.",
+            "portfolio-dev101-title": "dev101_bot + cYHBernews",
+            "portfolio-dev101-copy": "Sistema que recopila y resume noticias de ciberseguridad e IA con Python y Groq, automatizado con Cloudflare Workers y GitHub Actions. Distribuye las noticias a Telegram y alimenta <strong>cYHBernews</strong>, su interfaz web.",
+            "portfolio-dev101-demo": "Ver cYHBernews",
+            "portfolio-demo-cta": "Probar demo",
             "portfolio-backend-project-cta": "Explorar Código",
             "portfolio-epe-cta": "Ver Cliente LBH",
             "portfolio-epe-main-title": "Fullstack & Enterprise Solutions",
@@ -229,10 +248,14 @@ document.addEventListener('DOMContentLoaded', () => {
             "services-3-title": "Integraciones & Arq.",
             "services-3-desc": "Conexión entre sistemas y decisiones de arquitectura pensadas para escalar.",
             "contact-label": "06 - Contacto",
+            "contact-signal-title": "Tu próxima idea.<br><em>La construimos.</em>",
+            "contact-signal-copy": "Software, IA y automatización. Cuéntame qué quieres resolver.",
+            "contact-signal-cta": "Hablemos por WhatsApp",
+            "contact-signal-note": "Conversación directa, sin formularios.",
             "contact-title": "¿Listo para <em>ejecutar?</em>",
             "contact-copy": "Si tienes un problema complejo de software o un proceso que necesita IA y automatización, hablemos. Mi enfoque es la entrega de soluciones técnicas reales.",
-            "contact-cta-whatsapp": "WhatsApp Directo",
-            "contact-cta-cv": "Descargar Full Resume",
+            "contact-cta-linkedin": "Perfil en LinkedIn",
+            "contact-cta-cv": "CV en inglés (PDF)",
             "contact-status-title": "Disponibilidad Técnica",
             "contact-status-base": "Base",
             "contact-status-resp": "Respuesta",
@@ -246,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "github-chart-header": "Contribuciones en GitHub",
             "github-chart-range": "Últimos 12 meses",
             "github-chart-total-label": "contribuciones",
+            "github-stars": "estrellas",
+            "github-followers": "Seguidores",
+            "github-public-repos": "Repositorios públicos",
+            "github-metrics-note": "Fuente: API de GitHub. Un guion indica un dato no disponible.",
             "footer-copy": "Construido por"
         },
         en: {
@@ -308,7 +335,21 @@ document.addEventListener('DOMContentLoaded', () => {
             "resume-edu-3-org": "Technological University of Bolivar",
             "resume-edu-3-desc": "Technological foundation in programming, networks, and systems fundamentals.",
             "portfolio-label": "04 - Portfolio",
-            "portfolio-title": "Projects <em>and Certifications</em>",
+            "portfolio-title": "Selected <em>projects</em>",
+            "portfolio-intro": "Security, automation and applied AI: explore projects through their code, documentation and technical decisions.",
+            "portfolio-learning-title": "Learning and tools",
+            "portfolio-project-design": "Technical decisions",
+            "portfolio-project-evidence": "Evidence and scope",
+            "portfolio-recons-tag": "Passive reconnaissance · CLI",
+            "portfolio-recons-copy": "A Python tool for enumerating hostnames published in Shodan CTL. Runs on Windows, Linux and Termux without a Shodan API key or third-party packages.",
+            "portfolio-recons-design": "Passive reconnaissance by default, TXT/JSON output and separate status messages for integration with other processes.",
+            "portfolio-recons-evidence": "unittest coverage, CI and published releases. Active checks are opt-in and require authorization for the targets.",
+            "portfolio-cyhber-tag": "Applied AI · DevSecOps",
+            "portfolio-cyhber-copy": "An AI-assisted security review skill for Claude Code. Structures analysis across five layers: code, dependencies, secrets and personal data, CI/CD, and infrastructure.",
+            "portfolio-cyhber-design": "Findings structured by severity, evidence and remediation; a Python renderer produces terminal reports.",
+            "portfolio-cyhber-evidence": "Documented examples and manual evaluations, not automated benchmarks. Complements, but does not replace, a professional audit.",
+            "portfolio-releases-cta": "View releases",
+            "portfolio-evaluation-cta": "View evaluation",
             "portfolio-filter-cert": "Certifications",
             "portfolio-filter-tech": "Technologies",
             "cert-carousel-title": "Official Certifications & Credentials",
@@ -346,8 +387,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-backend-title": "Backend & Automations",
             "portfolio-aprendeapi-title": "Pokedex API Lab: API Consumption",
             "portfolio-aprendeapi-copy": "Interactive lab designed for hands-on learning of REST API integration, featuring search suggestions, response latency, and JSON view.",
-            "portfolio-dev101-title": "dev101_bot: Telegram Bot",
-            "portfolio-dev101-copy": "Automated Telegram bot sending 24/7 cybersecurity & AI news, orchestrated via Cloudflare Workers, GitHub Actions, and Groq LLaMA 3.3 summaries.",
+            "portfolio-dev101-title": "dev101_bot + cYHBernews",
+            "portfolio-dev101-copy": "A system that collects and summarizes cybersecurity and AI news using Python and Groq, automated with Cloudflare Workers and GitHub Actions. It distributes news to Telegram and powers <strong>cYHBernews</strong>, its web interface.",
+            "portfolio-dev101-demo": "View cYHBernews",
+            "portfolio-demo-cta": "Try demo",
             "portfolio-backend-project-cta": "Explore Code",
             "portfolio-epe-cta": "View LBH Client",
             "portfolio-epe-main-title": "Fullstack & Enterprise Solutions",
@@ -372,10 +415,14 @@ document.addEventListener('DOMContentLoaded', () => {
             "services-3-title": "Integrations & Architecture",
             "services-3-desc": "Connection between systems and architectural decisions designed to scale.",
             "contact-label": "06 - Contact",
+            "contact-signal-title": "Your next idea.<br><em>Let's build it.</em>",
+            "contact-signal-copy": "Software, AI and automation. Tell me what you want to solve.",
+            "contact-signal-cta": "Let's talk on WhatsApp",
+            "contact-signal-note": "A direct conversation. No forms.",
             "contact-title": "Ready to <em>execute?</em>",
             "contact-copy": "If you have a complex software problem or a process that needs AI and automation, let's talk. My focus is the delivery of real technical solutions.",
-            "contact-cta-whatsapp": "Direct WhatsApp",
-            "contact-cta-cv": "Download Full Resume",
+            "contact-cta-linkedin": "LinkedIn profile",
+            "contact-cta-cv": "English CV (PDF)",
             "contact-status-title": "Technical Availability",
             "contact-status-base": "Base",
             "contact-status-resp": "Response",
@@ -389,6 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "github-chart-header": "GitHub Contributions",
             "github-chart-range": "Last 12 months",
             "github-chart-total-label": "contributions",
+            "github-stars": "stars",
+            "github-followers": "Followers",
+            "github-public-repos": "Public repositories",
+            "github-metrics-note": "Source: GitHub API. A dash indicates unavailable data.",
             "footer-copy": "Built by"
         }
     };
@@ -408,55 +459,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (langToggle) langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
         root.setAttribute('lang', lang);
-        localStorage.setItem('devyhb-lang', lang);
+        try { localStorage.setItem('devyhb-lang', lang); } catch { /* Storage is optional. */ }
     };
 
     langToggle?.addEventListener('click', () => {
-        const currentLang = localStorage.getItem('devyhb-lang') || 'es';
+        const currentLang = root.lang;
         const nextLang = currentLang === 'es' ? 'en' : 'es';
         updateLanguage(nextLang);
         runHeroScramble();
     });
 
-    const savedLang = localStorage.getItem('devyhb-lang') || 'es';
+    let savedLang = 'es';
+    try { if (localStorage.getItem('devyhb-lang') === 'en') savedLang = 'en'; } catch { /* Use Spanish when storage is unavailable. */ }
     updateLanguage(savedLang);
 
     // ─── SCROLL & NAV ────────────────────────────────────────────────────────
     const sections = [...document.querySelectorAll('section[id]')];
     const navLinks = [...document.querySelectorAll('.nlinks a')];
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const reducedMotion = motionPreference.matches;
+    let scrollFrame = null;
 
     const updateScrollProgress = () => {
-        const winScroll = body.scrollTop || root.scrollTop;
+        scrollFrame = null;
+        const winScroll = window.scrollY;
         const height = root.scrollHeight - root.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (scrollProgress) scrollProgress.style.width = scrolled + '%';
-        if (mnav) mnav.classList.toggle('scrolled', window.scrollY > 40);
-        if (scrollTopBtn) scrollTopBtn.classList.toggle('vis', window.scrollY > 420);
+        const scrolled = height > 0 ? Math.min(100, Math.max(0, (winScroll / height) * 100)) : 0;
         let current = '';
         sections.forEach(section => {
-            if (window.scrollY >= section.offsetTop - 120) current = section.id;
+            if (winScroll >= section.offsetTop - 120) current = section.id;
         });
+
+        // Finish geometry reads before updating styles or appending audit lines.
+        if (scrollProgress) scrollProgress.style.width = scrolled + '%';
+        if (mnav) mnav.classList.toggle('scrolled', winScroll > 40);
+        if (scrollTopBtn) scrollTopBtn.classList.toggle('vis', winScroll > 420);
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+
+        if (auditVisible && Math.abs(winScroll - lastAuditScroll) > 50) {
+            const line = document.createElement('div');
+            line.className = 'audit-line';
+            line.textContent = auditLogs[Math.floor(Math.random() * auditLogs.length)];
+            auditStream.appendChild(line);
+            if (auditStream.children.length > 4) auditStream.removeChild(auditStream.firstChild);
+            lastAuditScroll = winScroll;
+        }
     };
 
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    const scheduleScrollUpdate = () => {
+        if (scrollFrame !== null) return;
+        scrollFrame = requestAnimationFrame(updateScrollProgress);
+    };
+    window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
+    window.addEventListener('resize', scheduleScrollUpdate);
+    window.addEventListener('load', scheduleScrollUpdate, { once: true });
+    scheduleScrollUpdate();
 
     // ─── THEME ────────────────────────────────────────────────────────────────
     const syncThemeIcon = () => {
-        if (!themeIcon) return;
-        themeIcon.className = root.getAttribute('data-theme') === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+        const dark = root.getAttribute('data-theme') === 'dark';
+        if (themeIcon) themeIcon.className = dark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+        themeToggle?.setAttribute('aria-pressed', String(dark));
     };
 
+    let themeTransition = null;
+    let requestedTheme = root.getAttribute('data-theme');
     themeToggle?.addEventListener('click', () => {
-        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        requestedTheme = requestedTheme === 'dark' ? 'light' : 'dark';
+        themeTransition?.skipTransition();
+        const applyTheme = () => {
+            root.setAttribute('data-theme', requestedTheme);
+            try { localStorage.setItem('devyhb-theme', requestedTheme); } catch { /* Keep the toggle usable without storage. */ }
+            syncThemeIcon();
+        };
+
         root.classList.add('theme-transitioning');
-        root.setAttribute('data-theme', next);
-        localStorage.setItem('devyhb-theme', next);
-        syncThemeIcon();
-        setTimeout(() => {
+        if (motionPreference.matches || !document.startViewTransition) {
+            applyTheme();
+            // Commit the new colors before restoring normal hover transitions.
+            void root.offsetWidth;
             root.classList.remove('theme-transitioning');
-        }, 800);
+            return;
+        }
+
+        const transition = document.startViewTransition(applyTheme);
+        themeTransition = transition;
+        // Rapid clicks can skip a snapshot before it is ready.
+        transition.ready.catch(() => {});
+        transition.finished.catch(() => {}).finally(() => {
+            if (themeTransition !== transition) return;
+            root.classList.remove('theme-transitioning');
+            themeTransition = null;
+        });
     });
     syncThemeIcon();
 
@@ -596,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     io.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0, rootMargin: '0px 0px 180px 0px' });
         document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     }
 
@@ -616,7 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ─── STAT COUNTER ANIMATION ───────────────────────────────────────────────
-    const animateCounter = (el, target, suffix = '', duration = 1600) => {
+    const animateCounter = (el, target, suffix = '', duration = 700) => {
         const start = performance.now();
         const update = (now) => {
             const elapsed = now - start;
@@ -637,7 +731,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!raw) return;
             const num = parseFloat(raw);
             const suffix = el.dataset.suffix || '';
-            animateCounter(el, num, suffix);
+            if (reducedMotion) el.textContent = num + suffix;
+            else animateCounter(el, num, suffix);
             statsObserver.unobserve(el);
         });
     }, { threshold: 0.5 });
@@ -668,16 +763,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cancelar animación previa si existe
         if (scrambleRAF) cancelAnimationFrame(scrambleRAF);
 
-        const currentLang = localStorage.getItem('devyhb-lang') || 'es';
+        const currentLang = root.lang;
         const originalText = translations[currentLang]["hero-title-main"];
         const chars = '▓░▒█!<>-_[]{}=+*^?#';
         const length = originalText.length;
+        const duration = 420;
         const queue = [];
 
         for (let i = 0; i < length; i++) {
             const char = originalText[i];
-            const start = Math.floor(Math.random() * 12);
-            const end = start + Math.floor(Math.random() * 25) + 25;
+            const start = Math.random() * duration * 0.2;
+            const end = start + duration * (0.45 + Math.random() * 0.35);
             queue.push({ char, start, end });
         }
 
@@ -693,20 +789,21 @@ document.addEventListener('DOMContentLoaded', () => {
         nodes.forEach(n => fragment.appendChild(n));
         target.appendChild(fragment);
 
-        let frame = 0;
-        const tick = () => {
+        const startedAt = performance.now();
+        const tick = (now) => {
+            const elapsed = now - startedAt;
             let complete = 0;
 
             for (let i = 0; i < length; i++) {
                 const { char, start, end } = queue[i];
                 const node = nodes[i];
 
-                if (frame >= end) {
+                if (elapsed >= end) {
                     complete++;
                     // Carácter final: texto plano sin estilos extra
                     node.textContent = char;
                     node.style.cssText = '';
-                } else if (frame >= start) {
+                } else if (elapsed >= start) {
                     const symbol = chars[Math.floor(Math.random() * chars.length)];
                     const opacity = Math.random() > 0.5 ? 1 : 0.7;
                     node.textContent = symbol;
@@ -718,14 +815,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (complete < length) {
-                frame++;
                 scrambleRAF = requestAnimationFrame(tick);
             } else {
                 // Limpiar: dejar sólo texto plano para no retener los spans
                 target.textContent = originalText;
+                scrambleRAF = null;
             }
         };
-        tick();
+        tick(startedAt);
     };
 
     // ─── INIT ─────────────────────────────────────────────────────────────────
@@ -741,223 +838,89 @@ document.addEventListener('DOMContentLoaded', () => {
         runHeroScramble();
     };
 
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader?.classList.add('hide');
-            body.classList.remove('is-loading');
-            setTimeout(initHeroAnimation, 400);
-        }, reducedMotion ? 50 : 700);
-    });
-
-    setTimeout(() => {
-        if (!body.dataset.scrambleRun) initHeroAnimation();
-    }, 3000);
+    initHeroAnimation();
 
     scrollTopBtn?.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ─── AUDIT STREAM LOGIC ───────────────────────────────────────────────────
+    // Decorative examples only; no audit or scan is executed.
     const auditStream = document.getElementById('audit-stream');
     const auditLogs = [
-        '[+] OWASP TOP 10: Scan Complete — 0 Critical',
-        '[+] IAM Policy: Least Privilege Enforced',
-        '[!] Network Audit: Open Ports Reduced to 2',
-        '[+] TLS 1.3: Enforced on all endpoints',
-        '[+] Auth: MFA + JWT rotation configured',
-        '[!] SAST: No hardcoded secrets detected',
-        '[+] AppSec: CSRF / XSS mitigations active'
+        '[DEMO] OWASP TOP 10: Review checklist',
+        '[DEMO] IAM: Least privilege policy example',
+        '[DEMO] Network: Port inventory example',
+        '[DEMO] TLS: Endpoint configuration example',
+        '[DEMO] Auth: MFA and token rotation workflow',
+        '[DEMO] SAST: Secret detection workflow',
+        '[DEMO] AppSec: CSRF / XSS review checklist'
     ];
     let lastAuditScroll = 0;
+    let auditVisible = false;
 
-    window.addEventListener('scroll', () => {
-        const skillsSec = document.getElementById('skills');
-        if (!skillsSec || !auditStream) return;
-        
-        const rect = skillsSec.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const currentScroll = window.scrollY;
-            if (Math.abs(currentScroll - lastAuditScroll) > 50) {
-                const line = document.createElement('div');
-                line.className = 'audit-line';
-                const log = auditLogs[Math.floor(Math.random() * auditLogs.length)];
-                line.innerText = log;
-                auditStream.appendChild(line);
-                if (auditStream.children.length > 4) auditStream.removeChild(auditStream.firstChild);
-                lastAuditScroll = currentScroll;
-            }
-        }
+    if (auditStream) {
+        const auditObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => { auditVisible = entry.isIntersecting; });
+        }, { threshold: 0 });
+        auditObserver.observe(auditStream);
+    }
 
-        const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-        if (scrollPercent > 0.98) {
-            triggerTerminalPopup();
-        }
-    });
+    // CSS owns the animation; JavaScript only gates visibility and pointer tilt.
+    (function initContactSignal() {
+        const panel = document.getElementById('contact-signal');
+        if (!panel) return;
+        const scene = panel.querySelector('.contact-scene');
+        const pointerPreference = window.matchMedia('(pointer: fine) and (hover: hover)');
+        let intersecting = false;
+        let parallaxEnabled = false;
+        let tiltFrame = null;
+        let pointerX = 0;
+        let pointerY = 0;
 
-    // ─── TERMINAL POPUP & THREE.JS ────────────────────────────────────────────
-    const tPopup = document.getElementById('terminal-popup');
-    const tClose = document.getElementById('terminalPopupClose');
-    let popupShown = false;
-    let scene, camera, renderer;
-
-    const triggerTerminalPopup = () => {
-        if (popupShown) return;
-        popupShown = true;
-        tPopup?.classList.add('active');
-        if (window.THREE) {
-            initCommandCircle();
-        } else {
-            const s = document.createElement('script');
-            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
-            s.onload = initCommandCircle;
-            document.head.appendChild(s);
-        }
-    };
-
-    tClose?.addEventListener('click', () => {
-        tPopup?.classList.remove('active');
-    });
-
-    function initCommandCircle() {
-        const container = document.getElementById('command-circle-container');
-        if (!container) return;
-
-        const getAccentColor = () => {
-            const color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-            return new THREE.Color(color);
+        const resetTilt = () => {
+            if (tiltFrame !== null) cancelAnimationFrame(tiltFrame);
+            tiltFrame = null;
+            scene?.style.setProperty('--tilt-x', '0deg');
+            scene?.style.setProperty('--tilt-y', '0deg');
         };
 
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        container.appendChild(renderer.domElement);
+        const syncAnimation = () => {
+            const active = intersecting && !document.hidden && !motionPreference.matches;
+            panel.classList.toggle('is-animating', active);
+            parallaxEnabled = active && pointerPreference.matches;
+            if (!parallaxEnabled) resetTilt();
+        };
 
-        const group = new THREE.Group();
-        scene.add(group);
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => { intersecting = entry.isIntersecting; });
+            syncAnimation();
+        }, { threshold: 0 });
+        observer.observe(panel);
+        document.addEventListener('visibilitychange', syncAnimation);
+        motionPreference.addEventListener('change', syncAnimation);
+        pointerPreference.addEventListener('change', syncAnimation);
 
-        const currentAccent = getAccentColor();
-        const accentHex = `#${currentAccent.getHexString()}`;
-        const aR = Math.round(currentAccent.r * 255), aG = Math.round(currentAccent.g * 255), aB = Math.round(currentAccent.b * 255);
-        const commands = ['NMAP', 'GO_BUILD', 'OWASP', 'SEC_OPS', 'PYTHON', 'AI_AGENT', 'AUDIT_OK', 'HARDEN', 'DOCKER', 'DJANGO'];
-        const nodes = [];
-        const sprites = [];
-        const radius = 3.5;
-
-        commands.forEach((cmd, i) => {
-            const phi = Math.acos(-1 + (2 * i) / commands.length);
-            const theta = Math.sqrt(commands.length * Math.PI) * phi;
-            const pos = new THREE.Vector3(radius * Math.cos(theta) * Math.sin(phi), radius * Math.sin(theta) * Math.sin(phi), radius * Math.cos(phi));
-
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 256; canvas.height = 64;
-            ctx.font = 'Bold 36px DM Mono';
-            ctx.fillStyle = accentHex;
-            ctx.textAlign = 'center';
-            ctx.shadowColor = accentHex;
-            ctx.shadowBlur = 12;
-            ctx.fillText(cmd, 128, 45);
-
-            const texture = new THREE.CanvasTexture(canvas);
-            const material = new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0.8 });
-            const sprite = new THREE.Sprite(material);
-            sprite.position.copy(pos);
-            sprite.scale.set(1.8, 0.45, 1);
-            sprite.userData.phase = Math.random() * Math.PI * 2;
-            group.add(sprite);
-            nodes.push(pos);
-            sprites.push(sprite);
-        });
-
-        const lineMaterial = new THREE.LineBasicMaterial({ color: currentAccent, transparent: true, opacity: 0.2 });
-        const geometry = new THREE.BufferGeometry();
-        const linePositions = [];
-        for (let i = 0; i < nodes.length; i++) {
-            for (let j = i + 1; j < nodes.length; j++) {
-                if (nodes[i].distanceTo(nodes[j]) < 4.5) {
-                    linePositions.push(nodes[i].x, nodes[i].y, nodes[i].z, nodes[j].x, nodes[j].y, nodes[j].z);
+        scene?.addEventListener('pointermove', e => {
+            if (!parallaxEnabled || e.pointerType === 'touch') return;
+            pointerX = e.clientX;
+            pointerY = e.clientY;
+            if (tiltFrame !== null) return;
+            tiltFrame = requestAnimationFrame(() => {
+                tiltFrame = null;
+                const rect = scene.getBoundingClientRect();
+                if (rect.width <= 0 || rect.height <= 0) {
+                    resetTilt();
+                    return;
                 }
-            }
-        }
-        geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
-        group.add(new THREE.LineSegments(geometry, lineMaterial));
-
-        // Núcleo central luminoso (glow radial con blending aditivo)
-        const glowCanvas = document.createElement('canvas');
-        glowCanvas.width = glowCanvas.height = 128;
-        const gctx = glowCanvas.getContext('2d');
-        const grad = gctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        grad.addColorStop(0, `rgba(${aR},${aG},${aB},0.9)`);
-        grad.addColorStop(0.4, `rgba(${aR},${aG},${aB},0.25)`);
-        grad.addColorStop(1, `rgba(${aR},${aG},${aB},0)`);
-        gctx.fillStyle = grad;
-        gctx.fillRect(0, 0, 128, 128);
-        const glowSprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(glowCanvas), transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false }));
-        glowSprite.scale.set(3.2, 3.2, 1);
-        group.add(glowSprite);
-
-        const partGeo = new THREE.BufferGeometry();
-        const partPos = [];
-        for(let i=0; i<180; i++) partPos.push((Math.random()-0.5)*13, (Math.random()-0.5)*13, (Math.random()-0.5)*13);
-        partGeo.setAttribute('position', new THREE.Float32BufferAttribute(partPos, 3));
-        const particles = new THREE.Points(partGeo, new THREE.PointsMaterial({ color: currentAccent, size: 0.045, transparent: true, opacity: 0.4 }));
-        group.add(particles);
-
-        camera.position.z = 8;
-        group.scale.set(0, 0, 0); // Empezar desde escala cero
-
-        // Parallax con el puntero
-        let targetX = 0, targetY = 0;
-        container.addEventListener('pointermove', e => {
-            const rect = container.getBoundingClientRect();
-            targetY = ((e.clientX - rect.left) / rect.width - 0.5);
-            targetX = ((e.clientY - rect.top) / rect.height - 0.5);
-        });
-        container.addEventListener('pointerleave', () => { targetX = 0; targetY = 0; });
-
-        function animate() {
-            if (!tPopup?.classList.contains('active')) {
-                group.scale.set(0, 0, 0); // Resetear escala al cerrar
-                return;
-            }
-            requestAnimationFrame(animate);
-            const t = Date.now() * 0.001;
-
-            // Entrada con lerp suave
-            group.scale.lerp(new THREE.Vector3(1, 1, 1), 0.06);
-
-            // Giro continuo + inclinación por parallax
-            group.rotation.y += 0.004;
-            group.rotation.x += (targetX * 0.6 + 0.12 - group.rotation.x) * 0.05;
-            group.rotation.z += (targetY * 0.25 - group.rotation.z) * 0.05;
-
-            // Nodos que pulsan + escaneo recorriendo la esfera
-            const scanIdx = Math.floor(t * 1.6) % sprites.length;
-            sprites.forEach((s, i) => {
-                const p = 0.5 + 0.5 * Math.sin(t * 2.2 + s.userData.phase);
-                let op = 0.55 + p * 0.4;
-                let sc = 1 + p * 0.1;
-                if (i === scanIdx) { op = 1; sc *= 1.18; }
-                s.material.opacity = op;
-                s.scale.set(1.8 * sc, 0.45 * sc, 1);
+                const x = Math.max(-1, Math.min(1, ((pointerX - rect.left) / rect.width - 0.5) * 2));
+                const y = Math.max(-1, Math.min(1, ((pointerY - rect.top) / rect.height - 0.5) * 2));
+                scene.style.setProperty('--tilt-x', `${-y * 6}deg`);
+                scene.style.setProperty('--tilt-y', `${x * 8}deg`);
             });
-
-            // Núcleo y líneas laten
-            glowSprite.material.opacity = 0.4 + Math.sin(t * 2) * 0.18;
-            const gs = 3.2 + Math.sin(t * 2) * 0.3;
-            glowSprite.scale.set(gs, gs, 1);
-            lineMaterial.opacity = 0.12 + Math.sin(t * 1.8) * 0.1;
-
-            // Partículas con deriva y titileo propios
-            particles.rotation.y -= 0.0012;
-            particles.material.opacity = 0.3 + Math.sin(t * 1.3) * 0.15;
-
-            renderer.render(scene, camera);
-        }
-        animate();
-    }
+        }, { passive: true });
+        scene?.addEventListener('pointerleave', resetTilt);
+        syncAnimation();
+    })();
 
     // ─── CERTIFICATE CAROUSEL ──────────────────────────────────────────
     (function initCertCarousel() {

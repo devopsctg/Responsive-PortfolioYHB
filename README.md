@@ -49,9 +49,9 @@
 | 01 | About | Foto, descripción profesional, meta datos de contacto |
 | 02 | Skills | Stack técnico por grupos: Backend, Frontend/Mobile, Cybersecurity, Cloud |
 | 03 | Resume | Experiencia laboral y educación en timeline |
-| 04 | Portfolio | Certificaciones, tecnologías, GitHub/Trailhead, Flutter, proyectos destacados |
+| 04 | Portfolio | Proyectos destacados, Recons101x y cyhber-deploy; después certificaciones y tecnologías |
 | 05 | Services | Tarjetas de servicios: Transformación Digital, Web/Bots, Integraciones |
-| 06 | Contact | Links directos email/WhatsApp/CV + panel de disponibilidad |
+| 06 | Contact | Links directos email/WhatsApp/LinkedIn/CV en inglés + panel de disponibilidad |
 
 ---
 
@@ -72,7 +72,8 @@ Responsive-PortfolioYHB/
 │   │   ├── portfolio/portfolio-{1-12}.{jpg,png,webp}
 │   │   └── ...
 │   └── docs/
-│       └── CV_yared_Henriquez.pdf
+│       ├── CV_yared_Henriquez.en.html ← fuente del CV en inglés
+│       └── CV_yared_Henriquez.pdf     ← versión publicada en inglés
 └── README.md
 ```
 
@@ -89,6 +90,14 @@ Responsive-PortfolioYHB/
 | Íconos | Bootstrap Icons 1.11 + Devicon |
 | Fuentes | Bricolage Grotesque + DM Mono (Google Fonts) |
 | Hosting | GitHub Pages + dominio personalizado |
+
+---
+
+## CV en inglés
+
+La fuente editable es `assets/docs/CV_yared_Henriquez.en.html`, autocontenida y sin dependencias de red. El enlace de contacto abre `assets/docs/CV_yared_Henriquez.pdf`.
+
+Para regenerar el PDF desde el navegador, imprimir la fuente en A4, a escala 100%, sin encabezados ni pies del navegador y respetando los márgenes de su CSS. Verificar las dos páginas y los enlaces antes de reemplazar el PDF publicado.
 
 ---
 
