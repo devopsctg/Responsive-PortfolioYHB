@@ -135,16 +135,19 @@ document.addEventListener('DOMContentLoaded', () => {
             "about-meta-edu": "Formación",
             "about-meta-edu-v": "Ingeniería en Sistemas + Master IA",
             "skills-label": "02 - Habilidades",
-            "skills-title": "Stack técnico <em>y herramientas</em>",
+            "skills-title": "Stack técnico<br><em>y herramientas</em>",
             "skills-copy": "Mi conjunto de herramientas se centra en la eficiencia, escalabilidad y automatización inteligente para resolver problemas operativos reales.",
             "skills-group-1": "Core & Backend",
             "skills-group-2": "Frontend & Mobile",
             "skills-group-3": "Cybersecurity & SecOps",
             "skills-group-4": "Cloud & Tools",
             "skills-bots": "Bots",
-            "skills-workflows": "Flujos Complejos",
+            "skills-workflows": "Flujos",
             "resume-label": "03 - Trayectoria",
             "resume-exp-title": "Experiencia Laboral",
+            "resume-exp-0-title": "<span class='text-bold'>Evaluador de Penetración</span>",
+            "resume-exp-0-org": "Henkel · Suiza (Remoto · Jornada parcial)",
+            "resume-exp-0-desc": "Pruebas de penetración ofensivas, auditorías de seguridad de redes y evaluación de vulnerabilidades en infraestructura corporativa.",
             "resume-exp-1-title": "<span class='text-bold'>Chief Technology Officer (CTO)</span>",
             "resume-exp-1-org": "EXIA S.A.S - Energía Solar",
             "resume-exp-1-desc": "Liderazgo técnico en la integración de sensores IoT, monitoreo en tiempo real y automatización de procesos operativos.",
@@ -303,16 +306,19 @@ document.addEventListener('DOMContentLoaded', () => {
             "about-meta-edu": "Education",
             "about-meta-edu-v": "Systems Engineering + Master AI",
             "skills-label": "02 - Skills",
-            "skills-title": "Tech Stack <em>& tools</em>",
+            "skills-title": "Tech Stack<br><em>& tools</em>",
             "skills-copy": "My toolkit focuses on efficiency, scalability, and intelligent automation to solve real operational problems.",
             "skills-group-1": "Core & Backend",
             "skills-group-2": "Frontend & Mobile",
             "skills-group-3": "Cybersecurity & SecOps",
             "skills-group-4": "Cloud & Tools",
             "skills-bots": "Bots",
-            "skills-workflows": "Complex Workflows",
+            "skills-workflows": "Workflows",
             "resume-label": "03 - Resume",
             "resume-exp-title": "Work Experience",
+            "resume-exp-0-title": "<span class='text-bold'>Penetration Tester</span>",
+            "resume-exp-0-org": "Henkel · Switzerland (Remote · Part-time)",
+            "resume-exp-0-desc": "Offensive security assessments, infrastructure & application penetration testing, and enterprise network security evaluations.",
             "resume-exp-1-title": "<span class='text-bold'>Chief Technology Officer (CTO)</span>",
             "resume-exp-1-org": "EXIA S.A.S - Solar Energy",
             "resume-exp-1-desc": "Technical leadership in IoT sensor integration, real-time monitoring, and operational process automation.",
@@ -498,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (scrollTopBtn) scrollTopBtn.classList.toggle('vis', winScroll > 420);
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
 
-        if (auditVisible && Math.abs(winScroll - lastAuditScroll) > 50) {
+        if (auditVisible && auditStream && Math.abs(winScroll - lastAuditScroll) > 50) {
             const line = document.createElement('div');
             line.className = 'audit-line';
             line.textContent = auditLogs[Math.floor(Math.random() * auditLogs.length)];
