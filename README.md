@@ -69,11 +69,13 @@ Responsive-PortfolioYHB/
 │   ├── img/
 │   │   ├── profile-img.{jpg,webp}
 │   │   ├── flutter/{1-6}.{jpeg,webp}
-│   │   ├── portfolio/portfolio-{1-12}.{jpg,png,webp}
+│   │   ├── portfolio/portfolio-{1-14}.{jpg,png,webp}
 │   │   └── ...
 │   └── docs/
 │       ├── CV_yared_Henriquez.en.html ← fuente del CV en inglés
-│       └── CV_yared_Henriquez.pdf     ← versión publicada en inglés
+│       ├── CV_yared_Henriquez.pdf     ← versión publicada en inglés
+│       ├── Mythical.pdf               ← Certificado Hack The Box Mini Pro Labs: Mythical (HTBCERT-28139E357A)
+│       └── Puppet.pdf                 ← Certificado Hack The Box Mini Pro Labs: Puppet (HTBCERT-CD631B515C)
 └── README.md
 ```
 

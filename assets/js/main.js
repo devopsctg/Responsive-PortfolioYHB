@@ -255,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact-title": "¿Listo para <em>ejecutar?</em>",
             "contact-copy": "Si tienes un problema complejo de software o un proceso que necesita IA y automatización, hablemos. Mi enfoque es la entrega de soluciones técnicas reales.",
             "contact-cta-linkedin": "Perfil en LinkedIn",
+            "contact-cta-htb": "Perfil en Hack The Box",
             "contact-cta-cv": "CV en inglés (PDF)",
             "contact-status-title": "Disponibilidad Técnica",
             "contact-status-base": "Base",
@@ -422,6 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "contact-title": "Ready to <em>execute?</em>",
             "contact-copy": "If you have a complex software problem or a process that needs AI and automation, let's talk. My focus is the delivery of real technical solutions.",
             "contact-cta-linkedin": "LinkedIn profile",
+            "contact-cta-htb": "Hack The Box profile",
             "contact-cta-cv": "English CV (PDF)",
             "contact-status-title": "Technical Availability",
             "contact-status-base": "Base",
@@ -630,7 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const certData = miniItems.map(el => {
         const img = el.querySelector('img');
         const src = img?.getAttribute('src') || '';
-        return { img: src, title: img?.getAttribute('alt') || '' };
+        return {
+            img: src,
+            title: img?.getAttribute('alt') || '',
+            pdf: el.dataset.pdf || '',
+            cred: el.dataset.cred || '',
+            recipient: el.dataset.recipient || '',
+            profile: el.dataset.profile || ''
+        };
     });
     let currentCertIdx = 0;
     let lastCertFocus = null;
@@ -639,7 +648,54 @@ document.addEventListener('DOMContentLoaded', () => {
         const c = certData[currentCertIdx];
         if (!c) return;
         if (cmodalImg) { cmodalImg.src = c.img; cmodalImg.alt = c.title; }
-        if (cmodalCaption) cmodalCaption.textContent = c.title;
+        if (cmodalCaption) {
+            cmodalCaption.innerHTML = '';
+            const topRow = document.createElement('div');
+            topRow.className = 'cmodal-top-row';
+            const titleEl = document.createElement('strong');
+            titleEl.className = 'cmodal-title';
+            titleEl.textContent = c.title;
+            topRow.appendChild(titleEl);
+            cmodalCaption.appendChild(topRow);
+
+            if (c.recipient || c.cred || c.pdf) {
+                const metaRow = document.createElement('div');
+                metaRow.className = 'cmodal-meta-row';
+                if (c.recipient) {
+                    const rSpan = document.createElement('span');
+                    rSpan.className = 'cmodal-recipient';
+                    rSpan.innerHTML = `<i class="bi bi-person-check-fill"></i> ${c.recipient}`;
+                    metaRow.appendChild(rSpan);
+                }
+                if (c.cred) {
+                    const cSpan = document.createElement('span');
+                    cSpan.className = 'cmodal-cred-id';
+                    cSpan.innerHTML = `<i class="bi bi-shield-check"></i> ID: <strong>${c.cred}</strong>`;
+                    metaRow.appendChild(cSpan);
+                }
+                if (c.profile) {
+                    const profLink = document.createElement('a');
+                    profLink.href = c.profile;
+                    profLink.target = '_blank';
+                    profLink.rel = 'noopener';
+                    profLink.className = 'cmodal-htb-link';
+                    const isEn = document.documentElement.lang === 'en';
+                    profLink.innerHTML = `<i class="bi bi-box-arrow-up-right"></i> ${isEn ? 'HTB Profile' : 'Perfil HTB'}`;
+                    metaRow.appendChild(profLink);
+                }
+                if (c.pdf) {
+                    const pLink = document.createElement('a');
+                    pLink.href = c.pdf;
+                    pLink.target = '_blank';
+                    pLink.rel = 'noopener';
+                    pLink.className = 'cmodal-pdf-link';
+                    const isEn = document.documentElement.lang === 'en';
+                    pLink.innerHTML = `<i class="bi bi-file-earmark-pdf-fill"></i> ${isEn ? 'View official PDF' : 'Ver documento PDF'}`;
+                    metaRow.appendChild(pLink);
+                }
+                cmodalCaption.appendChild(metaRow);
+            }
+        }
     };
     window.openCertModal = idx => {
         currentCertIdx = idx;
@@ -847,6 +903,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Decorative examples only; no audit or scan is executed.
     const auditStream = document.getElementById('audit-stream');
     const auditLogs = [
+        '[DEMO] HTB: Active Directory & Kerberos audit verified (Mythical - HTBCERT-28139E357A)',
+        '[DEMO] HTB: C2 Operations & DevOps exploitation completed (Puppet - HTBCERT-CD631B515C)',
         '[DEMO] OWASP TOP 10: Review checklist',
         '[DEMO] IAM: Least privilege policy example',
         '[DEMO] Network: Port inventory example',
