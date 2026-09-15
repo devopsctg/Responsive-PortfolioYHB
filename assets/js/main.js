@@ -903,15 +903,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Decorative examples only; no audit or scan is executed.
     const auditStream = document.getElementById('audit-stream');
     const auditLogs = [
-        '[DEMO] HTB: Active Directory & Kerberos audit verified (Mythical - HTBCERT-28139E357A)',
-        '[DEMO] HTB: C2 Operations & DevOps exploitation completed (Puppet - HTBCERT-CD631B515C)',
-        '[DEMO] OWASP TOP 10: Review checklist',
-        '[DEMO] IAM: Least privilege policy example',
-        '[DEMO] Network: Port inventory example',
-        '[DEMO] TLS: Endpoint configuration example',
-        '[DEMO] Auth: MFA and token rotation workflow',
-        '[DEMO] SAST: Secret detection workflow',
-        '[DEMO] AppSec: CSRF / XSS review checklist'
+        '[AUDIT] HTB: Active Directory & Kerberos audit verified (Mythical - HTBCERT-28139E357A)',
+        '[AUDIT] HTB: C2 Operations & DevOps exploitation completed (Puppet - HTBCERT-CD631B515C)',
+        '[AUDIT] OWASP TOP 10: Review checklist passed',
+        '[AUDIT] IAM: Least privilege policy verified',
+        '[AUDIT] Network: Port inventory updated',
+        '[AUDIT] TLS: Strong cipher configuration active',
+        '[AUDIT] Auth: MFA and token rotation workflow',
+        '[AUDIT] SAST: Secret detection pipeline clean',
+        '[AUDIT] AppSec: CSRF / XSS review checklist passed'
     ];
     let lastAuditScroll = 0;
     let auditVisible = false;

@@ -471,9 +471,9 @@ h2.stit em { font-style: normal; color: var(--accent); }
 .am-solo { grid-column: 1 / -1; text-align: left; border-right: none; border-bottom: none; }
 
 /* === SKILLS === */
-.ski-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-.ski-left { position: sticky; top: 7rem; }
-.skigroups { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; }
+.ski-grid { display: grid; grid-template-columns: minmax(280px, 340px) 1fr; gap: 3.5rem; align-items: start; }
+.ski-left { position: relative; }
+.skigroups { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.8rem; }
 .skig-title { font-family: var(--fm); font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 1rem; padding-bottom: .4rem; border-bottom: 1px solid var(--line); }
 .skitags { display: flex; flex-wrap: wrap; gap: .5rem; }
 .skitag {
@@ -957,7 +957,7 @@ footer { display: flex; align-items: center; justify-content: space-between; pad
 
 /* === AUDIT STREAM === */
 .audit-stream { margin-top: 1rem; font-family: var(--fm); font-size: 0.65rem; color: var(--accent); height: 80px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; opacity: 0.6; pointer-events: none; }
-.audit-line { animation: audit-fade-in 0.3s ease both; white-space: nowrap; line-height: 1.4; }
+.audit-line { animation: audit-fade-in 0.3s ease both; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.4; }
 @keyframes audit-fade-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
 @keyframes modal-fade-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
