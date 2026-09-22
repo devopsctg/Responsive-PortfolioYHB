@@ -15,6 +15,7 @@
   --accent2: #003f27;
   --line: #d3cec5;
   --nav-bg: rgba(243,240,234,.92);
+  --nav-border: rgba(12,13,14,.08);
   --shadow: 0 20px 60px rgba(12,13,14,.08);
   --glow: 0 0 30px rgba(0,92,56,.08);
   --hero-dot: rgba(12,13,14,.05);
@@ -41,6 +42,7 @@
   --accent2: #00c466;
   --line: #171b1b;
   --nav-bg: rgba(6,8,8,.94);
+  --nav-border: rgba(255,255,255,.08);
   --shadow: 0 24px 72px rgba(0,0,0,.85);
   --glow: 0 0 50px rgba(0,232,122,.08);
   --hero-dot: rgba(0,232,122,.04);
@@ -150,19 +152,19 @@ nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 300;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.4rem 5vw;
+  padding: 1.15rem 5vw;
   background: transparent;
-  transition: all .4s var(--ease);
-  /* Capa compuesta independiente: el scramble no puede "ensuciar" sus píxeles */
-  will-change: transform;
-  transform: translateZ(0);
+  border-bottom: 1px solid transparent;
+  transition: background-color .25s ease, border-color .25s ease, box-shadow .25s ease, padding .25s ease;
+  isolation: isolate;
 }
 nav.scrolled {
   background: var(--nav-bg);
   backdrop-filter: var(--glass);
   -webkit-backdrop-filter: var(--glass);
-  border-bottom: 1px solid var(--line);
-  padding: .9rem 5vw;
+  border-bottom-color: var(--nav-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,.04);
+  padding: .85rem 5vw;
 }
 .nlogo { font-size: 1.35rem; font-weight: 800; letter-spacing: -.03em; }
 .nlogo em { font-style: normal; color: var(--accent); }

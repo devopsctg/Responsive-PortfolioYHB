@@ -500,7 +500,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Finish geometry reads before updating styles or appending audit lines.
         if (scrollProgress) scrollProgress.style.width = scrolled + '%';
-        if (mnav) mnav.classList.toggle('scrolled', winScroll > 40);
+        if (mnav) {
+            if (winScroll > 50) {
+                mnav.classList.add('scrolled');
+            } else if (winScroll < 20) {
+                mnav.classList.remove('scrolled');
+            }
+        }
         if (scrollTopBtn) scrollTopBtn.classList.toggle('vis', winScroll > 420);
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
 
