@@ -16,7 +16,7 @@
 │                                                          │
 │  [ Ver portafolio ]   yared.henriquezb@gmail.com         │
 │                                                          │
-│  5+ años · Python + IA · <24h respuesta                  │
+│  7+ años · Python + IA · <24h respuesta                  │
 └──────────────────────────────────────────────────────────┘
 ```
 

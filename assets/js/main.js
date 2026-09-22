@@ -5,18 +5,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const loader = document.getElementById('loader');
     const loaderCopy = loader?.querySelector('.loader-copy');
-    if (loader) {
-        if (loaderCopy) {
-            setTimeout(() => { loaderCopy.textContent = 'SECURITY_AUDIT: OK'; }, 400);
-            setTimeout(() => { loaderCopy.textContent = 'DEV101X // SYSTEM READY'; }, 850);
+
+    const scrambleLoaderText = (target, text, duration = 650, callback) => {
+        if (!target) {
+            if (callback) callback();
+            return;
         }
-        setTimeout(() => {
-            loader.classList.add('hide');
-            body.classList.remove('is-loading');
+        const chars = '▓░▒█!<>-_[]{}=+*^?#';
+        const length = text.length;
+        const queue = [];
+        for (let i = 0; i < length; i++) {
+            const char = text[i];
+            const start = Math.random() * duration * 0.25;
+            const end = start + duration * (0.5 + Math.random() * 0.35);
+            queue.push({ char, start, end });
+        }
+        const nodes = Array.from({ length }, () => document.createElement('span'));
+        target.textContent = '';
+        const fragment = document.createDocumentFragment();
+        nodes.forEach(n => fragment.appendChild(n));
+        target.appendChild(fragment);
+
+        const startedAt = performance.now();
+        const tick = (now) => {
+            const elapsed = now - startedAt;
+            let complete = 0;
+            for (let i = 0; i < length; i++) {
+                const { char, start, end } = queue[i];
+                const node = nodes[i];
+                if (elapsed >= end) {
+                    complete++;
+                    node.textContent = char;
+                    node.style.cssText = '';
+                } else if (elapsed >= start) {
+                    node.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    node.style.cssText = 'color:var(--accent);text-shadow:0 0 8px var(--accent);opacity:0.9;';
+                } else {
+                    node.textContent = '░▒'[Math.floor(Math.random() * 2)];
+                    node.style.cssText = 'color:var(--accent);opacity:0.4;';
+                }
+            }
+            if (complete < length) {
+                requestAnimationFrame(tick);
+            } else {
+                target.textContent = text;
+                if (callback) callback();
+            }
+        };
+        requestAnimationFrame(tick);
+    };
+
+    if (loader) {
+        const text = loaderCopy?.textContent.trim() || 'loading portfolio';
+        scrambleLoaderText(loaderCopy, text, 650, () => {
             setTimeout(() => {
-                loader.style.display = 'none';
-            }, 550);
-        }, 1250);
+                loader.classList.add('hide');
+                body.classList.remove('is-loading');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 300);
+        });
     } else {
         body.classList.remove('is-loading');
     }
