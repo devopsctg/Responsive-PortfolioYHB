@@ -60,7 +60,7 @@
 ```
 Responsive-PortfolioYHB/
 ├── index.html                  ← estructura HTML principal
-├── CNAME                       ← dominio: devyared.dpdns.org
+├── CNAME                       ← dominio: dev101x.online
 ├── assets/
 │   ├── css/
 │   │   └── style.css           ← todos los estilos + variables de tema
@@ -105,6 +105,6 @@ Para regenerar el PDF desde el navegador, imprimir la fuente en A4, a escala 100
 
 ## Despliegue
 
-El sitio se sirve directamente desde la rama `main` via GitHub Pages. El dominio `devyared.dpdns.org` apunta a GitHub Pages mediante el archivo `CNAME`.
+El sitio se sirve directamente desde la rama `main` via GitHub Pages. El dominio `dev101x.online` apunta a GitHub Pages mediante el archivo `CNAME`.
 
 No requiere build step ni servidor — abrir `index.html` en el navegador es suficiente para desarrollo local.
