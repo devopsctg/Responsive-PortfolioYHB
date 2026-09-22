@@ -132,20 +132,41 @@ body::after {
   position: fixed; inset: 0; z-index: 9995;
   display: grid; place-items: center;
   background: var(--bg);
-  transition: opacity .18s ease-out, visibility 0s .18s;
+  transition: opacity .5s var(--ease), visibility .5s var(--ease);
 }
 .loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
 .loader-box { display: grid; justify-items: center; gap: 1.5rem; }
-.loader-logo { font-size: clamp(3rem,10vw,6rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; }
+.loader-logo { 
+  font-size: clamp(3rem,10vw,6rem); 
+  font-weight: 800; 
+  letter-spacing: -.05em; 
+  line-height: 1;
+  text-shadow: 0 0 35px rgba(0,232,122,.15);
+}
 .loader-logo em { font-style: normal; color: var(--accent); }
-.loader-bar { width: min(240px,60vw); height: 2px; background: var(--line); overflow: hidden; position: relative; }
+.loader-bar { 
+  width: min(240px,60vw); 
+  height: 3px; 
+  background: var(--line); 
+  overflow: hidden; 
+  position: relative; 
+  border-radius: 4px; 
+}
 .loader-bar::after {
-  content: ''; display: block; width: 50%; height: 100%;
-  background: var(--accent); box-shadow: 0 0 10px var(--accent);
-  animation: loader-run 1.2s var(--ease) infinite;
+  content: ''; display: block; width: 55%; height: 100%;
+  background: var(--accent); box-shadow: 0 0 12px var(--accent);
+  border-radius: 4px;
+  animation: loader-run 1s var(--ease) infinite;
 }
 @keyframes loader-run { from { transform: translateX(-110%); } to { transform: translateX(220%); } }
-.loader-copy { font-family: var(--fm); font-size: .7rem; color: var(--muted); letter-spacing: .25em; text-transform: uppercase; }
+.loader-copy { 
+  font-family: var(--fm); 
+  font-size: .72rem; 
+  color: var(--muted); 
+  letter-spacing: .25em; 
+  text-transform: uppercase;
+  min-height: 1.2em;
+}
 
 /* === NAVIGATION === */
 nav {

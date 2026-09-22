@@ -4,8 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
     const body = document.body;
     const loader = document.getElementById('loader');
-    loader?.classList.add('hide');
-    body.classList.remove('is-loading');
+    const loaderCopy = loader?.querySelector('.loader-copy');
+    if (loader) {
+        if (loaderCopy) {
+            setTimeout(() => { loaderCopy.textContent = 'SECURITY_AUDIT: OK'; }, 400);
+            setTimeout(() => { loaderCopy.textContent = 'DEV101X // SYSTEM READY'; }, 850);
+        }
+        setTimeout(() => {
+            loader.classList.add('hide');
+            body.classList.remove('is-loading');
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 550);
+        }, 1250);
+    } else {
+        body.classList.remove('is-loading');
+    }
     const scrollProgress = document.getElementById('scroll-progress');
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle?.querySelector('i');
