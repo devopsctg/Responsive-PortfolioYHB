@@ -1,6 +1,6 @@
-# DevYHB — Portfolio Personal
+# Dev101x — Portfolio Personal
 
-> Portafolio personal de **Yared Henriquez**, Ingeniero de Sistemas especializado en arquitectura de software, automatización con IA y soluciones fullstack. Construido con HTML, CSS y Vanilla JS — sin frameworks de build, sin dependencias pesadas.
+> Portafolio profesional de **Yared Henriquez (Dev101x)**, Especialista en Ciberseguridad, Hacker Ético, Pentester e Ingeniero de IA. Construido con HTML5, CSS3 y Vanilla JS moderno — sin frameworks de build, optimizado para alto rendimiento y SEO.
 
 ---
 
@@ -8,7 +8,7 @@
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│  DevYHB  ·  Sobre mí  ·  Habilidades  ·  Trayectoria  ☀ │  ← nav + dark mode
+│  Dev101x  ·  Sobre mí  ·  Habilidades  ·  Trayectoria  ☀ │  ← nav + dark mode
 ├──────────────────────────────────────────────────────────┤
 │                                                          │
 │  Ingeniero de Sistemas      ← scramble animation         │
