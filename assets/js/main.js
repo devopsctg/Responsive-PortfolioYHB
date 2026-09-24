@@ -249,6 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-cyhber-evidence": "Ejemplos y evaluaciones manuales documentadas, no benchmarks automatizados. Complementa, pero no sustituye, una auditoría profesional.",
             "portfolio-releases-cta": "Ver versiones",
             "portfolio-evaluation-cta": "Ver evaluación",
+            "portfolio-cursos-tag": "Cursos · Supabase",
+            "portfolio-cursos-copy": "Cursos en español con terminal simulada en el navegador: Nmap desde Windows (gratis) y Git y GitHub desde cero (premium). Progreso y acceso validados en el servidor.",
+            "portfolio-cursos-cta": "Ver los cursos",
             "portfolio-filter-cert": "Certificaciones",
             "portfolio-filter-tech": "Tecnologías",
             "cert-carousel-title": "Certificaciones & Credenciales",
@@ -340,7 +343,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "github-followers": "Seguidores",
             "github-public-repos": "Repositorios públicos",
             "github-metrics-note": "Fuente: API de GitHub. Un guion indica un dato no disponible.",
-            "footer-copy": "Construido por"
+            "footer-copy": "Construido por",
+            "footer-courses": "Cursos"
         },
         en: {
             "nav-about": "About me",
@@ -420,6 +424,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "portfolio-cyhber-evidence": "Documented examples and manual evaluations, not automated benchmarks. Complements, but does not replace, a professional audit.",
             "portfolio-releases-cta": "View releases",
             "portfolio-evaluation-cta": "View evaluation",
+            "portfolio-cursos-tag": "Courses · Supabase",
+            "portfolio-cursos-copy": "Spanish-language courses with a simulated browser terminal: Nmap on Windows (free) and Git & GitHub from scratch (premium). Progress and access validated server-side.",
+            "portfolio-cursos-cta": "View the courses",
             "portfolio-filter-cert": "Certifications",
             "portfolio-filter-tech": "Technologies",
             "cert-carousel-title": "Official Certifications & Credentials",
@@ -511,7 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "github-followers": "Followers",
             "github-public-repos": "Public repositories",
             "github-metrics-note": "Source: GitHub API. A dash indicates unavailable data.",
-            "footer-copy": "Built by"
+            "footer-copy": "Built by",
+            "footer-courses": "Courses"
         }
     };
 
