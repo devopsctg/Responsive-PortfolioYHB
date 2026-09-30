@@ -264,23 +264,6 @@ nav.scrolled {
 }
 #hero > * { position: relative; z-index: 1; }
 
-.hero-tag {
-  display: inline-flex; align-items: center; gap: .7rem;
-  padding: .45rem 1.1rem; border: 1px solid var(--line);
-  border-radius: 100px; font-family: var(--fm); font-size: .72rem;
-  font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  width: fit-content; margin-bottom: 2rem; color: var(--muted); background: var(--surface);
-}
-.hero-tag::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent); box-shadow: 0 0 6px var(--accent);
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%,100% { opacity: 1; box-shadow: 0 0 6px var(--accent); }
-  50% { opacity: .6; box-shadow: 0 0 14px var(--accent); }
-}
-
 #hero .reveal {
   display: block;
 }
