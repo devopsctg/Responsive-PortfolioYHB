@@ -166,9 +166,11 @@
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"></noscript>
 
     <script>
     (function() {
@@ -179,7 +181,7 @@
       } catch(e) {}
     })();
     </script>
-    <link rel="stylesheet" href="assets/css/style.css?v=13">
+    <link rel="stylesheet" href="assets/css/style.css?v=14">
     <noscript>
       <style>
         .loader { display: none; }
@@ -278,7 +280,7 @@
         <div class="wrapper">
           <picture>
             <source srcset="assets/img/profile-img.webp" type="image/webp">
-            <img src="assets/img/profile-img.jpg" alt="Yared Henriquez (Dev101x / DevCop95) - Hacker Ético Colombiano" class="cover-image">
+            <img src="assets/img/profile-img.jpg" alt="Yared Henriquez (Dev101x / DevCop95) - Hacker Ético Colombiano" class="cover-image" decoding="async" fetchpriority="high">
           </picture>
         </div>
         <a href="https://devcop95.github.io/cYHBernews" target="_blank" rel="noopener" class="cyber-hover-card" aria-label="cYHBernews - Noticias de Ciberseguridad">
@@ -559,8 +561,8 @@
             </div>
           </div>
           <div class="project-image-wrap panorama-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,var(--bg2) 0%,var(--surface) 100%);display:flex;align-items:center;justify-content:center;gap:2rem;padding:1.5rem;min-height:180px">
-            <img src="assets/img/panorama1.png" alt="Panorama EVO UI" style="max-height:150px;width:auto;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.25))">
-            <img src="assets/img/panorama2.svg" alt="Panorama EVO Logo" class="theme-logo" style="max-height:85px;width:auto;object-fit:contain">
+            <img src="assets/img/panorama1.png" alt="Panorama EVO UI" loading="lazy" decoding="async" style="max-height:150px;width:auto;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.25))">
+            <img src="assets/img/panorama2.svg" alt="Panorama EVO Logo" loading="lazy" decoding="async" class="theme-logo" style="max-height:85px;width:auto;object-fit:contain">
           </div>
           <p class="proof-copy" data-i18n="portfolio-epe-copy">Desarrollo íntegramente (Fullstack) del módulo central de <strong>Panorama EVO</strong> para automatizar el cálculo de tarifas y gastos portuarios complejos.</p>
           <div class="proof-pill-list">
@@ -584,7 +586,7 @@
         <article class="proof-card">
           <div class="proof-top">
             <div class="cico" style="background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);overflow:hidden;padding:3px;display:flex;align-items:center;justify-content:center">
-              <img src="assets/img/lolbas_official_logo.png" alt="LOLBAS Logo" style="width:100%;height:100%;object-fit:contain">
+              <picture style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><source srcset="assets/img/lolbas_official_logo.webp" type="image/webp"><img src="assets/img/lolbas_official_logo.png" alt="LOLBAS Logo" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain"></picture>
             </div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-lolbas-project-tag">Upstream Security Research · MITRE ATT&amp;CK T1562.001 · T1685 · T1555.005 · T1219</div>
@@ -596,7 +598,7 @@
             </div>
           </div>
           <div class="card-banner-wrap" style="aspect-ratio:16/9;background:#060d17;border-color:rgba(0,180,216,0.25)">
-            <img src="assets/img/lolbas_devcop95_banner.jpg" alt="LOLBAS Official Contribution Banner - DevCop95" loading="lazy">
+            <picture><source srcset="assets/img/lolbas_devcop95_banner.webp" type="image/webp"><img src="assets/img/lolbas_devcop95_banner.jpg" alt="LOLBAS Official Contribution Banner - DevCop95" loading="lazy" decoding="async"></picture>
           </div>
           <p class="proof-copy" data-i18n="portfolio-lolbas-project-copy">Cuatro contribuciones oficiales upstream fusionadas en estándares globales de seguridad: <strong>LOLBAS Project (PR #525)</strong> documentando evasión de defensas con <code>fsutil.exe</code> (T1562.001); <strong>Red Canary Atomic Red Team (PR #3433 y PR #3439)</strong> con pruebas de emulación de adversarios para extracción en KeePass (T1555.005) e inhabilitación de Windows Defender por agotamiento de disco en <code>%TEMP%</code> (T1685); y <strong>LOLRMM (PR #253)</strong> con reglas Sigma y detección de clientes personalizados de AnyDesk (T1219). Además, el monitor defensivo <strong>BDB-Guardian</strong> fue citado y recomendado por <strong>The Chinese University of Hong Kong (CUHK)</strong>.</p>
           <div class="proof-pill-list">
@@ -640,7 +642,7 @@
             </div>
           </div>
           <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#0e1117">
-            <img src="assets/img/bot101.png" alt="cYHBernews" style="width:100%;height:100%;object-fit:contain;transition:transform .5s var(--ease)">
+            <picture style="width:100%;height:100%;display:block"><source srcset="assets/img/bot101.webp" type="image/webp"><img src="assets/img/bot101.png" alt="cYHBernews" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;transition:transform .5s var(--ease)"></picture>
           </div>
           <p class="proof-copy" data-i18n="portfolio-dev101-copy">Sistema que recopila y resume noticias de ciberseguridad e IA con Python y Groq, automatizado con Cloudflare Workers y GitHub Actions. Distribuye las noticias a Telegram y alimenta <strong>cYHBernews</strong>, su interfaz web.</p>
           <div class="proof-pill-list">
@@ -784,7 +786,7 @@
           <!-- GitHub Card -->
           <article class="proof-card">
             <div class="proof-top">
-              <img src="https://avatars.githubusercontent.com/u/264654485?v=4" alt="DevCop95" class="proof-avatar">
+              <img src="https://avatars.githubusercontent.com/u/264654485?v=4" alt="DevCop95" class="proof-avatar" loading="lazy" decoding="async">
               <div>
                 <div class="proof-kicker" data-i18n="portfolio-github-status">GitHub Status</div>
                 <h3 class="proof-name">Yared Henriquez</h3>
@@ -839,7 +841,7 @@
           <!-- Salesforce Card -->
           <article class="proof-card">
             <div class="proof-top">
-              <img src="https://profile.digital.salesforce.com/images/p/0051I0000081gGgQAI/1756517526/F" alt="Yared Dev" class="proof-avatar">
+              <img src="https://profile.digital.salesforce.com/images/p/0051I0000081gGgQAI/1756517526/F" alt="Yared Dev" class="proof-avatar" loading="lazy" decoding="async">
               <div>
                 <div class="proof-kicker">Salesforce Trailhead</div>
                 <h3 class="proof-name">Yared Dev</h3>
@@ -848,8 +850,8 @@
             </div>
             <div class="trailhead-status-wrap" style="margin:1.5rem 0;padding:2.5rem 1.5rem;background:linear-gradient(135deg,#00A1E0 0%,#005fb2 100%);border-radius:16px;color:#fff;text-align:center;position:relative;overflow:hidden">
               <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem">
-                <img src="https://res.cloudinary.com/trailhead/image/upload/public-trailhead/assets/images/ranks/ranger.png" alt="Salesforce Ranger Rank" style="width:110px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
-                <img src="https://trailhead.salesforce.com/agentblazer/level_1_edition_2025.png" alt="Agentblazer 2025" style="width:200px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
+                <img src="https://res.cloudinary.com/trailhead/image/upload/public-trailhead/assets/images/ranks/ranger.png" alt="Salesforce Ranger Rank" loading="lazy" decoding="async" style="width:110px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
+                <img src="https://trailhead.salesforce.com/agentblazer/level_1_edition_2025.png" alt="Agentblazer 2025" loading="lazy" decoding="async" style="width:200px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
               </div>
               <div style="font-family:var(--fm);font-size:.7rem;text-transform:uppercase;margin-bottom:.2rem;opacity:.9">Current Rank</div>
               <div style="font-size:1.8rem;font-weight:800;letter-spacing:-.02em">RANGER</div>
@@ -1229,6 +1231,6 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=13"></script>
+<script src="assets/js/main.js?v=14"></script>
 </body>
 </html>

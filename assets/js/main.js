@@ -56,15 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (loader) {
-        const text = loaderCopy?.textContent.trim() || 'loading portfolio';
-        scrambleLoaderText(loaderCopy, text, 650, () => {
+        body.classList.remove('is-loading');
+        requestAnimationFrame(() => {
+            loader.classList.add('hide');
             setTimeout(() => {
-                loader.classList.add('hide');
-                body.classList.remove('is-loading');
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 300);
+                loader.style.display = 'none';
+            }, 220);
         });
     } else {
         body.classList.remove('is-loading');
@@ -579,18 +576,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const reducedMotion = motionPreference.matches;
     let scrollFrame = null;
 
+    let cachedMaxScroll = 1;
+    let cachedSectionOffsets = [];
+
+    const recomputeScrollMetrics = () => {
+        cachedMaxScroll = Math.max(1, root.scrollHeight - root.clientHeight);
+        cachedSectionOffsets = sections.map(s => ({ id: s.id, top: s.offsetTop - 120 }));
+    };
+
     const updateScrollProgress = () => {
         scrollFrame = null;
         const winScroll = window.scrollY;
-        const height = root.scrollHeight - root.clientHeight;
-        const scrolled = height > 0 ? Math.min(100, Math.max(0, (winScroll / height) * 100)) : 0;
+        const ratio = Math.min(1, Math.max(0, winScroll / cachedMaxScroll));
         let current = '';
-        sections.forEach(section => {
-            if (winScroll >= section.offsetTop - 120) current = section.id;
-        });
+        for (let i = 0; i < cachedSectionOffsets.length; i++) {
+            if (winScroll >= cachedSectionOffsets[i].top) current = cachedSectionOffsets[i].id;
+        }
 
-        // Finish geometry reads before updating styles or appending audit lines.
-        if (scrollProgress) scrollProgress.style.width = scrolled + '%';
+        if (scrollProgress) scrollProgress.style.transform = `scaleX(${ratio})`;
         if (mnav) {
             if (winScroll > 50) {
                 mnav.classList.add('scrolled');
@@ -600,24 +603,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (scrollTopBtn) scrollTopBtn.classList.toggle('vis', winScroll > 420);
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
-
-        if (auditVisible && auditStream && Math.abs(winScroll - lastAuditScroll) > 50) {
-            const line = document.createElement('div');
-            line.className = 'audit-line';
-            line.textContent = auditLogs[Math.floor(Math.random() * auditLogs.length)];
-            auditStream.appendChild(line);
-            if (auditStream.children.length > 4) auditStream.removeChild(auditStream.firstChild);
-            lastAuditScroll = winScroll;
-        }
     };
 
     const scheduleScrollUpdate = () => {
         if (scrollFrame !== null) return;
         scrollFrame = requestAnimationFrame(updateScrollProgress);
     };
+    recomputeScrollMetrics();
     window.addEventListener('scroll', scheduleScrollUpdate, { passive: true });
-    window.addEventListener('resize', scheduleScrollUpdate);
-    window.addEventListener('load', scheduleScrollUpdate, { once: true });
+    window.addEventListener('resize', () => { recomputeScrollMetrics(); scheduleScrollUpdate(); }, { passive: true });
+    window.addEventListener('load', () => { recomputeScrollMetrics(); scheduleScrollUpdate(); }, { once: true });
     scheduleScrollUpdate();
 
     // ─── THEME ────────────────────────────────────────────────────────────────
@@ -681,9 +676,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── FLUTTER MODAL ───────────────────────────────────────────────────────
     const flutterImages = [
-        'assets/img/flutter/1.jpeg','assets/img/flutter/2.jpeg',
-        'assets/img/flutter/3.jpeg','assets/img/flutter/4.jpeg',
-        'assets/img/flutter/5.jpeg','assets/img/flutter/6.jpeg'
+        'assets/img/flutter/1.webp','assets/img/flutter/2.webp',
+        'assets/img/flutter/3.webp','assets/img/flutter/4.webp',
+        'assets/img/flutter/5.webp','assets/img/flutter/6.webp'
     ];
     let currentFlutterIdx = 0;
     const fmodal = document.getElementById('flutterModal');
