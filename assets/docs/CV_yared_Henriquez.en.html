@@ -1,247 +1,494 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Yared Henriquez">
-  <meta name="description" content="Yared Henriquez (Dev101x / DevCop95) — Penetration Tester, Offensive Security Researcher, and Applied AI Engineer.">
-  <title>Yared Henriquez | Curriculum Vitae</title>
-  <style>
-    @page {
-      size: A4;
-      margin: 15mm 17mm;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      color: #202925;
-      background: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 10.5pt;
-      line-height: 1.38;
-    }
-
-    main {
-      max-width: 210mm;
-      margin: 0 auto;
-      padding: 15mm 17mm;
-    }
-
-    header {
-      padding-bottom: 4.5mm;
-      border-bottom: 1.5pt solid #174e42;
-    }
-
-    h1, h2, h3, p { margin: 0; }
-
-    h1 {
-      color: #174e42;
-      font-size: 27pt;
-      line-height: 1.1;
-      font-weight: 700;
-    }
-
-    .headline {
-      margin: 2mm 0 2.5mm;
-      color: #174e42;
-      font-size: 11.5pt;
-      font-weight: 700;
-    }
-
-    .contact {
-      font-size: 9.8pt;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    a {
-      color: #174e42;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    section { margin-top: 5.5mm; }
-
-    h2 {
-      margin-bottom: 2.5mm;
-      padding-bottom: 1.2mm;
-      border-bottom: 0.5pt solid #b5c9c1;
-      color: #174e42;
-      font-size: 11.5pt;
-      letter-spacing: 0.5pt;
-      text-transform: uppercase;
-    }
-
-    h3 { font-size: 10.8pt; }
-
-    article + article { margin-top: 4mm; }
-
-    .meta {
-      margin-top: 0.6mm;
-      color: #46534d;
-      font-size: 9.8pt;
-    }
-
-    .institution { margin-top: 0.6mm; font-weight: 600; }
-
-    .description { margin-top: 1.2mm; }
-
-    ul {
-      margin: 1.2mm 0 0;
-      padding-left: 5mm;
-    }
-
-    li + li { margin-top: 0.7mm; }
-
-    .skills p + p { margin-top: 1.3mm; }
-
-    .trailhead {
-      margin-top: 2.5mm;
-      font-size: 9.8pt;
-      overflow-wrap: anywhere;
-    }
-
-    .page + .page { margin-top: 12mm; }
-
-    @media screen and (max-width: 600px) {
-      main { padding: 7mm 5mm; }
-      h1 { font-size: 24pt; }
-    }
-
-    @media print {
-      main {
-        max-width: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .page + .page {
-        margin-top: 0;
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .page > section:first-child { margin-top: 0; }
-
-      header, article, li, .trailhead {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-
-      h1, h2, h3 {
-        break-after: avoid;
-        page-break-after: avoid;
-      }
-
-      p, li { orphans: 3; widows: 3; }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="page">
-      <header>
-        <h1>Yared Henriquez</h1>
-        <p class="headline">Penetration Tester | Offensive Security Researcher | Applied AI Engineer</p>
-        <div class="contact">
-          <p>Cartagena, Colombia | <a href="tel:+573015185270">+57 301 518 5270</a> | <a href="mailto:yared.henriquezb@gmail.com">yared.henriquezb@gmail.com</a></p>
-          <p>Portfolio: <a href="https://dev101x.online/">dev101x.online</a> | GitHub: <a href="https://github.com/DevCop95">github.com/DevCop95</a> (#18 in Colombia)</p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/yared-dev">linkedin.com/in/yared-dev</a> | HackerOne: <a href="https://hackerone.com/Dev101x">hackerone.com/Dev101x</a></p>
-        </div>
-      </header>
-
-      <section aria-labelledby="profile-heading">
-        <h2 id="profile-heading">Professional Profile</h2>
-        <p>Systems Engineer, Offensive Security Researcher, and Penetration Tester (alias <strong>Dev101x / DevCop95</strong>) pursuing an M.Sc. in Artificial Intelligence at the Universitat de Barcelona. Official upstream contributor to <strong>LOLBAS</strong>, <strong>Red Canary Atomic Red Team</strong>, and <strong>LOLRMM</strong>, with defensive tooling formally cited by <strong>The Chinese University of Hong Kong (CUHK)</strong>. Experienced across enterprise penetration testing at Henkel, former CTO leadership in IoT/solar infrastructure, QA engineering at Google, and autonomous AI agent architectures.</p>
-      </section>
-
-      <section aria-labelledby="experience-heading">
-        <h2 id="experience-heading">Professional Experience</h2>
-
-        <article>
-          <h3>Penetration Tester | Henkel</h3>
-          <p class="meta">2026 - Present | Switzerland (Remote &middot; Part-time)</p>
-          <ul>
-            <li>Conduct offensive penetration testing, network security audits, and vulnerability assessments across corporate infrastructure and web applications.</li>
-            <li>Validate security controls and deliver actionable remediation reports aligned with MITRE ATT&amp;CK and OWASP methodologies.</li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Chief Technology Officer (CTO) | EXIA S.A.S</h3>
-          <p class="meta">Jan 2022 - Aug 2025 | Cartagena, Colombia</p>
-          <ul>
-            <li>Directed technology architecture, IoT sensor integration, and real-time telemetry monitoring for solar photovoltaic operations.</li>
-            <li>Automated core operational workflows and engineered executive decision dashboards.</li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Semi-Senior Developer (QA &amp; Testing) | Google</h3>
-          <p class="meta">2021 - 2024</p>
-          <ul>
-            <li>Executed functional, regression, and automated testing across high-scale web and mobile applications.</li>
-            <li>Collaborated with distributed engineering and QA teams to streamline delivery workflows in agile environments.</li>
-          </ul>
-        </article>
-
-        <article>
-          <h3>Offensive Security, AI &amp; Fullstack Consultant | Independent</h3>
-          <p class="meta">2020 - Present | Cartagena, Colombia</p>
-          <ul>
-            <li>Architect secure web applications (Python, Laravel, Vue.js), port calculation engines (Panorama EVO), and enterprise Salesforce integrations.</li>
-            <li>Develop automated reconnaissance pipelines, DevSecOps review skills for AI coding agents, and operational bots.</li>
-          </ul>
-        </article>
-      </section>
-    </div>
-
-    <div class="page">
-      <section aria-labelledby="research-heading">
-        <h2 id="research-heading">Upstream Security Research &amp; Open Source</h2>
-        <ul>
-          <li><strong>LOLBAS Project (PR #525, Merged):</strong> Authored official Windows defense-evasion technique via <code>Fsutil.exe</code> 8dot3 tampering (MITRE ATT&amp;CK T1562.001). Engineered the <strong>BDB-Guardian</strong> defensive monitor, formally cited as a recommended mitigation by <strong>The Chinese University of Hong Kong (CUHK ITSC)</strong>.</li>
-          <li><strong>Red Canary &middot; Atomic Red Team (PR #3433 &amp; PR #3439, Merged):</strong> Authored multi-platform KeePass credential discovery/exfiltration tests (T1555.005) and Windows Defender Antivirus disk-exhaustion impairment emulation in <code>%TEMP%</code> (T1685 / T1562.001).</li>
-          <li><strong>magicsword-io &middot; LOLRMM (PR #253, Merged):</strong> Added AnyDesk custom client detection coverage, service normalization, EventLog 7045 telemetry, and Sigma detection rules (T1219).</li>
-          <li><strong>Security Tooling Author:</strong> Creator of <code>bugbounty-lab101</code> (450+ GitHub stars, HackerOne scope-gated workflow), <code>shodan_reconsx</code> (passive Shodan CTL enumerator), <code>cyhber-deploy</code> (AI DevSecOps review skill), and <code>dev101x-pentest-lab</code>.</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="education-heading">
-        <h2 id="education-heading">Education</h2>
-
-        <article>
-          <h3>Master's in Artificial Intelligence</h3>
-          <p class="institution">Universitat de Barcelona</p>
-          <p class="meta">2024 - Present</p>
-          <p class="description">Specialization in generative models, autonomous AI agents, natural language processing, and computer vision.</p>
-        </article>
-
-        <article>
-          <h3>Systems &amp; Computer Engineering</h3>
-          <p class="institution">Universidad Tecnol&oacute;gica de Bol&iacute;var</p>
-          <p class="meta">2017 - 2021</p>
-          <p class="description">Software architecture, algorithms, computer networks, and technology project management.</p>
-        </article>
-
-        <article>
-          <h3>Systems &amp; Computer Technology</h3>
-          <p class="institution">Universidad Tecnol&oacute;gica de Bol&iacute;var</p>
-          <p class="meta">2013 - 2017</p>
-          <p class="description">Web and mobile application development, systems administration, and network infrastructure.</p>
-        </article>
-      </section>
-
-      <section class="skills" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Certifications &amp; Technical Skills</h2>
-        <p><strong>Offensive Security &amp; SecOps:</strong> Penetration Testing, Red Teaming, Bug Bounty, MITRE ATT&amp;CK, Sigma Rules, OWASP Top 10, Nmap, Burp Suite, Metasploit, Wireshark.</p>
-        <p><strong>Programming &amp; Applied AI:</strong> Python, Go (Golang), Bash, PowerShell, JavaScript (ES6+), SQL, LangChain, Autonomous AI Agents, Claude Code / MCP.</p>
-        <p><strong>Fullstack, Mobile &amp; Cloud:</strong> Laravel, Django, Flask, Vue.js, Flutter/Dart, Docker, Linux, Git/GitHub Actions, Cloudflare Workers, Supabase, Salesforce.</p>
-        <p class="trailhead"><strong>Credentials:</strong> Hack The Box Mini Pro Labs: <strong>Mythical</strong> (<code>HTBCERT-28139E357A</code>) &amp; <strong>Puppet</strong> (<code>HTBCERT-CD631B515C</code>) | Salesforce Trailhead: <strong>Ranger Rank</strong> &amp; Agentblazer (<a href="https://www.salesforce.com/trailblazer/yhenriquezblanquicett">salesforce.com/trailblazer/yhenriquezblanquicett</a>).</p>
-      </section>
-    </div>
-  </main>
-</body>
-</html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="author" content="Yared Henriquez">
+
+  <meta name="description" content="Yared Henriquez (Dev101x / DevCop95) — Penetration Tester, Offensive Security Researcher, and Applied AI Engineer.">
+
+  <title>Yared Henriquez | Curriculum Vitae</title>
+
+  <style>
+
+    @page {
+
+      size: A4;
+
+      margin: 15mm 17mm;
+
+    }
+
+
+
+    * { box-sizing: border-box; }
+
+
+
+    body {
+
+      margin: 0;
+
+      color: #202925;
+
+      background: #fff;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 10.5pt;
+
+      line-height: 1.38;
+
+    }
+
+
+
+    main {
+
+      max-width: 210mm;
+
+      margin: 0 auto;
+
+      padding: 15mm 17mm;
+
+    }
+
+
+
+    header {
+
+      padding-bottom: 4.5mm;
+
+      border-bottom: 1.5pt solid #174e42;
+
+    }
+
+
+
+    h1, h2, h3, p { margin: 0; }
+
+
+
+    h1 {
+
+      color: #174e42;
+
+      font-size: 27pt;
+
+      line-height: 1.1;
+
+      font-weight: 700;
+
+    }
+
+
+
+    .headline {
+
+      margin: 2mm 0 2.5mm;
+
+      color: #174e42;
+
+      font-size: 11.5pt;
+
+      font-weight: 700;
+
+    }
+
+
+
+    .contact {
+
+      font-size: 9.8pt;
+
+      line-height: 1.5;
+
+      overflow-wrap: anywhere;
+
+    }
+
+
+
+    a {
+
+      color: #174e42;
+
+      text-decoration: underline;
+
+      text-underline-offset: 2px;
+
+    }
+
+
+
+    section { margin-top: 5.5mm; }
+
+
+
+    h2 {
+
+      margin-bottom: 2.5mm;
+
+      padding-bottom: 1.2mm;
+
+      border-bottom: 0.5pt solid #b5c9c1;
+
+      color: #174e42;
+
+      font-size: 11.5pt;
+
+      letter-spacing: 0.5pt;
+
+      text-transform: uppercase;
+
+    }
+
+
+
+    h3 { font-size: 10.8pt; }
+
+
+
+    article + article { margin-top: 4mm; }
+
+
+
+    .meta {
+
+      margin-top: 0.6mm;
+
+      color: #46534d;
+
+      font-size: 9.8pt;
+
+    }
+
+
+
+    .institution { margin-top: 0.6mm; font-weight: 600; }
+
+
+
+    .description { margin-top: 1.2mm; }
+
+
+
+    ul {
+
+      margin: 1.2mm 0 0;
+
+      padding-left: 5mm;
+
+    }
+
+
+
+    li + li { margin-top: 0.7mm; }
+
+
+
+    .skills p + p { margin-top: 1.3mm; }
+
+
+
+    .trailhead {
+
+      margin-top: 2.5mm;
+
+      font-size: 9.8pt;
+
+      overflow-wrap: anywhere;
+
+    }
+
+
+
+    .page + .page { margin-top: 12mm; }
+
+
+
+    @media screen and (max-width: 600px) {
+
+      main { padding: 7mm 5mm; }
+
+      h1 { font-size: 24pt; }
+
+    }
+
+
+
+    @media print {
+
+      main {
+
+        max-width: none;
+
+        margin: 0;
+
+        padding: 0;
+
+      }
+
+
+
+      .page + .page {
+
+        margin-top: 0;
+
+        break-before: page;
+
+        page-break-before: always;
+
+      }
+
+
+
+      .page > section:first-child { margin-top: 0; }
+
+
+
+      header, article, li, .trailhead {
+
+        break-inside: avoid;
+
+        page-break-inside: avoid;
+
+      }
+
+
+
+      h1, h2, h3 {
+
+        break-after: avoid;
+
+        page-break-after: avoid;
+
+      }
+
+
+
+      p, li { orphans: 3; widows: 3; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main>
+
+    <div class="page">
+
+      <header>
+
+        <h1>Yared Henriquez</h1>
+
+        <p class="headline">Penetration Tester | Offensive Security Researcher | Applied AI Engineer</p>
+
+        <div class="contact">
+
+          <p>Cartagena, Colombia | <a href="tel:+573015185270">+57 301 518 5270</a> | <a href="mailto:yared.henriquezb@gmail.com">yared.henriquezb@gmail.com</a></p>
+
+          <p>Portfolio: <a href="https://dev101x.online/">dev101x.online</a> | GitHub: <a href="https://github.com/DevCop95">github.com/DevCop95</a> (#18 in Colombia)</p>
+
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/yared-dev">linkedin.com/in/yared-dev</a> | HackerOne: <a href="https://hackerone.com/Dev101x">hackerone.com/Dev101x</a></p>
+
+        </div>
+
+      </header>
+
+
+
+      <section aria-labelledby="profile-heading">
+
+        <h2 id="profile-heading">Professional Profile</h2>
+
+        <p>Systems Engineer, Offensive Security Researcher, and Penetration Tester (alias <strong>Dev101x / DevCop95</strong>) pursuing an M.Sc. in Artificial Intelligence at the Universitat de Barcelona. Official upstream contributor to <strong>LOLBAS</strong>, <strong>Red Canary Atomic Red Team</strong>, and <strong>LOLRMM</strong>, with defensive tooling formally cited by <strong>The Chinese University of Hong Kong (CUHK)</strong>. Experienced across enterprise penetration testing at Henkel, former CTO leadership in IoT/solar infrastructure, QA engineering as a Google affiliate (Extended Workforce), and autonomous AI agent architectures.</p>
+
+      </section>
+
+
+
+      <section aria-labelledby="experience-heading">
+
+        <h2 id="experience-heading">Professional Experience</h2>
+
+
+
+        <article>
+
+          <h3>Penetration Tester | Henkel</h3>
+
+          <p class="meta">2026 - Present | Switzerland (Remote &middot; Part-time)</p>
+
+          <ul>
+
+            <li>Conduct offensive penetration testing, network security audits, and vulnerability assessments across corporate infrastructure and web applications.</li>
+
+            <li>Validate security controls and deliver actionable remediation reports aligned with MITRE ATT&amp;CK and OWASP methodologies.</li>
+
+          </ul>
+
+        </article>
+
+
+
+        <article>
+
+          <h3>Chief Technology Officer (CTO) | EXIA S.A.S</h3>
+
+          <p class="meta">Jan 2022 - Aug 2025 | Cartagena, Colombia</p>
+
+          <ul>
+
+            <li>Directed technology architecture, IoT sensor integration, and real-time telemetry monitoring for solar photovoltaic operations.</li>
+
+            <li>Automated core operational workflows and engineered executive decision dashboards.</li>
+
+          </ul>
+
+        </article>
+
+
+
+        <article>
+
+          <h3>Associate Software Developer (QA &amp; Testing) | Google (Affiliate / Extended Workforce)</h3>
+
+          <p class="meta">2021 - 2024</p>
+
+          <ul>
+
+            <li>Executed functional, regression, and automated testing across high-scale web and mobile applications.</li>
+
+            <li>Collaborated with distributed engineering and QA teams to streamline delivery workflows in agile environments.</li>
+
+          </ul>
+
+        </article>
+
+
+
+        <article>
+
+          <h3>Offensive Security, AI &amp; Fullstack Consultant | Independent</h3>
+
+          <p class="meta">2020 - Present | Cartagena, Colombia</p>
+
+          <ul>
+
+            <li>Architect secure web applications (Python, Laravel, Vue.js), port calculation engines (Panorama EVO), and enterprise Salesforce integrations.</li>
+
+            <li>Develop automated reconnaissance pipelines, DevSecOps review skills for AI coding agents, and operational bots.</li>
+
+          </ul>
+
+        </article>
+
+      </section>
+
+    </div>
+
+
+
+    <div class="page">
+
+      <section aria-labelledby="research-heading">
+
+        <h2 id="research-heading">Upstream Security Research &amp; Open Source</h2>
+
+        <ul>
+
+          <li><strong>LOLBAS Project (PR #525, Merged):</strong> Authored official Windows defense-evasion technique via <code>Fsutil.exe file createnew</code> disk exhaustion (MITRE ATT&amp;CK T1685 / T1562.001). Engineered the <strong>BDB-Guardian</strong> defensive monitor, formally cited as a recommended mitigation by <strong>The Chinese University of Hong Kong (CUHK ITSC)</strong>.</li>
+
+          <li><strong>Red Canary &middot; Atomic Red Team (PR #3433 &amp; PR #3439, Merged):</strong> Authored multi-platform KeePass credential discovery/exfiltration tests (T1555.005) and Windows Defender Antivirus disk-exhaustion impairment emulation in <code>%TEMP%</code> (T1685 / T1562.001).</li>
+
+          <li><strong>magicsword-io &middot; LOLRMM (PR #253, Merged):</strong> Added AnyDesk custom client detection coverage, service normalization, EventLog 7045 telemetry, and Sigma detection rules (T1219).</li>
+
+          <li><strong>Security Tooling Author:</strong> Creator of <code>bugbounty-lab101</code> (490+ GitHub stars, HackerOne scope-gated workflow), <code>shodan_reconsx</code> (passive Shodan CTL enumerator), <code>cyhber-deploy</code> (AI DevSecOps review skill), and <code>dev101x-pentest-lab</code>.</li>
+
+        </ul>
+
+      </section>
+
+
+
+      <section aria-labelledby="education-heading">
+
+        <h2 id="education-heading">Education</h2>
+
+
+
+        <article>
+
+          <h3>Master's in Artificial Intelligence</h3>
+
+          <p class="institution">Universitat de Barcelona</p>
+
+          <p class="meta">2024 - Present</p>
+
+          <p class="description">Specialization in generative models, autonomous AI agents, natural language processing, and computer vision.</p>
+
+        </article>
+
+
+
+        <article>
+
+          <h3>Systems &amp; Computer Engineering</h3>
+
+          <p class="institution">Universidad Tecnol&oacute;gica de Bol&iacute;var</p>
+
+          <p class="meta">2017 - 2021</p>
+
+          <p class="description">Software architecture, algorithms, computer networks, and technology project management.</p>
+
+        </article>
+
+
+
+        <article>
+
+          <h3>Systems &amp; Computer Technology</h3>
+
+          <p class="institution">Universidad Tecnol&oacute;gica de Bol&iacute;var</p>
+
+          <p class="meta">2013 - 2017</p>
+
+          <p class="description">Web and mobile application development, systems administration, and network infrastructure.</p>
+
+        </article>
+
+      </section>
+
+
+
+      <section class="skills" aria-labelledby="skills-heading">
+
+        <h2 id="skills-heading">Certifications &amp; Technical Skills</h2>
+
+        <p><strong>Offensive Security &amp; SecOps:</strong> Penetration Testing, Red Teaming, Bug Bounty, MITRE ATT&amp;CK, Sigma Rules, OWASP Top 10, Nmap, Burp Suite, Metasploit, Wireshark.</p>
+
+        <p><strong>Programming &amp; Applied AI:</strong> Python, Go (Golang), Bash, PowerShell, JavaScript (ES6+), SQL, LangChain, Autonomous AI Agents, Claude Code / MCP.</p>
+
+        <p><strong>Fullstack, Mobile &amp; Cloud:</strong> Laravel, Django, Flask, Vue.js, Flutter/Dart, Docker, Linux, Git/GitHub Actions, Cloudflare Workers, Supabase, Salesforce.</p>
+
+        <p class="trailhead"><strong>Credentials:</strong> Hack The Box Mini Pro Labs: <strong>Mythical</strong> (<code>HTBCERT-28139E357A</code>) &amp; <strong>Puppet</strong> (<code>HTBCERT-CD631B515C</code>) | Salesforce Trailhead: <strong>Ranger Rank</strong> &amp; Agentblazer (<a href="https://www.salesforce.com/trailblazer/yhenriquezblanquicett">salesforce.com/trailblazer/yhenriquezblanquicett</a>).</p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+
