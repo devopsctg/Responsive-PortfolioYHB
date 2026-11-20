@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Windows Defender Disk-Exhaustion DoS (fsutil / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection | Dev101x Research</title>
+  <meta name="description" content="End-to-end Detection Engineering deep dive on Windows Defender update impairment via disk exhaustion (BigDiskBuster & fsutil.exe file createnew): CUHK ITSC-cited BDB-Guardian Win32 handle correlation, Atomic Red Team T1685, SigmaHQ #6310, and Elastic EQL #6946.">
+  <meta name="author" content="Yared Henriquez (DevCop95)">
+  <link rel="canonical" href="https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/">
+  <meta property="og:title" content="From Windows Defender Disk-Exhaustion DoS (fsutil / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection">
+  <meta property="og:description" content="Tracing disk-exhaustion evasion from CUHK-cited BDB-Guardian Win32 internals (fixing 0xC0000374 &amp; pipe deadlocks) through LOLBAS #525, Atomic Red Team #3439, SigmaHQ #6310, and Elastic #6946.">
+  <meta property="og:image" content="https://dev101x.online/assets/img/lolbas_devcop95_banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@Devcop101">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "From Disk-Exhaustion DoS against Windows Defender (fsutil.exe / BigDiskBuster) to Multi-SIEM & Kernel-Handle Detection",
+    "url": "https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/",
+    "datePublished": "2026-11-20",
+    "dateModified": "2026-11-20",
+    "author": {
+      "@type": "Person",
+      "name": "Yared Henriquez",
+      "alternateName": ["DevCop95", "Dev101x"],
+      "url": "https://dev101x.online/"
+    },
+    "about": [
+      "MITRE ATT&CK T1685",
+      "MITRE ATT&CK T1562.001",
+      "BigDiskBuster",
+      "BDB-Guardian",
+      "fsutil.exe",
+      "Sigma Detection Rules",
+      "Elastic EQL"
+    ]
+  }
+  </script>
+  <link rel="icon" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('devyhb-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../research.css">
+</head>
+<body>
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <nav class="rnav" aria-label="Article navigation">
+    <div class="rnav-brand">
+      <a href="../../" class="nlogo">Dev<em>101x</em></a>
+      <span class="rnav-sep">/</span>
+      <a href="../" class="rnav-crumb">Research</a>
+      <span class="rnav-sep">/</span>
+      <span class="rnav-crumb">BigDiskBuster &amp; fsutil</span>
+    </div>
+    <div class="rnav-actions">
+      <a href="../" class="rnav-link"><i class="bi bi-grid"></i> All Research</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <i class="bi bi-moon-stars-fill"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="rshell">
+    <header class="rhero">
+      <div class="rkicker"><i class="bi bi-hdd-stack"></i> Deep Dive 02 &middot; Defense Evasion Engineering</div>
+      <h1 class="rtitle">From Defender Disk-Exhaustion DoS (<code>fsutil.exe</code> / <em>BigDiskBuster</em>) to Multi-SIEM &amp; Kernel-Handle Detection</h1>
+      <p class="rlead">
+        Disk-space starvation against Microsoft Defender updates (<code>ERROR_DISK_FULL</code> / <code>0x80070070</code>) silently freezes platform and signature updates while keeping Defender services superficially nominal. This case study traces how a single threat model became a 5-stage defensive ecosystem—from Win32 kernel-handle correlation in <strong>BDB-Guardian</strong> (formally cited by <strong>CUHK ITSC</strong>) to merged documentation in <strong>LOLBAS</strong>, safe adversary emulation in <strong>Red Canary Atomic Red Team</strong>, and approved detections in <strong>SigmaHQ</strong> and <strong>Elastic Security</strong>.
+      </p>
+
+      <div class="rmeta-row">
+        <span class="rmeta-pill accent"><i class="bi bi-shield-exclamation"></i> MITRE ATT&amp;CK: T1685 &middot; T1562.001</span>
+        <span class="rmeta-pill"><i class="bi bi-cpu"></i> Win32: Restart Manager &middot; <code>NtQuerySystemInformation</code></span>
+        <span class="rmeta-pill"><i class="bi bi-building"></i> Cited by: CUHK ITSC</span>
+        <span class="rmeta-pill"><i class="bi bi-clock"></i> 10 min read</span>
+      </div>
+
+      <div class="pipeline-strip" aria-label="Offense-to-Defense Upstream Chain">
+        <a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener" class="pipe-node">
+          <span class="pipe-stage">01 &middot; Handle Monitor</span>
+          <span class="pipe-title">BDB-Guardian</span>
+          <span class="pipe-status status-merged"><i class="bi bi-award-fill"></i> CUHK ITSC Cited</span>
+        </a>
+        <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" target="_blank" rel="noopener" class="pipe-node">
+          <span class="pipe-stage">02 &middot; LOLBin Docs</span>
+          <span class="pipe-title">LOLBAS #525</span>
+          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill"></i> Merged &amp; Live</span>
+        </a>
+        <a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener" class="pipe-node">
+          <span class="pipe-stage">03 &middot; Emulation</span>
+          <span class="pipe-title">Atomic #3439 (T1685)</span>
+          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill"></i> Merged (#79)</span>
+        </a>
+        <a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener" class="pipe-node">
+          <span class="pipe-stage">04 &middot; File Telemetry</span>
+          <span class="pipe-title">SigmaHQ #6310</span>
+          <span class="pipe-status status-approved"><i class="bi bi-patch-check-fill"></i> Approved (14/14 CI)</span>
+        </a>
+        <a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener" class="pipe-node">
+          <span class="pipe-stage">05 &middot; Process EQL</span>
+          <span class="pipe-title">Elastic #6946</span>
+          <span class="pipe-status status-approved"><i class="bi bi-patch-check-fill"></i> Approved (&times;2)</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="article-layout">
+      <aside class="toc-aside" aria-label="Table of contents">
+        <div class="toc-label">Contents</div>
+        <ul class="toc-list">
+          <li><a href="#threat-model">1. Threat Model: Native NT vs. LOLBin</a></li>
+          <li><a href="#bdb-guardian">2. BDB-Guardian &amp; Win32 Lessons</a></li>
+          <li><a href="#atomic-emulation">3. Safe Emulation (Atomic #3439)</a></li>
+          <li><a href="#multi-siem">4. Multi-SIEM Rules (Sigma &amp; Elastic)</a></li>
+          <li><a href="#triage-ir">5. Triage &amp; Incident Response</a></li>
+          <li><a href="#references">6. Verified References</a></li>
+        </ul>
+      </aside>
+
+      <article class="prose">
+        <section id="threat-model">
+          <h2>1. Threat Model: Native NT Allocation vs. <code>fsutil.exe</code></h2>
+          <p>
+            Disk exhaustion as a defense-impairment primitive splits into two operational implementations that require completely different telemetry layers:
+          </p>
+          <ul>
+            <li><strong>Variant A &mdash; Native NT API (<code>BigDiskBuster</code>):</strong> Disclosed in <a href="https://github.com/MSNightmare/BigDiskBuster" target="_blank" rel="noopener">MSNightmare/BigDiskBuster</a> and analyzed by LevelBlue SpiderLabs. The binary monitors the <code>C:</code> volume for Defender staging paths (<code>ProgramData\Microsoft\Windows Defender\Platform\...</code> and <code>...\Definition Updates\{GUID}</code>) and holds an open handle on <code>C:\Windows\System32\MRT.exe</code>. The moment an update begins, it allocates a hidden GUID-braced file in <code>%TEMP%</code> sized to all available free space with <code>FILE_DELETE_ON_CLOSE</code>. Defender updates fail with <code>ERROR_DISK_FULL</code>, and when the update aborts, the PoC releases its handle and goes back to sleep.</li>
+            <li><strong>Variant B &mdash; Built-in LOLBin (<code>fsutil.exe file createnew</code>):</strong> Documented upstream in <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" target="_blank" rel="noopener"><code>LOLBAS #525</code></a> (<code>yml/OSBinaries/Fsutil.yml</code>). Any unprivileged <code>User</code> account can invoke <code>fsutil.exe file createnew {PATH_ABSOLUTE} {LENGTH_IN_BYTES}</code> to pre-allocate arbitrary dummy files instantly without dropping custom native binaries.</li>
+          </ul>
+
+          <div class="table-wrap">
+            <table class="rtable">
+              <thead>
+                <tr>
+                  <th>Telemetry Layer</th>
+                  <th>Catches Native <code>BigDiskBuster</code>?</th>
+                  <th>Catches <code>fsutil.exe file createnew</code>?</th>
+                  <th>Artifact / Project</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Process Creation (<code>EID 1</code> / EQL)</td>
+                  <td>No (uses direct NT syscalls, no <code>fsutil</code> child)</td>
+                  <td><strong>Yes</strong> (<code>file</code> + <code>createnew</code> args or PE <code>OriginalFileName</code>)</td>
+                  <td><a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener">Elastic #6946</a></td>
+                </tr>
+                <tr>
+                  <td>File Creation (Sysmon <code>EID 11</code>)</td>
+                  <td><strong>Yes</strong> (if GUID-braced buster-file created in <code>%TEMP%</code>)</td>
+                  <td>Partial (only if targeting GUID pattern in <code>%TEMP%</code>)</td>
+                  <td><a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener">SigmaHQ #6310</a></td>
+                </tr>
+                <tr>
+                  <td>Kernel Handle Correlation (Same-PID)</td>
+                  <td><strong>Yes</strong> (detects dormant/active <code>MRT.exe</code> + volume handles before/during spike)</td>
+                  <td>Optional (disk-fill symptom via TEMP scan)</td>
+                  <td><a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener">BDB-Guardian</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="bdb-guardian">
+          <h2>2. Closing the EDR Blind Spot: <code>BDB-Guardian</code> &amp; Win32 Internals</h2>
+          <p>
+            Because Variant A leaves zero <code>fsutil.exe</code> process-creation events and deletes its buster-file via <code>FILE_DELETE_ON_CLOSE</code> as soon as the update aborts, <a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener"><strong>BDB-Guardian</strong></a> approaches the problem from live kernel/userland state—correlating three independent Indicators of Compromise per Process ID:
+          </p>
+
+          <div class="table-wrap">
+            <table class="rtable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>IoC Signal</th>
+                  <th>Collection Mechanism</th>
+                  <th>False-Positive Profile</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Open handle on <code>C:\Windows\System32\MRT.exe</code></td>
+                  <td>Windows Restart Manager (instant, exact) + native name-scan fallback</td>
+                  <td><strong>Very high signal:</strong> legitimate processes do not hold persistent locks on <code>MRT.exe</code>.</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Open handle on <code>C:</code> volume (<code>\Device\HarddiskVolumeN</code>)</td>
+                  <td>Parallel native handle scan (<code>NtQuerySystemInformation</code> / <code>DuplicateHandle</code> / <code>NtQueryObject</code>)</td>
+                  <td>Weak alone (OS services hold volume handles) &rarr; OS-service whitelist; capped at <code>MEDIUM</code> alone.</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Oversized hidden GUID-braced file in <code>%TEMP%</code></td>
+                  <td>User/system <code>%TEMP%</code> directory scan</td>
+                  <td>Medium (installers occasionally stage GUID fixtures).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            <strong>Same-PID Correlation Verdict:</strong> When a single non-whitelisted PID simultaneously holds an open handle to <code>MRT.exe</code> and the system volume, the verdict escalates immediately to <code>CRITICAL</code> (near-zero false positives), and presence of the GUID buster-file confirms active BigDiskBuster-like execution. To isolate native Win32/P/Invoke memory from the PowerShell orchestrator, <code>BDBMonitor.ps1</code> delegates all native calls to a dedicated child worker (<code>Invoke-VolumeScan.ps1</code> + inline C# in <code>bdb-csharp.ps1</code>).
+          </p>
+
+          <div class="callout warn">
+            <div class="callout-title"><i class="bi bi-bug"></i> Engineering Post-Mortem: Fixing <code>0xC0000374</code> Heap Corruption &amp; Named-Pipe Deadlocks</div>
+            <p>
+              Two real Win32 pitfalls surfaced during live testing of <code>BDB-Guardian</code>—documented in the repo and reproduced in the <a href="https://devcop95.github.io/BDB-Guardian/" target="_blank" rel="noopener">evidence report</a>:
+            </p>
+            <ul>
+              <li><strong><code>RmGetList</code> struct mismatch (<code>0xC0000374</code>):</strong> Calling <code>RmGetList</code> with a buffer sized for <code>RM_UNIQUE_PROCESS</code> instead of <code>RM_PROCESS_INFO</code> (~668 bytes/entry) triggers native heap corruption (<code>STATUS_HEAP_CORRUPTION</code>). Switching to <code>RM_PROCESS_INFO</code> with a proper resize retry loop eliminated all <code>Application Error</code> crashes across consecutive runs.</li>
+              <li><strong><code>NtQueryObject</code> pipe hang:</strong> Querying object names across arbitrary duplicated handles stalls indefinitely on synchronous named pipes. Filtering out handles where <code>GetFileType != FILE_TYPE_DISK</code> before calling <code>NtQueryObject</code>—backed by per-PID timeouts—eliminated hangs and cut full-system handle scan runtime from <strong>~45 seconds down to 6–14 seconds</strong>.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="atomic-emulation">
+          <h2>3. Safe Adversary Emulation (<code>Atomic Red Team #3439</code> &mdash; Test #79)</h2>
+          <p>
+            Validating endpoint detections on live infrastructure requires generating authentic <code>fsutil.exe file createnew</code> + hidden GUID file telemetry without actually exhausting the system volume and crashing the OS or EDR spoolers. <a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener"><strong>Atomic Red Team PR #3439</strong></a> (merged into <code>T1685</code>, published at <a href="https://atomicredteam.io/docs/atomics/T1685" target="_blank" rel="noopener"><code>atomicredteam.io/docs/atomics/T1685</code></a>) enforces three strict safety invariants:
+          </p>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span>PowerShell &middot; Atomic Red Team T1685 Test #79 (Executor Excerpt)</span>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+            </div>
+            <pre><code>$targetPath = [System.IO.Path]::GetFullPath("#{file_path}") # default: $env:TEMP\{15755e6b-a54d-4a6e-9773-554c724f8a63}
+$tempRoot = [System.IO.Path]::GetFullPath($env:TEMP).TrimEnd('\') + '\'
+if (-not $targetPath.StartsWith($tempRoot, [System.StringComparison]::OrdinalIgnoreCase)) {
+  throw "Refusing to create a test file outside the current user's TEMP directory: $targetPath"
+}
+
+&amp; fsutil.exe file createnew $targetPath #{file_size_bytes} # default: 10485760 (10 MB)
+[System.IO.File]::SetAttributes($targetPath, ([System.IO.File]::GetAttributes($targetPath) -bor [System.IO.FileAttributes]::Hidden))
+# Writes 5-line .atomic-test-owner metadata (path + CreationTimeUtc + LastWriteTimeUtc + Length) for verified cleanup</code></pre>
+          </div>
+
+          <p>
+            Using a default 10 MB dummy allocation and recording exact NTFS timestamps + file length in an ownership marker ensures cleanup never deletes unrelated files even if the path is modified externally.
+          </p>
+        </section>
+
+        <section id="multi-siem">
+          <h2>4. Multi-SIEM Detection Rules (<code>SigmaHQ #6310</code> &amp; <code>Elastic #6946</code>)</h2>
+
+          <h3>Sigma File Event Rule &mdash; <code>SigmaHQ/sigma #6310</code> (Approved, 14/14 CI)</h3>
+          <p>
+            Catching the <code>%TEMP%\{GUID}</code> buster-file stage in Sysmon Event ID 11 (<a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener"><code>PR #6310</code></a>) required tuning against real Windows 7/10/11/Server 2022 telemetry via <code>evtx-sigma-checker</code>. During review with maintainer <code>@frack113</code>, baseline runs surfaced legitimate GUID-named temp files from <code>taskhost.exe</code>, TeamViewer (<code>tv_x64.exe</code>/<code>tv_w32.exe</code>), and VS Code's <code>cpptools.exe</code>, which were explicitly filtered without weakening the core path regex:
+          </p>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span>YAML &middot; file_event_win_bigdiskbuster_temp_file.yml (SigmaHQ #6310)</span>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+            </div>
+            <pre><code>title: Potential BigDiskBuster-Like Buster-File Creation in TEMP
+id: 15755e6b-a54d-4a6e-9773-554c724f8a63
+status: experimental
+author: DevCop95
+date: 2026-09-20
+tags:
+    - attack.defense-impairment
+    - attack.t1685
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|re: '\\AppData\\Local\\Temp\\\{[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\}$'
+    filter_main_generic:
+        Image:
+            - 'C:\Windows\System32\taskhost.exe'
+            - 'C:\Windows\SysWOW64\taskhost.exe'
+    filter_optional_teamviewer:
+        Image|endswith:
+            - '\TeamViewer\tv_x64.exe'
+            - '\TeamViewer\tv_w32.exe'
+    filter_optional_vscode:
+        Image|contains: '\.vscode\extensions\'
+        Image|endswith: '\cpptools.exe'
+    filter_optional_dataset:
+        Image|startswith: 'C:\Users\'
+        Image|contains: '\AppData\Local\Temp\'
+        Image|endswith: '\target.exe'
+    condition: selection and not 1 of filter_main_* and not 1 of filter_optional_*
+level: medium</code></pre>
+          </div>
+
+          <h3>Elastic Security EQL Rule &mdash; <code>elastic/detection-rules #6946</code> (Approved &times;2)</h3>
+          <p>
+            For the LOLBin variant, <a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener"><code>elastic/detection-rules #6946</code></a> detects <code>fsutil.exe file createnew</code> across Elastic Defend, Microsoft Defender XDR, CrowdStrike, SentinelOne, Sysmon, and Windows Security Event Logs, resilient to binary renaming via <code>?process.pe.original_file_name</code>:
+          </p>
+
+          <div class="code-block">
+            <div class="code-head">
+              <span>EQL &middot; defense_evasion_suspicious_file_creation_with_fsutil.toml (Elastic #6946)</span>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+            </div>
+            <pre><code>process where host.os.type == "windows" and event.type == "start" and
+  (process.name : "fsutil.exe" or ?process.pe.original_file_name == "fsutil.exe") and
+  process.args : "file" and process.args : "createnew"</code></pre>
+          </div>
+        </section>
+
+        <section id="triage-ir">
+          <h2>5. Triage &amp; Incident Response Playbook</h2>
+          <ol>
+            <li><strong>Verify Defender operational health:</strong> Inspect Microsoft-Windows-Windows Defender/Operational logs for <strong>Event IDs 2000, 2001, and 1151</strong> (signature/platform update failures with <code>0x80070070</code> / <code>ERROR_DISK_FULL</code>).</li>
+            <li><strong>Inspect parent process tree &amp; open handles:</strong> Trace the parent of <code>fsutil.exe</code> (or run <code>BDBMonitor.ps1</code> to catch native NT binaries holding <code>MRT.exe</code> + volume handles without process-creation artifacts).</li>
+            <li><strong>Remediate starvation &amp; verify recovery:</strong> Terminate the offending parent tree, remove oversized dummy/GUID files in <code>%TEMP%</code>, confirm free disk space recovery, and force a Defender signature update + full scan for concurrent staging payloads.</li>
+          </ol>
+        </section>
+
+        <section id="references">
+          <h2>6. Verified References</h2>
+          <ul>
+            <li><a href="https://www.itsc.cuhk.edu.hk/en/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">CUHK ITSC Security Alert &mdash; Microsoft Denial-of-Service Vulnerability (BigDiskBuster)</a> (<a href="https://www.itsc.cuhk.edu.hk/tc/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">繁體中文</a> &middot; <a href="https://www.itsc.cuhk.edu.hk/sc/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">简体中文</a>)</li>
+            <li><a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener">DevCop95/BDB-Guardian</a> &amp; <a href="https://devcop95.github.io/BDB-Guardian/" target="_blank" rel="noopener">Live Evidence Report</a></li>
+            <li><a href="https://lolbas-project.github.io/lolbas/Binaries/Fsutil/" target="_blank" rel="noopener">LOLBAS Project &mdash; Official <code>Fsutil.exe</code> Documentation</a> (<a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" target="_blank" rel="noopener">PR #525, Merged</a>)</li>
+            <li><a href="https://atomicredteam.io/docs/atomics/T1685" target="_blank" rel="noopener">Red Canary Atomic Red Team &mdash; T1685 Test #79</a> (<a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener">PR #3439, Merged</a>)</li>
+            <li><a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener">SigmaHQ/sigma #6310 &mdash; Potential BigDiskBuster-Like Buster-File Creation in TEMP (Approved)</a></li>
+            <li><a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener">elastic/detection-rules #6946 &mdash; Suspicious File Creation with Fsutil (Approved &times;2)</a></li>
+            <li><a href="https://www.levelblue.com/blogs/spiderlabs-blog/filling-the-well-nightmare-eclipses-bigdiskbuster-and-the-defender-update-that-never-lands" target="_blank" rel="noopener">LevelBlue SpiderLabs &mdash; Filling the Well: BigDiskBuster and the Defender Update That Never Lands</a></li>
+            <li><a href="https://github.com/MSNightmare/BigDiskBuster" target="_blank" rel="noopener">MSNightmare/BigDiskBuster (Original Threat Research PoC)</a></li>
+          </ul>
+        </section>
+
+        <div class="rfooter-nav">
+          <a href="../windows-openssh-indirect-execution/" class="btn-pill"><i class="bi bi-arrow-left"></i> Previous: Windows OpenSSH</a>
+          <a href="../" class="btn-pill primary">Back to Research Hub <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 <strong>Yared Henriquez (DevCop95 / Dev101x)</strong> &middot; Cartagena, Colombia</span>
+    <span><a href="../../">Portfolio</a> &middot; <a href="../">Research Hub</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a></span>
+  </footer>
+
+  <script src="../research.js"></script>
+</body>
+</html>

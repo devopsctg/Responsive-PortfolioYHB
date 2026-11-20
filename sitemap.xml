@@ -3,18 +3,36 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://dev101x.online/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://dev101x.online/assets/img/profile-img.jpg</image:loc>
-      <image:title>Yared Henriquez (Dev101x / DevCop95) - Hacker Ético Colombiano</image:title>
-      <image:caption>Hacker ético colombiano, investigador de ciberseguridad ofensiva, pentester y especialista en seguridad de IA en Colombia.</image:caption>
+      <image:title>Yared Henriquez (Dev101x / DevCop95) - Detection Engineering &amp; AI Security Researcher</image:title>
+      <image:caption>Security Researcher specializing in Detection Engineering (Offense-to-Defense) and Applied AI Security in Colombia.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://dev101x.online/assets/img/lolbas_devcop95_banner.jpg</image:loc>
-      <image:title>Contribución Oficial LOLBAS Project - DevCop95 (Fsutil.exe)</image:title>
-      <image:caption>Contribución oficial upstream fusionada (PR #525) de Yared Henriquez en LOLBAS, citada por The Chinese University of Hong Kong (CUHK).</image:caption>
+      <image:title>Official LOLBAS Project Contributions - DevCop95 (Fsutil.exe &amp; Ssh.exe)</image:title>
+      <image:caption>Merged upstream research contributions in LOLBAS, Red Canary Atomic Red Team, LOLRMM, and Maigret, with BDB-Guardian cited by CUHK ITSC.</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://dev101x.online/research/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dev101x.online/research/windows-openssh-indirect-execution/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

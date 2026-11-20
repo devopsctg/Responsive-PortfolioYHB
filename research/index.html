@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Research &amp; Deep Dives | Yared Henriquez (DevCop95 / Dev101x)</title>
+  <meta name="description" content="Offense-to-Defense technical research by Yared Henriquez (DevCop95 / Dev101x): Windows OpenSSH indirect execution, BigDiskBuster disk-exhaustion evasion, kernel handle correlation, Sigma, Elastic EQL, and Sentinel KQL.">
+  <meta name="author" content="Yared Henriquez (DevCop95)">
+  <link rel="canonical" href="https://dev101x.online/research/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev101x.online/research/">
+  <meta property="og:title" content="Security Research &amp; Deep Dives | Yared Henriquez (DevCop95)">
+  <meta property="og:description" content="End-to-end Detection Engineering case studies tracing Windows tradecraft from LOLBAS documentation and adversary emulation to Sigma, Elastic EQL, and Microsoft Sentinel KQL.">
+  <meta property="og:image" content="https://dev101x.online/assets/img/lolbas_devcop95_banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@Devcop101">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Dev101x Security Research & Deep Dives",
+    "url": "https://dev101x.online/research/",
+    "description": "Offense-to-Defense security research by Yared Henriquez (DevCop95 / Dev101x) across Windows OpenSSH, fsutil/BigDiskBuster, Sigma, Elastic EQL, and Microsoft Sentinel KQL.",
+    "author": {
+      "@type": "Person",
+      "name": "Yared Henriquez",
+      "alternateName": ["DevCop95", "Dev101x"],
+      "url": "https://dev101x.online/"
+    }
+  }
+  </script>
+  <link rel="icon" href="../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script>
+    (function() {
+      try {
+        const saved = localStorage.getItem('devyhb-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="research.css">
+</head>
+<body>
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <nav class="rnav" aria-label="Research navigation">
+    <div class="rnav-brand">
+      <a href="../" class="nlogo">Dev<em>101x</em></a>
+      <span class="rnav-sep">/</span>
+      <span class="rnav-crumb">Research</span>
+    </div>
+    <div class="rnav-actions">
+      <a href="../" class="rnav-link"><i class="bi bi-arrow-left"></i> Portfolio</a>
+      <a href="https://github.com/DevCop95" target="_blank" rel="noopener" class="rnav-link"><i class="bi bi-github"></i> GitHub</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <i class="bi bi-moon-stars-fill"></i>
+      </button>
+    </div>
+  </nav>
+
+  <main class="rshell">
+    <header class="rhero">
+      <div class="rkicker"><i class="bi bi-diagram-3"></i> Offense-to-Defense Research Hub</div>
+      <h1 class="rtitle">Detection Engineering &amp; <em>Threat Research</em></h1>
+      <p class="rlead">
+        Long-form engineering write-ups documenting end-to-end <strong>Offense &rarr; Emulation &rarr; Detection</strong> cycles: turning native Windows tradecraft into peer-reviewed <strong>LOLBAS</strong> entries, <strong>Atomic Red Team</strong> tests, Win32 kernel-handle monitors, and verified multi-SIEM detections across <strong>Sigma</strong>, <strong>Elastic EQL</strong>, and <strong>Microsoft Sentinel KQL</strong>.
+      </p>
+      <div class="rmeta-row">
+        <span class="rmeta-pill accent"><i class="bi bi-person-badge"></i> Yared Henriquez (DevCop95)</span>
+        <span class="rmeta-pill"><i class="bi bi-shield-check"></i> Focus: Detection Engineering &amp; Applied AI Security</span>
+        <span class="rmeta-pill"><i class="bi bi-git"></i> 10+ Merged Upstream Security/OSINT PRs</span>
+      </div>
+    </header>
+
+    <section aria-label="Published Deep Dives">
+      <div class="hub-grid">
+        <article class="hub-card">
+          <div class="rkicker"><i class="bi bi-terminal-split"></i> Deep Dive 01 &middot; T1202 &middot; T1059</div>
+          <h2>Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
+          <p>
+            Compares pre-authentication (<code>KnownHostsCommand</code>) vs. post-authentication (<code>PermitLocalCommand</code> / <code>LocalCommand</code>, Star Blizzard <em>RedFlick</em>) execution in <code>ssh.exe</code>, models <code>-F</code> / <code>.ssh/config</code> CLI blind spots via child-process lineage, and builds a pure-RE2 KQL automaton validated in Azure Data Explorer (<strong>11/11 TP, 0/8 FP</strong>).
+          </p>
+          <div class="hub-tags">
+            <span class="hub-tag">LOLBAS #539 &amp; #532 (Merged)</span>
+            <span class="hub-tag">SigmaHQ #6585</span>
+            <span class="hub-tag">Azure-Sentinel #15693</span>
+            <span class="hub-tag">RE2 / KQL</span>
+          </div>
+          <a href="./windows-openssh-indirect-execution/" class="hub-cta">
+            Read full deep dive <i class="bi bi-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="hub-card">
+          <div class="rkicker"><i class="bi bi-hdd-stack"></i> Deep Dive 02 &middot; T1685 &middot; T1562.001</div>
+          <h2>From Disk-Exhaustion DoS against Windows Defender (<code>fsutil.exe</code> / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</h2>
+          <p>
+            Traces disk-exhaustion evasion (<code>ERROR_DISK_FULL</code>) across both native NT allocation (BigDiskBuster) and LOLBin execution (<code>fsutil.exe file createnew</code>): from <code>BDB-Guardian</code> (cited by CUHK ITSC) and debugging <code>0xC0000374</code> / pipe deadlocks in Win32 handle scanning to <strong>Atomic Red Team #3439</strong>, <strong>SigmaHQ #6310</strong>, and <strong>Elastic #6946</strong>.
+          </p>
+          <div class="hub-tags">
+            <span class="hub-tag">CUHK ITSC Cited</span>
+            <span class="hub-tag">LOLBAS #525 (Merged)</span>
+            <span class="hub-tag">Atomic #3439 (Merged)</span>
+            <span class="hub-tag">Sigma #6310 (Approved)</span>
+            <span class="hub-tag">Elastic #6946 (Approved &times;2)</span>
+          </div>
+          <a href="./bigdiskbuster-fsutil-defense-evasion/" class="hub-cta">
+            Read full deep dive <i class="bi bi-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section aria-label="Upstream Traceability Matrix">
+      <div class="rkicker"><i class="bi bi-table"></i> Upstream Traceability Matrix</div>
+      <div class="table-wrap">
+        <table class="rtable">
+          <thead>
+            <tr>
+              <th>Repository &amp; PR</th>
+              <th>Domain</th>
+              <th>MITRE / Scope</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #525</a></td>
+              <td>Living-Off-The-Land Docs</td>
+              <td><code>Fsutil.exe</code> <code>file createnew</code> (T1562.001 / T1685)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #539</a></td>
+              <td>Living-Off-The-Land Docs</td>
+              <td><code>Ssh.exe</code> pre-auth <code>KnownHostsCommand</code> (T1202)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #532</a></td>
+              <td>Living-Off-The-Land Docs</td>
+              <td><code>Ssh.exe</code> <code>PermitLocalCommand=yes</code> (T1202)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" target="_blank" rel="noopener">redcanaryco/atomic-red-team #3433</a></td>
+              <td>Adversary Emulation</td>
+              <td>KeePass discovery &amp; config parsing (T1555.005)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener">redcanaryco/atomic-red-team #3439</a></td>
+              <td>Adversary Emulation</td>
+              <td>Defender disk exhaustion via <code>fsutil</code> (T1685)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener">magicsword-io/LOLRMM #253</a></td>
+              <td>RMM Detection &amp; Sigma</td>
+              <td>AnyDesk custom per-org client coverage (T1219)</td>
+              <td><span class="pipe-status status-merged">MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">soxoj/maigret (#3367, #3386, #3388, #3458)</a></td>
+              <td>OSINT Signal Integrity</td>
+              <td>False-positive elimination &amp; challenge handling</td>
+              <td><span class="pipe-status status-merged">4 MERGED</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener">elastic/detection-rules #6946</a></td>
+              <td>Elastic EQL Detection</td>
+              <td>Suspicious <code>fsutil file createnew</code> (T1562.001)</td>
+              <td><span class="pipe-status status-approved">APPROVED (&times;2)</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener">SigmaHQ/sigma #6310</a></td>
+              <td>Sigma File Event Rule</td>
+              <td>BigDiskBuster GUID buster-file in <code>%TEMP%</code> (T1685)</td>
+              <td><span class="pipe-status status-approved">APPROVED (1/2)</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/SigmaHQ/sigma/pull/6323" target="_blank" rel="noopener">SigmaHQ/sigma #6323</a></td>
+              <td>Sigma WAF Rule Pack</td>
+              <td>SafeLine WAF SQLi / XSS / CMDi (<code>product: safeline</code>)</td>
+              <td><span class="pipe-status status-approved">APPROVED (1/2)</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener">SigmaHQ/sigma #6585</a></td>
+              <td>Sigma Process Creation</td>
+              <td>Windows <code>ssh.exe</code> <code>KnownHostsCommand</code> (T1202)</td>
+              <td><span class="pipe-status status-review">IN REVIEW</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener">Azure/Azure-Sentinel #15693</a></td>
+              <td>Sentinel KQL Hunting</td>
+              <td>Windows OpenSSH indirect execution (24/24 CI)</td>
+              <td><span class="pipe-status status-review">IN REVIEW</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/NVIDIA/garak/pull/2357" target="_blank" rel="noopener">NVIDIA/garak #2357</a></td>
+              <td>AI Red Teaming Engineering</td>
+              <td>Prevent duplicate attachment payload in NVMultimodal</td>
+              <td><span class="pipe-status status-review">IN REVIEW</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="rfooter-nav">
+      <a href="../" class="btn-pill"><i class="bi bi-arrow-left"></i> Back to dev101x.online</a>
+      <a href="./windows-openssh-indirect-execution/" class="btn-pill primary">Start with Deep Dive 01 <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 <strong>Yared Henriquez (DevCop95 / Dev101x)</strong> &middot; Cartagena, Colombia</span>
+    <span><a href="../">Portfolio</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/yared-dev" target="_blank" rel="noopener">LinkedIn</a></span>
+  </footer>
+
+  <script src="research.js"></script>
+</body>
+</html>
