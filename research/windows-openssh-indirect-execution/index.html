@@ -6,34 +6,80 @@
   <title>Abusing Windows OpenSSH &amp; Closing First-Match-Wins Bypasses in KQL &amp; Sigma | Dev101x Research</title>
   <meta name="description" content="Technical deep dive into Windows OpenSSH (ssh.exe) indirect command execution via KnownHostsCommand, PermitLocalCommand, and ProxyCommand, closing OpenSSH first-match-wins evasion in pure RE2 for Microsoft Sentinel and Sigma.">
   <meta name="author" content="Yared Henriquez (DevCop95)">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <link rel="canonical" href="https://dev101x.online/research/windows-openssh-indirect-execution/">
+  <link rel="alternate" type="application/rss+xml" title="Dev101x Security Research RSS" href="https://dev101x.online/research/feed.xml">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://dev101x.online/research/windows-openssh-indirect-execution/">
   <meta property="og:title" content="Abusing Windows OpenSSH &amp; Closing First-Match-Wins Bypasses in KQL &amp; Sigma">
   <meta property="og:description" content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 19-case ADX validation (11/11 TP, 0/8 FP).">
-  <meta property="og:image" content="https://dev101x.online/assets/img/lolbas_devcop95_banner.jpg">
+  <meta property="og:image" content="https://dev101x.online/assets/img/og-research-openssh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:site_name" content="Dev101x · Security Research">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://dev101x.online/research/windows-openssh-indirect-execution/">
+  <meta name="twitter:title" content="Abusing Windows OpenSSH &amp; Closing First-Match-Wins Bypasses in KQL &amp; Sigma">
+  <meta name="twitter:description" content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 19-case ADX validation (11/11 TP, 0/8 FP).">
+  <meta name="twitter:image" content="https://dev101x.online/assets/img/og-research-openssh.png">
+  <meta name="twitter:site" content="@Devcop101">
   <meta name="twitter:creator" content="@Devcop101">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": "Abusing Windows OpenSSH (KnownHostsCommand & PermitLocalCommand) and Closing First-Match-Wins Detection Bypasses in KQL & Sigma",
-    "url": "https://dev101x.online/research/windows-openssh-indirect-execution/",
-    "datePublished": "2026-11-20",
-    "dateModified": "2026-11-20",
-    "author": {
-      "@type": "Person",
-      "name": "Yared Henriquez",
-      "alternateName": ["DevCop95", "Dev101x"],
-      "url": "https://dev101x.online/"
-    },
-    "about": [
-      "MITRE ATT&CK T1202",
-      "MITRE ATT&CK T1059",
-      "Windows OpenSSH",
-      "Microsoft Sentinel KQL",
-      "Sigma Detection Rules"
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": "Abusing Windows OpenSSH (KnownHostsCommand & PermitLocalCommand) and Closing First-Match-Wins Detection Bypasses in KQL & Sigma",
+        "url": "https://dev101x.online/research/windows-openssh-indirect-execution/",
+        "mainEntityOfPage": "https://dev101x.online/research/windows-openssh-indirect-execution/",
+        "image": "https://dev101x.online/assets/img/og-research-openssh.png",
+        "datePublished": "2026-11-20",
+        "dateModified": "2026-11-22",
+        "author": {
+          "@type": "Person",
+          "name": "Yared Henriquez",
+          "alternateName": ["DevCop95", "Dev101x"],
+          "url": "https://dev101x.online/"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Yared Henriquez",
+          "url": "https://dev101x.online/"
+        },
+        "about": [
+          "MITRE ATT&CK T1202",
+          "MITRE ATT&CK T1059",
+          "Windows OpenSSH",
+          "Microsoft Sentinel KQL",
+          "Sigma Detection Rules"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dev101x.online/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Research",
+            "item": "https://dev101x.online/research/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Windows OpenSSH Indirect Execution",
+            "item": "https://dev101x.online/research/windows-openssh-indirect-execution/"
+          }
+        ]
+      }
     ]
   }
   </script>
@@ -41,20 +87,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <script>
-    (function() {
-      try {
-        const saved = localStorage.getItem('devyhb-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
-      } catch (e) {}
-    })();
-  </script>
-  <link rel="stylesheet" href="../research.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+  <script src="../../assets/js/theme-init.js"></script>
+  <link rel="stylesheet" href="../research.css?v=3">
 </head>
 <body>
   <div id="scroll-progress" aria-hidden="true"></div>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <nav class="rnav" aria-label="Article navigation">
     <div class="rnav-brand">
@@ -65,65 +104,69 @@
       <span class="rnav-crumb">Windows OpenSSH</span>
     </div>
     <div class="rnav-actions">
-      <a href="../" class="rnav-link"><i class="bi bi-grid"></i> All Research</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
-        <i class="bi bi-moon-stars-fill"></i>
+      <a href="../" class="rnav-link"><i class="bi bi-grid" aria-hidden="true"></i> All Research</a>
+      <a href="../feed.xml" class="rnav-link rss" type="application/rss+xml"><i class="bi bi-rss-fill" aria-hidden="true"></i> RSS</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
       </button>
     </div>
   </nav>
 
-  <main class="rshell">
+  <main class="rshell" id="main-content" data-telemetry-src="../../assets/data/telemetry.json">
     <header class="rhero">
-      <div class="rkicker"><i class="bi bi-terminal-split"></i> Deep Dive 01 &middot; Detection Engineering</div>
+      <div class="rkicker"><i class="bi bi-terminal-split" aria-hidden="true"></i> Deep Dive 01 &middot; Detection Engineering</div>
       <h1 class="rtitle">Abusing Windows OpenSSH and Closing <em>First-Match-Wins</em> Bypasses in KQL &amp; Sigma</h1>
       <p class="rlead">
         Native <code>C:\Windows\System32\OpenSSH\ssh.exe</code> ships on modern Windows endpoints as a Microsoft-signed binary capable of executing arbitrary local payloads before user authentication completes (<code>KnownHostsCommand</code>) or immediately after session establishment (<code>PermitLocalCommand</code>). This write-up documents the complete <strong>LOLBAS &rarr; Sigma &rarr; Microsoft Sentinel KQL</strong> engineering cycle, including a pure-RE2 automaton that defeats OpenSSH's <em>first-match-wins</em> option override trick.
       </p>
 
       <div class="rmeta-row">
-        <span class="rmeta-pill accent"><i class="bi bi-shield-exclamation"></i> MITRE ATT&amp;CK: T1202 &middot; T1059</span>
-        <span class="rmeta-pill"><i class="bi bi-activity"></i> Telemetry: <code>DeviceProcessEvents</code> &middot; Sysmon EID 1</span>
-        <span class="rmeta-pill"><i class="bi bi-calendar3"></i> Published: 2026-11-20</span>
-        <span class="rmeta-pill"><i class="bi bi-clock"></i> 9 min read</span>
+        <span class="rmeta-pill accent"><i class="bi bi-shield-exclamation" aria-hidden="true"></i> MITRE ATT&amp;CK: T1202 &middot; T1059</span>
+        <span class="rmeta-pill"><i class="bi bi-activity" aria-hidden="true"></i> Telemetry: <code>DeviceProcessEvents</code> &middot; Sysmon EID 1</span>
+        <span class="rmeta-pill"><i class="bi bi-calendar3" aria-hidden="true"></i> Published: 2026-11-20</span>
+        <span class="rmeta-pill"><i class="bi bi-clock" aria-hidden="true"></i> 9 min read</span>
+        <button type="button" class="share-btn" id="shareArticleBtn"><i class="bi bi-share" aria-hidden="true"></i> <span>Copy link</span></button>
       </div>
 
       <div class="pipeline-strip" aria-label="Offense-to-Defense Upstream Chain">
-        <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener" class="pipe-node">
+        <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener" class="pipe-node" data-pr="LOLBAS-Project/LOLBAS#539">
           <span class="pipe-stage">01 &middot; Tradecraft (Pre-Auth)</span>
           <span class="pipe-title">LOLBAS #539</span>
-          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill"></i> Merged &amp; Live</span>
+          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Merged &amp; Live</span>
         </a>
-        <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener" class="pipe-node">
+        <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener" class="pipe-node" data-pr="LOLBAS-Project/LOLBAS#532">
           <span class="pipe-stage">02 &middot; Tradecraft (Post-Auth)</span>
           <span class="pipe-title">LOLBAS #532</span>
-          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill"></i> Merged &amp; Live</span>
+          <span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Merged &amp; Live</span>
         </a>
-        <a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener" class="pipe-node">
+        <a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener" class="pipe-node" data-pr="SigmaHQ/sigma#6585">
           <span class="pipe-stage">03 &middot; Portable Rule</span>
           <span class="pipe-title">SigmaHQ #6585</span>
-          <span class="pipe-status status-review"><i class="bi bi-hourglass-split"></i> In Review</span>
+          <span class="pipe-status status-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> In Review</span>
         </a>
-        <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener" class="pipe-node">
+        <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener" class="pipe-node" data-pr="Azure/Azure-Sentinel#15693">
           <span class="pipe-stage">04 &middot; Sentinel KQL Hunt</span>
           <span class="pipe-title">Azure-Sentinel #15693</span>
-          <span class="pipe-status status-review"><i class="bi bi-check2-all"></i> 24/24 CI &middot; In Review</span>
+          <span class="pipe-status status-review"><i class="bi bi-check2-all" aria-hidden="true"></i> 24/24 CI &middot; In Review</span>
         </a>
       </div>
     </header>
 
     <div class="article-layout">
       <aside class="toc-aside" aria-label="Table of contents">
-        <div class="toc-label">Contents</div>
-        <ul class="toc-list">
-          <li><a href="#threat-context">1. Threat Context &amp; Auth Boundary</a></li>
-          <li><a href="#execution-vectors">2. Vectors &amp; CLI Blind Spots</a></li>
-          <li><a href="#first-match-wins">3. Closing First-Match-Wins in RE2</a></li>
-          <li><a href="#kql-detection">4. Sentinel KQL Hunting Query</a></li>
-          <li><a href="#sigma-rule">5. Portable Sigma Coverage</a></li>
-          <li><a href="#adx-validation">6. Empirical ADX Validation</a></li>
-          <li><a href="#tuning">7. Tuning &amp; Hardening</a></li>
-          <li><a href="#references">8. Verified References</a></li>
-        </ul>
+        <details class="toc-details" open>
+          <summary class="toc-label"><span>Contents</span> <i class="bi bi-chevron-down toc-chevron" aria-hidden="true"></i></summary>
+          <ul class="toc-list">
+            <li><a href="#threat-context">1. Threat Context &amp; Auth Boundary</a></li>
+            <li><a href="#execution-vectors">2. Vectors &amp; CLI Blind Spots</a></li>
+            <li><a href="#first-match-wins">3. Closing First-Match-Wins in RE2</a></li>
+            <li><a href="#kql-detection">4. Sentinel KQL Hunting Query</a></li>
+            <li><a href="#sigma-rule">5. Portable Sigma Coverage</a></li>
+            <li><a href="#adx-validation">6. Empirical ADX Validation</a></li>
+            <li><a href="#tuning">7. Tuning &amp; Hardening</a></li>
+            <li><a href="#references">8. Verified References</a></li>
+          </ul>
+        </details>
       </aside>
 
       <article class="prose">
@@ -142,6 +185,71 @@
           <p>
             To cover both LOLBAS-documented vectors and config-based execution in Windows environments, detections must account for four distinct invocation patterns:
           </p>
+
+          <figure class="rdiagram">
+            <svg viewBox="0 0 820 260" role="img" aria-labelledby="openssh-diag-title openssh-diag-desc">
+              <title id="openssh-diag-title">Windows OpenSSH Detection Architecture</title>
+              <desc id="openssh-diag-desc">Three OpenSSH execution paths flowing through DeviceProcessEvents into Pure-RE2 CLI detection and child-process lineage before emitting a unified DetectionSignal.</desc>
+              <defs>
+                <marker id="arrow-ssh" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" />
+                </marker>
+              </defs>
+
+              <!-- Left: 3 Execution Paths -->
+              <rect x="12" y="16" width="228" height="62" rx="10" class="rdiag-box" />
+              <text x="26" y="38" class="rdiag-kicker">Pre-Auth (Key Exchange)</text>
+              <text x="26" y="57" class="rdiag-title">KnownHosts / ProxyCommand</text>
+              <text x="26" y="70" class="rdiag-sub">No login required (LOLBAS #539)</text>
+
+              <rect x="12" y="98" width="228" height="62" rx="10" class="rdiag-box" />
+              <text x="26" y="120" class="rdiag-kicker">Post-Auth (RedFlick)</text>
+              <text x="26" y="139" class="rdiag-title">PermitLocal + LocalCommand</text>
+              <text x="26" y="152" class="rdiag-sub">Fires via cmd.exe (LOLBAS #532)</text>
+
+              <rect x="12" y="180" width="228" height="62" rx="10" class="rdiag-box" />
+              <text x="26" y="202" class="rdiag-kicker">Config Indirection</text>
+              <text x="26" y="221" class="rdiag-title">-F &lt;file&gt; / .ssh/config</text>
+              <text x="26" y="234" class="rdiag-sub">Zero directive flags on ssh.exe CLI</text>
+
+              <!-- Connector lines Left -> Telemetry -->
+              <path d="M 240 47 L 288 118" class="rdiag-line" />
+              <path d="M 240 129 L 288 129" class="rdiag-line" />
+              <path d="M 240 211 L 288 140" class="rdiag-line" />
+
+              <!-- Center: Telemetry & Identity Normalization -->
+              <rect x="288" y="84" width="186" height="90" rx="12" class="rdiag-box-accent" />
+              <text x="304" y="108" class="rdiag-kicker">Telemetry Layer</text>
+              <text x="304" y="128" class="rdiag-title">DeviceProcessEvents</text>
+              <text x="304" y="145" class="rdiag-sub">Sysmon EID 1 + PE Name:</text>
+              <text x="304" y="160" class="rdiag-sub">OriginalFileName =~ ssh.exe</text>
+
+              <!-- Telemetry -> Dual Analyzers -->
+              <path d="M 474 114 L 520 72" class="rdiag-line-accent" />
+              <path d="M 474 144 L 520 186" class="rdiag-line-accent" />
+
+              <!-- Right-Mid: Dual Detection Engines -->
+              <rect x="520" y="34" width="176" height="74" rx="10" class="rdiag-box" />
+              <text x="534" y="56" class="rdiag-kicker">CLI Automaton</text>
+              <text x="534" y="75" class="rdiag-title">Pure-RE2 Matcher</text>
+              <text x="534" y="92" class="rdiag-sub">Defeats trailing =none</text>
+
+              <rect x="520" y="150" width="176" height="74" rx="10" class="rdiag-box" />
+              <text x="534" y="172" class="rdiag-kicker">Process Lineage</text>
+              <text x="534" y="191" class="rdiag-title">Child LOLBin Tree</text>
+              <text x="534" y="208" class="rdiag-sub">ssh.exe &rarr; shell / script</text>
+
+              <!-- Analyzers -> Output -->
+              <path d="M 696 71 L 728 118" class="rdiag-line-accent" />
+              <path d="M 696 187 L 728 140" class="rdiag-line-accent" />
+
+              <!-- Far Right: Normalized Output Pill -->
+              <rect x="720" y="96" width="88" height="66" rx="10" class="rdiag-pill" />
+              <text x="764" y="124" text-anchor="middle" class="rdiag-on-accent">T1202</text>
+              <text x="764" y="143" text-anchor="middle" class="rdiag-on-accent">Signal</text>
+            </svg>
+            <figcaption>Figure 1 &mdash; Dual CLI + parent-child telemetry model closing both first-match-wins CLI overrides and hidden <code>-F</code> / <code>.ssh/config</code> invocations.</figcaption>
+          </figure>
 
           <div class="table-wrap">
             <table class="rtable">
@@ -183,7 +291,7 @@
           </div>
 
           <div class="callout">
-            <div class="callout-title"><i class="bi bi-eye-slash"></i> Key Design Constraint: Renamed Binaries &amp; Config Indirection</div>
+            <div class="callout-title"><i class="bi bi-eye-slash" aria-hidden="true"></i> Key Design Constraint: Renamed Binaries &amp; Config Indirection</div>
             <p>
               Checking only <code>FileName =~ "ssh.exe"</code> breaks if an adversary copies <code>ssh.exe</code> to <code>svchost_helper.exe</code>, and checking only <code>ProcessCommandLine</code> misses <code>-F</code> or <code>.ssh/config</code>. Therefore, the Sentinel query normalizes both process and parent identity with <code>ProcessVersionInfoOriginalFileName =~ "ssh.exe"</code> (and the same for child LOLBins) and pairs CLI matching with unexpected child-process detection.
             </p>
@@ -199,10 +307,10 @@
             Per <code>ssh_config(5)</code>, OpenSSH evaluates options strictly on a <strong>first-match-wins</strong> basis:
           </p>
 
-          <div class="code-block">
+          <div class="code-block" data-lang="bash">
             <div class="code-head">
               <span>Evasion Payload &middot; OpenSSH First-Match-Wins</span>
-              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard" aria-hidden="true"></i> <span>Copy</span></button>
             </div>
             <pre><code>ssh.exe -o "StrictHostKeyChecking=no" -o KnownHostsCommand="cmd /c calc.exe" -o KnownHostsCommand=none user@host</code></pre>
           </div>
@@ -214,10 +322,10 @@
             Fixing this cleanly in Microsoft Sentinel requires per-occurrence negation inside the regex itself. The catch is that Kusto's RE2 engine <strong>does not support negative lookaheads</strong> like <code>(?!none)</code>. Instead, we compile the negation into a deterministic pure-RE2 character-prefix automaton:
           </p>
 
-          <div class="code-block">
+          <div class="code-block" data-lang="regex">
             <div class="code-head">
               <span>Pure RE2 &middot; Per-Occurrence Non-<code>none</code> Matcher</span>
-              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard" aria-hidden="true"></i> <span>Copy</span></button>
             </div>
             <pre><code>(?i)(?:^|\s)-o\s{0,}["']{0,1}KnownHostsCommand(?:\s{0,}=\s{0,}|\s+)["']{0,1}(?:[^n=\s"']|n(?:[^o\s"']|["'\s]|$)|no(?:[^n\s"']|["'\s]|$)|non(?:[^e\s"']|["'\s]|$)|none[^\s"'])</code></pre>
           </div>
@@ -236,10 +344,10 @@
             Submitted in <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener"><code>Azure/Azure-Sentinel #15693</code></a> (<code>Hunting Queries/Microsoft 365 Defender/Execution/SshIndirectCommandExecution.yaml</code>), the production query combines all four CLI detectors with child-process lineage and emits a normalized <code>DetectionSignal</code> summary for analyst triage:
           </p>
 
-          <div class="code-block">
+          <div class="code-block" data-lang="kql">
             <div class="code-head">
               <span>KQL &middot; SshIndirectCommandExecution.yaml (MITRE T1202 / T1059)</span>
-              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard" aria-hidden="true"></i> <span>Copy</span></button>
             </div>
             <pre><code>let lookback = 7d;
 DeviceProcessEvents
@@ -294,10 +402,10 @@ DeviceProcessEvents
             While the existing Sigma rule <code>proc_creation_win_ssh_proxy_execution.yml</code> covered <code>ProxyCommand</code> and <code>PermitLocalCommand=yes</code>/<code>LocalCommand</code>, it lacked <code>KnownHostsCommand</code> and ATT&amp;CK <code>T1202</code> tagging. <a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener"><code>SigmaHQ/sigma #6585</code></a> enriches the upstream rule while aligning with ATT&amp;CK v18 tag taxonomy (<code>attack.execution</code>, <code>attack.stealth</code>, <code>attack.t1202</code>, <code>attack.t1218</code>), verified locally with <code>sigma check --fail-on-error --fail-on-issues</code> (0 issues):
           </p>
 
-          <div class="code-block">
+          <div class="code-block" data-lang="yaml">
             <div class="code-head">
               <span>YAML &middot; proc_creation_win_ssh_proxy_execution.yml (Diff Highlight)</span>
-              <button class="copy-btn" type="button"><i class="bi bi-clipboard"></i> <span>Copy</span></button>
+              <button class="copy-btn" type="button"><i class="bi bi-clipboard" aria-hidden="true"></i> <span>Copy</span></button>
             </div>
             <pre><code>title: Program Executed Using Proxy/Local/KnownHosts Command Via SSH.EXE
 tags:
@@ -346,6 +454,48 @@ detection:
             <li><strong>8 True Negatives verified:</strong> Standard interactive SSH login, explicit hardening flags (<code>-o KnownHostsCommand=none</code>, <code>-o LocalCommand=none</code>, <code>-o PermitLocalCommand=no</code>), legitimate <code>cloudflared</code> <code>ProxyCommand</code> wrapper, benign <code>ssh-askpass.exe</code> child process, whitespace around <code>=</code>, and empty quoted directives.</li>
             <li><strong>Repo CI validations:</strong> Passed <code>KqlValidations</code> (<code>Microsoft.Azure.Kusto.Language</code> against <code>DeviceProcessEvents.json</code> schema), <code>YamlDotNet</code>, <code>js-yaml</code>, <code>NonAsciiValidationsTests</code>, <code>DocumentsLinkValidation</code>, and CodeQL (24/24 checks completed, 0 failures).</li>
           </ul>
+
+          <details class="rdetails">
+            <summary>
+              <span><i class="bi bi-table" aria-hidden="true"></i> Inspect Complete 19-Case ADX Test Harness Breakdown (11 TP / 8 TN)</span>
+              <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </summary>
+            <div class="rdetails-body">
+              <div class="table-wrap">
+                <table class="rtable">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Expected</th>
+                      <th>Scenario Tested in <code>DeviceProcessEvents</code></th>
+                      <th>Signal Exercised</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>TP-01</td><td>Detect</td><td>Star Blizzard <em>RedFlick</em> (<code>PermitLocalCommand=yes</code> + <code>LocalCommand</code>)</td><td><code>CLI:PermitLocalCommand=yes;CLI:LocalCommand</code></td></tr>
+                    <tr><td>TP-02</td><td>Detect</td><td>Pre-auth <code>-o KnownHostsCommand="cmd.exe /c ..."</code></td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TP-03</td><td>Detect</td><td>Compact flag without spacing (<code>-oKnownHostsCommand=...</code>)</td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TP-04</td><td>Detect</td><td>Space-separated OpenSSH syntax (<code>-o KnownHostsCommand "..."</code>)</td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TP-05</td><td>Detect</td><td>Renamed binary (<code>svchost_helper.exe</code> with <code>OriginalFileName=ssh.exe</code>)</td><td><code>IsSshProcess</code> normalization</td></tr>
+                    <tr><td>TP-06</td><td>Detect</td><td>First-match-wins override: payload followed by <code>-o KnownHostsCommand=none</code></td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TP-07</td><td>Detect</td><td>First-match-wins override: <code>PermitLocalCommand=yes</code> + trailing <code>=no</code></td><td><code>CLI:PermitLocalCommand=yes</code></td></tr>
+                    <tr><td>TP-08</td><td>Detect</td><td><code>ProxyCommand</code> spawning PowerShell / LOLBin interpreter</td><td><code>CLI:ProxyCommand</code></td></tr>
+                    <tr><td>TP-09</td><td>Detect</td><td>Hidden <code>-F</code> / <code>.ssh/config</code> spawning child shell (<code>ssh.exe &rarr; cmd.exe</code>)</td><td><code>ChildProcess:SpawnedBySsh</code></td></tr>
+                    <tr><td>TP-10</td><td>Detect</td><td>Boundary prefix command starting with <code>n</code>/<code>no</code>/<code>non</code> (e.g., <code>notepad.exe</code>)</td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TP-11</td><td>Detect</td><td>Boundary prefix command starting with <code>none_</code> (e.g., <code>none_tool.exe</code>)</td><td><code>CLI:KnownHostsCommand</code></td></tr>
+                    <tr><td>TN-01</td><td>Benign</td><td>Standard interactive SSH login (<code>ssh user@host</code>)</td><td>No signal</td></tr>
+                    <tr><td>TN-02</td><td>Benign</td><td>Explicit hardening flag <code>-o KnownHostsCommand=none</code></td><td>Excluded by RE2 prefix automaton</td></tr>
+                    <tr><td>TN-03</td><td>Benign</td><td>Explicit hardening flag <code>-o LocalCommand=none</code></td><td>Excluded by RE2 prefix automaton</td></tr>
+                    <tr><td>TN-04</td><td>Benign</td><td>Explicit hardening flag <code>-o PermitLocalCommand=no</code></td><td>Excluded by <code>(?:yes|true)</code></td></tr>
+                    <tr><td>TN-05</td><td>Benign</td><td>Legitimate <code>cloudflared access ssh</code> <code>ProxyCommand</code> wrapper</td><td>Excluded (no LOLBin child/arg)</td></tr>
+                    <tr><td>TN-06</td><td>Benign</td><td>Benign <code>ssh-askpass.exe</code> child process spawned by <code>ssh.exe</code></td><td>Excluded from suspicious child list</td></tr>
+                    <tr><td>TN-07</td><td>Benign</td><td>Spaced equality hardening (<code>-o "KnownHostsCommand = none"</code>)</td><td>Excluded by RE2 prefix automaton</td></tr>
+                    <tr><td>TN-08</td><td>Benign</td><td>Empty quoted directive value (<code>-o KnownHostsCommand=""</code>)</td><td>Excluded by RE2 value matcher</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
         </section>
 
         <section id="tuning">
@@ -354,6 +504,27 @@ detection:
             <li><strong>Administrative jump hosts &amp; IDE tunnels:</strong> Developer tools (VS Code Remote-SSH, Git automation, bastion wrappers) may spawn shells or helpers under <code>ssh.exe</code>. Tune by excluding verified <code>InitiatingProcessCommandLine</code> patterns or dedicated jump-host automation accounts rather than relaxing <code>KnownHostsCommand</code> or <code>PermitLocalCommand</code> checks.</li>
             <li><strong>Pre-auth hardening:</strong> Where remote SSH access from workstations is unneeded or standardized, enforce explicit client policy or WDAC/AppLocker rules auditing <code>ssh.exe</code> execution alongside <code>%USERPROFILE%\.ssh\config</code> integrity monitoring.</li>
           </ul>
+        </section>
+
+        <section aria-label="Detection Artifacts Quick-Jump">
+          <h2>Detection Artifacts Quick-Jump</h2>
+          <div class="artifact-grid">
+            <a href="https://lolbas-project.github.io/lolbas/Binaries/Ssh/" target="_blank" rel="noopener" class="artifact-card">
+              <span class="artifact-kind">LOLBAS Docs</span>
+              <strong class="artifact-title">Ssh.exe Official Entry</strong>
+              <span class="artifact-meta">PRs #539 &amp; #532 (Merged)</span>
+            </a>
+            <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener" class="artifact-card">
+              <span class="artifact-kind">Sentinel KQL</span>
+              <strong class="artifact-title">SshIndirectCommandExecution</strong>
+              <span class="artifact-meta">Azure-Sentinel #15693 (24/24 CI)</span>
+            </a>
+            <a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener" class="artifact-card">
+              <span class="artifact-kind">Sigma Rule</span>
+              <strong class="artifact-title">proc_creation_win_ssh_proxy</strong>
+              <span class="artifact-meta">SigmaHQ #6585 (ATT&amp;CK v18)</span>
+            </a>
+          </div>
         </section>
 
         <section id="references">
@@ -368,8 +539,8 @@ detection:
         </section>
 
         <div class="rfooter-nav">
-          <a href="../" class="btn-pill"><i class="bi bi-arrow-left"></i> All Research</a>
-          <a href="../bigdiskbuster-fsutil-defense-evasion/" class="btn-pill primary">Next: BigDiskBuster &amp; fsutil.exe <i class="bi bi-arrow-right"></i></a>
+          <a href="../" class="btn-pill"><i class="bi bi-arrow-left" aria-hidden="true"></i> All Research</a>
+          <a href="../bigdiskbuster-fsutil-defense-evasion/" class="btn-pill primary">Next: BigDiskBuster &amp; fsutil.exe <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
         </div>
       </article>
     </div>
@@ -377,9 +548,12 @@ detection:
 
   <footer class="site-footer">
     <span>&copy; 2026 <strong>Yared Henriquez (DevCop95 / Dev101x)</strong> &middot; Cartagena, Colombia</span>
-    <span><a href="../../">Portfolio</a> &middot; <a href="../">Research Hub</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a></span>
+    <span><a href="../../">Portfolio</a> &middot; <a href="../">Research Hub</a> &middot; <a href="../feed.xml">RSS Feed</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a></span>
   </footer>
 
-  <script src="../research.js"></script>
+  <button type="button" class="scroll-top" id="scrollTop" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+  <div id="researchLiveRegion" class="sr-only" aria-live="polite"></div>
+
+  <script src="../research.js?v=2"></script>
 </body>
 </html>

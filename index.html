@@ -8,6 +8,8 @@
     <meta name="keywords" content="Yared Henriquez, Dev101x, DevCop95, Detection Engineering, AI Security Researcher, Threat Research, Sigma, KQL, Elastic EQL, LOLBAS, Atomic Red Team, LOLRMM, MITRE ATT&amp;CK, BDB-Guardian, Bug Bounty, Pentester, Colombia">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="author" content="Yared Henriquez">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self' https://api.github.com https://github-contributions-api.jogruber.de; object-src 'none'; base-uri 'self'; form-action 'self'">
 
     <!-- Regional & Geo-Targeting SEO (Colombia) -->
     <meta name="geo.region" content="CO-BOL">
@@ -20,7 +22,10 @@
     <meta property="og:url" content="https://dev101x.online/">
     <meta property="og:title" content="Yared Henriquez (Dev101x) | Detection Engineering &amp; AI Security Researcher">
     <meta property="og:description" content="Offense-to-Defense Security Researcher (DevCop95 / Dev101x). Deep dives en OpenSSH y BigDiskBuster/fsutil, y contribuciones en LOLBAS, Atomic Red Team, LOLRMM y Maigret.">
-    <meta property="og:image" content="https://dev101x.online/assets/img/profile-img.jpg">
+    <meta property="og:image" content="https://dev101x.online/assets/img/og-home.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:alt" content="Yared Henriquez (Dev101x / DevCop95) - Detection Engineering &amp; AI Security Researcher">
     <meta property="og:locale" content="es_CO">
     <meta property="og:locale:alternate" content="en_US">
@@ -28,10 +33,10 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://x.com/Devcop101">
+    <meta name="twitter:url" content="https://dev101x.online/">
     <meta name="twitter:title" content="Yared Henriquez (Dev101x) | Detection Engineering &amp; AI Security Researcher">
     <meta name="twitter:description" content="Detection Engineering (Offense-to-Defense), offensive security &amp; applied AI security. LOLBAS, Atomic Red Team, LOLRMM &amp; Maigret contributor.">
-    <meta name="twitter:image" content="https://dev101x.online/assets/img/profile-img.jpg">
+    <meta name="twitter:image" content="https://dev101x.online/assets/img/og-home.png">
     <meta name="twitter:site" content="@Devcop101">
     <meta name="twitter:creator" content="@Devcop101">
 
@@ -115,7 +120,7 @@
             {
               "@type": "EducationalOccupationalCredential",
               "name": "Hack The Box Mini Pro Labs: Mythical",
-              "credentialCategory": "degree",
+              "credentialCategory": "certification",
               "recognizedBy": {
                 "@type": "Organization",
                 "name": "Hack The Box"
@@ -124,7 +129,7 @@
             {
               "@type": "EducationalOccupationalCredential",
               "name": "Hack The Box Mini Pro Labs: Puppet",
-              "credentialCategory": "degree",
+              "credentialCategory": "certification",
               "recognizedBy": {
                 "@type": "Organization",
                 "name": "Hack The Box"
@@ -165,51 +170,29 @@
     </script>
 
     <link rel="canonical" href="https://dev101x.online/">
+    <link rel="alternate" type="application/rss+xml" title="Dev101x Security Research RSS" href="https://dev101x.online/research/feed.xml">
     <link rel="icon" href="assets/img/favicon.png">
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"></noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+    <link rel="stylesheet" id="devicon-css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" integrity="sha384-DjehTlU5SubGD1zUGe78SkwLgw+q2y9DXnmy3EaDbXA9nvFMPW3LP5verNrWr9rW" crossorigin="anonymous" media="print">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" integrity="sha384-DjehTlU5SubGD1zUGe78SkwLgw+q2y9DXnmy3EaDbXA9nvFMPW3LP5verNrWr9rW" crossorigin="anonymous"></noscript>
 
-    <script>
-    (function() {
-      try {
-        const saved = localStorage.getItem('devyhb-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
-      } catch(e) {}
-    })();
-    </script>
-    <link rel="stylesheet" href="assets/css/style.css?v=16">
-    <noscript>
-      <style>
-        .loader { display: none; }
-        body.is-loading { overflow: auto; }
-        .reveal { opacity: 1; transform: none; }
-      </style>
-    </noscript>
-
+    <script src="assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=18">
 </head>
-<body class="is-loading">
+<body>
 
 <div id="scroll-progress" aria-hidden="true"></div>
+<a href="#main-content" class="skip-link" data-i18n="skip-link">Saltar al contenido</a>
 
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-box">
-    <div class="loader-logo">Dev<em>101x</em></div>
-    <div class="loader-bar"></div>
-    <div class="loader-copy">loading portfolio</div>
-  </div>
-</div>
-
-<nav id="mnav">
+<nav id="mnav" aria-label="Navegación principal">
   <a href="#hero" class="nlogo">Dev<em>101x</em></a>
   <ul class="nlinks">
-    <li><a href="#about" data-i18n="nav-about">Sobre mi</a></li>
+    <li><a href="#about" data-i18n="nav-about">Sobre mí</a></li>
     <li><a href="#research" data-i18n="nav-research">Investigación</a></li>
     <li><a href="#skills" data-i18n="nav-skills">Habilidades</a></li>
     <li><a href="#resume" data-i18n="nav-resume">Trayectoria</a></li>
@@ -218,22 +201,22 @@
     <li><a href="#contact" data-i18n="nav-contact">Contacto</a></li>
   </ul>
   <div class="nav-controls">
-    <button class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
-    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-      <i class="bi bi-moon-stars-fill"></i>
+    <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+      <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
     </button>
     <a href="#contact" class="ncta" data-i18n="nav-cta">Hablemos</a>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">
-      <i class="bi bi-list"></i>
+    <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+      <i class="bi bi-list" aria-hidden="true"></i>
     </button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" id="mobileClose" aria-label="Cerrar menu">
-    <i class="bi bi-x-lg"></i>
+<div class="mobile-menu" id="mobileMenu" aria-label="Menú móvil" inert>
+  <button type="button" class="mobile-menu-close" id="mobileClose" aria-label="Cerrar menú">
+    <i class="bi bi-x-lg" aria-hidden="true"></i>
   </button>
-  <a href="#about" class="mobile-link" data-i18n="nav-about">Sobre mi</a>
+  <a href="#about" class="mobile-link" data-i18n="nav-about">Sobre mí</a>
   <a href="#research" class="mobile-link" data-i18n="nav-research">Investigación</a>
   <a href="#skills" class="mobile-link" data-i18n="nav-skills">Habilidades</a>
   <a href="#resume" class="mobile-link" data-i18n="nav-resume">Trayectoria</a>
@@ -242,18 +225,19 @@
   <a href="#contact" class="mobile-link" data-i18n="nav-contact">Contacto</a>
 </div>
 
+<main id="main-content">
 <section id="hero">
   <div class="reveal">
     <h1 class="hname">
       <span class="scramble-wrapper">
-        <span id="scramble-ghost" class="scramble-ghost">Security Researcher</span>
+        <span id="scramble-ghost" class="scramble-ghost" aria-hidden="true">Security Researcher</span>
         <span id="scramble-target" class="scramble-target" data-i18n="hero-title-main">Security Researcher</span>
       </span>
       <em data-i18n="hero-title-sub">Detection Engineering, seguridad ofensiva &amp; IA aplicada</em>
     </h1>
     <p class="hero-copy" data-i18n="hero-copy">Investigador de seguridad ofensiva y detección (<strong>DevCop95 / Dev101x</strong>). Cierro el ciclo completo <strong>Offense &rarr; Emulation &rarr; Detection</strong> con contribuciones mergeadas en <strong>LOLBAS</strong>, <strong>Atomic Red Team</strong>, <strong>LOLRMM</strong> y <strong>Maigret</strong>, monitorización citada por <strong>CUHK ITSC</strong>, pentesting en Henkel y seguridad aplicada a agentes de IA.</p>
     <div class="hbtns">
-      <a href="#research" class="btn-solid"><span data-i18n="hero-btn-research">Leer Deep Dives</span> <i class="bi bi-arrow-up-right"></i></a>
+      <a href="#research" class="btn-solid"><span data-i18n="hero-btn-research">Leer Deep Dives</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
       <a href="#portfolio" class="btn-line"><span data-i18n="hero-btn-portfolio">Ver portafolio</span></a>
       <a href="mailto:yared.henriquezb@gmail.com" class="btn-line">yared.henriquezb@gmail.com</a>
     </div>
@@ -263,7 +247,7 @@
         <div class="hstat-l" data-i18n="hero-stat-exp">PRs upstream mergeados</div>
       </div>
       <div>
-        <div class="hstat-n" style="font-size:clamp(1.7rem,3vw,2.4rem)">Offense &rarr; Defense</div>
+        <div class="hstat-n hstat-n--compact">Offense &rarr; Defense</div>
         <div class="hstat-l" data-i18n="hero-stat-tech">LOLBAS &middot; Atomic &middot; Sigma &middot; KQL &middot; EQL</div>
       </div>
       <div>
@@ -275,9 +259,9 @@
 </section>
 
 
-<section class="section" id="about" aria-label="Sobre mi">
+<section class="section" id="about" aria-label="Sobre mí">
   <div class="sec-label reveal">
-    <span class="sec-label-tag" data-i18n="about-label">01 - Sobre mi</span>
+    <span class="sec-label-tag" data-i18n="about-label">01 - Sobre mí</span>
     <div class="sec-label-line"></div>
   </div>
   <div class="about-grid">
@@ -286,35 +270,35 @@
         <div class="wrapper">
           <picture>
             <source srcset="assets/img/profile-img.webp" type="image/webp">
-            <img src="assets/img/profile-img.jpg" alt="Yared Henriquez (Dev101x / DevCop95) - Detection Engineering &amp; AI Security Researcher" class="cover-image" decoding="async" fetchpriority="high">
+            <img src="assets/img/profile-img.jpg" alt="Yared Henriquez (Dev101x / DevCop95) - Detection Engineering &amp; AI Security Researcher" class="cover-image" width="1024" height="1024" loading="lazy" decoding="async">
           </picture>
         </div>
         <a href="https://devcop95.github.io/cYHBernews" target="_blank" rel="noopener" class="cyber-hover-card" aria-label="cYHBernews - Noticias de Ciberseguridad">
-          <div class="chc-tag"><i class="bi bi-broadcast-pin"></i> Noticias de Ciberseguridad</div>
+          <div class="chc-tag"><i class="bi bi-broadcast-pin" aria-hidden="true"></i> <span data-i18n="chc-tag">Noticias de Ciberseguridad</span></div>
           <div class="chc-title">cYHBernews</div>
-          <div class="chc-arrow"><i class="bi bi-arrow-up-right"></i> Visitar</div>
+          <div class="chc-arrow"><i class="bi bi-arrow-up-right" aria-hidden="true"></i> <span data-i18n="chc-arrow">Visitar</span></div>
         </a>
       </div>
     </aside>
     <div class="about-text reveal d1">
       <h2 class="stit" data-i18n="about-title">De la explotación a la <em>detección verificada</em></h2>
       <p data-i18n="about-copy">Soy <strong>Yared Henriquez (Dev101x / DevCop95)</strong>, investigador de seguridad especializado en <strong>Detection Engineering</strong> y <strong>Seguridad en IA Aplicada</strong>, radicado en Cartagena, Colombia. Posicionado en el <strong>Top #16 de Colombia en GitHub</strong> (committers.top) y registrado en <strong>Open Source Colombia</strong>. Mi foco es traducir técnicas reales de evasión en estándares abiertos — con <strong>10+ PRs mergeados</strong> en <strong>LOLBAS</strong>, <strong>Red Canary Atomic Red Team</strong>, <strong>LOLRMM</strong> y <strong>Maigret</strong>, investigación defensiva citada por <strong>The Chinese University of Hong Kong (CUHK ITSC)</strong>, pruebas de penetración en <strong>Henkel</strong> y M.Sc. en Inteligencia Artificial (Universitat de Barcelona).</p>
-      <div class="about-meta-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem">
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem">
-          <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em" data-i18n="about-meta-role">Especialidad</div>
-          <strong style="font-size:.88rem;color:var(--ink)" data-i18n="about-meta-role-v">Detection &amp; AI Security</strong>
+      <div class="about-meta-grid">
+        <div class="about-meta-card">
+          <div class="about-meta-k" data-i18n="about-meta-role">Especialidad</div>
+          <strong class="about-meta-v" data-i18n="about-meta-role-v">Detection &amp; AI Security</strong>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem">
-          <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em" data-i18n="about-meta-city">Ubicación</div>
-          <strong style="font-size:.88rem;color:var(--accent)" data-i18n="about-meta-city-v">Cartagena, Colombia 🇨🇴</strong>
+        <div class="about-meta-card">
+          <div class="about-meta-k" data-i18n="about-meta-city">Ubicación</div>
+          <strong class="about-meta-v about-meta-v--accent" data-i18n="about-meta-city-v">Cartagena, Colombia 🇨🇴</strong>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem">
-          <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em" data-i18n="about-meta-rank">Ranking Nacional</div>
-          <strong style="font-size:.88rem;color:var(--ink)" data-i18n="about-meta-rank-v">Top #16 GitHub Colombia</strong>
+        <div class="about-meta-card">
+          <div class="about-meta-k" data-i18n="about-meta-rank">Ranking Nacional</div>
+          <strong class="about-meta-v" data-i18n="about-meta-rank-v">Top #16 GitHub Colombia</strong>
         </div>
-        <div style="background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:1rem">
-          <div style="font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em" data-i18n="about-meta-dir">Directorio Oficial</div>
-          <strong style="font-size:.88rem;color:var(--ink)" data-i18n="about-meta-dir-v">Open Source Colombia</strong>
+        <div class="about-meta-card">
+          <div class="about-meta-k" data-i18n="about-meta-dir">Directorio Oficial</div>
+          <strong class="about-meta-v" data-i18n="about-meta-dir-v">Open Source Colombia</strong>
         </div>
       </div>
     </div>
@@ -322,13 +306,36 @@
 </section>
 
 
-<section class="section" id="research" aria-label="Investigacion y Deep Dives">
+<section class="section" id="research" aria-label="Investigación y Deep Dives">
   <div class="sec-label reveal">
     <span class="sec-label-tag" data-i18n="research-label">02 - Investigación &amp; Deep Dives</span>
     <div class="sec-label-line"></div>
   </div>
   <h2 class="stit reveal" data-i18n="research-title">Investigación técnica <em>de punta a punta</em></h2>
   <p class="stit-sub reveal" data-i18n="research-intro">Casos de estudio completos (en inglés) que conectan la anatomía del abuso en Windows con telemetría real, emulación segura y reglas verificadas en producción.</p>
+
+  <div class="research-pipeline reveal" aria-label="Offense to Defense Methodology">
+    <div class="rp-step">
+      <span class="rp-num">01 · Tradecraft</span>
+      <strong class="rp-label" data-i18n="research-pipe-1-title">LOLBAS &amp; Win32</strong>
+      <span class="rp-sub" data-i18n="research-pipe-1-sub">Abuso nativo &amp; internals</span>
+    </div>
+    <div class="rp-step">
+      <span class="rp-num">02 · Emulation</span>
+      <strong class="rp-label" data-i18n="research-pipe-2-title">Atomic Red Team</strong>
+      <span class="rp-sub" data-i18n="research-pipe-2-sub">Pruebas seguras T1685 / T1555</span>
+    </div>
+    <div class="rp-step">
+      <span class="rp-num">03 · Detection</span>
+      <strong class="rp-label" data-i18n="research-pipe-3-title">Sigma · KQL · EQL</strong>
+      <span class="rp-sub" data-i18n="research-pipe-3-sub">Cobertura multi-SIEM portable</span>
+    </div>
+    <div class="rp-step">
+      <span class="rp-num">04 · Verification</span>
+      <strong class="rp-label" data-i18n="research-pipe-4-title">ADX &amp; CI Harnesses</strong>
+      <span class="rp-sub" data-i18n="research-pipe-4-sub">TP/FP medidos en laboratorio</span>
+    </div>
+  </div>
 
   <div class="research-grid">
     <article class="research-card reveal">
@@ -337,6 +344,10 @@
         <span class="research-stat">11/11 TP &middot; 0/8 FP (ADX)</span>
       </div>
       <h3 class="research-title" data-i18n="research-1-title">Windows OpenSSH Indirect Execution &amp; Pure-RE2 First-Match-Wins Bypass</h3>
+      <div class="research-telemetry">
+        <i class="bi bi-activity" aria-hidden="true"></i>
+        <span>DeviceProcessEvents &middot; Sysmon EID 1</span>
+      </div>
       <p class="proof-copy" data-i18n="research-1-copy">Análisis comparativo entre <code>KnownHostsCommand</code> (pre-auth) y <code>PermitLocalCommand</code>/<code>LocalCommand</code> (Star Blizzard RedFlick), detección de configuraciones ocultas vía <code>-F</code>/<code>.ssh/config</code> por linaje de procesos hijos y autómata RE2 puro para KQL validado en 19 escenarios en Azure Data Explorer.</p>
       <div class="research-chain">
         <span class="proof-pill">LOLBAS #539 &amp; #532</span>
@@ -344,9 +355,12 @@
         <span class="proof-pill">Azure-Sentinel #15693</span>
         <span class="proof-pill">24/24 CI</span>
       </div>
-      <a class="proof-link" href="research/windows-openssh-indirect-execution/">
-        <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-arrow-right"></i>
-      </a>
+      <div class="research-card-foot">
+        <a class="proof-link" href="research/windows-openssh-indirect-execution/">
+          <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+        <span class="research-time" data-i18n="research-1-time">9 min lectura</span>
+      </div>
     </article>
 
     <article class="research-card reveal d1">
@@ -355,6 +369,10 @@
         <span class="research-stat" data-i18n="research-2-stat">Citado por CUHK ITSC</span>
       </div>
       <h3 class="research-title" data-i18n="research-2-title">Defender Disk-Exhaustion DoS (<code>fsutil.exe</code> / BigDiskBuster) &rarr; Multi-SIEM &amp; Kernel Handles</h3>
+      <div class="research-telemetry">
+        <i class="bi bi-cpu" aria-hidden="true"></i>
+        <span>Win32 Handles &middot; Sysmon EID 11 &middot; EQL</span>
+      </div>
       <p class="proof-copy" data-i18n="research-2-copy">Desde llamadas NT nativas sin rastro CLI hasta <code>fsutil.exe file createnew</code>: arquitectura Win32 de <strong>BDB-Guardian</strong> (resolución de heap corruption <code>0xC0000374</code> en <code>RM_PROCESS_INFO</code> y deadlocks de pipes), emulación segura en Atomic Red Team #3439 y reglas aprobadas en SigmaHQ #6310 y Elastic #6946.</p>
       <div class="research-chain">
         <span class="proof-pill">BDB-Guardian</span>
@@ -362,15 +380,21 @@
         <span class="proof-pill">Atomic #3439</span>
         <span class="proof-pill">Sigma #6310 &middot; Elastic #6946</span>
       </div>
-      <a class="proof-link" href="research/bigdiskbuster-fsutil-defense-evasion/">
-        <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-arrow-right"></i>
-      </a>
+      <div class="research-card-foot">
+        <a class="proof-link" href="research/bigdiskbuster-fsutil-defense-evasion/">
+          <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        </a>
+        <span class="research-time" data-i18n="research-2-time">10 min lectura</span>
+      </div>
     </article>
   </div>
 
   <div class="research-hub-cta reveal">
     <a href="research/" class="btn-line">
-      <span data-i18n="research-hub-cta">Explorar Research Hub &amp; Matriz Upstream</span> <i class="bi bi-arrow-up-right"></i>
+      <span data-i18n="research-hub-cta">Explorar Research Hub &amp; Matriz Upstream</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+    </a>
+    <a href="research/feed.xml" class="btn-line" type="application/rss+xml">
+      <i class="bi bi-rss-fill ico-accent" aria-hidden="true"></i> <span data-i18n="research-rss-cta">Feed RSS</span>
     </a>
   </div>
 </section>
@@ -390,47 +414,47 @@
       <div class="skigroup">
         <div class="skig-title" data-i18n="skills-group-1">Detection Engineering &amp; Threat Emulation</div>
         <div class="skitags">
-          <span class="skitag"><i class="bi bi-shield-check" style="color:var(--accent)"></i> Sigma</span>
-          <span class="skitag"><i class="bi bi-terminal" style="color:#0078D4"></i> KQL (Sentinel/MDE)</span>
-          <span class="skitag"><i class="bi bi-diagram-3-fill" style="color:#00BFB3"></i> Elastic EQL</span>
-          <span class="skitag"><i class="bi bi-bullseye" style="color:#ef4444"></i> MITRE ATT&amp;CK</span>
-          <span class="skitag"><i class="bi bi-lightning-charge-fill" style="color:#f5a623"></i> Atomic Red Team</span>
-          <span class="skitag"><i class="bi bi-activity"></i> Sysmon / ETW</span>
+          <span class="skitag"><i class="bi bi-shield-check ico-accent" aria-hidden="true"></i> Sigma</span>
+          <span class="skitag"><i class="bi bi-terminal ico-blue" aria-hidden="true"></i> KQL (Sentinel/MDE)</span>
+          <span class="skitag"><i class="bi bi-diagram-3-fill ico-teal" aria-hidden="true"></i> Elastic EQL</span>
+          <span class="skitag"><i class="bi bi-bullseye ico-red" aria-hidden="true"></i> MITRE ATT&amp;CK</span>
+          <span class="skitag"><i class="bi bi-lightning-charge-fill ico-amber" aria-hidden="true"></i> Atomic Red Team</span>
+          <span class="skitag"><i class="bi bi-activity" aria-hidden="true"></i> Sysmon / ETW</span>
         </div>
       </div>
       <div class="skigroup">
         <div class="skig-title" data-i18n="skills-group-2">Offensive &amp; Applied AI Security</div>
         <div class="skitags">
-          <span class="skitag"><i class="bi bi-shield-lock-fill" style="color:var(--accent)"></i> Pentesting</span>
-          <span class="skitag"><i class="bi bi-cpu"></i> AI Agents &amp; MCP</span>
-          <span class="skitag"><i class="bi bi-shield-shaded" style="color:#a855f7"></i> LLM Guardrails</span>
-          <span class="skitag"><i class="bi bi-safe2-fill" style="color:#00c466"></i> AppSec (OWASP)</span>
-          <span class="skitag"><i class="devicon-go-original-wordmark colored"></i> Offensive Go</span>
-          <a href="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3" target="_blank" rel="noopener" class="skitag" style="text-decoration:none" title="Ver perfil en Hack The Box"><i class="bi bi-patch-check-fill" style="color:var(--accent)"></i> HTB Pro Labs <i class="bi bi-arrow-up-right" style="font-size:0.6rem"></i></a>
+          <span class="skitag"><i class="bi bi-shield-lock-fill ico-accent" aria-hidden="true"></i> Pentesting</span>
+          <span class="skitag"><i class="bi bi-cpu" aria-hidden="true"></i> AI Agents &amp; MCP</span>
+          <span class="skitag"><i class="bi bi-shield-shaded ico-purple" aria-hidden="true"></i> LLM Guardrails</span>
+          <span class="skitag"><i class="bi bi-safe2-fill ico-green" aria-hidden="true"></i> AppSec (OWASP)</span>
+          <span class="skitag"><i class="bi bi-layers-half ico-amber" aria-hidden="true"></i> <span data-i18n="skills-win-internals">Windows Internals</span></span>
+          <a href="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3" target="_blank" rel="noopener" class="skitag skitag--link" title="Ver perfil en Hack The Box"><i class="bi bi-patch-check-fill ico-accent" aria-hidden="true"></i> HTB Pro Labs <i class="bi bi-arrow-up-right skitag-arrow" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="skigroup">
         <div class="skig-title" data-i18n="skills-group-3">Systems &amp; Security Engineering</div>
         <div class="skitags">
-          <span class="skitag"><i class="devicon-python-plain"></i> Python</span>
-          <span class="skitag"><i class="devicon-go-original-wordmark colored"></i> Go</span>
-          <span class="skitag"><i class="bi bi-terminal-fill" style="color:#5391FE"></i> PowerShell</span>
-          <span class="skitag"><i class="bi bi-code-square" style="color:#4EAA25"></i> Bash</span>
-          <span class="skitag"><i class="devicon-docker-plain" style="color:#2496ED"></i> Docker</span>
-          <span class="skitag"><i class="devicon-linux-plain"></i> Linux</span>
-          <span class="skitag"><i class="devicon-github-original"></i> GitHub Actions</span>
+          <span class="skitag"><i class="devicon-python-plain" aria-hidden="true"></i> Python</span>
+          <span class="skitag"><i class="devicon-go-original-wordmark colored" aria-hidden="true"></i> Go</span>
+          <span class="skitag"><i class="bi bi-terminal-fill ico-ps" aria-hidden="true"></i> PowerShell</span>
+          <span class="skitag"><i class="bi bi-code-square ico-bash" aria-hidden="true"></i> Bash</span>
+          <span class="skitag"><i class="devicon-docker-plain ico-docker" aria-hidden="true"></i> Docker</span>
+          <span class="skitag"><i class="devicon-linux-plain tcell-linux" aria-hidden="true"></i> Linux</span>
+          <span class="skitag"><i class="devicon-github-original" aria-hidden="true"></i> GitHub Actions</span>
         </div>
       </div>
       <div class="skigroup">
         <div class="skig-title" data-i18n="skills-group-4">Web, Data &amp; Enterprise</div>
         <div class="skitags">
-          <span class="skitag"><i class="devicon-laravel-original" style="color:#FF2D20"></i> Laravel</span>
-          <span class="skitag"><i class="devicon-django-plain"></i> Django</span>
-          <span class="skitag"><i class="devicon-flask-original"></i> Flask</span>
-          <span class="skitag"><i class="devicon-vuejs-plain" style="color:#42B883"></i> Vue.js</span>
-          <span class="skitag"><i class="devicon-postgresql-plain colored"></i> Postgres</span>
-          <span class="skitag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
-          <span class="skitag"><i class="devicon-salesforce-plain"></i> Salesforce</span>
+          <span class="skitag"><i class="devicon-laravel-original ico-laravel" aria-hidden="true"></i> Laravel</span>
+          <span class="skitag"><i class="devicon-django-plain" aria-hidden="true"></i> Django</span>
+          <span class="skitag"><i class="devicon-flask-original" aria-hidden="true"></i> Flask</span>
+          <span class="skitag"><i class="devicon-vuejs-plain ico-vue" aria-hidden="true"></i> Vue.js</span>
+          <span class="skitag"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i> Postgres</span>
+          <span class="skitag"><i class="devicon-mysql-plain colored" aria-hidden="true"></i> MySQL</span>
+          <span class="skitag"><i class="devicon-salesforce-plain" aria-hidden="true"></i> Salesforce</span>
         </div>
       </div>
     </div>
@@ -444,17 +468,17 @@
     <div class="sec-label-line"></div>
   </div>
 
-  <div class="resume-tab-nav reveal">
-    <button class="rtab-btn active" data-rtab="exp"><i class="bi bi-briefcase-fill"></i> <span data-i18n="resume-exp-title">Experiencia Laboral</span></button>
-    <button class="rtab-btn" data-rtab="edu"><i class="bi bi-mortarboard-fill"></i> <span data-i18n="resume-edu-title">Educación</span></button>
+  <div class="resume-tab-nav reveal" role="tablist" aria-label="Trayectoria profesional y académica">
+    <button type="button" class="rtab-btn active" id="rtab-btn-exp" role="tab" aria-selected="true" aria-controls="rtab-exp" data-rtab="exp"><i class="bi bi-briefcase-fill" aria-hidden="true"></i> <span data-i18n="resume-exp-title">Experiencia Laboral</span></button>
+    <button type="button" class="rtab-btn" id="rtab-btn-edu" role="tab" aria-selected="false" aria-controls="rtab-edu" data-rtab="edu"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> <span data-i18n="resume-edu-title">Educación</span></button>
   </div>
 
   <div class="resume-tab-content reveal">
     <!-- Tab 1: Experiencia -->
-    <div class="rtab-pane active" id="rtab-exp">
+    <div class="rtab-pane active" id="rtab-exp" role="tabpanel" aria-labelledby="rtab-btn-exp">
       <div class="tl">
         <div class="tli">
-          <div class="tly">2026 - Hoy</div>
+          <div class="tly" data-i18n="resume-date-0">2026 - Hoy</div>
           <div class="tldo"></div>
           <div>
             <h3 class="tltit" data-i18n="resume-exp-0-title">Evaluador de Penetración</h3>
@@ -481,7 +505,7 @@
           </div>
         </div>
         <div class="tli">
-          <div class="tly">2020 - Hoy</div>
+          <div class="tly" data-i18n="resume-date-3">2020 - Hoy</div>
           <div class="tldo"></div>
           <div>
             <h3 class="tltit" data-i18n="resume-exp-3-title">Consultoría en TI &amp; Automatización</h3>
@@ -502,10 +526,10 @@
     </div>
 
     <!-- Tab 2: Educación -->
-    <div class="rtab-pane" id="rtab-edu">
+    <div class="rtab-pane" id="rtab-edu" role="tabpanel" aria-labelledby="rtab-btn-edu" hidden>
       <div class="tl">
         <div class="tli">
-          <div class="tly">2024 - Hoy</div>
+          <div class="tly" data-i18n="resume-edu-1-date">2024 - Hoy</div>
           <div class="tldo"></div>
           <div>
             <h3 class="tltit" data-i18n="resume-edu-1-title">Máster en Inteligencia Artificial</h3>
@@ -549,43 +573,43 @@
   <div class="projects-deck-container reveal d1" id="projectsDeck">
     <div class="deck-header">
       <div class="deck-title-badge">
-        <i class="bi bi-easel2-fill"></i>
+        <i class="bi bi-easel2-fill" aria-hidden="true"></i>
         <span data-i18n="deck-title-badge">Project Showcase Deck</span>
       </div>
-      <div class="deck-nav-tabs" id="deckTabs">
-        <button class="deck-tab active" data-slide="0"><i class="bi bi-shield-check"></i> <span data-i18n="deck-tab-0">Upstream Research</span></button>
-        <button class="deck-tab" data-slide="1"><i class="bi bi-bug-fill"></i> <span data-i18n="deck-tab-1">BugBounty</span></button>
-        <button class="deck-tab" data-slide="2"><i class="bi bi-hdd-stack"></i> <span data-i18n="deck-tab-2">BDB-Guardian</span></button>
-        <button class="deck-tab" data-slide="3"><i class="bi bi-lock-fill"></i> <span data-i18n="deck-tab-3">pullgoscript</span></button>
-        <button class="deck-tab" data-slide="4"><i class="bi bi-hdd-network-fill"></i> <span data-i18n="deck-tab-4">Pentest Lab</span></button>
-        <button class="deck-tab" data-slide="5"><i class="bi bi-telegram"></i> <span data-i18n="deck-tab-5">dev101_bot</span></button>
-        <button class="deck-tab" data-slide="6"><i class="bi bi-graph-up-arrow"></i> <span data-i18n="deck-tab-6">Social Proof</span></button>
+      <div class="deck-nav-tabs" id="deckTabs" role="tablist" aria-label="Proyectos destacados">
+        <button type="button" class="deck-tab active" id="deck-tab-0" role="tab" aria-selected="true" aria-controls="deck-slide-0" data-slide="0"><i class="bi bi-shield-check" aria-hidden="true"></i> <span data-i18n="deck-tab-0">Upstream Research</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-1" role="tab" aria-selected="false" aria-controls="deck-slide-1" data-slide="1"><i class="bi bi-bug-fill" aria-hidden="true"></i> <span data-i18n="deck-tab-1">BugBounty</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-2" role="tab" aria-selected="false" aria-controls="deck-slide-2" data-slide="2"><i class="bi bi-hdd-stack" aria-hidden="true"></i> <span data-i18n="deck-tab-2">BDB-Guardian</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-3" role="tab" aria-selected="false" aria-controls="deck-slide-3" data-slide="3"><i class="bi bi-lock-fill" aria-hidden="true"></i> <span data-i18n="deck-tab-3">pullgoscript</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-4" role="tab" aria-selected="false" aria-controls="deck-slide-4" data-slide="4"><i class="bi bi-hdd-network-fill" aria-hidden="true"></i> <span data-i18n="deck-tab-4">Pentest Lab</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-5" role="tab" aria-selected="false" aria-controls="deck-slide-5" data-slide="5"><i class="bi bi-telegram" aria-hidden="true"></i> <span data-i18n="deck-tab-5">dev101_bot</span></button>
+        <button type="button" class="deck-tab" id="deck-tab-6" role="tab" aria-selected="false" aria-controls="deck-slide-6" data-slide="6"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i> <span data-i18n="deck-tab-6">Social Proof</span></button>
       </div>
     </div>
 
     <div class="deck-viewport">
       <!-- Slide 0: Upstream Security Research -->
-      <div class="deck-slide active" data-slide-index="0">
+      <div class="deck-slide active" id="deck-slide-0" role="tabpanel" aria-labelledby="deck-tab-0" data-slide-index="0">
         <div class="proof-title">
           <span data-i18n="portfolio-lolbas-title">Upstream Security Research · Contribuciones Oficiales</span>
-          <i class="bi bi-shield-check" style="color:var(--accent)"></i>
+          <i class="bi bi-shield-check ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card">
           <div class="proof-top">
-            <div class="cico" style="background:rgba(0,180,216,0.12);border:1px solid rgba(0,180,216,0.3);overflow:hidden;padding:3px;display:flex;align-items:center;justify-content:center">
-              <picture style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><source srcset="assets/img/lolbas_official_logo.webp" type="image/webp"><img src="assets/img/lolbas_official_logo.png" alt="LOLBAS Logo" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain"></picture>
+            <div class="cico lolbas-ico">
+              <picture><source srcset="assets/img/lolbas_official_logo.webp" type="image/webp"><img src="assets/img/lolbas_official_logo.png" alt="LOLBAS Logo" width="128" height="128" loading="lazy" decoding="async"></picture>
             </div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-lolbas-project-tag">Upstream Security Research · MITRE ATT&amp;CK T1685 · T1202 · T1555.005 · T1219</div>
               <h3 class="proof-name" data-i18n="portfolio-lolbas-project-title">LOLBAS, Atomic Red Team, LOLRMM &amp; Maigret</h3>
               <div class="proof-handle">
-                <a href="https://github.com/LOLBAS-Project/LOLBAS/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@LOLBAS (#525, #532, #539)</a> · <a href="https://github.com/redcanaryco/atomic-red-team/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@atomic-red-team (#3433, #3439)</a> · <a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@LOLRMM #253</a> · <a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@maigret (&times;4)</a>
-                <span style="color:var(--accent);margin-left:8px;font-size:.7rem;font-weight:700">&bull; 10 Upstream PRs Merged</span>
+                <a href="https://github.com/LOLBAS-Project/LOLBAS/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">@LOLBAS (#525, #532, #539)</a> · <a href="https://github.com/redcanaryco/atomic-red-team/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">@atomic-red-team (#3433, #3439)</a> · <a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener">@LOLRMM #253</a> · <a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">@maigret (&times;4)</a>
+                <span class="proof-badge-inline" data-i18n="portfolio-lolbas-badge">&bull; 10 PRs Upstream Mergeados</span>
               </div>
             </div>
           </div>
-          <div class="card-banner-wrap" style="aspect-ratio:16/9;background:#060d17;border-color:rgba(0,180,216,0.25)">
-            <picture><source srcset="assets/img/lolbas_devcop95_banner.webp" type="image/webp"><img src="assets/img/lolbas_devcop95_banner.jpg" alt="LOLBAS Official Contribution Banner - DevCop95" loading="lazy" decoding="async"></picture>
+          <div class="card-banner-wrap lolbas-banner">
+            <picture><source srcset="assets/img/lolbas_devcop95_banner.webp" type="image/webp"><img src="assets/img/lolbas_devcop95_banner.jpg" alt="LOLBAS Official Contribution Banner - DevCop95" width="1376" height="768" loading="lazy" decoding="async"></picture>
           </div>
           <p class="proof-copy" data-i18n="portfolio-lolbas-project-copy">Diez contribuciones upstream fusionadas en estándares de seguridad y OSINT: <strong>LOLBAS (#525, #532, #539)</strong> en <code>Fsutil.exe</code> (T1685) y <code>Ssh.exe</code> (T1202); <strong>Red Canary Atomic Red Team (#3433, #3439)</strong> en KeePass (T1555.005) y Windows Defender (T1685); <strong>LOLRMM (#253)</strong> para clientes AnyDesk (T1219); y <strong>Maigret (&times;4)</strong> eliminando falsos positivos OSINT. En revisión activa: <strong>Elastic #6946 (Approved &times;2)</strong>, <strong>SigmaHQ #6310/#6323 (Approved) &amp; #6585</strong>, y <strong>Azure-Sentinel #15693</strong>.</p>
           <div class="proof-pill-list">
@@ -598,38 +622,38 @@
           </div>
           <div class="proof-actions">
             <a class="proof-link" href="research/">
-              <span data-i18n="portfolio-research-cta">Leer Deep Dives</span> <i class="bi bi-journal-code"></i>
+              <span data-i18n="portfolio-research-cta">Leer Deep Dives</span> <i class="bi bi-journal-code" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="https://github.com/LOLBAS-Project/LOLBAS/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-lolbas-cta-pr">LOLBAS (#525, #532, #539)</span> <i class="bi bi-github"></i>
+              <span data-i18n="portfolio-lolbas-cta-pr">LOLBAS (#525, #532, #539)</span> <i class="bi bi-github" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="https://github.com/redcanaryco/atomic-red-team/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-atomic-cta">Atomic Red Team (#3433, #3439)</span> <i class="bi bi-shield-shaded"></i>
+              <span data-i18n="portfolio-atomic-cta">Atomic Red Team (#3433, #3439)</span> <i class="bi bi-shield-shaded" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="https://www.itsc.cuhk.edu.hk/en/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-lolbas-cta-cuhk">Alerta CUHK</span> <i class="bi bi-building"></i>
+              <span data-i18n="portfolio-lolbas-cta-cuhk">Alerta CUHK</span> <i class="bi bi-building" aria-hidden="true"></i>
             </a>
           </div>
         </article>
       </div>
 
       <!-- Slide 1: BugBounty Flagship -->
-      <div class="deck-slide" data-slide-index="1">
+      <div class="deck-slide" id="deck-slide-1" role="tabpanel" aria-labelledby="deck-tab-1" data-slide-index="1" hidden>
         <div class="proof-title">
-          <span data-i18n="portfolio-security-title">Security Research · Flagship</span>
-          <i class="bi bi-shield-shaded" style="color:var(--accent)"></i>
+          <span data-i18n="portfolio-security-title">Security Research · Proyecto Estrella</span>
+          <i class="bi bi-shield-shaded ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card flagship-card">
           <div class="flagship-glow" aria-hidden="true"></div>
           <div class="proof-top">
-            <div class="cico"><i class="bi bi-bug-fill"></i></div>
+            <div class="cico"><i class="bi bi-bug-fill" aria-hidden="true"></i></div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-flagship-tag">Bug Bounty Workspace · HackerOne</div>
               <h3 class="proof-name">bugbounty-lab101</h3>
               <div class="proof-handle">@DevCop95/bugbounty-lab101</div>
             </div>
             <a class="flagship-stars" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener" aria-label="Estrellas en GitHub" data-repo="DevCop95/bugbounty-lab101">
-              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill" aria-hidden="true"></i>
               <span class="fs-count" data-stars>-</span>
               <span class="fs-label" data-i18n="github-stars">estrellas</span>
             </a>
@@ -643,46 +667,46 @@
             <span class="proof-pill">CVE / CWE</span>
           </div>
           <a class="proof-link" href="https://github.com/DevCop95/bugbounty-lab101" target="_blank" rel="noopener">
-            <span data-i18n="portfolio-flagship-cta">Ver el repositorio</span> <i class="bi bi-arrow-up-right"></i>
+            <span data-i18n="portfolio-flagship-cta">Ver el repositorio</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
         </article>
       </div>
 
       <!-- Slide 2: BDB-Guardian -->
-      <div class="deck-slide" data-slide-index="2">
+      <div class="deck-slide" id="deck-slide-2" role="tabpanel" aria-labelledby="deck-tab-2" data-slide-index="2" hidden>
         <div class="proof-title">
           <span data-i18n="portfolio-bdb-header">Kernel Handle Correlation · CUHK ITSC Cited</span>
-          <i class="bi bi-hdd-stack" style="color:var(--accent)"></i>
+          <i class="bi bi-hdd-stack ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card">
           <div class="proof-top">
-            <div class="cico"><i class="bi bi-shield-fill-check"></i></div>
+            <div class="cico"><i class="bi bi-shield-fill-check" aria-hidden="true"></i></div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-bdb-tag">Defensive Windows Monitor · PowerShell &amp; Win32/C#</div>
               <h3 class="proof-name">BDB-Guardian</h3>
               <div class="proof-handle">@DevCop95/BDB-Guardian &middot; Cited by CUHK ITSC</div>
             </div>
           </div>
-          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#090d16 0%,#111827 100%);padding:1.5rem;font-family:var(--fm);color:#e2e8f0">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:.75rem;margin-bottom:1rem;font-size:.7rem;color:#94a3b8">
-              <span><i class="bi bi-cpu-fill" style="color:var(--accent)"></i> BDBMonitor.ps1 &rarr; Invoke-VolumeScan.ps1</span>
-              <span style="color:#10b981;font-weight:700">&#9679; VERDICT: CRITICAL (SAME-PID)</span>
+          <div class="deck-terminal">
+            <div class="deck-terminal-head">
+              <span><i class="bi bi-cpu-fill" aria-hidden="true"></i> BDBMonitor.ps1 &rarr; Invoke-VolumeScan.ps1</span>
+              <span class="deck-terminal-status">&#9679; VERDICT: CRITICAL (SAME-PID)</span>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;font-size:.75rem">
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:var(--accent);font-weight:700;font-size:.65rem">IOC 01 &middot; RESTART MGR</div>
-                <div style="margin-top:.25rem;font-weight:600">MRT.exe Lock</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">RM_PROCESS_INFO retry</div>
+            <div class="deck-terminal-grid deck-terminal-grid--3">
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--accent">IOC 01 &middot; RESTART MGR</div>
+                <div class="deck-tile-title">MRT.exe Lock</div>
+                <div class="deck-tile-sub">RM_PROCESS_INFO retry</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#38bdf8;font-weight:700;font-size:.65rem">IOC 02 &middot; NT HANDLES</div>
-                <div style="margin-top:.25rem;font-weight:600">Volume C: Handle</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">FILE_TYPE_DISK filter</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--sky">IOC 02 &middot; NT HANDLES</div>
+                <div class="deck-tile-title">Volume C: Handle</div>
+                <div class="deck-tile-sub">FILE_TYPE_DISK filter</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#f59e0b;font-weight:700;font-size:.65rem">IOC 03 &middot; %TEMP%</div>
-                <div style="margin-top:.25rem;font-weight:600">Hidden GUID File</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">6–14 s full scan</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--amber">IOC 03 &middot; %TEMP%</div>
+                <div class="deck-tile-title">Hidden GUID File</div>
+                <div class="deck-tile-sub">6–14 s full scan</div>
               </div>
             </div>
           </div>
@@ -696,53 +720,53 @@
           </div>
           <div class="proof-actions">
             <a class="proof-link" href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-bdb-cta">Ver BDB-Guardian</span> <i class="bi bi-github"></i>
+              <span data-i18n="portfolio-bdb-cta">Ver BDB-Guardian</span> <i class="bi bi-github" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="https://devcop95.github.io/BDB-Guardian/" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-bdb-report-cta">Reporte de evidencia</span> <i class="bi bi-arrow-up-right"></i>
+              <span data-i18n="portfolio-bdb-report-cta">Reporte de evidencia</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="research/bigdiskbuster-fsutil-defense-evasion/">
-              <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-journal-code"></i>
+              <span data-i18n="research-read-cta">Leer Deep Dive</span> <i class="bi bi-journal-code" aria-hidden="true"></i>
             </a>
           </div>
         </article>
       </div>
 
       <!-- Slide 3: pullgoscript -->
-      <div class="deck-slide" data-slide-index="3">
+      <div class="deck-slide" id="deck-slide-3" role="tabpanel" aria-labelledby="deck-tab-3" data-slide-index="3" hidden>
         <div class="proof-title">
           <span data-i18n="portfolio-pullgo-header">Systems Security Engineering · Go &amp; Assembly</span>
-          <i class="bi bi-lock-fill" style="color:var(--accent)"></i>
+          <i class="bi bi-lock-fill ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card">
           <div class="proof-top">
-            <div class="cico"><i class="bi bi-shield-lock-fill"></i></div>
+            <div class="cico"><i class="bi bi-shield-lock-fill" aria-hidden="true"></i></div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-pullgo-tag">Windows Audit &amp; Hardened Console · Go + Assembly</div>
               <h3 class="proof-name">pullgoscript</h3>
               <div class="proof-handle">@DevCop95/pullgoscript</div>
             </div>
           </div>
-          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#090d16 0%,#111827 100%);padding:1.5rem;font-family:var(--fm);color:#e2e8f0">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:.75rem;margin-bottom:1rem;font-size:.7rem;color:#94a3b8">
-              <span><i class="bi bi-terminal" style="color:var(--accent)"></i> pullgoscript --audit --bind 127.0.0.1</span>
-              <span style="color:#10b981;font-weight:700">&#9679; GOSEC + FUZZ TESTED</span>
+          <div class="deck-terminal">
+            <div class="deck-terminal-head">
+              <span><i class="bi bi-terminal" aria-hidden="true"></i> pullgoscript --audit --bind 127.0.0.1</span>
+              <span class="deck-terminal-status">&#9679; GOSEC + FUZZ TESTED</span>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;font-size:.75rem">
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:var(--accent);font-weight:700;font-size:.65rem">HEADLESS AUDIT</div>
-                <div style="margin-top:.25rem;font-weight:600">Attack-Surface Check</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">CI &amp; Blue Team ready</div>
+            <div class="deck-terminal-grid">
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--accent">HEADLESS AUDIT</div>
+                <div class="deck-tile-title">Attack-Surface Check</div>
+                <div class="deck-tile-sub">CI &amp; Blue Team ready</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#38bdf8;font-weight:700;font-size:.65rem">BOUNDARY GUARD</div>
-                <div style="margin-top:.25rem;font-weight:600">Host / Origin Fuzzing</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Loopback 127.0.0.1</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--sky">BOUNDARY GUARD</div>
+                <div class="deck-tile-title">Host / Origin Fuzzing</div>
+                <div class="deck-tile-sub">Loopback 127.0.0.1</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#f59e0b;font-weight:700;font-size:.65rem">EXPLICIT GATING</div>
-                <div style="margin-top:.25rem;font-weight:600">T1003 · T1555 · T1547</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Flag-gated modules</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--amber">EXPLICIT GATING</div>
+                <div class="deck-tile-title">T1003 · T1555 · T1547</div>
+                <div class="deck-tile-sub">Flag-gated modules</div>
               </div>
             </div>
           </div>
@@ -755,51 +779,51 @@
             <span class="proof-pill">MITRE T1003 · T1555</span>
           </div>
           <a class="proof-link" href="https://github.com/DevCop95/pullgoscript" target="_blank" rel="noopener">
-            <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github"></i>
+            <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github" aria-hidden="true"></i>
           </a>
         </article>
       </div>
 
       <!-- Slide 4: dev101x-pentest-lab -->
-      <div class="deck-slide" data-slide-index="4">
+      <div class="deck-slide" id="deck-slide-4" role="tabpanel" aria-labelledby="deck-tab-4" data-slide-index="4" hidden>
         <div class="proof-title">
           <span data-i18n="portfolio-pentestlab-header">Docker Security Lab · Multi-Stage Kill Chain</span>
-          <i class="bi bi-hdd-network-fill" style="color:var(--accent)"></i>
+          <i class="bi bi-hdd-network-fill ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card">
           <div class="proof-top">
-            <div class="cico"><i class="bi bi-hdd-network-fill"></i></div>
+            <div class="cico"><i class="bi bi-hdd-network-fill" aria-hidden="true"></i></div>
             <div>
               <div class="proof-kicker" data-i18n="portfolio-pentestlab-tag">Pro Lab Simulation · Docker &amp; Python</div>
               <h3 class="proof-name" data-i18n="portfolio-aprendeapi-title">dev101x-pentest-lab: Multi-Stage Red Team Box</h3>
               <div class="proof-handle">@DevCop95/dev101x-pentest-lab</div>
             </div>
           </div>
-          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#090d16 0%,#111827 100%);padding:1.5rem;font-family:var(--fm);color:#e2e8f0">
-            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:.75rem;margin-bottom:1rem;font-size:.7rem;color:#94a3b8">
-              <span><i class="bi bi-terminal-fill" style="color:var(--accent)"></i> root@dev101x-lab:~/killchain</span>
-              <span style="color:#10b981;font-weight:700">&#9679; DOCKER COMPOSE MULTI-NET</span>
+          <div class="deck-terminal">
+            <div class="deck-terminal-head">
+              <span><i class="bi bi-terminal-fill" aria-hidden="true"></i> root@dev101x-lab:~/killchain</span>
+              <span class="deck-terminal-status">&#9679; DOCKER COMPOSE MULTI-NET</span>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem;font-size:.75rem">
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:var(--accent);font-weight:700;font-size:.65rem">STAGE 01 · PERIMETER</div>
-                <div style="margin-top:.25rem;font-weight:600">Blind SQL Injection</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Auth bypass &amp; dump</div>
+            <div class="deck-terminal-grid">
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--accent">STAGE 01 · PERIMETER</div>
+                <div class="deck-tile-title">Blind SQL Injection</div>
+                <div class="deck-tile-sub">Auth bypass &amp; dump</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#38bdf8;font-weight:700;font-size:.65rem">STAGE 02 · PIVOT</div>
-                <div style="margin-top:.25rem;font-weight:600">Internal Subnet</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Lateral movement</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--sky">STAGE 02 · PIVOT</div>
+                <div class="deck-tile-title">Internal Subnet</div>
+                <div class="deck-tile-sub">Lateral movement</div>
               </div>
-              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:.75rem">
-                <div style="color:#f59e0b;font-weight:700;font-size:.65rem">STAGE 03 · PRIVESC</div>
-                <div style="margin-top:.25rem;font-weight:600">SUID Exploitation</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Root shell escalation</div>
+              <div class="deck-terminal-tile">
+                <div class="deck-tile-kicker deck-tile-kicker--amber">STAGE 03 · PRIVESC</div>
+                <div class="deck-tile-title">SUID Exploitation</div>
+                <div class="deck-tile-sub">Root shell escalation</div>
               </div>
-              <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:8px;padding:.75rem">
-                <div style="color:#10b981;font-weight:700;font-size:.65rem">STAGE 04 · VERIFY</div>
-                <div style="margin-top:.25rem;font-weight:600">Live Flag Engine</div>
-                <div style="color:#94a3b8;font-size:.65rem;margin-top:.2rem">Server-side validation</div>
+              <div class="deck-terminal-tile deck-terminal-tile--emerald">
+                <div class="deck-tile-kicker deck-tile-kicker--emerald">STAGE 04 · VERIFY</div>
+                <div class="deck-tile-title">Live Flag Engine</div>
+                <div class="deck-tile-sub">Server-side validation</div>
               </div>
             </div>
           </div>
@@ -813,32 +837,32 @@
           </div>
           <div class="proof-actions">
             <a class="proof-link" href="https://github.com/DevCop95/dev101x-pentest-lab" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github"></i>
+              <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github" aria-hidden="true"></i>
             </a>
-            <a class="proof-link" href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-bdb-cta">Ver BDB-Guardian</span> <i class="bi bi-shield-check"></i>
+            <a class="proof-link" href="https://github.com/DevCop95/dev101x-pentest-lab#readme" target="_blank" rel="noopener">
+              <span data-i18n="portfolio-pentestlab-guide-cta">Arquitectura &amp; Guía</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
             </a>
           </div>
         </article>
       </div>
 
       <!-- Slide 5: dev101_bot -->
-      <div class="deck-slide" data-slide-index="5">
+      <div class="deck-slide" id="deck-slide-5" role="tabpanel" aria-labelledby="deck-tab-5" data-slide-index="5" hidden>
         <div class="proof-title">
           <span data-i18n="portfolio-backend-title">Threat Intelligence Pipeline · Serverless</span>
-          <i class="bi bi-telegram" style="color:var(--accent)"></i>
+          <i class="bi bi-telegram ico-accent" aria-hidden="true"></i>
         </div>
         <article class="proof-card">
           <div class="proof-top">
-            <div class="cico"><i class="bi bi-telegram"></i></div>
+            <div class="cico"><i class="bi bi-telegram" aria-hidden="true"></i></div>
             <div>
               <div class="proof-kicker">Threat Intel &amp; Serverless</div>
               <h3 class="proof-name" data-i18n="portfolio-dev101-title">dev101_bot + cYHBernews</h3>
               <div class="proof-handle">@DevCop95/dev101_bot</div>
             </div>
           </div>
-          <div class="project-image-wrap" style="margin:1.5rem 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;background:#0e1117">
-            <picture style="width:100%;height:100%;display:block"><source srcset="assets/img/bot101.webp" type="image/webp"><img src="assets/img/bot101.png" alt="cYHBernews" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;transition:transform .5s var(--ease)"></picture>
+          <div class="project-image-wrap bot-banner">
+            <picture><source srcset="assets/img/bot101.webp" type="image/webp"><img src="assets/img/bot101.png" alt="cYHBernews" width="1774" height="887" loading="lazy" decoding="async"></picture>
           </div>
           <p class="proof-copy" data-i18n="portfolio-dev101-copy">Sistema que recopila y resume inteligencia de amenazas e IA con Python y Groq, automatizado con Cloudflare Workers y GitHub Actions. Distribuye las alertas a Telegram y alimenta <strong>cYHBernews</strong>.</p>
           <div class="proof-pill-list">
@@ -849,26 +873,29 @@
           </div>
           <div class="proof-actions">
             <a class="proof-link" href="https://devcop95.github.io/cYHBernews/" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-dev101-demo">Ver cYHBernews</span> <i class="bi bi-arrow-up-right"></i>
+              <span data-i18n="portfolio-dev101-demo">Ver cYHBernews</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
             </a>
             <a class="proof-link" href="https://github.com/DevCop95/dev101_bot" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github"></i>
+              <span data-i18n="portfolio-backend-project-cta">Explorar Código</span> <i class="bi bi-github" aria-hidden="true"></i>
             </a>
           </div>
         </article>
       </div>
 
       <!-- Slide 6: Social Proof -->
-      <div class="deck-slide" data-slide-index="6">
+      <div class="deck-slide" id="deck-slide-6" role="tabpanel" aria-labelledby="deck-tab-6" data-slide-index="6" hidden>
         <div class="proof-title">
           <span data-i18n="portfolio-proof-title">Engineering Presence · Social Proof</span>
-          <i class="bi bi-shield-check" style="color:var(--accent)"></i>
+          <i class="bi bi-shield-check ico-accent" aria-hidden="true"></i>
         </div>
         <div class="proof-grid">
           <!-- GitHub Card -->
           <article class="proof-card">
             <div class="proof-top">
-              <img src="https://avatars.githubusercontent.com/u/264654485?v=4" alt="DevCop95" class="proof-avatar" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="assets/img/social/github-avatar.webp" type="image/webp">
+                <img src="assets/img/social/github-avatar.jpg" alt="DevCop95" class="proof-avatar" width="128" height="128" loading="lazy" decoding="async">
+              </picture>
               <div>
                 <div class="proof-kicker" data-i18n="portfolio-github-status">GitHub Status</div>
                 <h3 class="proof-name">Yared Henriquez</h3>
@@ -885,7 +912,7 @@
                 <span data-i18n="github-public-repos">Repositorios públicos</span>
               </div>
               <div>
-                <strong style="color:var(--accent)">#16</strong>
+                <strong class="gh-metric-accent">#16</strong>
                 <span data-i18n="github-rank-colombia">Rank Colombia</span>
               </div>
             </div>
@@ -898,23 +925,23 @@
               <span class="proof-pill">YOLO</span>
             </div>
             <a class="proof-link" href="https://github.com/DevCop95" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-github-cta">Acceder al código</span> <i class="bi bi-arrow-up-right"></i>
+              <span data-i18n="portfolio-github-cta">Acceder al código</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
             </a>
-            <div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem">
-              <div style="margin-bottom:1rem;display:flex;align-items:center;gap:8px">
-                <i class="bi bi-graph-up-arrow" style="color:var(--accent)"></i>
-                <span style="font-family:var(--fm);font-size:.7rem;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.05em" data-i18n="github-chart-header">Contribuciones en GitHub</span>
+            <div class="gh-chart-wrap">
+              <div class="gh-chart-head">
+                <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
+                <span data-i18n="github-chart-header">Contribuciones en GitHub</span>
               </div>
-              <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.5rem">
+              <div class="gh-chart-scroll">
                 <div class="gh-chart" id="ghChart" data-gh-user="DevCop95" role="img" aria-label="Calendario de contribuciones en GitHub"></div>
               </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
-                <p style="font-size:.6rem;color:var(--muted);font-family:var(--fm);letter-spacing:.05em;text-transform:uppercase">
-                  <i class="bi bi-calendar3"></i> <span data-i18n="github-chart-range">Últimos 12 meses</span>
+              <div class="gh-chart-foot">
+                <p class="gh-chart-range">
+                  <i class="bi bi-calendar3" aria-hidden="true"></i> <span data-i18n="github-chart-range">Últimos 12 meses</span>
                   · <span data-gh-total>—</span> <span data-i18n="github-chart-total-label">contribuciones</span>
                 </p>
-                <p style="font-size:.55rem;color:var(--accent);font-family:var(--fm);font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:4px">
-                  <i class="bi bi-arrow-left-right"></i> <span data-i18n="github-scroll-hint">Desliza para ver meses</span>
+                <p class="gh-chart-hint">
+                  <i class="bi bi-arrow-left-right" aria-hidden="true"></i> <span data-i18n="github-scroll-hint">Desliza para ver meses</span>
                 </p>
               </div>
             </div>
@@ -923,20 +950,29 @@
           <!-- Salesforce Card -->
           <article class="proof-card">
             <div class="proof-top">
-              <img src="https://profile.digital.salesforce.com/images/p/0051I0000081gGgQAI/1756517526/F" alt="Yared Dev" class="proof-avatar" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="assets/img/social/salesforce-avatar.webp" type="image/webp">
+                <img src="assets/img/social/salesforce-avatar.jpg" alt="Yared Dev" class="proof-avatar" width="128" height="128" loading="lazy" decoding="async">
+              </picture>
               <div>
                 <div class="proof-kicker">Salesforce Trailhead</div>
                 <h3 class="proof-name">Yared Dev</h3>
                 <div class="proof-handle">Ranger Rank</div>
               </div>
             </div>
-            <div class="trailhead-status-wrap" style="margin:1.5rem 0;padding:2.5rem 1.5rem;background:linear-gradient(135deg,#00A1E0 0%,#005fb2 100%);border-radius:16px;color:#fff;text-align:center;position:relative;overflow:hidden">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem">
-                <img src="https://res.cloudinary.com/trailhead/image/upload/public-trailhead/assets/images/ranks/ranger.png" alt="Salesforce Ranger Rank" loading="lazy" decoding="async" style="width:110px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
-                <img src="https://trailhead.salesforce.com/agentblazer/level_1_edition_2025.png" alt="Agentblazer 2025" loading="lazy" decoding="async" style="width:200px;height:auto;filter:drop-shadow(0 12px 20px rgba(0,0,0,.3))">
+            <div class="trailhead-status-wrap">
+              <div class="trailhead-badges">
+                <picture>
+                  <source srcset="assets/img/social/trailhead-ranger.webp" type="image/webp">
+                  <img src="assets/img/social/trailhead-ranger.png" alt="Salesforce Ranger Rank" class="trailhead-ranger-img" width="177" height="142" loading="lazy" decoding="async">
+                </picture>
+                <picture>
+                  <source srcset="assets/img/social/trailhead-agentblazer-2025.webp" type="image/webp">
+                  <img src="assets/img/social/trailhead-agentblazer-2025.png" alt="Agentblazer 2025" class="trailhead-agent-img" width="400" height="86" loading="lazy" decoding="async">
+                </picture>
               </div>
-              <div style="font-family:var(--fm);font-size:.7rem;text-transform:uppercase;margin-bottom:.2rem;opacity:.9">Current Rank</div>
-              <div style="font-size:1.8rem;font-weight:800;letter-spacing:-.02em">RANGER</div>
+              <div class="trailhead-kicker" data-i18n="trailhead-rank-label">Rango Actual</div>
+              <div class="trailhead-rank">RANGER</div>
             </div>
             <div class="proof-pill-list">
               <span class="proof-pill">Agentblazer</span>
@@ -944,7 +980,7 @@
               <span class="proof-pill">Architect</span>
             </div>
             <a class="proof-link" href="https://www.salesforce.com/trailblazer/yhenriquezblanquicett" target="_blank" rel="noopener">
-              <span data-i18n="portfolio-trailhead-cta">Ver perfil oficial</span> <i class="bi bi-arrow-up-right"></i>
+              <span data-i18n="portfolio-trailhead-cta">Ver perfil oficial</span> <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
             </a>
           </article>
         </div>
@@ -953,10 +989,10 @@
 
     <!-- Deck Footer Controls -->
     <div class="deck-footer">
-      <button class="deck-nav-btn" id="deckPrevBtn"><i class="bi bi-chevron-left"></i> <span data-i18n="deck-btn-prev">Anterior</span></button>
+      <button type="button" class="deck-nav-btn" id="deckPrevBtn"><i class="bi bi-chevron-left" aria-hidden="true"></i> <span data-i18n="deck-btn-prev">Anterior</span></button>
       <div class="deck-counter"><span id="deckCurrentIndex">1</span> / <span id="deckTotalCount">7</span></div>
       <div class="deck-dots-container" id="deckDots"></div>
-      <button class="deck-nav-btn" id="deckNextBtn"><span data-i18n="deck-btn-next">Siguiente</span> <i class="bi bi-chevron-right"></i></button>
+      <button type="button" class="deck-nav-btn" id="deckNextBtn"><span data-i18n="deck-btn-next">Siguiente</span> <i class="bi bi-chevron-right" aria-hidden="true"></i></button>
     </div>
   </div>
 
@@ -973,7 +1009,7 @@
       <div class="card-banner-wrap recons-banner">
         <picture>
           <source srcset="assets/img/recons101x-banner.webp" type="image/webp">
-          <img src="assets/img/recons101x-banner.png" alt="Recons101x Banner" loading="lazy">
+          <img src="assets/img/recons101x-banner.png" alt="Recons101x Banner" width="831" height="177" loading="lazy" decoding="async">
         </picture>
       </div>
       <p class="proof-copy" data-i18n="portfolio-recons-copy">Herramienta en Python para enumerar hostnames publicados en Shodan CTL. Funciona en Windows, Linux y Termux sin una API key de Shodan ni paquetes de terceros.</p>
@@ -1004,7 +1040,7 @@
       <div class="card-banner-wrap cyhber-banner">
         <picture>
           <source srcset="assets/img/cyhber-deploy-banner.webp?v=2" type="image/webp">
-          <img src="assets/img/cyhber-deploy-banner.png?v=2" alt="cyhber-deploy Banner" loading="lazy">
+          <img src="assets/img/cyhber-deploy-banner.png?v=2" alt="cyhber-deploy Banner" width="1600" height="900" loading="lazy" decoding="async">
         </picture>
       </div>
       <p class="proof-copy" data-i18n="portfolio-cyhber-copy">Skill de revisión de seguridad asistida por IA para Claude Code (Grade A en SkillsDirectory). Organiza el análisis en cinco capas: código, dependencias, secretos y datos personales, CI/CD e infraestructura.</p>
@@ -1022,6 +1058,7 @@
         </a>
       </div>
     </article>
+
     <article class="proof-card reveal d2" id="dev101x-cursos">
       <div class="proof-top">
         <div class="cico"><i class="bi bi-mortarboard" aria-hidden="true"></i></div>
@@ -1034,7 +1071,7 @@
       <div class="card-banner-wrap">
         <picture>
           <source srcset="assets/img/dev101x-cursos-banner.webp" type="image/webp">
-          <img src="assets/img/dev101x-cursos-banner.png" alt="Dev101x Cursos: terminal del laboratorio con Nmap y Git" loading="lazy">
+          <img src="assets/img/dev101x-cursos-banner.png" alt="Dev101x Cursos: terminal del laboratorio con Nmap y Git" width="1280" height="720" loading="lazy" decoding="async">
         </picture>
       </div>
       <p class="proof-copy" data-i18n="portfolio-cursos-copy">Cursos en español con terminal simulada en el navegador: Nmap desde Windows (gratis) y Git y GitHub desde cero (premium). Progreso y acceso validados en el servidor.</p>
@@ -1056,122 +1093,122 @@
 
   <h3 class="portfolio-learning-title reveal" data-i18n="portfolio-learning-title">Formación y herramientas</h3>
   <div class="pfilt reveal">
-    <button class="pfbtn active" data-f="cert" data-i18n="portfolio-filter-cert">Certificaciones</button>
-    <button class="pfbtn" data-f="tech" data-i18n="portfolio-filter-tech">Tecnologías</button>
+    <button type="button" class="pfbtn active" data-f="cert" aria-pressed="true" data-i18n="portfolio-filter-cert">Certificaciones</button>
+    <button type="button" class="pfbtn" data-f="tech" aria-pressed="false" data-i18n="portfolio-filter-tech">Tecnologías</button>
   </div>
 
   <div class="cert-carousel-container reveal" id="cgrid">
     <div class="cert-carousel-header">
-      <span class="cert-carousel-title"><i class="bi bi-patch-check-fill" style="color:var(--accent)"></i> <span data-i18n="cert-carousel-title">Certificaciones &amp; Credenciales</span></span>
+      <span class="cert-carousel-title"><i class="bi bi-patch-check-fill ico-accent" aria-hidden="true"></i> <span data-i18n="cert-carousel-title">Certificaciones &amp; Credenciales</span></span>
       <div class="carousel-nav-btns">
-        <button class="carousel-btn" id="certPrevBtn" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-        <button class="carousel-btn" id="certNextBtn" aria-label="Siguiente"><i class="bi bi-chevron-right"></i></button>
+        <button type="button" class="carousel-btn" id="certPrevBtn" aria-label="Anterior"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+        <button type="button" class="carousel-btn" id="certNextBtn" aria-label="Siguiente"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
     </div>
     <div class="cert-carousel-track" id="certTrack">
       <div class="pitem" data-pdf="assets/docs/Mythical.pdf" data-cred="HTBCERT-28139E357A" data-recipient="Yared Henriquez Blanquicett" data-profile="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-13.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-13.jpg" alt="HTB Mini Pro Labs: Mythical" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-13.jpg" alt="HTB Mini Pro Labs: Mythical" width="2526" height="1786" loading="lazy" decoding="async">
         </picture>
         <div class="pov">
-          <div class="pov-tag"><span data-i18n="portfolio-filter-cert">Certificación</span> · HTB</div>
+          <div class="pov-tag"><span data-i18n="cert-tag-cert">Certificación</span> · HTB</div>
           <div class="pov-tit">HTB Mini Pro Labs: Mythical</div>
-          <div class="pov-cred"><i class="bi bi-shield-check"></i> HTBCERT-28139E357A</div>
+          <div class="pov-cred"><i class="bi bi-shield-check" aria-hidden="true"></i> HTBCERT-28139E357A</div>
         </div>
       </div>
       <div class="pitem" data-pdf="assets/docs/Puppet.pdf" data-cred="HTBCERT-CD631B515C" data-recipient="Yared Henriquez Blanquicett" data-profile="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-14.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-14.jpg" alt="HTB Mini Pro Labs: Puppet" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-14.jpg" alt="HTB Mini Pro Labs: Puppet" width="2526" height="1786" loading="lazy" decoding="async">
         </picture>
         <div class="pov">
-          <div class="pov-tag"><span data-i18n="portfolio-filter-cert">Certificación</span> · HTB</div>
+          <div class="pov-tag"><span data-i18n="cert-tag-cert">Certificación</span> · HTB</div>
           <div class="pov-tit">HTB Mini Pro Labs: Puppet</div>
-          <div class="pov-cred"><i class="bi bi-shield-check"></i> HTBCERT-CD631B515C</div>
+          <div class="pov-cred"><i class="bi bi-shield-check" aria-hidden="true"></i> HTBCERT-CD631B515C</div>
         </div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-1.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-1.jpg" alt="Responsive Web Design" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-1.jpg" alt="Responsive Web Design" width="904" height="625" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Responsive Web Design</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Responsive Web Design</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-2.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-2.jpg" alt="Cloud Computing" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-2.jpg" alt="Cloud Computing" width="850" height="598" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Cloud Computing</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Cloud Computing</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-4.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-4.jpg" alt="Marketing Digital" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-4.jpg" alt="Marketing Digital" width="1366" height="768" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Marketing Digital</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Marketing Digital</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-5.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-5.jpg" alt="Scrum" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-5.jpg" alt="Scrum Foundation" width="1280" height="905" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Scrum Foundation</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Scrum Foundation</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-9.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-9.png" alt="AI Fundamentals" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-9.png" alt="AI Fundamentals" width="699" height="543" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">AI Fundamentals</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">AI Fundamentals</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-10.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-10.png" alt="Claude Code in Action" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-10.png" alt="Claude Code in Action" width="716" height="543" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Claude Code in Action</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Claude Code in Action</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-11.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-11.png" alt="MCP Advanced Topics" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-11.png" alt="MCP Advanced Topics" width="716" height="544" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">MCP Advanced Topics</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">MCP Advanced Topics</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-12.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-12.jpeg" alt="Foundations of Cybersecurity" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-12.jpeg" alt="Foundations of Cybersecurity" width="692" height="543" loading="lazy" decoding="async">
         </picture>
-        <div class="pov"><div class="pov-tag" data-i18n="portfolio-filter-cert">Certificación</div><div class="pov-tit">Foundations of Cybersecurity</div></div>
+        <div class="pov"><div class="pov-tag" data-i18n="cert-tag-cert">Certificación</div><div class="pov-tit">Foundations of Cybersecurity</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-3.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-3.jpg" alt="JavaScript Algorithms" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-3.jpg" alt="JavaScript Algorithms" width="1754" height="1238" loading="lazy" decoding="async">
         </picture>
         <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">JavaScript Algorithms</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-6.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-6.jpg" alt="HTML Fundamentals" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-6.jpg" alt="HTML Fundamentals" width="1754" height="1238" loading="lazy" decoding="async">
         </picture>
         <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">HTML Fundamentals</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-7.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-7.jpg" alt="Ciberseguridad Educativa" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-7.jpg" alt="Ciberseguridad Educativa" width="1000" height="772" loading="lazy" decoding="async">
         </picture>
         <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">Ciberseguridad Educativa</div></div>
       </div>
       <div class="pitem">
         <picture>
           <source srcset="assets/img/portfolio/portfolio-8.webp" type="image/webp">
-          <img src="assets/img/portfolio/portfolio-8.jpg" alt="Programación con JS" loading="lazy">
+          <img src="assets/img/portfolio/portfolio-8.jpg" alt="Programación con JS" width="995" height="774" loading="lazy" decoding="async">
         </picture>
         <div class="pov"><div class="pov-tag" data-i18n="cert-tag-comp">Complementario</div><div class="pov-tit">Programación con JS</div></div>
       </div>
@@ -1180,24 +1217,28 @@
   </div>
 
   <div class="tgrid" id="tgrid">
-    <div class="tcell"><i class="devicon-go-original-wordmark colored"></i><span>Go (Golang)</span></div>
-    <div class="tcell"><i class="bi bi-radar"></i><span>Nmap</span></div>
-    <div class="tcell"><i class="devicon-python-plain" style="color:#3776ab"></i><span>Python</span></div>
-    <div class="tcell"><i class="devicon-javascript-plain" style="color:#f7df1e"></i><span>JavaScript</span></div>
-    <div class="tcell"><i class="devicon-flutter-plain" style="color:#02569B"></i><span>Flutter</span></div>
-    <div class="tcell"><i class="devicon-dart-plain" style="color:#00C4B3"></i><span>Dart</span></div>
-    <div class="tcell"><i class="devicon-linux-plain" style="color:#333333"></i><span>Linux</span></div>
-    <div class="tcell"><i class="devicon-docker-plain" style="color:#2496ED"></i><span>Docker</span></div>
-    <div class="tcell"><i class="devicon-django-plain" style="color:#44b78b"></i><span>Django</span></div>
-    <div class="tcell"><i class="devicon-laravel-original colored"></i><span>Laravel</span></div>
-    <div class="tcell"><i class="bi bi-robot"></i><span>Bots</span></div>
-    <div class="tcell"><i class="devicon-flask-original"></i><span>Flask</span></div>
-    <div class="tcell"><i class="devicon-git-plain" style="color:#f05032"></i><span>Git</span></div>
-    <div class="tcell"><i class="devicon-github-original"></i><span>GitHub</span></div>
-    <div class="tcell"><i class="devicon-salesforce-plain" style="color:#00a1e0"></i><span>Salesforce</span></div>
-    <div class="tcell"><i class="devicon-mysql-plain" style="color:#4479a1"></i><span>MySQL</span></div>
-    <div class="tcell"><i class="devicon-vuejs-plain" style="color:#42b883"></i><span>Vue.js</span></div>
-    <div class="tcell"><i class="devicon-html5-plain" style="color:#e34f26"></i><span>HTML5</span></div>
+    <div class="tcell"><i class="bi bi-shield-check ico-accent" aria-hidden="true"></i><span>Sigma</span></div>
+    <div class="tcell"><i class="bi bi-terminal ico-blue" aria-hidden="true"></i><span>KQL (Sentinel/MDE)</span></div>
+    <div class="tcell"><i class="bi bi-diagram-3-fill ico-teal" aria-hidden="true"></i><span>Elastic EQL</span></div>
+    <div class="tcell"><i class="bi bi-bullseye ico-red" aria-hidden="true"></i><span>MITRE ATT&amp;CK</span></div>
+    <div class="tcell"><i class="bi bi-lightning-charge-fill ico-amber" aria-hidden="true"></i><span>Atomic Red Team</span></div>
+    <div class="tcell"><i class="bi bi-activity" aria-hidden="true"></i><span>Sysmon / ETW</span></div>
+    <div class="tcell"><i class="bi bi-cpu ico-purple" aria-hidden="true"></i><span>AI Agents &amp; MCP</span></div>
+    <div class="tcell"><i class="devicon-go-original-wordmark colored" aria-hidden="true"></i><span>Go (Golang)</span></div>
+    <div class="tcell"><i class="devicon-python-plain ico-py" aria-hidden="true"></i><span>Python</span></div>
+    <div class="tcell"><i class="bi bi-terminal-fill ico-ps" aria-hidden="true"></i><span>PowerShell</span></div>
+    <div class="tcell"><i class="bi bi-code-square ico-bash" aria-hidden="true"></i><span>Bash</span></div>
+    <div class="tcell"><i class="bi bi-radar" aria-hidden="true"></i><span>Nmap</span></div>
+    <div class="tcell"><i class="devicon-docker-plain ico-docker" aria-hidden="true"></i><span>Docker</span></div>
+    <div class="tcell"><i class="devicon-linux-plain tcell-linux" aria-hidden="true"></i><span>Linux</span></div>
+    <div class="tcell"><i class="devicon-git-plain ico-git" aria-hidden="true"></i><span>Git</span></div>
+    <div class="tcell"><i class="devicon-github-original" aria-hidden="true"></i><span>GitHub Actions</span></div>
+    <div class="tcell"><i class="devicon-django-plain ico-django" aria-hidden="true"></i><span>Django</span></div>
+    <div class="tcell"><i class="devicon-laravel-original colored" aria-hidden="true"></i><span>Laravel</span></div>
+    <div class="tcell"><i class="devicon-flask-original" aria-hidden="true"></i><span>Flask</span></div>
+    <div class="tcell"><i class="devicon-vuejs-plain ico-vue" aria-hidden="true"></i><span>Vue.js</span></div>
+    <div class="tcell"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i><span>PostgreSQL</span></div>
+    <div class="tcell"><i class="devicon-salesforce-plain ico-sf" aria-hidden="true"></i><span>Salesforce</span></div>
   </div>
 </section>
 
@@ -1212,19 +1253,19 @@
   <div class="svc-grid reveal d1">
     <div class="svc-card">
       <div class="svc-n">01</div>
-      <i class="bi bi-bullseye svc-ico"></i>
+      <i class="bi bi-bullseye svc-ico" aria-hidden="true"></i>
       <div class="svc-title" data-i18n="services-1-title">Detection Engineering &amp; Threat Emulation</div>
       <div class="svc-desc" data-i18n="services-1-desc">Diseño de reglas Sigma, KQL (Sentinel/MDE) y Elastic EQL validadas con emulación Atomic Red Team, mapeo MITRE ATT&amp;CK y telemetría de endpoints.</div>
     </div>
     <div class="svc-card">
       <div class="svc-n">02</div>
-      <i class="bi bi-cpu-fill svc-ico"></i>
+      <i class="bi bi-cpu-fill svc-ico" aria-hidden="true"></i>
       <div class="svc-title" data-i18n="services-2-title">AI Security &amp; SecOps Automation</div>
       <div class="svc-desc" data-i18n="services-2-desc">Auditoría de agentes autónomos, servidores MCP y guardrails de LLMs, junto a pipelines de reconocimiento y respuesta en Python y Go.</div>
     </div>
     <div class="svc-card">
       <div class="svc-n">03</div>
-      <i class="bi bi-shield-shaded svc-ico"></i>
+      <i class="bi bi-shield-shaded svc-ico" aria-hidden="true"></i>
       <div class="svc-title" data-i18n="services-3-title">Pentesting &amp; Security Engineering</div>
       <div class="svc-desc" data-i18n="services-3-desc">Pruebas de penetración en infraestructura, web y APIs, desarrollo de herramientas defensivas en Go/PowerShell y endurecimiento AppSec (OWASP).</div>
     </div>
@@ -1242,10 +1283,10 @@
       <h2 class="con-cta" data-i18n="contact-title">¿Listo para <em>ejecutar?</em></h2>
       <p class="con-body" data-i18n="contact-copy">Si buscas ingeniería de detección, investigación de amenazas, auditoría de agentes de IA o pentesting con evidencia reproducible, hablemos.</p>
       <div class="conlinks">
-        <a class="clink" href="mailto:yared.henriquezb@gmail.com"><span class="cico"><i class="bi bi-envelope-at"></i></span> yared.henriquezb@gmail.com</a>
-        <a class="clink" href="https://www.linkedin.com/in/yared-dev" target="_blank" rel="noopener"><span class="cico"><i class="bi bi-linkedin"></i></span> <span data-i18n="contact-cta-linkedin">Perfil en LinkedIn</span></a>
-        <a class="clink" href="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3" target="_blank" rel="noopener"><span class="cico"><i class="bi bi-shield-shaded"></i></span> <span data-i18n="contact-cta-htb">Perfil en Hack The Box</span></a>
-        <a class="clink" href="assets/docs/CV_yared_Henriquez.pdf" target="_blank" rel="noopener" hreflang="en" type="application/pdf"><span class="cico"><i class="bi bi-file-earmark-pdf"></i></span> <span data-i18n="contact-cta-cv">CV en inglés (PDF)</span></a>
+        <a class="clink" href="mailto:yared.henriquezb@gmail.com"><span class="cico"><i class="bi bi-envelope-at" aria-hidden="true"></i></span> yared.henriquezb@gmail.com</a>
+        <a class="clink" href="https://www.linkedin.com/in/yared-dev" target="_blank" rel="noopener"><span class="cico"><i class="bi bi-linkedin" aria-hidden="true"></i></span> <span data-i18n="contact-cta-linkedin">Perfil en LinkedIn</span></a>
+        <a class="clink" href="https://profile.hackthebox.com/profile/019f8d0f-a8d2-73bb-8f12-d863b7261aa3" target="_blank" rel="noopener"><span class="cico"><i class="bi bi-shield-shaded" aria-hidden="true"></i></span> <span data-i18n="contact-cta-htb">Perfil en Hack The Box</span></a>
+        <a class="clink" href="assets/docs/CV_yared_Henriquez.pdf" target="_blank" rel="noopener" hreflang="en" type="application/pdf"><span class="cico"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i></span> <span data-i18n="contact-cta-cv">CV en inglés (PDF)</span></a>
       </div>
     </div>
     <div class="contact-signal" id="contact-signal">
@@ -1283,27 +1324,33 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <p>&copy; <span id="year"></span> <strong>Dev101x</strong>. <span data-i18n="footer-copy">Construido por</span> <strong>Yared Henriquez</strong> — <span data-i18n="footer-colombia">Detection Engineering &amp; AI Security · Cartagena, Colombia 🇨🇴</span></p>
   <div class="fsoc">
-    <a href="#about" data-i18n="nav-about">Sobre mi</a> · <a href="research/" data-i18n="nav-research">Investigación</a> · <a href="#portfolio" data-i18n="nav-portfolio">Portafolio</a> · <a href="https://cursos.dev101x.online/" target="_blank" rel="noopener" data-i18n="footer-courses">Cursos</a> · <a href="#contact" data-i18n="nav-contact">Contacto</a>
+    <a href="#about" data-i18n="nav-about">Sobre mí</a>
+    <a href="research/" data-i18n="nav-research">Investigación</a>
+    <a href="research/feed.xml">RSS</a>
+    <a href="#portfolio" data-i18n="nav-portfolio">Portafolio</a>
+    <a href="https://cursos.dev101x.online/" target="_blank" rel="noopener" data-i18n="footer-courses">Cursos</a>
+    <a href="#contact" data-i18n="nav-contact">Contacto</a>
   </div>
 </footer>
 
-<a href="https://wa.me/573015185270" class="waf" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-<button class="scroll-top" id="scrollTop" aria-label="Volver arriba"><i class="bi bi-arrow-up"></i></button>
+<a href="https://wa.me/573015185270" class="waf" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+<button type="button" class="scroll-top" id="scrollTop" aria-label="Volver arriba"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
 
-<div id="certModal" class="fmodal" aria-hidden="true">
-  <span class="fmodal-close" onclick="closeCertModal()" aria-label="Cerrar">&times;</span>
+<div id="certModal" class="fmodal" role="dialog" aria-modal="true" aria-labelledby="cmodal-title" aria-hidden="true">
+  <button type="button" class="fmodal-close" id="certModalClose" aria-label="Cerrar">&times;</button>
   <div class="fmodal-content cmodal-content">
-    <button class="fmodal-btn fmodal-prev" onclick="changeCertImg(-1)" aria-label="Anterior">&#10094;</button>
-    <img id="cmodal-img" src="" alt="Certificado">
-    <button class="fmodal-btn fmodal-next" onclick="changeCertImg(1)" aria-label="Siguiente">&#10095;</button>
+    <button type="button" class="fmodal-btn fmodal-prev" id="certModalPrev" aria-label="Anterior">&#10094;</button>
+    <img id="cmodal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Certificado">
+    <button type="button" class="fmodal-btn fmodal-next" id="certModalNext" aria-label="Siguiente">&#10095;</button>
     <div class="cmodal-caption" id="cmodal-caption"></div>
   </div>
 </div>
 
-<script src="assets/js/main.js?v=16"></script>
+<script src="assets/js/main.js?v=18"></script>
 </body>
 </html>

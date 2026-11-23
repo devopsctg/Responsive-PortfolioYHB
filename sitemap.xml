@@ -3,13 +3,18 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://dev101x.online/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://dev101x.online/assets/img/profile-img.jpg</image:loc>
+      <image:loc>https://dev101x.online/assets/img/og-home.png</image:loc>
       <image:title>Yared Henriquez (Dev101x / DevCop95) - Detection Engineering &amp; AI Security Researcher</image:title>
       <image:caption>Security Researcher specializing in Detection Engineering (Offense-to-Defense) and Applied AI Security in Colombia.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dev101x.online/assets/img/profile-img.jpg</image:loc>
+      <image:title>Yared Henriquez Portrait</image:title>
+      <image:caption>Yared Henriquez (Dev101x / DevCop95) based in Cartagena, Colombia.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://dev101x.online/assets/img/lolbas_devcop95_banner.jpg</image:loc>
@@ -19,20 +24,35 @@
   </url>
   <url>
     <loc>https://dev101x.online/research/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://dev101x.online/assets/img/og-research-hub.png</image:loc>
+      <image:title>Dev101x Offense-to-Defense Research Hub</image:title>
+      <image:caption>Detection Engineering case studies, MITRE ATT&amp;CK mapping, and Upstream Traceability Matrix.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://dev101x.online/research/windows-openssh-indirect-execution/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://dev101x.online/assets/img/og-research-openssh.png</image:loc>
+      <image:title>Windows OpenSSH Indirect Execution &amp; Pure-RE2 First-Match-Wins Bypass</image:title>
+      <image:caption>Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config lineage, and 19-case ADX validation.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://dev101x.online/assets/img/og-research-bigdiskbuster.png</image:loc>
+      <image:title>Defender Disk-Exhaustion DoS (fsutil.exe / BigDiskBuster) to Multi-SIEM &amp; Kernel Handles</image:title>
+      <image:caption>BDB-Guardian Win32 handle correlation (cited by CUHK ITSC), LOLBAS #525, Atomic #3439, Sigma #6310, and Elastic #6946.</image:caption>
+    </image:image>
   </url>
 </urlset>

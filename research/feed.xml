@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dev101x Security Research · Yared Henriquez</title>
+    <link>https://dev101x.online/research/</link>
+    <description>Offense-to-Defense Detection Engineering and Threat Research by Yared Henriquez (DevCop95 / Dev101x): LOLBAS tradecraft, Atomic Red Team emulation, Win32 kernel-handle monitoring, Sigma, Elastic EQL, and Microsoft Sentinel KQL.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dev101x.online/research/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Abusing Windows OpenSSH (KnownHostsCommand &amp; PermitLocalCommand) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</title>
+      <link>https://dev101x.online/research/windows-openssh-indirect-execution/</link>
+      <guid isPermaLink="true">https://dev101x.online/research/windows-openssh-indirect-execution/</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <category>Detection Engineering</category>
+      <category>MITRE ATT&amp;CK T1202</category>
+      <category>Microsoft Sentinel KQL</category>
+      <category>Sigma</category>
+      <description>Compares pre-authentication KnownHostsCommand vs. post-authentication PermitLocalCommand/LocalCommand execution in Windows ssh.exe, closes -F/.ssh/config blind spots via child-process lineage, and builds a pure-RE2 KQL automaton defeating OpenSSH first-match-wins overrides (11/11 TP, 0/8 FP in ADX; 24/24 Sentinel CI).</description>
+    </item>
+
+    <item>
+      <title>From Disk-Exhaustion DoS against Windows Defender (fsutil.exe / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</title>
+      <link>https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/</link>
+      <guid isPermaLink="true">https://dev101x.online/research/bigdiskbuster-fsutil-defense-evasion/</guid>
+      <pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+      <category>Defense Evasion</category>
+      <category>MITRE ATT&amp;CK T1685</category>
+      <category>Win32 Internals</category>
+      <category>Elastic EQL</category>
+      <description>End-to-end case study tracing Windows Defender update starvation across native NT APIs (BigDiskBuster) and fsutil.exe file createnew: BDB-Guardian Win32 handle correlation (cited by CUHK ITSC; resolving 0xC0000374 RM_PROCESS_INFO heap corruption and NtQueryObject pipe deadlocks), LOLBAS #525, Atomic Red Team #3439, SigmaHQ #6310, and Elastic #6946.</description>
+    </item>
+  </channel>
+</rss>
