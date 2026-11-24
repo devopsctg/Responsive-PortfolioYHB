@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+
+<html data-theme="light" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Security Research &amp; Deep Dives | Yared Henriquez (DevCop95 / Dev101x)</title>
-  <meta name="description" content="Offense-to-Defense technical research by Yared Henriquez (DevCop95 / Dev101x): Windows OpenSSH indirect execution, BigDiskBuster disk-exhaustion evasion, kernel handle correlation, Sigma, Elastic EQL, and Sentinel KQL.">
-  <meta name="author" content="Yared Henriquez (DevCop95)">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://dev101x.online/research/">
-  <link rel="alternate" type="application/rss+xml" title="Dev101x Security Research RSS" href="https://dev101x.online/research/feed.xml">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://dev101x.online/research/">
-  <meta property="og:title" content="Security Research &amp; Deep Dives | Yared Henriquez (DevCop95)">
-  <meta property="og:description" content="End-to-end Detection Engineering case studies tracing Windows tradecraft from LOLBAS documentation and adversary emulation to Sigma, Elastic EQL, and Microsoft Sentinel KQL.">
-  <meta property="og:image" content="https://dev101x.online/assets/img/og-research-hub.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:site_name" content="Dev101x · Security Research">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://dev101x.online/research/">
-  <meta name="twitter:title" content="Security Research &amp; Deep Dives | Yared Henriquez (DevCop95)">
-  <meta name="twitter:description" content="End-to-end Detection Engineering case studies tracing Windows tradecraft from LOLBAS documentation and adversary emulation to Sigma, Elastic EQL, and Microsoft Sentinel KQL.">
-  <meta name="twitter:image" content="https://dev101x.online/assets/img/og-research-hub.png">
-  <meta name="twitter:site" content="@Devcop101">
-  <meta name="twitter:creator" content="@Devcop101">
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security Research &amp; Deep Dives | Yared Henriquez (DevCop95 / Dev101x)</title>
+<meta content="Offense-to-Defense technical research by Yared Henriquez (DevCop95 / Dev101x): Windows OpenSSH indirect execution, BigDiskBuster disk-exhaustion evasion, kernel handle correlation, Sigma, Elastic EQL, and Sentinel KQL." name="description"/>
+<meta content="Yared Henriquez (DevCop95)" name="author"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<meta content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" http-equiv="Content-Security-Policy"/>
+<link href="https://dev101x.online/research/" rel="canonical"/>
+<link href="https://dev101x.online/research/feed.xml" rel="alternate" title="Dev101x Security Research RSS" type="application/rss+xml"/>
+<meta content="website" property="og:type"/>
+<meta content="https://dev101x.online/research/" property="og:url"/>
+<meta content="Security Research &amp; Deep Dives | Yared Henriquez (DevCop95)" property="og:title"/>
+<meta content="End-to-end Detection Engineering case studies tracing Windows tradecraft from LOLBAS documentation and adversary emulation to Sigma, Elastic EQL, and Microsoft Sentinel KQL." property="og:description"/>
+<meta content="https://dev101x.online/assets/img/og-research-hub.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="image/png" property="og:image:type"/>
+<meta content="Dev101x · Security Research" property="og:site_name"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://dev101x.online/research/" name="twitter:url"/>
+<meta content="Security Research &amp; Deep Dives | Yared Henriquez (DevCop95)" name="twitter:title"/>
+<meta content="End-to-end Detection Engineering case studies tracing Windows tradecraft from LOLBAS documentation and adversary emulation to Sigma, Elastic EQL, and Microsoft Sentinel KQL." name="twitter:description"/>
+<meta content="https://dev101x.online/assets/img/og-research-hub.png" name="twitter:image"/>
+<meta content="@Devcop101" name="twitter:site"/>
+<meta content="@Devcop101" name="twitter:creator"/>
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -64,328 +65,314 @@
     ]
   }
   </script>
-  <link rel="icon" href="../assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
-  <script src="../assets/js/theme-init.js"></script>
-  <link rel="stylesheet" href="research.css?v=3">
+<link href="../assets/img/favicon.png" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" rel="stylesheet"/>
+<script src="../assets/js/theme-init.js"></script>
+<link href="research.css?v=3" rel="stylesheet"/>
 </head>
 <body>
-  <div id="scroll-progress" aria-hidden="true"></div>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <nav class="rnav" aria-label="Research navigation">
-    <div class="rnav-brand">
-      <a href="../" class="nlogo">Dev<em>101x</em></a>
-      <span class="rnav-sep">/</span>
-      <span class="rnav-crumb">Research</span>
-    </div>
-    <div class="rnav-actions">
-      <a href="../" class="rnav-link" data-i18n="nav-portfolio"><i class="bi bi-arrow-left" aria-hidden="true"></i> Portfolio</a>
-      <a href="feed.xml" class="rnav-link rss" type="application/rss+xml"><i class="bi bi-rss-fill" aria-hidden="true"></i> RSS</a>
-      <a href="https://github.com/DevCop95" target="_blank" rel="noopener" class="rnav-link"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
-      <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
-      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
-        <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
-      </button>
-    </div>
-  </nav>
-
-  <main class="rshell" id="main-content" data-telemetry-src="../assets/data/telemetry.json">
-    <header class="rhero">
-      <div class="rkicker" data-i18n="hub-kicker"><i class="bi bi-diagram-3" aria-hidden="true"></i> Offense-to-Defense Research Hub</div>
-      <h1 class="rtitle" data-i18n="hub-title">Detection Engineering &amp; <em>Threat Research</em></h1>
-      <p class="rlead" data-i18n="hub-lead">
-        Long-form engineering write-ups documenting end-to-end <strong>Offense &rarr; Emulation &rarr; Detection</strong> cycles: turning native Windows tradecraft into peer-reviewed <strong>LOLBAS</strong> entries, <strong>Atomic Red Team</strong> tests, Win32 kernel-handle monitors, and verified multi-SIEM detections across <strong>Sigma</strong>, <strong>Elastic EQL</strong>, and <strong>Microsoft Sentinel KQL</strong>.
+<div aria-hidden="true" id="scroll-progress"></div>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Research navigation" class="rnav">
+<div class="rnav-brand">
+<a class="nlogo" href="../">Dev<em>101x</em></a>
+<span class="rnav-sep">/</span>
+<span class="rnav-crumb" data-i18n="crumb-research">Research</span>
+</div>
+<div class="rnav-actions">
+<a class="rnav-link" data-i18n="nav-portfolio" href="../"><i aria-hidden="true" class="bi bi-arrow-left"></i> Portfolio</a>
+<a class="rnav-link rss" href="feed.xml" type="application/rss+xml"><i aria-hidden="true" class="bi bi-rss-fill"></i> RSS</a>
+<a class="rnav-link" href="https://github.com/DevCop95" rel="noopener" target="_blank"><i aria-hidden="true" class="bi bi-github"></i> GitHub</a>
+<button aria-label="Cambiar idioma" class="lang-toggle" id="langToggle" type="button">EN</button>
+<button aria-label="Toggle color theme" class="theme-toggle" id="themeToggle" type="button">
+<i aria-hidden="true" class="bi bi-moon-stars-fill"></i>
+</button>
+</div>
+</nav>
+<main class="rshell" data-telemetry-src="../assets/data/telemetry.json" id="main-content">
+<header class="rhero">
+<div class="rkicker" data-i18n="hub-kicker"><i aria-hidden="true" class="bi bi-diagram-3"></i> Offense-to-Defense Research Hub</div>
+<h1 class="rtitle" data-i18n="hub-title">Detection Engineering &amp; <em>Threat Research</em></h1>
+<p class="rlead" data-i18n="hub-lead">
+        Long-form engineering write-ups documenting end-to-end <strong>Offense → Emulation → Detection</strong> cycles: turning native Windows tradecraft into peer-reviewed <strong>LOLBAS</strong> entries, <strong>Atomic Red Team</strong> tests, Win32 kernel-handle monitors, and verified multi-SIEM detections across <strong>Sigma</strong>, <strong>Elastic EQL</strong>, and <strong>Microsoft Sentinel KQL</strong>.
       </p>
-      <div class="rmeta-row">
-        <span class="rmeta-pill accent"><i class="bi bi-person-badge" aria-hidden="true"></i> Yared Henriquez (DevCop95)</span>
-        <span class="rmeta-pill" data-i18n="hub-pill-focus"><i class="bi bi-shield-check" aria-hidden="true"></i> Focus: Detection Engineering &amp; Applied AI Security</span>
-        <span class="rmeta-pill" data-i18n="hub-pill-cited"><i class="bi bi-building" aria-hidden="true"></i> Tooling Cited by CUHK ITSC</span>
-      </div>
-
-      <div class="rkpi-grid" aria-label="Research impact summary">
-        <div class="rkpi-card">
-          <div class="rkpi-val" id="kpiMergedCount">10</div>
-          <div class="rkpi-lbl" data-i18n="kpi-merged-lbl">Merged Upstream PRs</div>
-        </div>
-        <div class="rkpi-card">
-          <div class="rkpi-val" id="kpiApprovedCount">3</div>
-          <div class="rkpi-lbl" data-i18n="kpi-approved-lbl">Approved Detections</div>
-        </div>
-        <div class="rkpi-card">
-          <div class="rkpi-val" id="kpiReviewCount">3</div>
-          <div class="rkpi-lbl" data-i18n="kpi-review-lbl">Active PRs in Review</div>
-        </div>
-        <div class="rkpi-card">
-          <div class="rkpi-val">7</div>
-          <div class="rkpi-lbl" data-i18n="kpi-mitre-lbl">MITRE ATT&amp;CK Techniques</div>
-        </div>
-      </div>
-    </header>
-
-    <div class="rmethod-strip" aria-label="Offense to Defense Engineering Methodology">
-      <div class="rmethod-step">
-        <span class="rmethod-num">01 · Tradecraft</span>
-        <strong class="rmethod-title" data-i18n="method-01-title">LOLBAS &amp; Internals</strong>
-        <span class="rmethod-sub" data-i18n="method-01-sub">Isolate native execution paths &amp; Win32 handle mechanics.</span>
-      </div>
-      <div class="rmethod-step">
-        <span class="rmethod-num">02 · Emulation</span>
-        <strong class="rmethod-title" data-i18n="method-02-title">Safe Atomic Tests</strong>
-        <span class="rmethod-sub" data-i18n="method-02-sub">Generate repeatable endpoint telemetry without host exhaustion.</span>
-      </div>
-      <div class="rmethod-step">
-        <span class="rmethod-num">03 · Detection</span>
-        <strong class="rmethod-title" data-i18n="method-03-title">Sigma · KQL · EQL</strong>
-        <span class="rmethod-sub" data-i18n="method-03-sub">Handle renamed binaries, config indirection &amp; pure-RE2 edge cases.</span>
-      </div>
-      <div class="rmethod-step">
-        <span class="rmethod-num">04 · Verification</span>
-        <strong class="rmethod-title" data-i18n="method-04-title">Empirical Harnesses</strong>
-        <span class="rmethod-sub" data-i18n="method-04-sub">Benchmark TP/FP rates in ADX, evtx-sigma-checker &amp; repo CI.</span>
-      </div>
-    </div>
-
-    <section aria-label="Published Deep Dives">
-      <div class="hub-grid">
-        <article class="hub-card">
-          <div class="hub-card-top">
-            <div class="rkicker"><i class="bi bi-terminal-split" aria-hidden="true"></i> Deep Dive 01 &middot; T1202 &middot; T1059</div>
-            <span class="hub-meta-stat">11/11 TP &middot; 0/8 FP (ADX)</span>
-          </div>
-          <h2 data-i18n="hub-ssh-title">Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
-          <div class="hub-telemetry">
-            <i class="bi bi-activity" aria-hidden="true"></i>
-            <span>DeviceProcessEvents &middot; Sysmon EID 1 &middot; 24/24 Sentinel CI</span>
-          </div>
-          <p data-i18n="hub-ssh-desc">
+<div class="rmeta-row">
+<span class="rmeta-pill accent" data-i18n="hub-meta-author"><i aria-hidden="true" class="bi bi-person-badge"></i> Yared Henriquez (DevCop95)</span>
+<span class="rmeta-pill" data-i18n="hub-pill-focus"><i aria-hidden="true" class="bi bi-shield-check"></i> Focus: Detection Engineering &amp; Applied AI Security</span>
+<span class="rmeta-pill" data-i18n="hub-pill-cited"><i aria-hidden="true" class="bi bi-building"></i> Tooling Cited by CUHK ITSC</span>
+</div>
+<div aria-label="Research impact summary" class="rkpi-grid">
+<div class="rkpi-card">
+<div class="rkpi-val" id="kpiMergedCount">10</div>
+<div class="rkpi-lbl" data-i18n="kpi-merged-lbl">Merged Upstream PRs</div>
+</div>
+<div class="rkpi-card">
+<div class="rkpi-val" id="kpiApprovedCount">3</div>
+<div class="rkpi-lbl" data-i18n="kpi-approved-lbl">Approved Detections</div>
+</div>
+<div class="rkpi-card">
+<div class="rkpi-val" id="kpiReviewCount">3</div>
+<div class="rkpi-lbl" data-i18n="kpi-review-lbl">Active PRs in Review</div>
+</div>
+<div class="rkpi-card">
+<div class="rkpi-val">7</div>
+<div class="rkpi-lbl" data-i18n="kpi-mitre-lbl">MITRE ATT&amp;CK Techniques</div>
+</div>
+</div>
+</header>
+<div aria-label="Offense to Defense Engineering Methodology" class="rmethod-strip">
+<div class="rmethod-step">
+<span class="rmethod-num" data-i18n="method-01-num">01 · Tradecraft</span>
+<strong class="rmethod-title" data-i18n="method-01-title">LOLBAS &amp; Internals</strong>
+<span class="rmethod-sub" data-i18n="method-01-sub">Isolate native execution paths &amp; Win32 handle mechanics.</span>
+</div>
+<div class="rmethod-step">
+<span class="rmethod-num" data-i18n="method-02-num">02 · Emulation</span>
+<strong class="rmethod-title" data-i18n="method-02-title">Safe Atomic Tests</strong>
+<span class="rmethod-sub" data-i18n="method-02-sub">Generate repeatable endpoint telemetry without host exhaustion.</span>
+</div>
+<div class="rmethod-step">
+<span class="rmethod-num" data-i18n="method-03-num">03 · Detection</span>
+<strong class="rmethod-title" data-i18n="method-03-title">Sigma · KQL · EQL</strong>
+<span class="rmethod-sub" data-i18n="method-03-sub">Handle renamed binaries, config indirection &amp; pure-RE2 edge cases.</span>
+</div>
+<div class="rmethod-step">
+<span class="rmethod-num" data-i18n="method-04-num">04 · Verification</span>
+<strong class="rmethod-title" data-i18n="method-04-title">Empirical Harnesses</strong>
+<span class="rmethod-sub" data-i18n="method-04-sub">Benchmark TP/FP rates in ADX, evtx-sigma-checker &amp; repo CI.</span>
+</div>
+</div>
+<section aria-label="Published Deep Dives">
+<div class="hub-grid">
+<article class="hub-card">
+<div class="hub-card-top">
+<div class="rkicker"><i aria-hidden="true" class="bi bi-terminal-split"></i> Deep Dive 01 · T1202 · T1059</div>
+<span class="hub-meta-stat" data-i18n="hub-ssh-stat">11/11 TP · 0/8 FP (ADX)</span>
+</div>
+<h2 data-i18n="hub-ssh-title">Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
+<div class="hub-telemetry">
+<i aria-hidden="true" class="bi bi-activity"></i>
+<span data-i18n="hub-ssh-telemetry">DeviceProcessEvents · Sysmon EID 1 · 24/24 Sentinel CI</span>
+</div>
+<p data-i18n="hub-ssh-desc">
             Compares pre-authentication (<code>KnownHostsCommand</code>) vs. post-authentication (<code>PermitLocalCommand</code> / <code>LocalCommand</code>, Star Blizzard <em>RedFlick</em>) execution in <code>ssh.exe</code>, models <code>-F</code> / <code>.ssh/config</code> CLI blind spots via child-process lineage, and builds a pure-RE2 KQL automaton validated in Azure Data Explorer.
           </p>
-          <div class="hub-tags">
-            <span class="hub-tag">LOLBAS #539 &amp; #532 (Merged)</span>
-            <span class="hub-tag">SigmaHQ #6585</span>
-            <span class="hub-tag">Azure-Sentinel #15693</span>
-            <span class="hub-tag">RE2 / KQL</span>
-          </div>
-          <div class="hub-card-foot">
-            <a href="./windows-openssh-indirect-execution/" class="hub-cta" data-i18n="hub-ssh-cta">
-              Read full deep dive <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-            <span class="hub-read-meta" data-i18n="hub-ssh-read">2026-11-20 &middot; 9 min read</span>
-          </div>
-        </article>
-
-        <article class="hub-card">
-          <div class="hub-card-top">
-            <div class="rkicker"><i class="bi bi-hdd-stack" aria-hidden="true"></i> Deep Dive 02 &middot; T1685 &middot; T1562.001</div>
-            <span class="hub-meta-stat">45s &rarr; 6–14s &middot; CUHK ITSC Cited</span>
-          </div>
-          <h2 data-i18n="hub-bdb-title">From Disk-Exhaustion DoS against Windows Defender (<code>fsutil.exe</code> / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</h2>
-          <div class="hub-telemetry">
-            <i class="bi bi-cpu" aria-hidden="true"></i>
-            <span>Win32 Restart Manager &middot; NtQuerySystemInformation &middot; Sysmon EID 11 &middot; EQL</span>
-          </div>
-          <p data-i18n="hub-bdb-desc">
+<div class="hub-tags">
+<span class="hub-tag" data-i18n="hub-ssh-tag-1">LOLBAS #539 &amp; #532 (Merged)</span>
+<span class="hub-tag" data-i18n="hub-ssh-tag-2">SigmaHQ #6585</span>
+<span class="hub-tag" data-i18n="hub-ssh-tag-3">Azure-Sentinel #15693</span>
+<span class="hub-tag" data-i18n="hub-ssh-tag-4">RE2 / KQL</span>
+</div>
+<div class="hub-card-foot">
+<a class="hub-cta" data-i18n="hub-ssh-cta" href="./windows-openssh-indirect-execution/">
+              Read full deep dive <i aria-hidden="true" class="bi bi-arrow-right"></i>
+</a>
+<span class="hub-read-meta" data-i18n="hub-ssh-read">2026-11-20 · 9 min read</span>
+</div>
+</article>
+<article class="hub-card">
+<div class="hub-card-top">
+<div class="rkicker"><i aria-hidden="true" class="bi bi-hdd-stack"></i> Deep Dive 02 · T1685 · T1562.001</div>
+<span class="hub-meta-stat" data-i18n="hub-bdb-stat">45s → 6–14s · CUHK ITSC Cited</span>
+</div>
+<h2 data-i18n="hub-bdb-title">From Disk-Exhaustion DoS against Windows Defender (<code>fsutil.exe</code> / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</h2>
+<div class="hub-telemetry">
+<i aria-hidden="true" class="bi bi-cpu"></i>
+<span data-i18n="hub-bdb-telemetry">Win32 Restart Manager · NtQuerySystemInformation · Sysmon EID 11 · EQL</span>
+</div>
+<p data-i18n="hub-bdb-desc">
             Traces disk-exhaustion evasion (<code>ERROR_DISK_FULL</code>) across both native NT allocation (BigDiskBuster) and LOLBin execution (<code>fsutil.exe file createnew</code>): from <code>BDB-Guardian</code> (cited by CUHK ITSC) and debugging <code>0xC0000374</code> / pipe deadlocks in Win32 handle scanning to <strong>Atomic Red Team #3439</strong>, <strong>SigmaHQ #6310</strong>, and <strong>Elastic #6946</strong>.
           </p>
-          <div class="hub-tags">
-            <span class="hub-tag">CUHK ITSC Cited</span>
-            <span class="hub-tag">LOLBAS #525 (Merged)</span>
-            <span class="hub-tag">Atomic #3439 (Merged)</span>
-            <span class="hub-tag">Sigma #6310 (Approved)</span>
-            <span class="hub-tag">Elastic #6946 (Approved &times;2)</span>
-          </div>
-          <div class="hub-card-foot">
-            <a href="./bigdiskbuster-fsutil-defense-evasion/" class="hub-cta" data-i18n="hub-bdb-cta">
-              Read full deep dive <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-            <span class="hub-read-meta" data-i18n="hub-bdb-read">2026-11-20 &middot; 10 min read</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="mitre-section" aria-label="MITRE ATT&CK Coverage Matrix">
-      <div class="rkicker" data-i18n="mitre-kicker"><i class="bi bi-bullseye" aria-hidden="true"></i> MITRE ATT&amp;CK Coverage Map</div>
-      <div class="mitre-grid">
-        <article class="mitre-card">
-          <div class="mitre-head">
-            <span class="mitre-id">T1202 · T1059 · T1218</span>
-            <span class="mitre-tactic">Execution / Evasion</span>
-          </div>
-          <h3 class="mitre-name" data-i18n="mitre-card-1-title">Indirect Command Execution (<code>ssh.exe</code>)</h3>
-          <div class="mitre-links">
-            <a href="./windows-openssh-indirect-execution/">Deep Dive 01</a>
-            <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener">LOLBAS #539</a>
-            <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener">Sentinel #15693</a>
-          </div>
-        </article>
-        <article class="mitre-card">
-          <div class="mitre-head">
-            <span class="mitre-id">T1685 · T1562.001</span>
-            <span class="mitre-tactic">Defense Evasion</span>
-          </div>
-          <h3 class="mitre-name" data-i18n="mitre-card-2-title">Defender Update Starvation &amp; <code>fsutil.exe</code></h3>
-          <div class="mitre-links">
-            <a href="./bigdiskbuster-fsutil-defense-evasion/">Deep Dive 02</a>
-            <a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener">Atomic #3439</a>
-            <a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener">Elastic #6946</a>
-          </div>
-        </article>
-        <article class="mitre-card">
-          <div class="mitre-head">
-            <span class="mitre-id">T1555.005</span>
-            <span class="mitre-tactic">Credential Access</span>
-          </div>
-          <h3 class="mitre-name" data-i18n="mitre-card-3-title">Password Managers (KeePass Discovery)</h3>
-          <div class="mitre-links">
-            <a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" target="_blank" rel="noopener">Atomic #3433 (Merged)</a>
-          </div>
-        </article>
-        <article class="mitre-card">
-          <div class="mitre-head">
-            <span class="mitre-id">T1219</span>
-            <span class="mitre-tactic">Command &amp; Control</span>
-          </div>
-          <h3 class="mitre-name" data-i18n="mitre-card-4-title">Remote Access Software (Custom AnyDesk)</h3>
-          <div class="mitre-links">
-            <a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener">LOLRMM #253 (Merged)</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="matrix-section" aria-label="Upstream Traceability Matrix">
-      <div class="matrix-header">
-        <div class="rkicker" data-i18n="matrix-kicker"><i class="bi bi-table" aria-hidden="true"></i> Upstream Traceability Matrix</div>
-        <span class="sync-pill" id="telemetrySyncBadge">Snapshot: 2026-11-22</span>
-      </div>
-
-      <div class="matrix-toolbar">
-        <div class="matrix-filters" role="group" aria-label="Filter PRs by status">
-          <button type="button" class="mfilt-btn active" data-filter="all" aria-pressed="true">All (<span class="mfilt-count">13</span>)</button>
-          <button type="button" class="mfilt-btn" data-filter="merged" aria-pressed="false">Merged (<span class="mfilt-count">7</span>)</button>
-          <button type="button" class="mfilt-btn" data-filter="approved" aria-pressed="false">Approved (<span class="mfilt-count">3</span>)</button>
-          <button type="button" class="mfilt-btn" data-filter="review" aria-pressed="false">In Review (<span class="mfilt-count">3</span>)</button>
-        </div>
-        <div class="matrix-search-wrap">
-          <input type="search" id="matrixSearch" class="matrix-search" placeholder="Filter repo, T-code, Sigma, KQL..." aria-label="Filter upstream matrix">
-          <span class="matrix-meta" id="matrixCount">Showing 13 / 13</span>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table class="rtable" id="upstreamMatrix">
-          <thead>
-            <tr>
-              <th data-i18n="matrix-th-repo">Repository &amp; PR</th>
-              <th data-i18n="matrix-th-domain">Domain</th>
-              <th data-i18n="matrix-th-scope">MITRE / Scope</th>
-              <th data-i18n="matrix-th-status">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr data-status="merged" data-pr="LOLBAS-Project/LOLBAS#525">
-              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #525</a></td>
-              <td>Living-Off-The-Land Docs</td>
-              <td><code>Fsutil.exe</code> <code>file createnew</code> (T1562.001 / T1685)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr="LOLBAS-Project/LOLBAS#539">
-              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #539</a></td>
-              <td>Living-Off-The-Land Docs</td>
-              <td><code>Ssh.exe</code> pre-auth <code>KnownHostsCommand</code> (T1202)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr="LOLBAS-Project/LOLBAS#532">
-              <td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener">LOLBAS-Project/LOLBAS #532</a></td>
-              <td>Living-Off-The-Land Docs</td>
-              <td><code>Ssh.exe</code> <code>PermitLocalCommand=yes</code> (T1202)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr="redcanaryco/atomic-red-team#3433">
-              <td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" target="_blank" rel="noopener">redcanaryco/atomic-red-team #3433</a></td>
-              <td>Adversary Emulation</td>
-              <td>KeePass discovery &amp; config parsing (T1555.005)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr="redcanaryco/atomic-red-team#3439">
-              <td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener">redcanaryco/atomic-red-team #3439</a></td>
-              <td>Adversary Emulation</td>
-              <td>Defender disk exhaustion via <code>fsutil</code> (T1685)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr="magicsword-io/LOLRMM#253">
-              <td><a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener">magicsword-io/LOLRMM #253</a></td>
-              <td>RMM Detection &amp; Sigma</td>
-              <td>AnyDesk custom per-org client coverage (T1219)</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> MERGED</span></td>
-            </tr>
-            <tr data-status="merged" data-pr-count="4">
-              <td><a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" target="_blank" rel="noopener">soxoj/maigret (#3367, #3386, #3388, #3458)</a></td>
-              <td>OSINT Signal Integrity</td>
-              <td>False-positive elimination &amp; challenge handling</td>
-              <td><span class="pipe-status status-merged"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> 4 MERGED</span></td>
-            </tr>
-            <tr data-status="approved" data-pr="elastic/detection-rules#6946">
-              <td><a href="https://github.com/elastic/detection-rules/pull/6946" target="_blank" rel="noopener">elastic/detection-rules #6946</a></td>
-              <td>Elastic EQL Detection</td>
-              <td>Suspicious <code>fsutil file createnew</code> (T1562.001)</td>
-              <td><span class="pipe-status status-approved"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> APPROVED (&times;2)</span></td>
-            </tr>
-            <tr data-status="approved" data-pr="SigmaHQ/sigma#6310">
-              <td><a href="https://github.com/SigmaHQ/sigma/pull/6310" target="_blank" rel="noopener">SigmaHQ/sigma #6310</a></td>
-              <td>Sigma File Event Rule</td>
-              <td>BigDiskBuster GUID buster-file in <code>%TEMP%</code> (T1685)</td>
-              <td><span class="pipe-status status-approved"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> APPROVED (1/2)</span></td>
-            </tr>
-            <tr data-status="approved" data-pr="SigmaHQ/sigma#6323">
-              <td><a href="https://github.com/SigmaHQ/sigma/pull/6323" target="_blank" rel="noopener">SigmaHQ/sigma #6323</a></td>
-              <td>Sigma WAF Rule Pack</td>
-              <td>SafeLine WAF SQLi / XSS / CMDi (<code>product: safeline</code>)</td>
-              <td><span class="pipe-status status-approved"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> APPROVED (1/2)</span></td>
-            </tr>
-            <tr data-status="review" data-pr="SigmaHQ/sigma#6585">
-              <td><a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener">SigmaHQ/sigma #6585</a></td>
-              <td>Sigma Process Creation</td>
-              <td>Windows <code>ssh.exe</code> <code>KnownHostsCommand</code> (T1202)</td>
-              <td><span class="pipe-status status-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> IN REVIEW</span></td>
-            </tr>
-            <tr data-status="review" data-pr="Azure/Azure-Sentinel#15693">
-              <td><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener">Azure/Azure-Sentinel #15693</a></td>
-              <td>Sentinel KQL Hunting</td>
-              <td>Windows OpenSSH indirect execution (24/24 CI)</td>
-              <td><span class="pipe-status status-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> IN REVIEW</span></td>
-            </tr>
-            <tr data-status="review" data-pr="NVIDIA/garak#2357">
-              <td><a href="https://github.com/NVIDIA/garak/pull/2357" target="_blank" rel="noopener">NVIDIA/garak #2357</a></td>
-              <td>AI Red Teaming Engineering</td>
-              <td>Prevent duplicate attachment payload in NVMultimodal</td>
-              <td><span class="pipe-status status-review"><i class="bi bi-hourglass-split" aria-hidden="true"></i> IN REVIEW</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="matrix-empty" id="matrixEmpty" data-i18n="matrix-empty" hidden>No upstream contributions match the current filter.</p>
-      </div>
-    </section>
-
-    <div class="rfooter-nav">
-      <a href="../" class="btn-pill" data-i18n="rfooter-back"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to dev101x.online</a>
-      <a href="./windows-openssh-indirect-execution/" class="btn-pill primary" data-i18n="rfooter-dive1">Start with Deep Dive 01 <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <span>&copy; 2026 <strong>Yared Henriquez (DevCop95 / Dev101x)</strong> &middot; Cartagena, Colombia</span>
-    <span><a href="../">Portfolio</a> &middot; <a href="feed.xml">RSS Feed</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/yared-dev" target="_blank" rel="noopener">LinkedIn</a></span>
-  </footer>
-
-  <button type="button" class="scroll-top" id="scrollTop" aria-label="Back to top" data-i18n-aria="btn-back-to-top"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
-  <div id="researchLiveRegion" class="sr-only" aria-live="polite"></div>
-
-  <script src="research.js?v=2"></script>
+<div class="hub-tags">
+<span class="hub-tag" data-i18n="hub-bdb-tag-1">CUHK ITSC Cited</span>
+<span class="hub-tag" data-i18n="hub-bdb-tag-2">LOLBAS #525 (Merged)</span>
+<span class="hub-tag" data-i18n="hub-bdb-tag-3">Atomic #3439 (Merged)</span>
+<span class="hub-tag" data-i18n="hub-bdb-tag-4">Sigma #6310 (Approved)</span>
+<span class="hub-tag" data-i18n="hub-bdb-tag-5">Elastic #6946 (Approved ×2)</span>
+</div>
+<div class="hub-card-foot">
+<a class="hub-cta" data-i18n="hub-bdb-cta" href="./bigdiskbuster-fsutil-defense-evasion/">
+              Read full deep dive <i aria-hidden="true" class="bi bi-arrow-right"></i>
+</a>
+<span class="hub-read-meta" data-i18n="hub-bdb-read">2026-11-20 · 10 min read</span>
+</div>
+</article>
+</div>
+</section>
+<section aria-label="MITRE ATT&amp;CK Coverage Matrix" class="mitre-section">
+<div class="rkicker" data-i18n="mitre-kicker"><i aria-hidden="true" class="bi bi-bullseye"></i> MITRE ATT&amp;CK Coverage Map</div>
+<div class="mitre-grid">
+<article class="mitre-card">
+<div class="mitre-head">
+<span class="mitre-id">T1202 · T1059 · T1218</span>
+<span class="mitre-tactic" data-i18n="mitre-card-1-tactic">Execution / Evasion</span>
+</div>
+<h3 class="mitre-name" data-i18n="mitre-card-1-title">Indirect Command Execution (<code>ssh.exe</code>)</h3>
+<div class="mitre-links">
+<a href="./windows-openssh-indirect-execution/">Deep Dive 01</a>
+<a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" rel="noopener" target="_blank">LOLBAS #539</a>
+<a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Sentinel #15693</a>
+</div>
+</article>
+<article class="mitre-card">
+<div class="mitre-head">
+<span class="mitre-id">T1685 · T1562.001</span>
+<span class="mitre-tactic" data-i18n="mitre-card-2-tactic">Defense Evasion</span>
+</div>
+<h3 class="mitre-name" data-i18n="mitre-card-2-title">Defender Update Starvation &amp; <code>fsutil.exe</code></h3>
+<div class="mitre-links">
+<a href="./bigdiskbuster-fsutil-defense-evasion/">Deep Dive 02</a>
+<a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" rel="noopener" target="_blank">Atomic #3439</a>
+<a href="https://github.com/elastic/detection-rules/pull/6946" rel="noopener" target="_blank">Elastic #6946</a>
+</div>
+</article>
+<article class="mitre-card">
+<div class="mitre-head">
+<span class="mitre-id">T1555.005</span>
+<span class="mitre-tactic" data-i18n="mitre-card-3-tactic">Credential Access</span>
+</div>
+<h3 class="mitre-name" data-i18n="mitre-card-3-title">Password Managers (KeePass Discovery)</h3>
+<div class="mitre-links">
+<a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" rel="noopener" target="_blank">Atomic #3433 (Merged)</a>
+</div>
+</article>
+<article class="mitre-card">
+<div class="mitre-head">
+<span class="mitre-id">T1219</span>
+<span class="mitre-tactic" data-i18n="mitre-card-4-tactic">Command &amp; Control</span>
+</div>
+<h3 class="mitre-name" data-i18n="mitre-card-4-title">Remote Access Software (Custom AnyDesk)</h3>
+<div class="mitre-links">
+<a href="https://github.com/magicsword-io/LOLRMM/pull/253" rel="noopener" target="_blank">LOLRMM #253 (Merged)</a>
+</div>
+</article>
+</div>
+</section>
+<section aria-label="Upstream Traceability Matrix" class="matrix-section">
+<div class="matrix-header">
+<div class="rkicker" data-i18n="matrix-kicker"><i aria-hidden="true" class="bi bi-table"></i> Upstream Traceability Matrix</div>
+<span class="sync-pill" data-i18n="matrix-sync-pill" id="telemetrySyncBadge">Snapshot: 2026-11-22</span>
+</div>
+<div class="matrix-toolbar">
+<div aria-label="Filter PRs by status" class="matrix-filters" role="group">
+<button aria-pressed="true" class="mfilt-btn active" data-filter="all" type="button">All (<span class="mfilt-count">13</span>)</button>
+<button aria-pressed="false" class="mfilt-btn" data-filter="merged" type="button">Merged (<span class="mfilt-count">7</span>)</button>
+<button aria-pressed="false" class="mfilt-btn" data-filter="approved" type="button">Approved (<span class="mfilt-count">3</span>)</button>
+<button aria-pressed="false" class="mfilt-btn" data-filter="review" type="button">In Review (<span class="mfilt-count">3</span>)</button>
+</div>
+<div class="matrix-search-wrap">
+<input aria-label="Filter upstream matrix" class="matrix-search" id="matrixSearch" placeholder="Filter repo, T-code, Sigma, KQL..." type="search"/>
+<span class="matrix-meta" id="matrixCount">Showing 13 / 13</span>
+</div>
+</div>
+<div class="table-wrap">
+<table class="rtable" id="upstreamMatrix">
+<thead>
+<tr>
+<th data-i18n="matrix-th-repo">Repository &amp; PR</th>
+<th data-i18n="matrix-th-domain">Domain</th>
+<th data-i18n="matrix-th-scope">MITRE / Scope</th>
+<th data-i18n="matrix-th-status">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr data-pr="LOLBAS-Project/LOLBAS#525" data-status="merged">
+<td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/525" rel="noopener" target="_blank">LOLBAS-Project/LOLBAS #525</a></td>
+<td data-i18n="matrix-r1-dom">Living-Off-The-Land Docs</td>
+<td data-i18n="matrix-r1-scope"><code>Fsutil.exe</code> <code>file createnew</code> (T1562.001 / T1685)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr="LOLBAS-Project/LOLBAS#539" data-status="merged">
+<td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" rel="noopener" target="_blank">LOLBAS-Project/LOLBAS #539</a></td>
+<td data-i18n="matrix-r2-dom">Living-Off-The-Land Docs</td>
+<td data-i18n="matrix-r2-scope"><code>Ssh.exe</code> pre-auth <code>KnownHostsCommand</code> (T1202)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr="LOLBAS-Project/LOLBAS#532" data-status="merged">
+<td><a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" rel="noopener" target="_blank">LOLBAS-Project/LOLBAS #532</a></td>
+<td data-i18n="matrix-r3-dom">Living-Off-The-Land Docs</td>
+<td data-i18n="matrix-r3-scope"><code>Ssh.exe</code> <code>PermitLocalCommand=yes</code> (T1202)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr="redcanaryco/atomic-red-team#3433" data-status="merged">
+<td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" rel="noopener" target="_blank">redcanaryco/atomic-red-team #3433</a></td>
+<td data-i18n="matrix-r4-dom">Adversary Emulation</td>
+<td data-i18n="matrix-r4-scope">KeePass discovery &amp; config parsing (T1555.005)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr="redcanaryco/atomic-red-team#3439" data-status="merged">
+<td><a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" rel="noopener" target="_blank">redcanaryco/atomic-red-team #3439</a></td>
+<td data-i18n="matrix-r5-dom">Adversary Emulation</td>
+<td data-i18n="matrix-r5-scope">Defender disk exhaustion via <code>fsutil</code> (T1685)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr="magicsword-io/LOLRMM#253" data-status="merged">
+<td><a href="https://github.com/magicsword-io/LOLRMM/pull/253" rel="noopener" target="_blank">magicsword-io/LOLRMM #253</a></td>
+<td data-i18n="matrix-r6-dom">RMM Detection &amp; Sigma</td>
+<td data-i18n="matrix-r6-scope">AnyDesk custom per-org client coverage (T1219)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
+</tr>
+<tr data-pr-count="4" data-status="merged">
+<td><a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" rel="noopener" target="_blank">soxoj/maigret (#3367, #3386, #3388, #3458)</a></td>
+<td data-i18n="matrix-r7-dom">OSINT Signal Integrity</td>
+<td data-i18n="matrix-r7-scope">False-positive elimination &amp; challenge handling</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-4merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> 4 MERGED</span></td>
+</tr>
+<tr data-pr="elastic/detection-rules#6946" data-status="approved">
+<td><a href="https://github.com/elastic/detection-rules/pull/6946" rel="noopener" target="_blank">elastic/detection-rules #6946</a></td>
+<td data-i18n="matrix-r8-dom">Elastic EQL Detection</td>
+<td data-i18n="matrix-r8-scope">Suspicious <code>fsutil file createnew</code> (T1562.001)</td>
+<td><span class="pipe-status status-approved" data-i18n="matrix-status-appr2"><i aria-hidden="true" class="bi bi-patch-check-fill"></i> APPROVED (×2)</span></td>
+</tr>
+<tr data-pr="SigmaHQ/sigma#6310" data-status="approved">
+<td><a href="https://github.com/SigmaHQ/sigma/pull/6310" rel="noopener" target="_blank">SigmaHQ/sigma #6310</a></td>
+<td data-i18n="matrix-r9-dom">Sigma File Event Rule</td>
+<td data-i18n="matrix-r9-scope">BigDiskBuster GUID buster-file in <code>%TEMP%</code> (T1685)</td>
+<td><span class="pipe-status status-approved" data-i18n="matrix-status-appr1"><i aria-hidden="true" class="bi bi-patch-check-fill"></i> APPROVED (1/2)</span></td>
+</tr>
+<tr data-pr="SigmaHQ/sigma#6323" data-status="approved">
+<td><a href="https://github.com/SigmaHQ/sigma/pull/6323" rel="noopener" target="_blank">SigmaHQ/sigma #6323</a></td>
+<td data-i18n="matrix-r10-dom">Sigma WAF Rule Pack</td>
+<td data-i18n="matrix-r10-scope">SafeLine WAF SQLi / XSS / CMDi (<code>product: safeline</code>)</td>
+<td><span class="pipe-status status-approved" data-i18n="matrix-status-appr1"><i aria-hidden="true" class="bi bi-patch-check-fill"></i> APPROVED (1/2)</span></td>
+</tr>
+<tr data-pr="SigmaHQ/sigma#6585" data-status="review">
+<td><a href="https://github.com/SigmaHQ/sigma/pull/6585" rel="noopener" target="_blank">SigmaHQ/sigma #6585</a></td>
+<td data-i18n="matrix-r11-dom">Sigma Process Creation</td>
+<td data-i18n="matrix-r11-scope">Windows <code>ssh.exe</code> <code>KnownHostsCommand</code> (T1202)</td>
+<td><span class="pipe-status status-review" data-i18n="matrix-status-review"><i aria-hidden="true" class="bi bi-hourglass-split"></i> IN REVIEW</span></td>
+</tr>
+<tr data-pr="Azure/Azure-Sentinel#15693" data-status="review">
+<td><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Azure/Azure-Sentinel #15693</a></td>
+<td data-i18n="matrix-r12-dom">Sentinel KQL Hunting</td>
+<td data-i18n="matrix-r12-scope">Windows OpenSSH indirect execution (24/24 CI)</td>
+<td><span class="pipe-status status-review" data-i18n="matrix-status-review"><i aria-hidden="true" class="bi bi-hourglass-split"></i> IN REVIEW</span></td>
+</tr>
+<tr data-pr="NVIDIA/garak#2357" data-status="review">
+<td><a href="https://github.com/NVIDIA/garak/pull/2357" rel="noopener" target="_blank">NVIDIA/garak #2357</a></td>
+<td data-i18n="matrix-r13-dom">AI Red Teaming Engineering</td>
+<td data-i18n="matrix-r13-scope">Prevent duplicate attachment payload in NVMultimodal</td>
+<td><span class="pipe-status status-review" data-i18n="matrix-status-review"><i aria-hidden="true" class="bi bi-hourglass-split"></i> IN REVIEW</span></td>
+</tr>
+</tbody>
+</table>
+<p class="matrix-empty" data-i18n="matrix-empty" hidden="" id="matrixEmpty">No upstream contributions match the current filter.</p>
+</div>
+</section>
+<div class="rfooter-nav">
+<a class="btn-pill" data-i18n="rfooter-back" href="../"><i aria-hidden="true" class="bi bi-arrow-left"></i> Back to dev101x.online</a>
+<a class="btn-pill primary" data-i18n="rfooter-dive1" href="./windows-openssh-indirect-execution/">Start with Deep Dive 01 <i aria-hidden="true" class="bi bi-arrow-right"></i></a>
+</div>
+</main>
+<footer class="site-footer">
+<span data-i18n="footer-copy">© 2026 <strong>Yared Henriquez (DevCop95 / Dev101x)</strong> · Cartagena, Colombia</span>
+<span data-i18n="footer-links-hub"><a href="../">Portfolio</a> · <a href="feed.xml">RSS Feed</a> · <a href="https://github.com/DevCop95" rel="noopener" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/yared-dev" rel="noopener" target="_blank">LinkedIn</a></span>
+</footer>
+<button aria-label="Back to top" class="scroll-top" data-i18n-aria="btn-back-to-top" id="scrollTop" type="button"><i aria-hidden="true" class="bi bi-arrow-up"></i></button>
+<div aria-live="polite" class="sr-only" id="researchLiveRegion"></div>
+<script src="research.js?v=2"></script>
 </body>
 </html>
