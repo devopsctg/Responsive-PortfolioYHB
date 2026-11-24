@@ -104,8 +104,9 @@
       <span class="rnav-crumb">Windows OpenSSH</span>
     </div>
     <div class="rnav-actions">
-      <a href="../" class="rnav-link"><i class="bi bi-grid" aria-hidden="true"></i> All Research</a>
+      <a href="../" class="rnav-link" data-i18n="nav-all-research"><i class="bi bi-grid" aria-hidden="true"></i> All Research</a>
       <a href="../feed.xml" class="rnav-link rss" type="application/rss+xml"><i class="bi bi-rss-fill" aria-hidden="true"></i> RSS</a>
+      <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
         <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
       </button>
@@ -114,8 +115,8 @@
 
   <main class="rshell" id="main-content" data-telemetry-src="../../assets/data/telemetry.json">
     <header class="rhero">
-      <div class="rkicker"><i class="bi bi-terminal-split" aria-hidden="true"></i> Deep Dive 01 &middot; Detection Engineering</div>
-      <h1 class="rtitle">Abusing Windows OpenSSH and Closing <em>First-Match-Wins</em> Bypasses in KQL &amp; Sigma</h1>
+      <div class="rkicker" data-i18n="ssh-art-kicker"><i class="bi bi-terminal-split" aria-hidden="true"></i> Deep Dive 01 &middot; Detection Engineering</div>
+      <h1 class="rtitle" data-i18n="ssh-art-title">Abusing Windows OpenSSH and Closing <em>First-Match-Wins</em> Bypasses in KQL &amp; Sigma</h1>
       <p class="rlead">
         Native <code>C:\Windows\System32\OpenSSH\ssh.exe</code> ships on modern Windows endpoints as a Microsoft-signed binary capable of executing arbitrary local payloads before user authentication completes (<code>KnownHostsCommand</code>) or immediately after session establishment (<code>PermitLocalCommand</code>). This write-up documents the complete <strong>LOLBAS &rarr; Sigma &rarr; Microsoft Sentinel KQL</strong> engineering cycle, including a pure-RE2 automaton that defeats OpenSSH's <em>first-match-wins</em> option override trick.
       </p>
@@ -155,23 +156,23 @@
     <div class="article-layout">
       <aside class="toc-aside" aria-label="Table of contents">
         <details class="toc-details" open>
-          <summary class="toc-label"><span>Contents</span> <i class="bi bi-chevron-down toc-chevron" aria-hidden="true"></i></summary>
+          <summary class="toc-label"><span data-i18n="ssh-toc-title">Contents</span> <i class="bi bi-chevron-down toc-chevron" aria-hidden="true"></i></summary>
           <ul class="toc-list">
-            <li><a href="#threat-context">1. Threat Context &amp; Auth Boundary</a></li>
-            <li><a href="#execution-vectors">2. Vectors &amp; CLI Blind Spots</a></li>
-            <li><a href="#first-match-wins">3. Closing First-Match-Wins in RE2</a></li>
-            <li><a href="#kql-detection">4. Sentinel KQL Hunting Query</a></li>
-            <li><a href="#sigma-rule">5. Portable Sigma Coverage</a></li>
-            <li><a href="#adx-validation">6. Empirical ADX Validation</a></li>
-            <li><a href="#tuning">7. Tuning &amp; Hardening</a></li>
-            <li><a href="#references">8. Verified References</a></li>
+            <li><a href="#threat-context" data-i18n="ssh-toc-1">1. Threat Context &amp; Auth Boundary</a></li>
+            <li><a href="#execution-vectors" data-i18n="ssh-toc-2">2. Vectors &amp; CLI Blind Spots</a></li>
+            <li><a href="#first-match-wins" data-i18n="ssh-toc-3">3. Closing First-Match-Wins in RE2</a></li>
+            <li><a href="#kql-detection" data-i18n="ssh-toc-4">4. Sentinel KQL Hunting Query</a></li>
+            <li><a href="#sigma-rule" data-i18n="ssh-toc-5">5. Portable Sigma Coverage</a></li>
+            <li><a href="#adx-validation" data-i18n="ssh-toc-6">6. Empirical ADX Validation</a></li>
+            <li><a href="#tuning" data-i18n="ssh-toc-7">7. Tuning &amp; Hardening</a></li>
+            <li><a href="#references" data-i18n="ssh-toc-8">8. Verified References</a></li>
           </ul>
         </details>
       </aside>
 
       <article class="prose">
         <section id="threat-context">
-          <h2>1. Threat Context &amp; Why Auth Boundaries Matter</h2>
+          <h2 data-i18n="ssh-s1-title">1. Threat Context &amp; Why Auth Boundaries Matter</h2>
           <p>
             In September 2026, Microsoft Threat Intelligence reported that <strong>Star Blizzard</strong> refined its malware delivery with the <em>RedFlick</em> technique, abusing native Windows OpenSSH (<code>C:\Windows\System32\OpenSSH\ssh.exe</code>) with <code>PermitLocalCommand=yes</code> and <code>LocalCommand</code> to spawn secondary payloads through a trusted, OS-bundled binary (<a href="https://github.com/LOLBAS-Project/LOLBAS/issues/526" target="_blank" rel="noopener">LOLBAS #526</a> / <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener">PR #532</a>).
           </p>
@@ -181,7 +182,7 @@
         </section>
 
         <section id="execution-vectors">
-          <h2>2. Execution Vectors &amp; Telemetry Blind Spots</h2>
+          <h2 data-i18n="ssh-s2-title">2. Execution Vectors &amp; Telemetry Blind Spots</h2>
           <p>
             To cover both LOLBAS-documented vectors and config-based execution in Windows environments, detections must account for four distinct invocation patterns:
           </p>
@@ -291,15 +292,15 @@
           </div>
 
           <div class="callout">
-            <div class="callout-title"><i class="bi bi-eye-slash" aria-hidden="true"></i> Key Design Constraint: Renamed Binaries &amp; Config Indirection</div>
-            <p>
+            <div class="callout-title" data-i18n="callout-ssh-title"><i class="bi bi-eye-slash" aria-hidden="true"></i> Key Design Constraint: Renamed Binaries &amp; Config Indirection</div>
+            <p data-i18n="callout-ssh-body">
               Checking only <code>FileName =~ "ssh.exe"</code> breaks if an adversary copies <code>ssh.exe</code> to <code>svchost_helper.exe</code>, and checking only <code>ProcessCommandLine</code> misses <code>-F</code> or <code>.ssh/config</code>. Therefore, the Sentinel query normalizes both process and parent identity with <code>ProcessVersionInfoOriginalFileName =~ "ssh.exe"</code> (and the same for child LOLBins) and pairs CLI matching with unexpected child-process detection.
             </p>
           </div>
         </section>
 
         <section id="first-match-wins">
-          <h2>3. Closing OpenSSH <em>First-Match-Wins</em> Evasion in Pure RE2</h2>
+          <h2 data-i18n="ssh-s3-title">3. Closing OpenSSH <em>First-Match-Wins</em> Evasion in Pure RE2</h2>
           <p>
             A subtle bug appears when rule authors try to exclude benign hardening flags like <code>-o KnownHostsCommand=none</code> or <code>-o PermitLocalCommand=no</code> using a naive global clause such as <code>and not (ProcessCommandLine has "=none")</code>.
           </p>
@@ -339,7 +340,7 @@
         </section>
 
         <section id="kql-detection">
-          <h2>4. Full Sentinel KQL Hunting Query (<code>Azure/Azure-Sentinel #15693</code>)</h2>
+          <h2 data-i18n="ssh-s4-title">4. Full Sentinel KQL Hunting Query (<code>Azure/Azure-Sentinel #15693</code>)</h2>
           <p>
             Submitted in <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" target="_blank" rel="noopener"><code>Azure/Azure-Sentinel #15693</code></a> (<code>Hunting Queries/Microsoft 365 Defender/Execution/SshIndirectCommandExecution.yaml</code>), the production query combines all four CLI detectors with child-process lineage and emits a normalized <code>DetectionSignal</code> summary for analyst triage:
           </p>
@@ -397,7 +398,7 @@ DeviceProcessEvents
         </section>
 
         <section id="sigma-rule">
-          <h2>5. Portable Sigma Coverage (<code>SigmaHQ/sigma #6585</code>)</h2>
+          <h2 data-i18n="ssh-s5-title">5. Portable Sigma Coverage (<code>SigmaHQ/sigma #6585</code>)</h2>
           <p>
             While the existing Sigma rule <code>proc_creation_win_ssh_proxy_execution.yml</code> covered <code>ProxyCommand</code> and <code>PermitLocalCommand=yes</code>/<code>LocalCommand</code>, it lacked <code>KnownHostsCommand</code> and ATT&amp;CK <code>T1202</code> tagging. <a href="https://github.com/SigmaHQ/sigma/pull/6585" target="_blank" rel="noopener"><code>SigmaHQ/sigma #6585</code></a> enriches the upstream rule while aligning with ATT&amp;CK v18 tag taxonomy (<code>attack.execution</code>, <code>attack.stealth</code>, <code>attack.t1202</code>, <code>attack.t1218</code>), verified locally with <code>sigma check --fail-on-error --fail-on-issues</code> (0 issues):
           </p>
@@ -425,7 +426,7 @@ detection:
         </section>
 
         <section id="adx-validation">
-          <h2>6. Empirical Validation in Azure Data Explorer (19-Case Harness)</h2>
+          <h2 data-i18n="ssh-s6-title">6. Empirical Validation in Azure Data Explorer (19-Case Harness)</h2>
           <p>
             Static syntax parsing is never proof that an RE2 automaton handles real quoting and boundary edge cases. The Sentinel query was executed live against an Azure Data Explorer cluster (<code>help/Samples</code>) using a self-contained 19-row synthetic <code>DeviceProcessEvents</code> <code>datatable</code> covering adversarial edge cases and realistic benign telemetry:
           </p>
@@ -499,7 +500,7 @@ detection:
         </section>
 
         <section id="tuning">
-          <h2>7. Tuning, False Positives &amp; Endpoint Hardening</h2>
+          <h2 data-i18n="ssh-s7-title">7. Tuning, False Positives &amp; Endpoint Hardening</h2>
           <ul>
             <li><strong>Administrative jump hosts &amp; IDE tunnels:</strong> Developer tools (VS Code Remote-SSH, Git automation, bastion wrappers) may spawn shells or helpers under <code>ssh.exe</code>. Tune by excluding verified <code>InitiatingProcessCommandLine</code> patterns or dedicated jump-host automation accounts rather than relaxing <code>KnownHostsCommand</code> or <code>PermitLocalCommand</code> checks.</li>
             <li><strong>Pre-auth hardening:</strong> Where remote SSH access from workstations is unneeded or standardized, enforce explicit client policy or WDAC/AppLocker rules auditing <code>ssh.exe</code> execution alongside <code>%USERPROFILE%\.ssh\config</code> integrity monitoring.</li>
@@ -507,7 +508,7 @@ detection:
         </section>
 
         <section aria-label="Detection Artifacts Quick-Jump">
-          <h2>Detection Artifacts Quick-Jump</h2>
+          <h2 data-i18n="ssh-quick-title">Detection Artifacts Quick-Jump</h2>
           <div class="artifact-grid">
             <a href="https://lolbas-project.github.io/lolbas/Binaries/Ssh/" target="_blank" rel="noopener" class="artifact-card">
               <span class="artifact-kind">LOLBAS Docs</span>
@@ -528,7 +529,7 @@ detection:
         </section>
 
         <section id="references">
-          <h2>8. Verified References</h2>
+          <h2 data-i18n="ssh-s8-title">8. Verified References</h2>
           <ul>
             <li><a href="https://lolbas-project.github.io/lolbas/Binaries/Ssh/" target="_blank" rel="noopener">LOLBAS Project &mdash; Official <code>Ssh.exe</code> Documentation</a> (<a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener">PR #539</a> &amp; <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" target="_blank" rel="noopener">PR #532</a>, Merged)</li>
             <li><a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/star-blizzard-refines-phishing-and-malware-delivery-with-the-redflick-technique/" target="_blank" rel="noopener">Microsoft Threat Intelligence &mdash; Star Blizzard refines phishing and malware delivery with the RedFlick technique (Sep 2026)</a></li>
@@ -539,8 +540,8 @@ detection:
         </section>
 
         <div class="rfooter-nav">
-          <a href="../" class="btn-pill"><i class="bi bi-arrow-left" aria-hidden="true"></i> All Research</a>
-          <a href="../bigdiskbuster-fsutil-defense-evasion/" class="btn-pill primary">Next: BigDiskBuster &amp; fsutil.exe <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+          <a href="../" class="btn-pill" data-i18n="ssh-foot-back"><i class="bi bi-arrow-left" aria-hidden="true"></i> All Research</a>
+          <a href="../bigdiskbuster-fsutil-defense-evasion/" class="btn-pill primary" data-i18n="ssh-foot-next">Next: BigDiskBuster &amp; fsutil.exe <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
         </div>
       </article>
     </div>

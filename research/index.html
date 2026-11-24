@@ -83,9 +83,10 @@
       <span class="rnav-crumb">Research</span>
     </div>
     <div class="rnav-actions">
-      <a href="../" class="rnav-link"><i class="bi bi-arrow-left" aria-hidden="true"></i> Portfolio</a>
+      <a href="../" class="rnav-link" data-i18n="nav-portfolio"><i class="bi bi-arrow-left" aria-hidden="true"></i> Portfolio</a>
       <a href="feed.xml" class="rnav-link rss" type="application/rss+xml"><i class="bi bi-rss-fill" aria-hidden="true"></i> RSS</a>
       <a href="https://github.com/DevCop95" target="_blank" rel="noopener" class="rnav-link"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+      <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
         <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
       </button>
@@ -94,33 +95,33 @@
 
   <main class="rshell" id="main-content" data-telemetry-src="../assets/data/telemetry.json">
     <header class="rhero">
-      <div class="rkicker"><i class="bi bi-diagram-3" aria-hidden="true"></i> Offense-to-Defense Research Hub</div>
-      <h1 class="rtitle">Detection Engineering &amp; <em>Threat Research</em></h1>
-      <p class="rlead">
+      <div class="rkicker" data-i18n="hub-kicker"><i class="bi bi-diagram-3" aria-hidden="true"></i> Offense-to-Defense Research Hub</div>
+      <h1 class="rtitle" data-i18n="hub-title">Detection Engineering &amp; <em>Threat Research</em></h1>
+      <p class="rlead" data-i18n="hub-lead">
         Long-form engineering write-ups documenting end-to-end <strong>Offense &rarr; Emulation &rarr; Detection</strong> cycles: turning native Windows tradecraft into peer-reviewed <strong>LOLBAS</strong> entries, <strong>Atomic Red Team</strong> tests, Win32 kernel-handle monitors, and verified multi-SIEM detections across <strong>Sigma</strong>, <strong>Elastic EQL</strong>, and <strong>Microsoft Sentinel KQL</strong>.
       </p>
       <div class="rmeta-row">
         <span class="rmeta-pill accent"><i class="bi bi-person-badge" aria-hidden="true"></i> Yared Henriquez (DevCop95)</span>
-        <span class="rmeta-pill"><i class="bi bi-shield-check" aria-hidden="true"></i> Focus: Detection Engineering &amp; Applied AI Security</span>
-        <span class="rmeta-pill"><i class="bi bi-building" aria-hidden="true"></i> Tooling Cited by CUHK ITSC</span>
+        <span class="rmeta-pill" data-i18n="hub-pill-focus"><i class="bi bi-shield-check" aria-hidden="true"></i> Focus: Detection Engineering &amp; Applied AI Security</span>
+        <span class="rmeta-pill" data-i18n="hub-pill-cited"><i class="bi bi-building" aria-hidden="true"></i> Tooling Cited by CUHK ITSC</span>
       </div>
 
       <div class="rkpi-grid" aria-label="Research impact summary">
         <div class="rkpi-card">
           <div class="rkpi-val" id="kpiMergedCount">10</div>
-          <div class="rkpi-lbl">Merged Upstream PRs</div>
+          <div class="rkpi-lbl" data-i18n="kpi-merged-lbl">Merged Upstream PRs</div>
         </div>
         <div class="rkpi-card">
           <div class="rkpi-val" id="kpiApprovedCount">3</div>
-          <div class="rkpi-lbl">Approved Detections</div>
+          <div class="rkpi-lbl" data-i18n="kpi-approved-lbl">Approved Detections</div>
         </div>
         <div class="rkpi-card">
           <div class="rkpi-val" id="kpiReviewCount">3</div>
-          <div class="rkpi-lbl">Active PRs in Review</div>
+          <div class="rkpi-lbl" data-i18n="kpi-review-lbl">Active PRs in Review</div>
         </div>
         <div class="rkpi-card">
           <div class="rkpi-val">7</div>
-          <div class="rkpi-lbl">MITRE ATT&amp;CK Techniques</div>
+          <div class="rkpi-lbl" data-i18n="kpi-mitre-lbl">MITRE ATT&amp;CK Techniques</div>
         </div>
       </div>
     </header>
@@ -128,23 +129,23 @@
     <div class="rmethod-strip" aria-label="Offense to Defense Engineering Methodology">
       <div class="rmethod-step">
         <span class="rmethod-num">01 · Tradecraft</span>
-        <strong class="rmethod-title">LOLBAS &amp; Internals</strong>
-        <span class="rmethod-sub">Isolate native execution paths &amp; Win32 handle mechanics.</span>
+        <strong class="rmethod-title" data-i18n="method-01-title">LOLBAS &amp; Internals</strong>
+        <span class="rmethod-sub" data-i18n="method-01-sub">Isolate native execution paths &amp; Win32 handle mechanics.</span>
       </div>
       <div class="rmethod-step">
         <span class="rmethod-num">02 · Emulation</span>
-        <strong class="rmethod-title">Safe Atomic Tests</strong>
-        <span class="rmethod-sub">Generate repeatable endpoint telemetry without host exhaustion.</span>
+        <strong class="rmethod-title" data-i18n="method-02-title">Safe Atomic Tests</strong>
+        <span class="rmethod-sub" data-i18n="method-02-sub">Generate repeatable endpoint telemetry without host exhaustion.</span>
       </div>
       <div class="rmethod-step">
         <span class="rmethod-num">03 · Detection</span>
-        <strong class="rmethod-title">Sigma · KQL · EQL</strong>
-        <span class="rmethod-sub">Handle renamed binaries, config indirection &amp; pure-RE2 edge cases.</span>
+        <strong class="rmethod-title" data-i18n="method-03-title">Sigma · KQL · EQL</strong>
+        <span class="rmethod-sub" data-i18n="method-03-sub">Handle renamed binaries, config indirection &amp; pure-RE2 edge cases.</span>
       </div>
       <div class="rmethod-step">
         <span class="rmethod-num">04 · Verification</span>
-        <strong class="rmethod-title">Empirical Harnesses</strong>
-        <span class="rmethod-sub">Benchmark TP/FP rates in ADX, evtx-sigma-checker &amp; repo CI.</span>
+        <strong class="rmethod-title" data-i18n="method-04-title">Empirical Harnesses</strong>
+        <span class="rmethod-sub" data-i18n="method-04-sub">Benchmark TP/FP rates in ADX, evtx-sigma-checker &amp; repo CI.</span>
       </div>
     </div>
 
@@ -155,12 +156,12 @@
             <div class="rkicker"><i class="bi bi-terminal-split" aria-hidden="true"></i> Deep Dive 01 &middot; T1202 &middot; T1059</div>
             <span class="hub-meta-stat">11/11 TP &middot; 0/8 FP (ADX)</span>
           </div>
-          <h2>Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
+          <h2 data-i18n="hub-ssh-title">Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
           <div class="hub-telemetry">
             <i class="bi bi-activity" aria-hidden="true"></i>
             <span>DeviceProcessEvents &middot; Sysmon EID 1 &middot; 24/24 Sentinel CI</span>
           </div>
-          <p>
+          <p data-i18n="hub-ssh-desc">
             Compares pre-authentication (<code>KnownHostsCommand</code>) vs. post-authentication (<code>PermitLocalCommand</code> / <code>LocalCommand</code>, Star Blizzard <em>RedFlick</em>) execution in <code>ssh.exe</code>, models <code>-F</code> / <code>.ssh/config</code> CLI blind spots via child-process lineage, and builds a pure-RE2 KQL automaton validated in Azure Data Explorer.
           </p>
           <div class="hub-tags">
@@ -170,10 +171,10 @@
             <span class="hub-tag">RE2 / KQL</span>
           </div>
           <div class="hub-card-foot">
-            <a href="./windows-openssh-indirect-execution/" class="hub-cta">
+            <a href="./windows-openssh-indirect-execution/" class="hub-cta" data-i18n="hub-ssh-cta">
               Read full deep dive <i class="bi bi-arrow-right" aria-hidden="true"></i>
             </a>
-            <span class="hub-read-meta">2026-11-20 &middot; 9 min read</span>
+            <span class="hub-read-meta" data-i18n="hub-ssh-read">2026-11-20 &middot; 9 min read</span>
           </div>
         </article>
 
@@ -182,12 +183,12 @@
             <div class="rkicker"><i class="bi bi-hdd-stack" aria-hidden="true"></i> Deep Dive 02 &middot; T1685 &middot; T1562.001</div>
             <span class="hub-meta-stat">45s &rarr; 6–14s &middot; CUHK ITSC Cited</span>
           </div>
-          <h2>From Disk-Exhaustion DoS against Windows Defender (<code>fsutil.exe</code> / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</h2>
+          <h2 data-i18n="hub-bdb-title">From Disk-Exhaustion DoS against Windows Defender (<code>fsutil.exe</code> / BigDiskBuster) to Multi-SIEM &amp; Kernel-Handle Detection</h2>
           <div class="hub-telemetry">
             <i class="bi bi-cpu" aria-hidden="true"></i>
             <span>Win32 Restart Manager &middot; NtQuerySystemInformation &middot; Sysmon EID 11 &middot; EQL</span>
           </div>
-          <p>
+          <p data-i18n="hub-bdb-desc">
             Traces disk-exhaustion evasion (<code>ERROR_DISK_FULL</code>) across both native NT allocation (BigDiskBuster) and LOLBin execution (<code>fsutil.exe file createnew</code>): from <code>BDB-Guardian</code> (cited by CUHK ITSC) and debugging <code>0xC0000374</code> / pipe deadlocks in Win32 handle scanning to <strong>Atomic Red Team #3439</strong>, <strong>SigmaHQ #6310</strong>, and <strong>Elastic #6946</strong>.
           </p>
           <div class="hub-tags">
@@ -198,24 +199,24 @@
             <span class="hub-tag">Elastic #6946 (Approved &times;2)</span>
           </div>
           <div class="hub-card-foot">
-            <a href="./bigdiskbuster-fsutil-defense-evasion/" class="hub-cta">
+            <a href="./bigdiskbuster-fsutil-defense-evasion/" class="hub-cta" data-i18n="hub-bdb-cta">
               Read full deep dive <i class="bi bi-arrow-right" aria-hidden="true"></i>
             </a>
-            <span class="hub-read-meta">2026-11-20 &middot; 10 min read</span>
+            <span class="hub-read-meta" data-i18n="hub-bdb-read">2026-11-20 &middot; 10 min read</span>
           </div>
         </article>
       </div>
     </section>
 
     <section class="mitre-section" aria-label="MITRE ATT&CK Coverage Matrix">
-      <div class="rkicker"><i class="bi bi-bullseye" aria-hidden="true"></i> MITRE ATT&amp;CK Coverage Map</div>
+      <div class="rkicker" data-i18n="mitre-kicker"><i class="bi bi-bullseye" aria-hidden="true"></i> MITRE ATT&amp;CK Coverage Map</div>
       <div class="mitre-grid">
         <article class="mitre-card">
           <div class="mitre-head">
             <span class="mitre-id">T1202 · T1059 · T1218</span>
             <span class="mitre-tactic">Execution / Evasion</span>
           </div>
-          <h3 class="mitre-name">Indirect Command Execution (<code>ssh.exe</code>)</h3>
+          <h3 class="mitre-name" data-i18n="mitre-card-1-title">Indirect Command Execution (<code>ssh.exe</code>)</h3>
           <div class="mitre-links">
             <a href="./windows-openssh-indirect-execution/">Deep Dive 01</a>
             <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" target="_blank" rel="noopener">LOLBAS #539</a>
@@ -227,7 +228,7 @@
             <span class="mitre-id">T1685 · T1562.001</span>
             <span class="mitre-tactic">Defense Evasion</span>
           </div>
-          <h3 class="mitre-name">Defender Update Starvation &amp; <code>fsutil.exe</code></h3>
+          <h3 class="mitre-name" data-i18n="mitre-card-2-title">Defender Update Starvation &amp; <code>fsutil.exe</code></h3>
           <div class="mitre-links">
             <a href="./bigdiskbuster-fsutil-defense-evasion/">Deep Dive 02</a>
             <a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener">Atomic #3439</a>
@@ -239,7 +240,7 @@
             <span class="mitre-id">T1555.005</span>
             <span class="mitre-tactic">Credential Access</span>
           </div>
-          <h3 class="mitre-name">Password Managers (KeePass Discovery)</h3>
+          <h3 class="mitre-name" data-i18n="mitre-card-3-title">Password Managers (KeePass Discovery)</h3>
           <div class="mitre-links">
             <a href="https://github.com/redcanaryco/atomic-red-team/pull/3433" target="_blank" rel="noopener">Atomic #3433 (Merged)</a>
           </div>
@@ -249,7 +250,7 @@
             <span class="mitre-id">T1219</span>
             <span class="mitre-tactic">Command &amp; Control</span>
           </div>
-          <h3 class="mitre-name">Remote Access Software (Custom AnyDesk)</h3>
+          <h3 class="mitre-name" data-i18n="mitre-card-4-title">Remote Access Software (Custom AnyDesk)</h3>
           <div class="mitre-links">
             <a href="https://github.com/magicsword-io/LOLRMM/pull/253" target="_blank" rel="noopener">LOLRMM #253 (Merged)</a>
           </div>
@@ -259,7 +260,7 @@
 
     <section class="matrix-section" aria-label="Upstream Traceability Matrix">
       <div class="matrix-header">
-        <div class="rkicker"><i class="bi bi-table" aria-hidden="true"></i> Upstream Traceability Matrix</div>
+        <div class="rkicker" data-i18n="matrix-kicker"><i class="bi bi-table" aria-hidden="true"></i> Upstream Traceability Matrix</div>
         <span class="sync-pill" id="telemetrySyncBadge">Snapshot: 2026-11-22</span>
       </div>
 
@@ -280,10 +281,10 @@
         <table class="rtable" id="upstreamMatrix">
           <thead>
             <tr>
-              <th>Repository &amp; PR</th>
-              <th>Domain</th>
-              <th>MITRE / Scope</th>
-              <th>Status</th>
+              <th data-i18n="matrix-th-repo">Repository &amp; PR</th>
+              <th data-i18n="matrix-th-domain">Domain</th>
+              <th data-i18n="matrix-th-scope">MITRE / Scope</th>
+              <th data-i18n="matrix-th-status">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -367,13 +368,13 @@
             </tr>
           </tbody>
         </table>
-        <p class="matrix-empty" id="matrixEmpty" hidden>No upstream contributions match the current filter.</p>
+        <p class="matrix-empty" id="matrixEmpty" data-i18n="matrix-empty" hidden>No upstream contributions match the current filter.</p>
       </div>
     </section>
 
     <div class="rfooter-nav">
-      <a href="../" class="btn-pill"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to dev101x.online</a>
-      <a href="./windows-openssh-indirect-execution/" class="btn-pill primary">Start with Deep Dive 01 <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+      <a href="../" class="btn-pill" data-i18n="rfooter-back"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to dev101x.online</a>
+      <a href="./windows-openssh-indirect-execution/" class="btn-pill primary" data-i18n="rfooter-dive1">Start with Deep Dive 01 <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </div>
   </main>
 
@@ -382,7 +383,7 @@
     <span><a href="../">Portfolio</a> &middot; <a href="feed.xml">RSS Feed</a> &middot; <a href="https://github.com/DevCop95" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/yared-dev" target="_blank" rel="noopener">LinkedIn</a></span>
   </footer>
 
-  <button type="button" class="scroll-top" id="scrollTop" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+  <button type="button" class="scroll-top" id="scrollTop" aria-label="Back to top" data-i18n-aria="btn-back-to-top"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
   <div id="researchLiveRegion" class="sr-only" aria-live="polite"></div>
 
   <script src="research.js?v=2"></script>

@@ -106,8 +106,9 @@
       <span class="rnav-crumb">BigDiskBuster &amp; fsutil</span>
     </div>
     <div class="rnav-actions">
-      <a href="../" class="rnav-link"><i class="bi bi-grid" aria-hidden="true"></i> All Research</a>
+      <a href="../" class="rnav-link" data-i18n="nav-all-research"><i class="bi bi-grid" aria-hidden="true"></i> All Research</a>
       <a href="../feed.xml" class="rnav-link rss" type="application/rss+xml"><i class="bi bi-rss-fill" aria-hidden="true"></i> RSS</a>
+      <button type="button" class="lang-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
         <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
       </button>
@@ -116,8 +117,8 @@
 
   <main class="rshell" id="main-content" data-telemetry-src="../../assets/data/telemetry.json">
     <header class="rhero">
-      <div class="rkicker"><i class="bi bi-hdd-stack" aria-hidden="true"></i> Deep Dive 02 &middot; Defense Evasion Engineering</div>
-      <h1 class="rtitle">From Defender Disk-Exhaustion DoS (<code>fsutil.exe</code> / <em>BigDiskBuster</em>) to Multi-SIEM &amp; Kernel-Handle Detection</h1>
+      <div class="rkicker" data-i18n="bdb-art-kicker"><i class="bi bi-hdd-stack" aria-hidden="true"></i> Deep Dive 02 &middot; Defense Evasion Engineering</div>
+      <h1 class="rtitle" data-i18n="bdb-art-title">From Defender Disk-Exhaustion DoS (<code>fsutil.exe</code> / <em>BigDiskBuster</em>) to Multi-SIEM &amp; Kernel-Handle Detection</h1>
       <p class="rlead">
         Disk-space starvation against Microsoft Defender updates (<code>ERROR_DISK_FULL</code> / <code>0x80070070</code>) silently freezes platform and signature updates while keeping Defender services superficially nominal. This case study traces how a single threat model became a 5-stage defensive ecosystem—from Win32 kernel-handle correlation in <strong>BDB-Guardian</strong> (formally cited by <strong>CUHK ITSC</strong>) to merged documentation in <strong>LOLBAS</strong>, safe adversary emulation in <strong>Red Canary Atomic Red Team</strong>, and approved detections in <strong>SigmaHQ</strong> and <strong>Elastic Security</strong>.
       </p>
@@ -162,21 +163,21 @@
     <div class="article-layout">
       <aside class="toc-aside" aria-label="Table of contents">
         <details class="toc-details" open>
-          <summary class="toc-label"><span>Contents</span> <i class="bi bi-chevron-down toc-chevron" aria-hidden="true"></i></summary>
+          <summary class="toc-label"><span data-i18n="bdb-toc-title">Contents</span> <i class="bi bi-chevron-down toc-chevron" aria-hidden="true"></i></summary>
           <ul class="toc-list">
-            <li><a href="#threat-model">1. Threat Model: Native NT vs. LOLBin</a></li>
-            <li><a href="#bdb-guardian">2. BDB-Guardian &amp; Win32 Lessons</a></li>
-            <li><a href="#atomic-emulation">3. Safe Emulation (Atomic #3439)</a></li>
-            <li><a href="#multi-siem">4. Multi-SIEM Rules (Sigma &amp; Elastic)</a></li>
-            <li><a href="#triage-ir">5. Triage &amp; Incident Response</a></li>
-            <li><a href="#references">6. Verified References</a></li>
+            <li><a href="#threat-model" data-i18n="bdb-toc-1">1. Threat Model: Native NT vs. LOLBin</a></li>
+            <li><a href="#bdb-guardian" data-i18n="bdb-toc-2">2. BDB-Guardian &amp; Win32 Lessons</a></li>
+            <li><a href="#atomic-emulation" data-i18n="bdb-toc-3">3. Safe Emulation (Atomic #3439)</a></li>
+            <li><a href="#multi-siem" data-i18n="bdb-toc-4">4. Multi-SIEM Rules (Sigma &amp; Elastic)</a></li>
+            <li><a href="#triage-ir" data-i18n="bdb-toc-5">5. Triage &amp; Incident Response</a></li>
+            <li><a href="#references" data-i18n="bdb-toc-6">6. Verified References</a></li>
           </ul>
         </details>
       </aside>
 
       <article class="prose">
         <section id="threat-model">
-          <h2>1. Threat Model: Native NT Allocation vs. <code>fsutil.exe</code></h2>
+          <h2 data-i18n="bdb-s1-title">1. Threat Model: Native NT Allocation vs. <code>fsutil.exe</code></h2>
           <p>
             Disk exhaustion as a defense-impairment primitive splits into two operational implementations that require completely different telemetry layers:
           </p>
@@ -273,7 +274,7 @@
         </section>
 
         <section id="bdb-guardian">
-          <h2>2. Closing the EDR Blind Spot: <code>BDB-Guardian</code> &amp; Win32 Internals</h2>
+          <h2 data-i18n="bdb-s2-title">2. Closing the EDR Blind Spot: <code>BDB-Guardian</code> &amp; Win32 Internals</h2>
           <p>
             Because Variant A leaves zero <code>fsutil.exe</code> process-creation events and deletes its buster-file via <code>FILE_DELETE_ON_CLOSE</code> as soon as the update aborts, <a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener"><strong>BDB-Guardian</strong></a> approaches the problem from live kernel/userland state—correlating three independent Indicators of Compromise per Process ID:
           </p>
@@ -330,24 +331,24 @@
             </table>
           </div>
 
-          <p>
+          <p data-i18n="bdb-s2-p2">
             <strong>Same-PID Correlation Verdict:</strong> When a single non-whitelisted PID simultaneously holds an open handle to <code>MRT.exe</code> and the system volume, the verdict escalates immediately to <code>CRITICAL</code> (near-zero false positives), and presence of the GUID buster-file confirms active BigDiskBuster-like execution. To isolate native Win32/P/Invoke memory from the PowerShell orchestrator, <code>BDBMonitor.ps1</code> delegates all native calls to a dedicated child worker (<code>Invoke-VolumeScan.ps1</code> + inline C# in <code>bdb-csharp.ps1</code>).
           </p>
 
           <div class="callout warn">
-            <div class="callout-title"><i class="bi bi-bug" aria-hidden="true"></i> Engineering Post-Mortem: Fixing <code>0xC0000374</code> Heap Corruption &amp; Named-Pipe Deadlocks</div>
-            <p>
+            <div class="callout-title" data-i18n="callout-bdb-title"><i class="bi bi-bug" aria-hidden="true"></i> Engineering Post-Mortem: Fixing <code>0xC0000374</code> Heap Corruption &amp; Named-Pipe Deadlocks</div>
+            <p data-i18n="callout-bdb-intro">
               Two real Win32 pitfalls surfaced during live testing of <code>BDB-Guardian</code>—documented in the repo and reproduced in the <a href="https://devcop95.github.io/BDB-Guardian/" target="_blank" rel="noopener">evidence report</a>:
             </p>
             <ul>
-              <li><strong><code>RmGetList</code> struct mismatch (<code>0xC0000374</code>):</strong> Calling <code>RmGetList</code> with a buffer sized for <code>RM_UNIQUE_PROCESS</code> instead of <code>RM_PROCESS_INFO</code> (~668 bytes/entry) triggers native heap corruption (<code>STATUS_HEAP_CORRUPTION</code>). Switching to <code>RM_PROCESS_INFO</code> with a proper resize retry loop eliminated all <code>Application Error</code> crashes across consecutive runs.</li>
-              <li><strong><code>NtQueryObject</code> pipe hang:</strong> Querying object names across arbitrary duplicated handles stalls indefinitely on synchronous named pipes. Filtering out handles where <code>GetFileType != FILE_TYPE_DISK</code> before calling <code>NtQueryObject</code>—backed by per-PID timeouts—eliminated hangs and cut full-system handle scan runtime from <strong>~45 seconds down to 6–14 seconds</strong>.</li>
+              <li data-i18n="callout-bdb-item1"><strong><code>RmGetList</code> struct mismatch (<code>0xC0000374</code>):</strong> Calling <code>RmGetList</code> with a buffer sized for <code>RM_UNIQUE_PROCESS</code> instead of <code>RM_PROCESS_INFO</code> (~668 bytes/entry) triggers native heap corruption (<code>STATUS_HEAP_CORRUPTION</code>). Switching to <code>RM_PROCESS_INFO</code> with a proper resize retry loop eliminated all <code>Application Error</code> crashes across consecutive runs.</li>
+              <li data-i18n="callout-bdb-item2"><strong><code>NtQueryObject</code> pipe hang:</strong> Querying object names across arbitrary duplicated handles stalls indefinitely on synchronous named pipes. Filtering out handles where <code>GetFileType != FILE_TYPE_DISK</code> before calling <code>NtQueryObject</code>—backed by per-PID timeouts—eliminated hangs and cut full-system handle scan runtime from <strong>~45 seconds down to 6–14 seconds</strong>.</li>
             </ul>
           </div>
         </section>
 
         <section id="atomic-emulation">
-          <h2>3. Safe Adversary Emulation (<code>Atomic Red Team #3439</code> &mdash; Test #79)</h2>
+          <h2 data-i18n="bdb-s3-title">3. Safe Adversary Emulation (<code>Atomic Red Team #3439</code> &mdash; Test #79)</h2>
           <p>
             Validating endpoint detections on live infrastructure requires generating authentic <code>fsutil.exe file createnew</code> + hidden GUID file telemetry without actually exhausting the system volume and crashing the OS or EDR spoolers. <a href="https://github.com/redcanaryco/atomic-red-team/pull/3439" target="_blank" rel="noopener"><strong>Atomic Red Team PR #3439</strong></a> (merged into <code>T1685</code>, published at <a href="https://atomicredteam.io/docs/atomics/T1685" target="_blank" rel="noopener"><code>atomicredteam.io/docs/atomics/T1685</code></a>) enforces three strict safety invariants:
           </p>
@@ -374,7 +375,7 @@ if (-not $targetPath.StartsWith($tempRoot, [System.StringComparison]::OrdinalIgn
         </section>
 
         <section id="multi-siem">
-          <h2>4. Multi-SIEM Detection Rules (<code>SigmaHQ #6310</code> &amp; <code>Elastic #6946</code>)</h2>
+          <h2 data-i18n="bdb-s4-title">4. Multi-SIEM Detection Rules (<code>SigmaHQ #6310</code> &amp; <code>Elastic #6946</code>)</h2>
 
           <h3 id="sigma-file-event">Sigma File Event Rule &mdash; <code>SigmaHQ/sigma #6310</code> (Approved, 14/14 CI)</h3>
           <p>
@@ -436,7 +437,7 @@ level: medium</code></pre>
         </section>
 
         <section id="triage-ir">
-          <h2>5. Triage &amp; Incident Response Playbook</h2>
+          <h2 data-i18n="bdb-s5-title">5. Triage &amp; Incident Response Playbook</h2>
           <ol>
             <li><strong>Verify Defender operational health:</strong> Inspect Microsoft-Windows-Windows Defender/Operational logs for <strong>Event IDs 2000, 2001, and 1151</strong> (signature/platform update failures with <code>0x80070070</code> / <code>ERROR_DISK_FULL</code>).</li>
             <li><strong>Inspect parent process tree &amp; open handles:</strong> Trace the parent of <code>fsutil.exe</code> (or run <code>BDBMonitor.ps1</code> to catch native NT binaries holding <code>MRT.exe</code> + volume handles without process-creation artifacts).</li>
@@ -445,7 +446,7 @@ level: medium</code></pre>
         </section>
 
         <section aria-label="Detection Artifacts Quick-Jump">
-          <h2>Detection Artifacts Quick-Jump</h2>
+          <h2 data-i18n="bdb-quick-title">Detection Artifacts Quick-Jump</h2>
           <div class="artifact-grid">
             <a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener" class="artifact-card">
               <span class="artifact-kind">Kernel Monitor</span>
@@ -471,7 +472,7 @@ level: medium</code></pre>
         </section>
 
         <section id="references">
-          <h2>6. Verified References</h2>
+          <h2 data-i18n="bdb-s6-title">6. Verified References</h2>
           <ul>
             <li><a href="https://www.itsc.cuhk.edu.hk/en/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">CUHK ITSC Security Alert &mdash; Microsoft Denial-of-Service Vulnerability (BigDiskBuster)</a> (<a href="https://www.itsc.cuhk.edu.hk/tc/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">繁體中文</a> &middot; <a href="https://www.itsc.cuhk.edu.hk/sc/all-it/information-security/information-security-alerts/microsoft-denial-of-service-vulnerability-bigdiskbuster-cve-unknown/" target="_blank" rel="noopener">简体中文</a>)</li>
             <li><a href="https://github.com/DevCop95/BDB-Guardian" target="_blank" rel="noopener">DevCop95/BDB-Guardian</a> &amp; <a href="https://devcop95.github.io/BDB-Guardian/" target="_blank" rel="noopener">Live Evidence Report</a></li>
@@ -485,8 +486,8 @@ level: medium</code></pre>
         </section>
 
         <div class="rfooter-nav">
-          <a href="../windows-openssh-indirect-execution/" class="btn-pill"><i class="bi bi-arrow-left" aria-hidden="true"></i> Previous: Windows OpenSSH</a>
-          <a href="../" class="btn-pill primary">Back to Research Hub <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+          <a href="../windows-openssh-indirect-execution/" class="btn-pill" data-i18n="bdb-foot-back"><i class="bi bi-arrow-left" aria-hidden="true"></i> Previous: Windows OpenSSH</a>
+          <a href="../" class="btn-pill primary" data-i18n="bdb-foot-next">Back to Research Hub <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
         </div>
       </article>
     </div>
