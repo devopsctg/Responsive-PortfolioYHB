@@ -1197,6 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (sp) sp.textContent = isEs ? 'Compartir artículo' : 'Share article';
     }
     root.setAttribute('lang', lang);
+    root.lang = lang;
     try { localStorage.setItem('devyhb-lang', lang); } catch { /* Storage optional */ }
     announce(lang === 'es' ? 'Idioma cambiado a español' : 'Language changed to English');
   };
@@ -1209,10 +1210,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateLanguage(savedLang);
 
-  langToggle?.addEventListener('click', () => {
-    const current = root.getAttribute('lang') || savedLang;
+  let lastToggleTime = 0;
+  const handleLangToggle = (e) => {
+    const now = Date.now();
+    if (now - lastToggleTime < 300) return;
+    lastToggleTime = now;
+    const current = root.getAttribute('lang') || root.lang || savedLang || 'es';
     const next = current === 'es' ? 'en' : 'es';
     updateLanguage(next);
-  });
+  };
+
+  langToggle?.addEventListener('click', handleLangToggle);
+  langToggle?.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handleLangToggle(e);
+  }, { passive: false });
 
 });

@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileClose = document.getElementById('mobileClose');
     const langToggle = document.getElementById('langToggle');
+    const mobileLangToggle = document.getElementById('mobileLangToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const reducedMotion = motionPreference.matches;
 
@@ -504,8 +506,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ghost) ghost.textContent = text;
         if (target) target.textContent = text;
 
-        if (langToggle) langToggle.textContent = lang === 'es' ? 'EN' : 'ES';
+        const toggleLabel = lang === 'es' ? 'EN' : 'ES';
+        if (langToggle) langToggle.textContent = toggleLabel;
+        if (mobileLangToggle) mobileLangToggle.textContent = toggleLabel;
         root.setAttribute('lang', lang);
+        root.lang = lang;
         updateAriaLocale(lang);
 
         if (cachedContributions) {
@@ -673,12 +678,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncThemeIcon = () => {
         const dark = root.getAttribute('data-theme') === 'dark';
         if (themeIcon) themeIcon.className = dark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
+        const mobileThemeIcon = mobileThemeToggle?.querySelector('i');
+        if (mobileThemeIcon) mobileThemeIcon.className = dark ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
         themeToggle?.setAttribute('aria-pressed', String(dark));
+        mobileThemeToggle?.setAttribute('aria-pressed', String(dark));
     };
 
     let themeTransition = null;
     let requestedTheme = root.getAttribute('data-theme');
-    themeToggle?.addEventListener('click', () => {
+    const toggleTheme = () => {
         requestedTheme = requestedTheme === 'dark' ? 'light' : 'dark';
         themeTransition?.skipTransition();
         const applyTheme = () => {
@@ -703,7 +711,9 @@ document.addEventListener('DOMContentLoaded', () => {
             root.classList.remove('theme-transitioning');
             themeTransition = null;
         });
-    });
+    };
+    themeToggle?.addEventListener('click', toggleTheme);
+    mobileThemeToggle?.addEventListener('click', toggleTheme);
     syncThemeIcon();
 
     // ─── MOBILE MENU ─────────────────────────────────────────────────────────
@@ -1020,11 +1030,28 @@ document.addEventListener('DOMContentLoaded', () => {
         tick(startedAt);
     };
 
-    langToggle?.addEventListener('click', () => {
-        const nextLang = root.lang === 'es' ? 'en' : 'es';
+    let lastMainToggleTime = 0;
+    const handleMainLangToggle = (e) => {
+        const now = Date.now();
+        if (now - lastMainToggleTime < 300) return;
+        lastMainToggleTime = now;
+        const current = root.getAttribute('lang') || root.lang || 'es';
+        const nextLang = current === 'es' ? 'en' : 'es';
         updateLanguage(nextLang);
         runHeroScramble();
-    });
+    };
+
+    langToggle?.addEventListener('click', handleMainLangToggle);
+    langToggle?.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleMainLangToggle(e);
+    }, { passive: false });
+
+    mobileLangToggle?.addEventListener('click', handleMainLangToggle);
+    mobileLangToggle?.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleMainLangToggle(e);
+    }, { passive: false });
 
     // ─── INIT ─────────────────────────────────────────────────────────────────
     const yearEl = document.getElementById('year');

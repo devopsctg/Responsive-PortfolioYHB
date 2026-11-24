@@ -142,8 +142,11 @@ code, pre { font-family: var(--fm); }
   color: var(--muted); background: var(--surface); transition: all .25s var(--ease);
   font-family: var(--fm); font-size: .74rem; font-weight: 700;
   text-transform: uppercase;
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 .theme-toggle:hover, .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle:active, .lang-toggle:active { transform: scale(.92); }
 
 /* === SHELL & HEADERS === */
 .rshell {
@@ -750,21 +753,34 @@ table.rtable tr:last-child td { border-bottom: 0; }
   .toc-chevron { display: inline-block; }
   .toc-details:not([open]) .toc-label { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
 }
+@media (max-width: 768px) {
+  .rnav-link.rss,
+  .rnav-link[href*="github.com"] { display: none !important; }
+  .rnav-sep, .rnav-crumb { display: none !important; }
+  .rnav-actions { gap: .5rem; flex-wrap: nowrap; }
+  .theme-toggle, .lang-toggle {
+    width: 38px; height: 38px; min-width: 38px; min-height: 38px;
+    flex-shrink: 0; touch-action: manipulation; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; user-select: none;
+  }
+}
 @media (max-width: 640px) {
   .rkpi-grid, .rmethod-strip { grid-template-columns: 1fr; }
-  .rnav { padding: .7rem 4vw; gap: .5rem; }
-  .nlogo { font-size: 1.15rem; }
-  .rnav-sep, .rnav-crumb { display: none; }
-  .rnav-actions { gap: .4rem; flex-wrap: nowrap; }
-  .rnav-link { padding: .38rem .65rem; font-size: .68rem; white-space: nowrap; }
-  .theme-toggle, .lang-toggle { width: 34px; height: 34px; flex-shrink: 0; }
+  .rnav { padding: .65rem 4vw; gap: .5rem; overflow-x: clip; max-width: 100vw; box-sizing: border-box; }
+  .nlogo { font-size: 1.15rem; white-space: nowrap; }
+  .rnav-actions { gap: .45rem; flex-wrap: nowrap; flex-shrink: 0; }
+  .rnav-link { padding: .38rem .6rem; font-size: .68rem; white-space: nowrap; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
   .rshell { padding: 5.5rem 5vw 3.5rem; }
   .hub-card { padding: 1.4rem; }
   .scroll-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 }
-@media (max-width: 400px) {
-  .rnav-link.rss { display: none; }
-  .rnav-link { padding: .34rem .55rem; font-size: .64rem; }
+@media (max-width: 480px) {
+  .rnav { padding: .6rem 3.5vw; }
+  .nlogo { font-size: 1.05rem; }
+  .rnav-link { max-width: 105px; font-size: .64rem; padding: .32rem .5rem; }
+}
+@media (max-width: 375px) {
+  .rnav-link { max-width: 85px; font-size: .6rem; padding: .28rem .42rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -160,11 +160,13 @@ nav.scrolled {
   border: 1px solid var(--line); border-radius: 50%;
   color: var(--muted); font-family: var(--fm); font-size: .72rem; font-weight: 700;
   transition: all .3s var(--ease);
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; user-select: none;
 }
 .theme-toggle:hover, .lang-toggle:hover, .hamburger:hover {
   border-color: var(--accent); color: var(--accent);
   box-shadow: 0 0 12px rgba(0,232,122,.12);
 }
+.theme-toggle:active, .lang-toggle:active, .hamburger:active { transform: scale(.92); }
 .ncta {
   display: inline-flex; align-items: center; gap: .5rem;
   padding: .6rem 1.4rem; background: var(--ink); color: var(--bg);
@@ -198,6 +200,20 @@ nav.scrolled {
   border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-size: 1rem; transition: .3s;
 }
 .mobile-menu-close:hover { border-color: var(--accent); color: var(--accent); }
+.mobile-menu-controls {
+  display: flex; align-items: center; gap: 1.25rem; margin-top: 1rem;
+}
+.mobile-menu-controls .lang-toggle,
+.mobile-menu-controls .theme-toggle {
+  width: 46px; height: 46px; font-size: .85rem; font-weight: 700;
+  border-radius: 50%; border: 1px solid var(--line);
+  color: var(--ink); background: var(--surface);
+  cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+.mobile-menu-controls .lang-toggle:hover,
+.mobile-menu-controls .theme-toggle:hover {
+  border-color: var(--accent); color: var(--accent);
+}
 
 /* === HERO === */
 #hero {
