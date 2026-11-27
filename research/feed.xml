@@ -5,7 +5,7 @@
     <link>https://dev101x.online/research/</link>
     <description>Offense-to-Defense Detection Engineering and Threat Research by Yared Henriquez (DevCop95 / Dev101x): LOLBAS tradecraft, Atomic Red Team emulation, Win32 kernel-handle monitoring, Sigma, Elastic EQL, and Microsoft Sentinel KQL.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Nov 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 05:35:44 +0000</lastBuildDate>
     <atom:link href="https://dev101x.online/research/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
@@ -17,7 +17,7 @@
       <category>MITRE ATT&amp;CK T1202</category>
       <category>Microsoft Sentinel KQL</category>
       <category>Sigma</category>
-      <description>Compares pre-authentication KnownHostsCommand vs. post-authentication PermitLocalCommand/LocalCommand execution in Windows ssh.exe, closes -F/.ssh/config blind spots via child-process lineage, and builds a pure-RE2 KQL automaton defeating OpenSSH first-match-wins overrides (11/11 TP, 0/8 FP in ADX; 24/24 Sentinel CI).</description>
+      <description>Compares pre-authentication KnownHostsCommand vs. post-authentication PermitLocalCommand/LocalCommand execution in Windows ssh.exe, closes -F/.ssh/config blind spots via child-process lineage, and builds a pure-RE2 KQL automaton defeating OpenSSH first-match-wins overrides (12/12 TP, 0/9 FP in ADX; merged in Azure-Sentinel #15693).</description>
     </item>
 
     <item>

@@ -14,7 +14,7 @@
 <meta content="article" property="og:type"/>
 <meta content="https://dev101x.online/research/windows-openssh-indirect-execution/" property="og:url"/>
 <meta content="Abusing Windows OpenSSH &amp; Closing First-Match-Wins Bypasses in KQL &amp; Sigma" property="og:title"/>
-<meta content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 19-case ADX validation (11/11 TP, 0/8 FP)." property="og:description"/>
+<meta content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 21-case ADX validation (12/12 TP, 0/9 FP)." property="og:description"/>
 <meta content="https://dev101x.online/assets/img/og-research-openssh.png" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -23,7 +23,7 @@
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="https://dev101x.online/research/windows-openssh-indirect-execution/" name="twitter:url"/>
 <meta content="Abusing Windows OpenSSH &amp; Closing First-Match-Wins Bypasses in KQL &amp; Sigma" name="twitter:title"/>
-<meta content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 19-case ADX validation (11/11 TP, 0/8 FP)." name="twitter:description"/>
+<meta content="Pre-auth KnownHostsCommand vs. post-auth PermitLocalCommand, -F/.ssh/config child lineage, pure RE2 negation automata, and 21-case ADX validation (12/12 TP, 0/9 FP)." name="twitter:description"/>
 <meta content="https://dev101x.online/assets/img/og-research-openssh.png" name="twitter:image"/>
 <meta content="@Devcop101" name="twitter:site"/>
 <meta content="@Devcop101" name="twitter:creator"/>
@@ -38,7 +38,7 @@
         "mainEntityOfPage": "https://dev101x.online/research/windows-openssh-indirect-execution/",
         "image": "https://dev101x.online/assets/img/og-research-openssh.png",
         "datePublished": "2026-11-20",
-        "dateModified": "2026-11-22",
+        "dateModified": "2026-11-27",
         "author": {
           "@type": "Person",
           "name": "Yared Henriquez",
@@ -145,7 +145,7 @@
 <a class="pipe-node" data-pr="Azure/Azure-Sentinel#15693" href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">
 <span class="pipe-stage" data-i18n="pipe-ssh-s4-stage">04 · Sentinel KQL Hunt</span>
 <span class="pipe-title" data-i18n="pipe-ssh-s4-title">Azure-Sentinel #15693</span>
-<span class="pipe-status status-review" data-i18n="pipe-ssh-s4-status"><i aria-hidden="true" class="bi bi-check2-all"></i> 24/24 CI · In Review</span>
+<span class="pipe-status status-merged" data-i18n="pipe-status-merged-live"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> Merged &amp; Live</span>
 </a>
 </div>
 </header>
@@ -317,7 +317,7 @@
 <section id="kql-detection">
 <h2 data-i18n="ssh-s4-title">4. Full Sentinel KQL Hunting Query (<code>Azure/Azure-Sentinel #15693</code>)</h2>
 <p data-i18n="ssh-s4-p1">
-            Submitted in <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank"><code>Azure/Azure-Sentinel #15693</code></a> (<code>Hunting Queries/Microsoft 365 Defender/Execution/SshIndirectCommandExecution.yaml</code>), the production query combines all four CLI detectors with child-process lineage and emits a normalized <code>DetectionSignal</code> summary for analyst triage:
+            Merged in <a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank"><code>Azure/Azure-Sentinel #15693</code></a> (<code>Hunting Queries/Microsoft 365 Defender/Execution/SshIndirectCommandExecution.yaml</code>), the production query combines all four CLI detectors with child-process lineage and emits a normalized <code>DetectionSignal</code> summary for analyst triage:
           </p>
 <div class="code-block" data-lang="kql">
 <div class="code-head">
@@ -397,21 +397,21 @@ detection:
 </div>
 </section>
 <section id="adx-validation">
-<h2 data-i18n="ssh-s6-title">6. Empirical Validation in Azure Data Explorer (19-Case Harness)</h2>
+<h2 data-i18n="ssh-s6-title">6. Empirical Validation in Azure Data Explorer (21-Case Harness)</h2>
 <p data-i18n="ssh-s6-p1">
-            Static syntax parsing is never proof that an RE2 automaton handles real quoting and boundary edge cases. The Sentinel query was executed live against an Azure Data Explorer cluster (<code>help/Samples</code>) using a self-contained 19-row synthetic <code>DeviceProcessEvents</code> <code>datatable</code> covering adversarial edge cases and realistic benign telemetry:
+            Static syntax parsing is never proof that an RE2 automaton handles real quoting and boundary edge cases. The Sentinel query was executed live against an Azure Data Explorer cluster (<code>help/Samples</code>) using a self-contained 21-row synthetic <code>DeviceProcessEvents</code> <code>datatable</code> covering adversarial edge cases and realistic benign telemetry:
           </p>
 <div class="metric-grid">
 <div class="metric-box">
-<div class="metric-val">11 / 11</div>
+<div class="metric-val">12 / 12</div>
 <div class="metric-lbl">True Positives Detected</div>
 </div>
 <div class="metric-box">
-<div class="metric-val">0 / 8</div>
-<div class="metric-lbl">False Positives (TN 8/8)</div>
+<div class="metric-val">0 / 9</div>
+<div class="metric-lbl">False Positives (TN 9/9)</div>
 </div>
 <div class="metric-box">
-<div class="metric-val">2.382 s</div>
+<div class="metric-val">0.285 s</div>
 <div class="metric-lbl">ADX Execution Runtime</div>
 </div>
 <div class="metric-box">
@@ -420,13 +420,13 @@ detection:
 </div>
 </div>
 <ul>
-<li data-i18n="ssh-s6-sum-1"><strong>11 True Positives verified:</strong> Star Blizzard <em>RedFlick</em> pattern (<code>PermitLocalCommand=yes</code> + <code>LocalCommand</code>), pre-auth <code>KnownHostsCommand</code>, compact <code>-oKnownHostsCommand=...</code>, renamed <code>ssh.exe</code> caught via <code>ProcessVersionInfoOriginalFileName</code>, OpenSSH <em>first-match-wins</em> bypass attempts with trailing <code>=none</code> / <code>=no</code> overrides, <code>ProxyCommand</code> invoking PowerShell, <code>-F</code> config child-process spawning, and <code>n</code>/<code>no</code>/<code>non</code>/<code>none_</code> command prefix boundary tests (e.g., <code>notepad.exe</code>, <code>none_tool.exe</code>).</li>
-<li data-i18n="ssh-s6-sum-2"><strong>8 True Negatives verified:</strong> Standard interactive SSH login, explicit hardening flags (<code>-o KnownHostsCommand=none</code>, <code>-o LocalCommand=none</code>, <code>-o PermitLocalCommand=no</code>), legitimate <code>cloudflared</code> <code>ProxyCommand</code> wrapper, benign <code>ssh-askpass.exe</code> child process, whitespace around <code>=</code>, and empty quoted directives.</li>
+<li data-i18n="ssh-s6-sum-1"><strong>12 True Positives verified:</strong> Star Blizzard <em>RedFlick</em> pattern (<code>PermitLocalCommand=yes</code> + <code>LocalCommand</code>), pre-auth <code>KnownHostsCommand</code>, compact <code>-oKnownHostsCommand=...</code>, renamed <code>ssh.exe</code> caught via <code>ProcessVersionInfoOriginalFileName</code>, OpenSSH <em>first-match-wins</em> bypass attempts with trailing <code>=none</code> / <code>=no</code> overrides, literal <code>KnownHostsCommand=no</code> / <code>LocalCommand="no"</code> (parsed by OpenSSH as command <code>no</code>, not disabled), <code>ProxyCommand</code> invoking PowerShell, <code>-F</code> config child-process spawning, and <code>n</code>/<code>no</code>/<code>non</code>/<code>none_</code> command prefix boundary tests (e.g., <code>notepad.exe</code>, <code>none_tool.exe</code>).</li>
+<li data-i18n="ssh-s6-sum-2"><strong>9 True Negatives verified:</strong> Standard interactive SSH login, explicit hardening flags (<code>-o KnownHostsCommand=none</code>, <code>-o LocalCommand=none</code>, quoted <code>"KnownHostsCommand=none"</code> / <code>LocalCommand='none'</code>, <code>-o PermitLocalCommand=no</code> / <code>=false</code>), legitimate <code>cloudflared</code> <code>ProxyCommand</code> wrapper, benign <code>ssh-askpass.exe</code> child process, whitespace around <code>=</code>, and empty quoted directives.</li>
 <li data-i18n="ssh-s6-sum-3"><strong>Repo CI validations:</strong> Passed <code>KqlValidations</code> (<code>Microsoft.Azure.Kusto.Language</code> against <code>DeviceProcessEvents.json</code> schema), <code>YamlDotNet</code>, <code>js-yaml</code>, <code>NonAsciiValidationsTests</code>, <code>DocumentsLinkValidation</code>, and CodeQL (24/24 checks completed, 0 failures).</li>
 </ul>
 <details class="rdetails">
 <summary>
-<span data-i18n="ssh-s6-harness-summary"><i aria-hidden="true" class="bi bi-table"></i> Inspect Complete 19-Case ADX Test Harness Breakdown (11 TP / 8 TN)</span>
+<span data-i18n="ssh-s6-harness-summary"><i aria-hidden="true" class="bi bi-table"></i> Inspect Complete 21-Case ADX Test Harness Breakdown (12 TP / 9 TN)</span>
 <i aria-hidden="true" class="bi bi-chevron-down"></i>
 </summary>
 <div class="rdetails-body">
@@ -452,6 +452,7 @@ detection:
 <tr><td>TP-09</td><td data-i18n="ssh-exp-detect">Detect</td><td data-i18n="ssh-tp09-scen">Hidden <code>-F</code> / <code>.ssh/config</code> spawning child shell (<code>ssh.exe → cmd.exe</code>)</td><td data-i18n="ssh-tp09-sig"><code>ChildProcess:SpawnedBySsh</code></td></tr>
 <tr><td>TP-10</td><td data-i18n="ssh-exp-detect">Detect</td><td data-i18n="ssh-tp10-scen">Boundary prefix command starting with <code>n</code>/<code>no</code>/<code>non</code> (e.g., <code>notepad.exe</code>)</td><td data-i18n="ssh-tp10-sig"><code>CLI:KnownHostsCommand</code></td></tr>
 <tr><td>TP-11</td><td data-i18n="ssh-exp-detect">Detect</td><td data-i18n="ssh-tp11-scen">Boundary prefix command starting with <code>none_</code> (e.g., <code>none_tool.exe</code>)</td><td data-i18n="ssh-tp11-sig"><code>CLI:KnownHostsCommand</code></td></tr>
+<tr><td>TP-12</td><td data-i18n="ssh-exp-detect">Detect</td><td data-i18n="ssh-tp12-scen">Literal <code>=no</code> / <code>="no"</code> on <code>KnownHostsCommand</code> &amp; <code>LocalCommand</code> (parsed as command <code>no</code>, not disabled)</td><td data-i18n="ssh-tp12-sig"><code>CLI:KnownHostsCommand;CLI:LocalCommand</code></td></tr>
 <tr><td>TN-01</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn01-scen">Standard interactive SSH login (<code>ssh user@host</code>)</td><td data-i18n="ssh-tn01-sig">No signal</td></tr>
 <tr><td>TN-02</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn02-scen">Explicit hardening flag <code>-o KnownHostsCommand=none</code></td><td data-i18n="ssh-tn02-sig">Excluded by RE2 prefix automaton</td></tr>
 <tr><td>TN-03</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn03-scen">Explicit hardening flag <code>-o LocalCommand=none</code></td><td data-i18n="ssh-tn03-sig">Excluded by RE2 prefix automaton</td></tr>
@@ -460,6 +461,7 @@ detection:
 <tr><td>TN-06</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn06-scen">Benign <code>ssh-askpass.exe</code> child process spawned by <code>ssh.exe</code></td><td data-i18n="ssh-tn06-sig">Excluded from suspicious child list</td></tr>
 <tr><td>TN-07</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn07-scen">Spaced equality hardening (<code>-o "KnownHostsCommand = none"</code>)</td><td data-i18n="ssh-tn07-sig">Excluded by RE2 prefix automaton</td></tr>
 <tr><td>TN-08</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn08-scen">Empty quoted directive value (<code>-o KnownHostsCommand=""</code>)</td><td data-i18n="ssh-tn08-sig">Excluded by RE2 value matcher</td></tr>
+<tr><td>TN-09</td><td data-i18n="ssh-exp-benign">Benign</td><td data-i18n="ssh-tn09-scen">Quoted <code>=none</code> (<code>"KnownHostsCommand=none"</code>, <code>LocalCommand='none'</code>) &amp; <code>PermitLocalCommand=false</code></td><td data-i18n="ssh-tn09-sig">Excluded by RE2 &amp; boolean matcher</td></tr>
 </tbody>
 </table>
 </div>
@@ -484,7 +486,7 @@ detection:
 <a class="artifact-card" href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">
 <span class="artifact-kind" data-i18n="art-ssh-k2">Sentinel KQL</span>
 <strong class="artifact-title">SshIndirectCommandExecution</strong>
-<span class="artifact-meta" data-i18n="art-ssh-m2">Azure-Sentinel #15693 (24/24 CI)</span>
+<span class="artifact-meta" data-i18n="art-ssh-m2">Azure-Sentinel #15693 (Merged · 24/24 CI)</span>
 </a>
 <a class="artifact-card" href="https://github.com/SigmaHQ/sigma/pull/6585" rel="noopener" target="_blank">
 <span class="artifact-kind" data-i18n="art-ssh-k3">Sigma Rule</span>
@@ -499,7 +501,7 @@ detection:
 <li data-i18n="ssh-ref-1"><a href="https://lolbas-project.github.io/lolbas/Binaries/Ssh/" rel="noopener" target="_blank">LOLBAS Project — Official <code>Ssh.exe</code> Documentation</a> (<a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" rel="noopener" target="_blank">PR #539</a> &amp; <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/532" rel="noopener" target="_blank">PR #532</a>, Merged)</li>
 <li data-i18n="ssh-ref-2"><a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/star-blizzard-refines-phishing-and-malware-delivery-with-the-redflick-technique/" rel="noopener" target="_blank">Microsoft Threat Intelligence — Star Blizzard refines phishing and malware delivery with the RedFlick technique (Sep 2026)</a></li>
 <li data-i18n="ssh-ref-3"><a href="https://github.com/SigmaHQ/sigma/pull/6585" rel="noopener" target="_blank">SigmaHQ/sigma #6585 — <code>proc_creation_win_ssh_proxy_execution.yml</code> enhancement</a></li>
-<li data-i18n="ssh-ref-4"><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Azure/Azure-Sentinel #15693 — <code>SshIndirectCommandExecution.yaml</code> Hunting Query</a></li>
+<li data-i18n="ssh-ref-4"><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Azure/Azure-Sentinel #15693 — <code>SshIndirectCommandExecution.yaml</code> Hunting Query (Merged)</a></li>
 <li data-i18n="ssh-ref-5"><a href="https://attack.mitre.org/techniques/T1202/" rel="noopener" target="_blank">MITRE ATT&amp;CK T1202 — Indirect Command Execution</a></li>
 </ul>
 </section>
@@ -516,6 +518,6 @@ detection:
 </footer>
 <button aria-label="Back to top" class="scroll-top" id="scrollTop" type="button"><i aria-hidden="true" class="bi bi-arrow-up"></i></button>
 <div aria-live="polite" class="sr-only" id="researchLiveRegion"></div>
-<script src="../research.js?v=2"></script>
+<script src="../research.js?v=3"></script>
 </body>
 </html>

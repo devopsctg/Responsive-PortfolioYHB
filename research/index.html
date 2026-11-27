@@ -106,7 +106,7 @@
 </div>
 <div aria-label="Research impact summary" class="rkpi-grid">
 <div class="rkpi-card">
-<div class="rkpi-val" id="kpiMergedCount">10</div>
+<div class="rkpi-val" id="kpiMergedCount">14</div>
 <div class="rkpi-lbl" data-i18n="kpi-merged-lbl">Merged Upstream PRs</div>
 </div>
 <div class="rkpi-card">
@@ -114,7 +114,7 @@
 <div class="rkpi-lbl" data-i18n="kpi-approved-lbl">Approved Detections</div>
 </div>
 <div class="rkpi-card">
-<div class="rkpi-val" id="kpiReviewCount">3</div>
+<div class="rkpi-val" id="kpiReviewCount">2</div>
 <div class="rkpi-lbl" data-i18n="kpi-review-lbl">Active PRs in Review</div>
 </div>
 <div class="rkpi-card">
@@ -150,7 +150,7 @@
 <article class="hub-card">
 <div class="hub-card-top">
 <div class="rkicker"><i aria-hidden="true" class="bi bi-terminal-split"></i> Deep Dive 01 · T1202 · T1059</div>
-<span class="hub-meta-stat" data-i18n="hub-ssh-stat">11/11 TP · 0/8 FP (ADX)</span>
+<span class="hub-meta-stat" data-i18n="hub-ssh-stat">12/12 TP · 0/9 FP (ADX)</span>
 </div>
 <h2 data-i18n="hub-ssh-title">Abusing Windows OpenSSH (<code>KnownHostsCommand</code> &amp; <code>PermitLocalCommand</code>) and Closing First-Match-Wins Detection Bypasses in KQL &amp; Sigma</h2>
 <div class="hub-telemetry">
@@ -163,7 +163,7 @@
 <div class="hub-tags">
 <span class="hub-tag" data-i18n="hub-ssh-tag-1">LOLBAS #539 &amp; #532 (Merged)</span>
 <span class="hub-tag" data-i18n="hub-ssh-tag-2">SigmaHQ #6585</span>
-<span class="hub-tag" data-i18n="hub-ssh-tag-3">Azure-Sentinel #15693</span>
+<span class="hub-tag" data-i18n="hub-ssh-tag-3">Azure-Sentinel #15693 (Merged)</span>
 <span class="hub-tag" data-i18n="hub-ssh-tag-4">RE2 / KQL</span>
 </div>
 <div class="hub-card-foot">
@@ -214,7 +214,7 @@
 <div class="mitre-links">
 <a href="./windows-openssh-indirect-execution/">Deep Dive 01</a>
 <a href="https://github.com/LOLBAS-Project/LOLBAS/pull/539" rel="noopener" target="_blank">LOLBAS #539</a>
-<a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Sentinel #15693</a>
+<a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Sentinel #15693 (Merged)</a>
 </div>
 </article>
 <article class="mitre-card">
@@ -254,14 +254,14 @@
 <section aria-label="Upstream Traceability Matrix" class="matrix-section">
 <div class="matrix-header">
 <div class="rkicker" data-i18n="matrix-kicker"><i aria-hidden="true" class="bi bi-table"></i> Upstream Traceability Matrix</div>
-<span class="sync-pill" data-i18n="matrix-sync-pill" id="telemetrySyncBadge">Snapshot: 2026-11-22</span>
+<span class="sync-pill" data-i18n="matrix-sync-pill" id="telemetrySyncBadge">Snapshot: 2026-11-27</span>
 </div>
 <div class="matrix-toolbar">
 <div aria-label="Filter PRs by status" class="matrix-filters" role="group">
 <button aria-pressed="true" class="mfilt-btn active" data-filter="all" type="button">All (<span class="mfilt-count">13</span>)</button>
-<button aria-pressed="false" class="mfilt-btn" data-filter="merged" type="button">Merged (<span class="mfilt-count">7</span>)</button>
+<button aria-pressed="false" class="mfilt-btn" data-filter="merged" type="button">Merged (<span class="mfilt-count">8</span>)</button>
 <button aria-pressed="false" class="mfilt-btn" data-filter="approved" type="button">Approved (<span class="mfilt-count">3</span>)</button>
-<button aria-pressed="false" class="mfilt-btn" data-filter="review" type="button">In Review (<span class="mfilt-count">3</span>)</button>
+<button aria-pressed="false" class="mfilt-btn" data-filter="review" type="button">In Review (<span class="mfilt-count">2</span>)</button>
 </div>
 <div class="matrix-search-wrap">
 <input aria-label="Filter upstream matrix" class="matrix-search" id="matrixSearch" placeholder="Filter repo, T-code, Sigma, KQL..." type="search"/>
@@ -315,11 +315,11 @@
 <td data-i18n="matrix-r6-scope">AnyDesk custom per-org client coverage (T1219)</td>
 <td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
 </tr>
-<tr data-pr-count="4" data-status="merged">
-<td><a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" rel="noopener" target="_blank">soxoj/maigret (#3367, #3386, #3388, #3458)</a></td>
+<tr data-pr-count="7" data-status="merged">
+<td><a href="https://github.com/soxoj/maigret/pulls?q=is%3Apr+author%3ADevCop95+is%3Amerged" rel="noopener" target="_blank">soxoj/maigret (#3367, #3386, #3388, #3458, #3459, #3486, #3487)</a></td>
 <td data-i18n="matrix-r7-dom">OSINT Signal Integrity</td>
 <td data-i18n="matrix-r7-scope">False-positive elimination &amp; challenge handling</td>
-<td><span class="pipe-status status-merged" data-i18n="matrix-status-4merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> 4 MERGED</span></td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-7merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> 7 MERGED</span></td>
 </tr>
 <tr data-pr="elastic/detection-rules#6946" data-status="approved">
 <td><a href="https://github.com/elastic/detection-rules/pull/6946" rel="noopener" target="_blank">elastic/detection-rules #6946</a></td>
@@ -345,11 +345,11 @@
 <td data-i18n="matrix-r11-scope">Windows <code>ssh.exe</code> <code>KnownHostsCommand</code> (T1202)</td>
 <td><span class="pipe-status status-review" data-i18n="matrix-status-review"><i aria-hidden="true" class="bi bi-hourglass-split"></i> IN REVIEW</span></td>
 </tr>
-<tr data-pr="Azure/Azure-Sentinel#15693" data-status="review">
+<tr data-pr="Azure/Azure-Sentinel#15693" data-status="merged">
 <td><a href="https://github.com/Azure/Azure-Sentinel/pull/15693" rel="noopener" target="_blank">Azure/Azure-Sentinel #15693</a></td>
 <td data-i18n="matrix-r12-dom">Sentinel KQL Hunting</td>
-<td data-i18n="matrix-r12-scope">Windows OpenSSH indirect execution (24/24 CI)</td>
-<td><span class="pipe-status status-review" data-i18n="matrix-status-review"><i aria-hidden="true" class="bi bi-hourglass-split"></i> IN REVIEW</span></td>
+<td data-i18n="matrix-r12-scope">Windows OpenSSH indirect execution (21-case ADX · 24/24 CI)</td>
+<td><span class="pipe-status status-merged" data-i18n="matrix-status-merged"><i aria-hidden="true" class="bi bi-check-circle-fill"></i> MERGED</span></td>
 </tr>
 <tr data-pr="NVIDIA/garak#2357" data-status="review">
 <td><a href="https://github.com/NVIDIA/garak/pull/2357" rel="noopener" target="_blank">NVIDIA/garak #2357</a></td>
@@ -373,6 +373,6 @@
 </footer>
 <button aria-label="Back to top" class="scroll-top" data-i18n-aria="btn-back-to-top" id="scrollTop" type="button"><i aria-hidden="true" class="bi bi-arrow-up"></i></button>
 <div aria-live="polite" class="sr-only" id="researchLiveRegion"></div>
-<script src="research.js?v=2"></script>
+<script src="research.js?v=3"></script>
 </body>
 </html>
