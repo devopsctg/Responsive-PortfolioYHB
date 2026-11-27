@@ -717,21 +717,27 @@ document.addEventListener('DOMContentLoaded', () => {
     syncThemeIcon();
 
     // ─── MOBILE MENU ─────────────────────────────────────────────────────────
+    const desktopNavQuery = window.matchMedia('(min-width: 901px)');
     const openMenu = () => {
         if (!mobileMenu) return;
+        mobileMenu.scrollTop = 0;
         mobileMenu.classList.add('open');
         mobileMenu.removeAttribute('inert');
+        root.classList.add('menu-open');
         body.classList.add('menu-open');
         hamburgerBtn?.setAttribute('aria-expanded', 'true');
-        setTimeout(() => mobileClose?.focus(), 60);
+        setTimeout(() => {
+            if (mobileMenu.classList.contains('open')) mobileClose?.focus({ preventScroll: true });
+        }, 50);
     };
     const closeMenu = (restoreFocus = false) => {
         if (!mobileMenu) return;
         mobileMenu.classList.remove('open');
         mobileMenu.setAttribute('inert', '');
+        root.classList.remove('menu-open');
         body.classList.remove('menu-open');
         hamburgerBtn?.setAttribute('aria-expanded', 'false');
-        if (restoreFocus) hamburgerBtn?.focus();
+        if (restoreFocus) hamburgerBtn?.focus({ preventScroll: true });
     };
 
     hamburgerBtn?.addEventListener('click', e => {
@@ -747,9 +753,27 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMenu(false);
     });
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+        if (!mobileMenu?.classList.contains('open')) return;
+        if (e.key === 'Escape') {
             closeMenu(true);
+            return;
         }
+        if (e.key === 'Tab') {
+            const focusables = Array.from(mobileMenu.querySelectorAll('a[href], button:not([disabled])'));
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    });
+    desktopNavQuery.addEventListener('change', e => {
+        if (e.matches && mobileMenu?.classList.contains('open')) closeMenu(false);
     });
 
     // ─── CERTIFICATE MODAL ───────────────────────────────────────────────────
